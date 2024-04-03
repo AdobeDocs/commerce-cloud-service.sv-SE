@@ -1,0 +1,86 @@
+---
+title: Smarta guider
+description: Lär dig hur du använder smarta guider för att utvärdera om ditt Adobe Commerce-projekt för molninfrastruktur följer bästa praxis för driftsättning.
+feature: Cloud, Build, Deploy, SCD
+exl-id: eb79431c-8835-4ae4-b453-9c4932c5d5ac
+source-git-commit: 225fba1acfd8b3ce4d7ce989c7851e7b0b218680
+workflow-type: tm+mt
+source-wordcount: '322'
+ht-degree: 0%
+
+---
+
+# Smarta guider
+
+De smarta guiderna kan hjälpa dig att avgöra om din molnkonfiguration följer vedertagna standarder. De tillgängliga guiderna hjälper dig med följande konfigurationer:
+
+- Idealiskt läge för minimal driftsättning
+- Belastningsbalanskonfiguration för databas och Redis
+- Statisk innehållsdistribution (SCD) för on-demand, byggfasen eller driftsättningsfasen
+
+Var och en av de smarta guidekommandona ger ett verifieringssvar och, om tillämpligt, en rekommendation för rätt konfiguration.
+
+| Kommando | Beskrivning |
+| ------- | ------------|
+| `wizard:ideal-state` | Kontrollera att SCD finns på _bygg_ scenen, `SKIP_HTML_MINIFICATION` variabeln is `true`och funktionen post_deploy konfigurerades i molnmiljön. Ej till lokal utvecklingsmiljö. |
+| `wizard:master-slave` | Kontrollera att `REDIS_USE_SLAVE_CONNECTION` variabeln och `MYSQL_USE_SLAVE_CONNECTION` variabeln is `true`. |
+| `wizard:scd-on-demand` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `true`. |
+| `wizard:scd-on-build` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `false` och `SKIP_SCD` miljövariabeln är `false` för _bygg_ stage. Verifierar att `config.php` filen innehåller information om butiker, butiksgrupper och webbplatser. |
+| `wizard:scd-on-deploy` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `false` och `SKIP_SCD` miljövariabeln är `false` för _driftsätta_ stage. Verifierar att `config.php` filen gör _NOT_ innehåller en lista med butiker, butiksgrupper och webbplatser med relaterad information. |
+
+Du kan till exempel kontrollera att konfigurationen aktiverar funktionen för on demand-SCD:
+
+```bash
+./vendor/bin/ece-tools wizard:scd-on-demand
+```
+
+En lyckad konfiguration returnerar:
+
+```terminal
+SCD on-demand is enabled
+```
+
+En misslyckad konfiguration returnerar:
+
+```terminal
+SCD on-demand is disabled
+```
+
+## Verifiera en idealisk konfiguration
+
+The _idealisk_ konfiguration för ditt Cloud-projekt hjälper till att minimera driftsättningsdriftavbrott genom att värma cachen och generera statiskt innehåll när användaren begär det. Den här guiden körs automatiskt under distributionsprocessen. Om ditt moln inte är konfigurerat för detta _idealiskt läge_ får du ett meddelande som liknar följande:
+
+```terminal
+- SCD on build is not configured
+- Post-deploy hook is not configured
+- Skip HTML minification is disabled
+
+Ideal state is not configured
+```
+
+Beroende på utdata måste du göra följande korrigeringar i konfigurationen:
+
+1. Aktivera miniatyrvariabeln Skip HTML.
+
+   > .magento.env.yaml
+
+   ```yaml
+   stage:
+     global:
+       SKIP_HTML_MINIFICATION: true
+   ```
+
+1. Konfigurera postdriftsättningskroken.
+
+   > .magento.app.yaml
+
+   ```yaml
+       post_deploy: |
+           php ./vendor/bin/ece-tools post-deploy
+   ```
+
+1. Skjut upp kodändringarna och kör testet igen. När konfigurationen är _idealisk_ får du följande meddelande.
+
+   ```terminal
+   Ideal state is configured
+   ```

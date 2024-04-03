@@ -1,0 +1,117 @@
+---
+title: Aktivitetsström
+description: Lär dig hur du läser aktivitetsströmmen i [!DNL Cloud Console] eller Cloud CLI för Adobe Commerce på molninfrastrukturen.
+last-substantial-update: 2024-02-06T00:00:00Z
+exl-id: ffef5ab4-ef40-4073-adc8-a44c61c0d77b
+source-git-commit: 85ff1283f773823ff2c6e6ab8f391fd5b4aa00e4
+workflow-type: tm+mt
+source-wordcount: '449'
+ht-degree: 0%
+
+---
+
+# Aktivitetsström
+
+I huvudvyn för varje miljö visas en **Aktivitet** lista över historiska händelser som liknar en Git-logg. Listan Activity (Aktivitet) är en ström av de senaste händelserna för aktiva miljöer. Nedan följer en lista över de aktivitetstyper och deras ikoner som visas i aktivitetsströmmen:
+
+![Typ av aktivitet](../../assets/activity-types.svg){width="500" align="center"}
+
+## Visa loggar
+
+Klicka på statusikonen för en aktivitet i listan Aktivitet för att visa loggen. Du kan även klicka på ![Mer](../../assets/icon-more.png){width="32"} (_mer_) för att få tillgång till fler alternativ för att hantera aktiviteten. Nedan visas en kort logg som skapar en säkerhetskopia. Du kan [använda CLI i molnet](#activity-stream-with-cloud-cli) för att visa samma logg.
+
+![Loggvy](../../assets/log-view.png)
+
+## Hantera en aktivitet
+
+Vissa aktiviteter finns i _körs_ eller _väntande_ status. Du kan agera på en aktivitet som körs, till exempel avbryta en distribution som körs. På följande flikar visas två metoder för att avbryta en aktivitet: [!DNL Cloud Console] eller Cloud CLI.
+
+>[!BEGINTABS]
+
+>[!TAB Konsol]
+
+**Så här avbryter du en aktivitet i[!DNL Cloud Console]**:
+
+Du kan agera på en aktivitet som körs genom att gå till ![Mer](../../assets/icon-more.png){width="32"} (_mer_) och välja ett funktionsmakro, till exempel `Cancel` eller `View log`. I det här exemplet väljer du **Avbryt** för att stoppa den pågående aktiviteten.
+
+Alla aktiviteter kan inte avbrytas. Alternativet att avbryta programdistributionen visas till exempel bara under _bygg_ fas. När programmet har flyttats till _driftsätta_ kan du inte längre avbryta aktiviteten. Se [Distributionsprocess](../deploy/process.md) om de olika faserna.
+
+![Avbryt aktivitet](../../assets/activity-icons/cancel-activity.png){width="450" align="center"}
+
+Om du har en terminal som kör distributionsaktiviteten avbryts [!DNL Cloud Console] leder till att terminalen avbryts:
+
+![Aktiviteten avbröts i terminalen](../../assets/activity-icons/activity-cancelled.png){width="300"}
+
+>[!TAB CLI]
+
+**Avbryta en aktivitet i molnet-CLI**:
+
+1. Identifiera de aktiviteter som körs och välj ett aktivitets-ID.
+
+   ```bash
+   magento-cloud activity:list --state=in_progress
+   ```
+
+1. Avbryt aktiviteten med aktivitets-ID:
+
+   ```bash
+   magento-cloud activity:cancel wvl5wm7s5vkhy
+   ```
+
+>[!ENDTABS]
+
+## Filtrera aktivitetsström
+
+Möjligheten att filtrera aktivitetslistan är användbar när du letar efter något särskilt, t.ex. en säkerhetskopia eller en sammanfogningshändelse.
+
+**Filtrera aktivitetslistan i[!DNL Cloud Console]**:
+
+1. Välj en miljö och välj sedan Aktivitet **[!UICONTROL All]** för att inkludera hela händelsehistoriken.
+
+1. Klicka ![Filtrera efter](../../assets/icon-filterby.png){width="32"} och väljer **[!UICONTROL Filter by]** alternativ:
+
+   ![Filtrera aktiviteter](../../assets/activity-filter.png)
+
+1. Välj aktivitet **[!UICONTROL Recent]** visa och återställa listan.
+
+## Visa ström med molnbaserad CLI
+
+The `magento-cloud` CLI har de flesta av de funktioner som [!DNL Cloud Console]. The `activity` kan:
+
+- `list` strömmen av aktiviteter för en miljö
+- `get` information om en viss aktivitet
+- visa `log` för en specifik aktivitet
+- `cancel` en aktivitet
+
+**Så här visar du aktivitetsströmmen med CLI för molnet**:
+
+1. Visa aktiviteterna för den aktuella miljön.
+
+   ```bash
+   magento-cloud activity:list
+   ```
+
+1. Varje aktivitet har ett unikt ID. Välj ett ID i den tidigare listan och visa information om aktiviteten.
+
+   ```bash
+   magento-cloud activity:get wvl5wm7s5vkhy
+   ```
+
+1. Visa den fullständiga loggen för aktiviteten.
+
+   ```bash
+   magento-cloud activity:log wvl5wm7s5vkhy
+   ```
+
+   Exempelsvar:
+
+   ```bash
+   Activity ID: wvl5wm7s5vkhy
+   Type: environment.backup
+   Description: User created a backup of Master
+   Created: 2023-09-08T14:03:33+00:00
+   State: complete
+   Log:
+   Creating backup of master
+   Created backup eg5pu63egt2dcojkljalzjdopa
+   ```

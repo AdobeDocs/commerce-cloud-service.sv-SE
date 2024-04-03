@@ -1,0 +1,68 @@
+---
+title: Logghanterare
+description: Lär dig hur du konfigurerar logghanterare för Adobe Commerce i molninfrastruktur.
+feature: Cloud, Logs, Configuration
+role: Developer
+exl-id: d3be7b6d-5778-4c32-865b-31bdb2852a23
+source-git-commit: f8e35ecff4bcafda874a87642348e2d2bff5247b
+workflow-type: tm+mt
+source-wordcount: '232'
+ht-degree: 0%
+
+---
+
+# Logghanterare
+
+Du kan konfigurera logghanterare så att meddelanden skickas till en fjärrloggningsserver. En logghanterare pushar build- och deploy-loggar till andra system, på samma sätt som du skickar loggar till Slack och e-post. Du kan aktivera en _syslog_ -hanterare, som är idealisk för att logga meddelanden som rör maskinvara, eller en GELF-hanterare (Graylog Extended Log Format), som är idealisk för att logga meddelanden från program.
+
+I följande exempel konfigureras båda dessa hanterare genom att konfigurationen läggs till i `.magento.env.yaml` -fil. För lägsta loggningsnivå (`min_level`) värden, se [Loggnivåer](#log-levels).
+
+```yaml
+log:
+  syslog:
+    ident: "<syslog-ident>"
+    facility: 8 # https://php.net/manual/en/network.constants.php
+    min_level: "info"
+    logopts: <syslog-logopts>
+
+  syslog_udp:
+    host: "<syslog-host>"
+    port: <syslog-port>
+    facility: 8  # https://php.net/manual/en/network.constants.php
+    ident: "<syslog-ident>"
+    min_level: "info"
+
+  gelf:
+    min_level: "info"
+    use_default_formatter: true
+    additional: # Some additional information for each log message
+      project: "<some-project-id>"
+      app_id: "<some-app-id>"
+    transport:
+      http:
+        host: "<http-host>"
+        port: <http-port>
+        path: "<http-path>"
+        connection_timeout: 60
+      tcp:
+        host: "<tcp-host>"
+        port: <tcp-port>
+        connection_timeout: 60
+      udp:
+        host: "<udp-host>"
+        port: <udp-port>
+        chunk_size: 1024
+```
+
+## Loggnivåer
+
+Loggnivåer avgör detaljnivån i meddelanden. Följande loggnivåkategorier innehåller alla loggnivåer under den. Till exempel en `debug` -nivån omfattar loggning från alla nivåer, medan `alert` nivån visar endast varningar och nödsituationer.
+
+- **debug**—detaljerad felsökningsinformation
+- **info**—intressanta händelser, t.ex. användarinloggning eller SQL-logg
+- **meddelande**—normal, men signifikanta händelser
+- **varning**—exceptionella händelser som inte är fel, t.ex. användning av en föråldrad API eller dålig användning av en API
+- **fel**—körningsfel som inte kräver omedelbar åtgärd
+- **kritisk**—kritiska förhållanden, t.ex. en otillgänglig programkomponent eller ett oväntat undantag
+- **varning**—omedelbar åtgärd krävs - till exempel att en webbplats är nere eller att databasen inte är tillgänglig - som utlöser en SMS-varning
+- **nödsituation**—systemet är oanvändbart

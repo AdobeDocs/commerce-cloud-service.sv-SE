@@ -1,0 +1,64 @@
+---
+title: Konfigurera utgående e-post
+description: Lär dig hur du aktiverar utgående e-post för Adobe Commerce i molninfrastruktur.
+exl-id: 814fe2a9-15bf-4bcb-a8de-ae288fd7f284
+source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+workflow-type: tm+mt
+source-wordcount: '279'
+ht-degree: 0%
+
+---
+
+# Konfigurera utgående e-post
+
+Du kan aktivera och inaktivera utgående e-post för varje miljö från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-post för integrering och staging-miljöer för att skicka tvåfaktorsautentisering eller återställa lösenordsmeddelanden för användare av Cloud-projekt.
+
+Som standard är utgående e-post aktiverad i produktionsmiljöer. The [!UICONTROL Enable outgoing emails] kan visas vara inaktiverat i miljöinställningarna oavsett status tills du anger [`enable_smtp` property](#enable-emails-in-the-cli).
+
+{{redeploy-warning}}
+
+## Aktivera e-post i [!DNL Cloud Console]
+
+Använd **[!UICONTROL Outgoing emails]** växla i _Konfigurera miljö_ för att aktivera eller inaktivera e-postsupport.
+
+**Hantera e-postsupport från[!DNL Cloud Console]**:
+
+1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
+1. Välj ett projekt i _Alla projekt_ lista.
+1. Klicka på konfigurationsikonen i det övre högra hörnet på projektkontrollpanelen.
+1. Klicka **[!UICONTROL Environments]** och väljer en specifik miljö i listan.
+1. Om du vill aktivera eller inaktivera utgående e-post växlar du _Aktivera utgående e-post_ **På** eller **Av**.
+
+   ![Aktivera konfiguration för utgående e-post](../../assets/outgoing-emails.png)
+
+När du har ändrat inställningen byggs och distribueras miljön med den nya konfigurationen.
+
+## Aktivera e-post i CLI
+
+Du kan ändra e-postkonfigurationen för en aktiv miljö med `magento-cloud` CLI `environment:info` för att ange `enable_smtp` -egenskap. Aktivera SMTP-uppdateringar för `MAGENTO_CLOUD_SMTP_HOST` miljövariabel med IP-adressen för SMTP-värden för att skicka e-post.
+
+**Hantera e-postsupport från kommandoraden**:
+
+1. Byt till din projektkatalog på din lokala arbetsstation.
+
+1. Kontrollera miljöns inställning för utgående e-post.
+
+   ```bash
+   magento-cloud environment:info -e <environment-id> | grep enable_smtp
+   ```
+
+1. Ändra konfigurationen för e-postsupport genom att ställa in `enable_smtp` miljövariabel till `true` eller `false`.
+
+   ```bash
+   magento-cloud environment:info --refresh -e <environment-id> enable_smtp true
+   ```
+
+   Vänta på att miljön ska byggas och distribueras.
+
+1. Använd en SSH för att logga in i fjärrmiljön.
+
+1. Verifiera att e-postmeddelandet fungerar. Skicka ett test-e-postmeddelande till en adress som du kan kontrollera.
+
+   ```bash
+   php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
+   ```
