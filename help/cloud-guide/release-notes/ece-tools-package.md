@@ -2,11 +2,11 @@
 title: Versionsinformation för ECE-verktyg
 description: Se en lista över de senaste förbättringarna av ECE-verktygspaketet.
 recommendations: noDisplay, catalog
-last-substantial-update: 2024-01-16T00:00:00Z
+last-substantial-update: 2024-04-08T00:00:00Z
 exl-id: a464b940-c56e-4a7c-9948-559539e25361
-source-git-commit: f2aa4aa183298d829d27c4641f21acef1514d312
+source-git-commit: e21f21e34f89b62842bd22c99ff5705f984898e0
 workflow-type: tm+mt
-source-wordcount: '2887'
+source-wordcount: '2905'
 ht-degree: 0%
 
 ---
@@ -28,7 +28,15 @@ Versionsinformationen innehåller:
 
 <!--Add release notes below-->
 
-## v2002.1.17 {#latest}
+
+## v2002.1.18 {#latest}
+
+Releasedatum: 8 april 2024
+
+- ![ny ikon](../../assets/new.svg) **PHP** - Stöd för PHP 8.3 har lagts till.
+- ![korrigeringsikon](../../assets/fix.svg) Validerare - Uppdaterad EOL-validerare.
+
+## v2002.1.17
 
 Releasedatum: 16 januari 2024
 
