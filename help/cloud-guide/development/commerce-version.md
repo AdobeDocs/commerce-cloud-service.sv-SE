@@ -3,7 +3,7 @@ title: Uppgradera Commerce-version
 description: Lär dig hur du uppgraderar Adobe Commerce-versionen i molninfrastrukturprojektet.
 feature: Cloud, Upgrade
 exl-id: 87821007-4979-4a20-940b-aa3c82c192d8
-source-git-commit: 745a9f08353bd5dfbb871ca88947157c145c7c70
+source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
 workflow-type: tm+mt
 source-wordcount: '1439'
 ht-degree: 0%
@@ -124,7 +124,7 @@ Innan du uppgraderar programmet måste du uppdatera dina projektkonfigurationsfi
 
 ### .magento.app.yaml
 
-Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.md) -filen för den installerade versionen eftersom den styr hur ditt program bygger och distribuerar till molninfrastrukturen. Följande exempel är för version 2.4.6 och använder Composer 2.2.21. The `build: flavor:` egenskapen används inte för Composer 2.x; se [Installera och använda Composer 2](../application/properties.md#installing-and-using-composer-2).
+Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.md) -filen för den installerade versionen eftersom den styr hur ditt program bygger och distribuerar till molninfrastrukturen. Följande exempel är för version 2.4.7 och använder Composer 2.7.2. The `build: flavor:` egenskapen används inte för Composer 2.x; se [Installera och använda Composer 2](../application/properties.md#installing-and-using-composer-2).
 
 **Uppdatera `.magento.app.yaml` fil**:
 
@@ -135,13 +135,13 @@ Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.
 1. Uppdatera PHP-alternativen.
 
    ```yaml
-   type: php:8.2
+   type: php:8.3
    
    build:
        flavor: none
    dependencies:
        php:
-           composer/composer: '2.2.21'
+           composer/composer: '2.7.2'
    ```
 
 1. Ändra `hooks` property `build` och `deploy` kommandon.

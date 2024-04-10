@@ -3,7 +3,7 @@ title: Egenskaper
 description: Använd egenskapslistan som referens när du konfigurerar [!DNL Commerce] applikation för att bygga och driftsätta i molninfrastrukturen.
 feature: Cloud, Configuration, Build, Deploy, Roles/Permissions, Storage
 exl-id: 58a86136-a9f9-4519-af27-2f8fa4018038
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
 workflow-type: tm+mt
 source-wordcount: '797'
 ht-degree: 0%
@@ -26,7 +26,7 @@ The `.magento.app.yaml` filen använder egenskaper för att hantera miljöstöd 
 | [`name`](#name) | Definiera programnamnet | `mymagento` | Ja |
 | [`relationships`](#relationships) | Karttjänster | Tjänster:<ul><li>`database: "mysql:mysql"`</li><li>`redis: "redis:redis"`</li><li>`opensearch: "opensearch:opensearch"`</li></ul> | Nej |
 | [`runtime`](#runtime) | Egenskapen Runtime innehåller tillägg som krävs av [!DNL Commerce] program. | Tillägg:<ul><li>`xsl`</li><li>`newrelic`</li><li>`sodium`</li></ul> | Ja |
-| [`type`](#type-and-build) | Ange basbehållarbilden | `php:8.1` | Ja |
+| [`type`](#type-and-build) | Ange basbehållarbilden | `php:8.3` | Ja |
 | [`variables`](variables-property.md) | Använda en miljövariabel för en specifik handelsversion | — | Nej |
 | [`web`](web-property.md) | Hantera externa begäranden | — | Ja |
 | [`workers`](workers-property.md) | Hantera externa begäranden | — | Ja, om inte egenskapen web används |
@@ -55,13 +55,13 @@ The `build` egenskapen avgör vad som händer som standard när projektet skapas
 
 ```yaml
 # The toolstack used to build the application.
-type: php:8.1
+type: php:8.3
 build:
     flavor: none
 
 dependencies:
     php:
-        composer/composer: '2.2.4'
+        composer/composer: '2.7.2'
 ```
 
 ### Installera och använda Composer 2

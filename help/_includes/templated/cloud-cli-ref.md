@@ -1,7 +1,7 @@
 ---
-source-git-commit: c160be020d855983eaf7a06d04cee6e27819b2a0
+source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
 workflow-type: tm+mt
-source-wordcount: '21467'
+source-wordcount: '21442'
 ht-degree: 0%
 
 ---
@@ -6138,7 +6138,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `metrics:all`
 
-\&lt;fg white=&quot;&quot; bg=&quot;red&quot;> BETA \&lt;/> Visa mått för processor, disk och minne för en miljö
+Visa mått för processor, disk och minne för en miljö
 
 ```bash
 magento-cloud metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
@@ -6268,7 +6268,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `metrics:cpu`
 
-\&lt;fg white=&quot;&quot; bg=&quot;red&quot;> BETA \&lt;/> Visa processoranvändning i en miljö
+Visa processoranvändning i en miljö
 
 ```bash
 magento-cloud cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
@@ -6528,7 +6528,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `metrics:memory`
 
-\&lt;fg white=&quot;&quot; bg=&quot;red&quot;> BETA \&lt;/> Visa minnesanvändning i en miljö
+Visa minnesanvändning i en miljö
 
 ```bash
 magento-cloud mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
@@ -7136,7 +7136,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `operation:list`
 
-\&lt;fg white=&quot;&quot; bg=&quot;red&quot;> BETA \&lt;/> Visa körtidsåtgärder i en miljö
+Visa körningsåtgärder i en miljö
 
 ```bash
 magento-cloud ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
@@ -7232,7 +7232,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `operation:run`
 
-\&lt;fg white=&quot;&quot; bg=&quot;red&quot;> BETA \&lt;/> Köra en åtgärd i miljön
+Köra en åtgärd i miljön
 
 ```bash
 magento-cloud operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-W|--no-wait] [--wait] [--] [<operation>]

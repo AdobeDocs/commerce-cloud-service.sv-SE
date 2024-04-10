@@ -6,7 +6,7 @@ feature: Cloud, Install
 topic: Development
 last-substantial-update: 2024-02-06T00:00:00Z
 exl-id: d4452d7d-d3dc-4f8d-8bd7-76f05d89f545
-source-git-commit: abe9aa36b907be8bdfdf42e6f28f1e1eac68fecf
+source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
 workflow-type: tm+mt
 source-wordcount: '548'
 ht-degree: 0%
@@ -21,7 +21,7 @@ Innan du förbereder din lokala arbetsyta bör du kontrollera att du har [autent
 
 ## Obligatoriska paket
 
-Adobe Commerce i molninfrastruktur använder Composer för att hantera beroenden och uppgraderingar för projekt. För lokal utveckling måste du installera de PHP- och Composer-versioner som är kompatibla med ditt Cloud-projekt. Om du till exempel använder [!DNL Commerce] 2.4.6-molnmallen ser du att [`.magento.app.yaml`](https://github.com/magento/magento-cloud/blob/2.4.6/.magento.app.yaml) konfigurationsfilen använder **PHP 8.2** och **Composer 2.2.21**.
+Adobe Commerce i molninfrastruktur använder Composer för att hantera beroenden och uppgraderingar för projekt. För lokal utveckling måste du installera de PHP- och Composer-versioner som är kompatibla med ditt Cloud-projekt. Om du till exempel använder [!DNL Commerce] 2.4.7-molnmallen [`.magento.app.yaml`](https://github.com/magento/magento-cloud/blob/2.4.7/.magento.app.yaml) konfigurationsfilen använder **PHP 8.3** och **Composer 2.7.2**.
 
 Composer installerar nödvändiga bibliotek och beroenden för ditt projekt i `vendor` katalog. Följande Composer-filer som krävs finns i projektets rotkatalog:
 
@@ -47,10 +47,10 @@ Adobe Commerce i molninfrastrukturen använder ett metapaket som kräver `magent
 >=current_version <next_version
 ```
 
-Om du till exempel vill använda den senaste versionen av Adobe Commerce 2.4.5 anger du `2.4.5` som den&quot;aktuella&quot; versionen och `2.4.6` som nästa version i `composer.json` fil:
+Om du till exempel vill använda den senaste versionen av Adobe Commerce 2.4.7 anger du `2.4.7` som den&quot;aktuella&quot; versionen och `2.4.8` som nästa version i `composer.json` fil:
 
 ```text
-"magento/magento-cloud-metapackage": ">=2.4.5 <2.4.6"
+"magento/magento-cloud-metapackage": ">=2.4.7 <2.4.8"
 ```
 
 Huvudpaketen i det här metapaketet är följande:

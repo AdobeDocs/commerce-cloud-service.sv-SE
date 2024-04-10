@@ -3,7 +3,7 @@ title: Uppgradera projekt till ECE-Tools
 description: Lär dig hur du uppgraderar din Adobe Commerce i molninfrastrukturprojekt så att du kan använda ECE-verktygspaketet och dra nytta av de senaste fixarna och funktionerna.
 feature: Cloud, Install
 exl-id: 820cca84-2817-4881-829f-ebb78400d8c7
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: bcdb59f0d2a17e55e8b0479ee69fac06c710638f
 workflow-type: tm+mt
 source-wordcount: '365'
 ht-degree: 0%
@@ -44,11 +44,11 @@ Om du vill installera Adobe Commerce `2.3.5-p2`, ange `current_version` till `2.
 
 Du hittar alltid den senaste metapackage-begränsningen i [`magento-cloud` mall](https://github.com/magento/magento-cloud/blob/master/composer.json).
 
-I följande exempel begränsas Adobe Commerce i molninfrastrukturmetapaketet till alla versioner som är större än eller lika med den aktuella versionen, 2.4.5, och lägre än nästa version, 2.4.6:
+I följande exempel begränsas Adobe Commerce i molninfrastrukturmetapaketet till alla versioner som är större än eller lika med den aktuella versionen, 2.4.7, och lägre än nästa version, 2.4.8:
 
 ```json
 "require": {
-    "magento/magento-cloud-metapackage": ">=2.4.5 <2.4.6"
+    "magento/magento-cloud-metapackage": ">=2.4.7 <2.4.8"
 },
 ```
 
@@ -61,7 +61,7 @@ Så här uppgraderar du ditt projekt till `ece-tools` måste du uppdatera metapa
 1. Uppdatera `magento/magento-cloud-metapackage` versionsbegränsning i `composer.json` -fil.
 
    ```bash
-   composer require "magento/magento-cloud-metapackage":">=2.4.5 <2.4.6" --no-update
+   composer require "magento/magento-cloud-metapackage":">=2.4.7 <2.4.8" --no-update
    ```
 
 1. Uppdatera metapaketet.
