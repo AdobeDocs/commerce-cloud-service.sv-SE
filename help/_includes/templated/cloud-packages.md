@@ -1,7 +1,7 @@
 ---
-source-git-commit: 4dc60128f93f4595b0ed3e1a42cd64bb660e788f
+source-git-commit: ab9e2c8ca8c9a9c527aaa8b4cd5e2c2bc35bb718
 workflow-type: tm+mt
-source-wordcount: '2200'
+source-wordcount: '2184'
 ht-degree: 0%
 
 ---
@@ -23,17 +23,17 @@ Adobe Commerce i molninfrastruktur använder Composer för att hantera PHP-paket
 
 The `composer.json` filen deklarerar paketlistan, medan `composer.lock` filen lagrar en fullständig lista över de paket (en fullständig version av varje paket och dess beroenden) som används för att skapa en installation av Adobe Commerce eller Magento Open Source.
 
-Följande referensdokumentation genereras från `composer.lock` och täcker de paket som ingår i Adobe Commerce om molninfrastruktur 2.4.6.
+Följande referensdokumentation genereras från `composer.lock` och täcker de paket som ingår i Adobe Commerce om molninfrastruktur 2.4.7.
 
 ## Beroenden
 
-`magento/magento-cloud-metapackage 2.4.6` har följande beroenden:
+`magento/magento-cloud-metapackage 2.4.7` har följande beroenden:
 
 ```config
 fastly/magento2: ^1.2.34
 magento/ece-tools: ^2002.1.0
 magento/module-paypal-on-boarding: ~100.5.0
-magento/product-enterprise-edition: >=2.4.6 <2.4.7
+magento/product-enterprise-edition: >=2.4.7 <2.4.8
 ```
 
 ## Tredjepartslicenser
@@ -51,7 +51,7 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   <tbody>
   <tr>
     <td>
-      elasticsearch/elasticsearch
+      <a href="https://github.com/elastic/elasticsearch-php.git">elasticsearch/elasticsearch</a>
     </td>
     <td>bibliotek</td>
     <td>PHP-klient för Elasticsearch</td>
@@ -132,13 +132,6 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
     </td>
     <td>bibliotek</td>
     <td>BaconQrCode är en QR-kodgenerator för PHP.</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/beberlei/assert.git">beberlei/assert</a>
-    </td>
-    <td>bibliotek</td>
-    <td>Tunt bekräftelsebibliotek för indatavalidering i affärsmodeller.</td>
   </tr>
   <tr>
     <td>
@@ -436,13 +429,6 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/laminas/laminas-zendframework-bridge.git">laminas/laminas-zendframework-bridge</a>
-    </td>
-    <td>bibliotek</td>
-    <td>Alias för äldre ZF-klassnamn till motsvarande Laminas Project-värden.</td>
-  </tr>
-  <tr>
-    <td>
       <a href="https://github.com/nikic/PHP-Parser.git">nikic/php-parser</a>
     </td>
     <td>bibliotek</td>
@@ -482,6 +468,27 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
     </td>
     <td>magento-module</td>
     <td>Zend_Cache backend använder Redis med fullständigt stöd för taggar.</td>
+  </tr>
+  </tbody>
+</table>
+
+### ISC
+
+<table>
+  <thead>
+    <tr>
+      <th>Namn</th>
+      <th>Typ</th>
+      <th>Beskrivning</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      <a href="https://github.com/paragonie/sodium_compat.git">paragonien/natrium_compat</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Ren PHP-implementering av libnatrium; använder PHP-tillägget om det finns</td>
   </tr>
   </tbody>
 </table>
@@ -545,6 +552,13 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
     </td>
     <td>bibliotek</td>
     <td>Ett kraftfullt alternativ till var_export(), som kan exportera stängningar och objekt utan __set_state()</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/CarbonPHP/carbon-doctrine-types.git">karbonfp/koldoctrintyper</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Typer av kol i doktrin</td>
   </tr>
   <tr>
     <td>
@@ -615,27 +629,6 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
     </td>
     <td>bibliotek</td>
     <td>Startar om en process utan Xdebug.</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/doctrine/annotations.git">doktrin/anteckningar</a>
-    </td>
-    <td>bibliotek</td>
-    <td>Dokumentblockanteckningsparser</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/doctrine/deprecations.git">doktrin/borttagning</a>
-    </td>
-    <td>bibliotek</td>
-    <td>Ett litet lager ovanpå trigger_error(E_USER_DEPRECATED) eller PSR-3-loggning med alternativ för att inaktivera alla borttagningar eller selektivt för paket.</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/doctrine/lexer.git">doctrine/lexer</a>
-    </td>
-    <td>bibliotek</td>
-    <td>PHP Doctrine Lexer-parserbibliotek som kan användas i uppifrån och ned, rekursiva fallparametrar.</td>
   </tr>
   <tr>
     <td>
@@ -803,7 +796,14 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
       <a href="https://github.com/PhpGt/Dom.git">phpgt/dom</a>
     </td>
     <td>bibliotek</td>
-    <td>Det moderna DOM API:t för PHP-projekt.</td>
+    <td>Modern DOM API.</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/PhpGt/PropFunc.git">phpgt/propfunc</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Egenskapsåtkomst och mutatorfunktioner.</td>
   </tr>
   <tr>
     <td>
@@ -821,10 +821,10 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/php-fig/cache.git">psr/cache</a>
+      <a href="https://github.com/php-fig/clock.git">psr/klocka</a>
     </td>
     <td>bibliotek</td>
-    <td>Gemensamt gränssnitt för att cacha bibliotek</td>
+    <td>Gemensamt gränssnitt för att läsa klockan.</td>
   </tr>
   <tr>
     <td>
@@ -905,7 +905,7 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/sabberworm/PHP-CSS-Parser.git">sabberworm/php-css-parser</a>
+      <a href="https://github.com/MyIntervals/PHP-CSS-Parser.git">sabberworm/php-css-parser</a>
     </td>
     <td>bibliotek</td>
     <td>Parser for CSS Files written in PHP</td>
@@ -1024,6 +1024,20 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
+      <a href="https://github.com/symfony/http-client.git">symfony/http-client</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Tillhandahåller kraftfulla metoder för att hämta HTTP-resurser synkront eller asynkront</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/symfony/http-client-contracts.git">symfony/http-client-agreements</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Allmänna abstraktioner relaterade till HTTP-klienter</td>
+  </tr>
+  <tr>
+    <td>
       <a href="https://github.com/symfony/http-foundation.git">symfony/http-foundation</a>
     </td>
     <td>bibliotek</td>
@@ -1041,7 +1055,7 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
       <a href="https://github.com/symfony/intl.git">symbol/intl</a>
     </td>
     <td>bibliotek</td>
-    <td>Tillhandahåller ett PHP-ersättningslager för C intl-tillägget som innehåller ytterligare data från ICU-biblioteket</td>
+    <td>Ger åtkomst till ICU-bibliotekets lokaliseringsdata</td>
   </tr>
   <tr>
     <td>
@@ -1108,6 +1122,13 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
+      <a href="https://github.com/symfony/polyfill-php83.git">symbol/polyfill-php83</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Symfonisk polyfill backporterar vissa PHP 8.3+-funktioner till lägre PHP-versioner</td>
+  </tr>
+  <tr>
+    <td>
       <a href="https://github.com/symfony/process.git">symfoni/process</a>
     </td>
     <td>bibliotek</td>
@@ -1164,17 +1185,17 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   </tr>
   <tr>
     <td>
+      <a href="https://github.com/symfony/var-exporter.git">symfony/var-exporter</a>
+    </td>
+    <td>bibliotek</td>
+    <td>Tillåter export av serialiserbara PHP-datastrukturer till vanlig PHP-kod</td>
+  </tr>
+  <tr>
+    <td>
       <a href="https://github.com/symfony/yaml.git">symfony/yaml</a>
     </td>
     <td>bibliotek</td>
     <td>Läser in och dumpar YAML-filer</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/thecodingmachine/safe.git">sättningsmaskin/säker</a>
-    </td>
-    <td>bibliotek</td>
-    <td>PHP-kärnfunktioner som genererar undantag i stället för att returnera FALSE vid fel</td>
   </tr>
   <tr>
     <td>
@@ -1220,17 +1241,31 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
   <tbody>
   <tr>
     <td>
-      paypal/module-braintree-graph-ql
+      paypal/module-braintree-customer-balance
     </td>
     <td>magento2-module</td>
     <td>Ej tillämpligt</td>
   </tr>
   <tr>
     <td>
-      temando/module-shipping-remover
+      paypal/module-braintree-present-card-account
     </td>
     <td>magento2-module</td>
-    <td>Tar bort Temando-transporttillägget för flera transportörer från Magento 2</td>
+    <td>Ej tillämpligt</td>
+  </tr>
+  <tr>
+    <td>
+      paypal/module-braintree-present-wrapping
+    </td>
+    <td>magento2-module</td>
+    <td>Ej tillämpligt</td>
+  </tr>
+  <tr>
+    <td>
+      paypal/module-braintree-graph-ql
+    </td>
+    <td>magento2-module</td>
+    <td>Ej tillämpligt</td>
   </tr>
   </tbody>
 </table>
@@ -1246,13 +1281,6 @@ magento/product-enterprise-edition: >=2.4.6 <2.4.7
     </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>
-      maskinvara/modulleverans
-    </td>
-    <td>metapackage</td>
-    <td>Temando-utökning för flera transportföretag för Magento 2</td>
-  </tr>
   </tbody>
 </table>
 
