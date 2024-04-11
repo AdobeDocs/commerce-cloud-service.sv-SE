@@ -1,33 +1,64 @@
 ---
-source-git-commit: 28aaae20fa03f31107bcd3fb569350a68842b152
+source-git-commit: 78e19b0cb274caf3799882d1f5d8242225c936ad
 workflow-type: tm+mt
-source-wordcount: '3125'
+source-wordcount: '4098'
 ht-degree: 0%
 
 ---
 # ece-tools
 
 <!-- The template to render with above values -->
-**Version**: 2002.1.14
+**Version**: 2002.1.18
 
-Den här referensen innehåller 32 kommandon som är tillgängliga via `ece-tools` kommandoradsverktyg.
+Referensen innehåller 34 kommandon som är tillgängliga via `ece-tools` kommandoradsverktyg.
 Den inledande listan genereras automatiskt med `ece-tools list` på Adobe Commerce om molninfrastruktur.
 
 >[!NOTE]
 >
 >Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i [kodbas](https://github.com/magento/magento-cloud-cli) arkivera och skicka in dina ändringar för granskning. Ett annat sätt är att _Ge oss feedback_ (hitta länken i det övre högra hörnet). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
 
-## `build`
+## `_complete`
 
-Skapar program.
+Internt kommando för att ge förslag på komplettering av skalet
 
 ```bash
-ece-tools build
+ece-tools _complete [-s|--shell SHELL] [-i|--input INPUT] [-c|--current CURRENT] [-a|--api-version API-VERSION] [-S|--symfony SYMFONY]
 ```
+
+### `--shell`, `-s`
+
+Skaltypen (&quot;bash&quot;, &quot;fish&quot;, &quot;zsh&quot;)
+
+- Kräver ett värde
+
+### `--input`, `-i`
+
+En array med indatatoken (t.ex. COMP_WORDS eller argv)
+
+- Standard: `[]`
+- Kräver ett värde
+
+### `--current`, `-c`
+
+Indexvärdet för den inmatningsarray där markören finns (t.ex. COMP_CWORD)
+
+- Kräver ett värde
+
+### `--api-version`, `-a`
+
+API-versionen av det slutförda skriptet
+
+- Kräver ett värde
+
+### `--symfony`, `-S`
+
+inaktuell
+
+- Kräver ett värde
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -55,14 +86,140 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--no-interaction`, `-n`
+
+Ställ inga interaktiva frågor
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+
+## `build`
+
+Skapar program.
+
+```bash
+ece-tools build
+```
+
+### `--help`, `-h`
+
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--quiet`, `-q`
+
+Skriv inget meddelande
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--verbose`, `-v|-vv|-vvv`
+
+Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--version`, `-V`
+
+Visa den här programversionen
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--ansi`
+
+Tvinga (eller inaktivera) ANSI-utdata
+
+- Accepterar inte ett värde
+
+### `--no-ansi`
+
+Ignorera alternativet &quot;—ansi&quot;
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--no-interaction`, `-n`
+
+Ställ inga interaktiva frågor
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+
+## `completion`
+
+Dumpa skriptet för gränssnittets slutförande
+
+```bash
+ece-tools completion [--debug] [--] [<shell>]
+```
+
+
+### `shell`
+
+Gränssnittstypen (t.ex. &quot;bash&quot;), värdet för &quot;$SHELL&quot; env var, används om detta inte anges
+
+
+### `--debug`
+
+Avsluta felsökningsloggen
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--help`, `-h`
+
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--quiet`, `-q`
+
+Skriv inget meddelande
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--verbose`, `-v|-vv|-vvv`
+
+Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--version`, `-V`
+
+Visa den här programversionen
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--ansi`
+
+Tvinga (eller inaktivera) ANSI-utdata
+
+- Accepterar inte ett värde
+
+### `--no-ansi`
+
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -107,7 +264,7 @@ Använd alternativ katalog för att spara dumpen
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -135,14 +292,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -165,7 +321,7 @@ ece-tools deploy
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -193,14 +349,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -245,7 +400,7 @@ Hjälp för att skriva ut råformat
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -273,14 +428,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -298,7 +452,7 @@ Ställ inga interaktiva frågor
 Listkommandon
 
 ```bash
-ece-tools list [--raw] [--format FORMAT] [--] [<namespace>]
+ece-tools list [--raw] [--format FORMAT] [--short] [--] [<namespace>]
 ```
 
 
@@ -321,18 +475,16 @@ Utdataformatet (txt, xml, json eller md)
 - Standard: `txt`
 - Kräver ett värde
 
+### `--short`
 
-## `patch`
+Så här beskriver du inte kommandots argument
 
-Använder anpassade patchar.
-
-```bash
-ece-tools patch
-```
+- Standard: `false`
+- Accepterar inte ett värde
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -360,14 +512,70 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--no-interaction`, `-n`
+
+Ställ inga interaktiva frågor
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+
+## `patch`
+
+Använder anpassade patchar.
+
+```bash
+ece-tools patch
+```
+
+### `--help`, `-h`
+
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--quiet`, `-q`
+
+Skriv inget meddelande
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--verbose`, `-v|-vv|-vvv`
+
+Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--version`, `-V`
+
+Visa den här programversionen
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+### `--ansi`
+
+Tvinga (eller inaktivera) ANSI-utdata
+
+- Accepterar inte ett värde
+
+### `--no-ansi`
+
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -390,7 +598,7 @@ ece-tools post-deploy
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -418,14 +626,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -458,7 +665,7 @@ Scenario(er)
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -486,14 +693,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -516,7 +722,7 @@ ece-tools backup:list
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -544,14 +750,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -587,7 +792,7 @@ En specifik filåterställningssökväg
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -615,14 +820,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -645,7 +849,7 @@ ece-tools build:generate
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -673,14 +877,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -703,7 +906,7 @@ ece-tools build:transfer
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -731,14 +934,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -768,7 +970,7 @@ Konfiguration i JSON-format
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -796,14 +998,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -833,7 +1034,7 @@ Konfiguration i JSON-format
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -861,14 +1062,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -891,7 +1091,7 @@ ece-tools cloud:config:validate
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -919,14 +1119,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -954,7 +1153,7 @@ ece-tools dump
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -982,14 +1181,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1012,7 +1210,7 @@ ece-tools cron:disable
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1040,14 +1238,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1070,7 +1267,7 @@ ece-tools cron:enable
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1098,14 +1295,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1128,7 +1324,7 @@ ece-tools cron:kill
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1156,14 +1352,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1193,7 +1388,7 @@ Upplås genom att krona jobbkoden.
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1221,14 +1416,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1251,7 +1445,7 @@ ece-tools dev:generate:schema-error
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1279,14 +1473,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1309,7 +1502,7 @@ ece-tools dev:git:update-composer
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1337,14 +1530,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1376,7 +1568,7 @@ Miljövariabler som ska visas, möjliga alternativ: tjänster, flöden, variable
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1404,14 +1596,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1447,7 +1638,7 @@ Används för att få resultat i JSON-format
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1475,14 +1666,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1505,7 +1695,7 @@ ece-tools module:refresh
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1533,14 +1723,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1563,7 +1752,7 @@ ece-tools schema:generate
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1591,14 +1780,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1621,7 +1809,7 @@ ece-tools wizard:ideal-state
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1649,14 +1837,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1679,7 +1866,7 @@ ece-tools wizard:master-slave
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1707,14 +1894,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1737,7 +1923,7 @@ ece-tools wizard:scd-on-build
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1765,14 +1951,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1795,7 +1980,7 @@ ece-tools wizard:scd-on-demand
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1823,14 +2008,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1853,7 +2037,7 @@ ece-tools wizard:scd-on-deploy
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1881,14 +2065,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1911,7 +2094,7 @@ ece-tools wizard:split-db-state
 
 ### `--help`, `-h`
 
-Visa det här hjälpmeddelandet
+Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1939,14 +2122,13 @@ Visa den här programversionen
 
 ### `--ansi`
 
-Framtvinga ANSI-utdata
+Tvinga (eller inaktivera) ANSI-utdata
 
-- Standard: `false`
 - Accepterar inte ett värde
 
 ### `--no-ansi`
 
-Inaktivera ANSI-utdata
+Ignorera alternativet &quot;—ansi&quot;
 
 - Standard: `false`
 - Accepterar inte ett värde

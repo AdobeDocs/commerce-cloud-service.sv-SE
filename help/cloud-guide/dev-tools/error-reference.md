@@ -4,9 +4,9 @@ description: Se en lista med felkoder och meddelanden som kan visas under Adobe 
 recommendations: noDisplay
 role: Developer
 exl-id: d8cc8d49-32da-43cf-a105-aa56b5334000
-source-git-commit: f8e35ecff4bcafda874a87642348e2d2bff5247b
+source-git-commit: 9dda6fe7f6a9d6064436820a3c8426ec982b5230
 workflow-type: tm+mt
-source-wordcount: '2719'
+source-wordcount: '2763'
 ht-degree: 4%
 
 ---
@@ -36,28 +36,28 @@ Felmeddelanden kategoriseras efter en av distributionsfaserna: skapa, distribuer
 
 ## Allvarliga fel
 
-Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens projektkonfiguration som orsakar ett distributionsfel, till exempel felaktig, stöds inte eller så saknas en konfiguration för nödvändiga inställningar. Innan du kan distribuera måste du uppdatera konfigurationen för att åtgärda felen.
+Kritiska fel indikerar ett problem med Commerce i molninfrastrukturens projektkonfiguration som orsakar ett distributionsfel, till exempel felaktig, stöds inte eller så saknas en konfiguration för nödvändiga inställningar. Innan du kan distribuera måste du uppdatera konfigurationen för att åtgärda felen.
 
 ### Byggfas
 
 | Felkod | Bygg steg | Felbeskrivning (rubrik) | Föreslagen åtgärd |
 | - | - | - | - |
 | 2 |  | Kan inte skriva till `./app/etc/env.php` fil | Distributionsskriptet kan inte göra nödvändiga ändringar i `/app/etc/env.php` -fil. Kontrollera din behörighet i filsystemet. |
-| 3 |  | Konfigurationen är inte definierad i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
+| 3 |  | Konfigurationen har inte definierats i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och definierat. |
 | 4 |  | Det gick inte att analysera `.magento.env.yaml` fil | The `./.magento.env.yaml` filformatet är ogiltigt. Använd en YAML-tolk för att kontrollera syntaxen och åtgärda eventuella fel. |
 | 5 |  | Kan inte läsa `.magento.env.yaml` fil | Kan inte läsa `./.magento.env.yaml` -fil. Kontrollera filbehörigheter. |
 | 6 |  | Kan inte läsa `.schema.yaml` fil | Kan inte läsa `./vendor/magento/ece-tools/config/magento.env.yaml` -fil. Kontrollera filbehörigheter och omdistribuera (`magento-cloud environment:redeploy`). |
 | 7 | refresh-modules | Kan inte skriva till `./app/etc/config.php` fil | Distributionsskriptet kan inte göra nödvändiga ändringar i `/app/etc/config.php` -fil. Kontrollera din behörighet i filsystemet. |
 | 8 | validate-config | Kan inte läsa `composer.json` fil | Kan inte läsa `./composer.json` -fil. Kontrollera filbehörigheter. |
-| 9 | validate-config | Composer.json saknar nödvändigt avsnitt för automatisk inläsning | Obligatoriskt `autoload` -avsnittet saknas i `composer.json` -fil. Jämför avsnittet för automatisk inläsning med `composer.json` i molnmallen och lägg till den saknade konfigurationen. |
-| 10 | validate-config | Filen `.magento.env.yaml` innehåller ett alternativ som inte har deklarerats i schemat eller ett alternativ som har konfigurerats med ett ogiltigt värde eller en ogiltig scen | The `./.magento.env.yaml` filen innehåller ogiltig konfiguration. Mer information finns i felloggen. |
+| 9 | validate-config | The `composer.json` filen saknar obligatoriskt avsnitt för automatisk inläsning | Obligatoriskt `autoload` -avsnittet saknas i `composer.json` -fil. Jämför avsnittet för automatisk inläsning med `composer.json` i molnmallen och lägg till den saknade konfigurationen. |
+| 10 | validate-config | The `.magento.env.yaml` filen innehåller ett alternativ som inte har deklarerats i schemat, eller ett alternativ som har konfigurerats med ett ogiltigt värde eller en ogiltig scen | The `./.magento.env.yaml` filen innehåller ogiltig konfiguration. Mer information finns i felloggen. |
 | 11 | refresh-modules | Kommandot misslyckades: `/bin/magento module:enable --all` | Försök att köra `composer update` lokalt. Bekräfta och tryck sedan på den uppdaterade `composer.lock` -fil. Kontrollera även `cloud.log` för mer information. Om du vill ha mer detaljerade kommandoutdata lägger du till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` -fil. |
 | 12 | apply-patches | Det gick inte att tillämpa korrigeringen |  |
 | 13 | set-report-dir-nesting-level | Det går inte att skriva till filen `/pub/errors/local.xml` |  |
 | 14 | copy-sample-data | Det gick inte att kopiera exempeldatafiler |  |
 | 15 | compile-di | Kommandot misslyckades: `/bin/magento setup:di:compile` | Kontrollera `cloud.log` för mer information. Lägg till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` för mer detaljerad kommandoutskrift. |
 | 16 | dump-autoload | Kommandot misslyckades: `composer dump-autoload` | The `composer dump-autoload` kommandot misslyckades. Kontrollera `cloud.log` för mer information. |
-| 17 | run-baler | Kommandot som ska köras `Baler` JavaScript-paketering misslyckades | Kontrollera `SCD_USE_BALER` systemvariabel för att verifiera att Baler-modulen är konfigurerad och aktiverad för JS-paketering. Om du inte behöver Baler-modulen anger du `SCD_USE_BALER: false`. |
+| 17 | run-baler | Kommandot som ska köras `Baler` för Javascript-paketering misslyckades | Kontrollera `SCD_USE_BALER` systemvariabel för att verifiera att Baler-modulen är konfigurerad och aktiverad för JS-paketering. Om du inte behöver Baler-modulen anger du `SCD_USE_BALER: false`. |
 | 18 | compress-static-content | Nödvändigt verktyg hittades inte (timeout, bash) |  |
 | 19 | deploy-static-content | Kommando `/bin/magento setup:static-content:deploy` misslyckades | Kontrollera `cloud.log` för mer information. Om du vill ha mer detaljerade kommandoutdata lägger du till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` -fil. |
 | 20 | compress-static-content | Komprimeringen av statiskt innehåll misslyckades | Kontrollera `cloud.log` för mer information. |
@@ -66,7 +66,7 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | 23 |  | Det går inte att skapa ett logger-objekt |  |
 | 24 | säkerhetskopieringsdata: statiskt innehåll | Det gick inte att rensa `./init/pub/static/` katalog | Det gick inte att rensa `./init/pub/static` mapp. Kontrollera din behörighet i filsystemet. |
 | 25 |  | Det går inte att hitta Composer-paketet | Om du installerade Adobe Commerce-programversionen direkt från GitHub-databasen kontrollerar du att `DEPLOYED_MAGENTO_VERSION_FROM_GIT` systemvariabel är konfigurerad. |
-| 26 | validate-config | Ta bort modulkonfigurationen Magento Braintree som inte längre stöds i Adobe Commerce och Magento Open Source 2.4 och senare versioner. | Stöd för modulen Braintree ingår inte längre i Commerce 2.4.0 och senare. Ta bort variabeln CONFIG_STORES_DEFAULT_PAYMENT_BRAINTREE__CHANNEL från variabeln variabeln variabler i `.magento.app.yaml` -fil. Använd en officiell förlängning från Commerce Marketplace i stället för betalningsstöd från Braintree. |
+| 26 | validate-config | Ta bort modulkonfigurationen Magento Braintree som inte längre stöds i Adobe Commerce och Magento Open Source 2.4 och senare versioner. | Stöd för modulen Braintree ingår inte längre i Magento 2.4.0 och senare. Ta bort variabeln CONFIG_STORES_DEFAULT_PAYMENT_BRAINTREE__CHANNEL från variabeln variabeln variabler i `.magento.app.yaml` -fil. Använd en officiell förlängning från Commerce Marketplace i stället för betalningsstöd från Braintree. |
 
 ### Distribuera fas
 
@@ -74,11 +74,11 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | - | - | - | - |
 | 101 | fördistribution: cache | Felaktig cachekonfiguration (port eller värd saknas) | Cachekonfigurationen saknar obligatoriska parametrar `server` eller `port`. Kontrollera `cloud.log` för mer information. |
 | 102 |  | Kan inte skriva till `./app/etc/env.php` fil | Distributionsskriptet kan inte göra nödvändiga ändringar i `/app/etc/env.php` -fil. Kontrollera din behörighet i filsystemet. |
-| 103 |  | Konfigurationen är inte definierad i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
+| 103 |  | Konfigurationen har inte definierats i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
 | 104 |  | Det gick inte att analysera `.magento.env.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
 | 105 |  | Kan inte läsa `.magento.env.yaml` fil | Kan inte läsa `./.magento.env.yaml` -fil. Kontrollera filbehörigheter. |
 | 106 |  | Kan inte läsa `.schema.yaml` fil |  |
-| 107 | fördistribution: rensning-redis-cache | Det gick inte att rensa Redis-cachen | Det gick inte att rensa Redis-cachen. Kontrollera att Redis cachekonfigurationen är korrekt och att Redis-tjänsten är tillgänglig. Se [Installera Redis-tjänsten](../services/redis.md). |
+| 107 | fördistribution: rensning-redis-cache | Det gick inte att rensa Redis-cachen | Det gick inte att rensa Redis-cachen. Kontrollera att Redis cachekonfigurationen är korrekt och att Redis-tjänsten är tillgänglig. Se [Installera Redis-tjänsten](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/service/redis.html). |
 | 108 | fördriftsätta: set-production-mode | Kommando `/bin/magento maintenance:enable` misslyckades | Kontrollera `cloud.log` för mer information. Om du vill ha mer detaljerade kommandoutdata lägger du till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` -fil. |
 | 109 | validate-config | Felaktig databaskonfiguration | Kontrollera att `DATABASE_CONFIGURATION` systemvariabeln är korrekt konfigurerad. |
 | 110 | validate-config | Felaktig sessionskonfiguration | Kontrollera att `SESSION_CONFIGURATION` systemvariabeln är korrekt konfigurerad. Konfigurationen måste innehålla minst `save` parameter. |
@@ -92,7 +92,7 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | 118 |  | Nödvändigt verktyg hittades inte (timeout, bash) |  |
 | 119 | install-update: deploy-static-content | Kommando `/bin/magento setup:static-content:deploy` misslyckades | Kontrollera `cloud.log` för mer information. Om du vill ha mer detaljerade kommandoutdata lägger du till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` -fil. |
 | 120 | compress-static-content | Komprimeringen av statiskt innehåll misslyckades | Kontrollera `cloud.log` för mer information. |
-| 121 | deploy-static-content:generate | Det går inte att uppdatera den distribuerade versionen | Kan inte uppdatera `./pub/static/deployed_version.txt` -fil. Kontrollera din behörighet i filsystemet. |
+| 121 | deploy-static-content:generate | Kan inte uppdatera den distribuerade versionen | Kan inte uppdatera `./pub/static/deployed_version.txt` -fil. Kontrollera din behörighet i filsystemet. |
 | 122 | rent statiskt innehåll | Det gick inte att rensa statiska innehållsfiler |  |
 | 123 | install-update: split-db | Kommando `/bin/magento setup:db-schema:split` misslyckades | Kontrollera `cloud.log` för mer information. Om du vill ha mer detaljerade kommandoutdata lägger du till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` -fil. |
 | 124 | rensa-vy-förbearbetad | Det gick inte att rensa `var/view_preprocessed` mapp | Det går inte att rensa `./var/view_preprocessed` mapp. Kontrollera din behörighet i filsystemet. |
@@ -102,14 +102,14 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | 128 | disable-maintain-mode | Kommando `/bin/magento maintenance:disable` misslyckades | Kontrollera `cloud.log` för mer information. Lägg till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` för mer detaljerad kommandoutskrift. |
 | 129 | install-update: reset-password | Det går inte att läsa mallen för lösenordsåterställning |  |
 | 130 | install-update: cache_type | Kommandot misslyckades: `php ./bin/magento cache:enable` | Kommando `php ./bin/magento cache:enable` körs endast när Adobe Commerce installeras men `./app/etc/env.php` filen saknades eller var tom i början av distributionen. Kontrollera `cloud.log` för mer information. Lägg till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` för mer detaljerad kommandoutskrift. |
-| 131 | install-update | The `crypt/key` nyckelvärdet finns inte i `./app/etc/env.php` eller `CRYPT_KEY` cloud environment variable | Det här felet inträffar om `./app/etc/env.php` filen inte finns när Adobe Commerce-distributionen börjar, eller om `crypt/key` värdet är odefinierat. Om du migrerade databasen från en annan miljö hämtar du krypteringsnyckelvärdet från den miljön. Lägg sedan till värdet i [CRYPT_KEY](../environment/variables-deploy.md#crypt_key) molnmiljövariabel i din nuvarande miljö. Se [Lägg till krypteringsnyckeln Magento](../development/authentication-keys.md). Om du av misstag har tagit bort `./app/etc/env.php` använder du följande kommando för att återställa den från säkerhetskopiefiler som har skapats från en tidigare distribution: `./vendor/bin/ece-tools backup:restore` CLI-kommando.&quot; |
+| 131 | install-update | The `crypt/key`  nyckelvärdet finns inte i `./app/etc/env.php` eller `CRYPT_KEY` cloud environment variable | Det här felet inträffar om `./app/etc/env.php` filen inte finns när Adobe Commerce-distributionen börjar, eller om `crypt/key` värdet är odefinierat. Om du migrerade databasen från en annan miljö hämtar du krypteringsnyckelvärdet från den miljön. Lägg sedan till värdet i [CRYPT_KEY](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/env/stage/variables-deploy.html#crypt_key) molnmiljövariabel i din nuvarande miljö. Se [Adobe Commerce krypteringsnyckel](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/develop/overview.html#gather-credentials). Om du av misstag har tagit bort `./app/etc/env.php` använder du följande kommando för att återställa den från säkerhetskopiefiler som har skapats från en tidigare distribution: `./vendor/bin/ece-tools backup:restore` CLI-kommando.&quot; |
 | 132 |  | Det går inte att ansluta till tjänsten Elasticsearch | Kontrollera om Elasticsearch har giltiga inloggningsuppgifter och verifiera att tjänsten körs |
 | 137 |  | Det går inte att ansluta till OpenSearch-tjänsten | Kontrollera om det finns giltiga OpenSearch-autentiseringsuppgifter och verifiera att tjänsten körs |
 | 133 | validate-config | Ta bort modulkonfigurationen Magento Braintree som inte längre stöds i Adobe Commerce eller Magento Open Source 2.4 och senare versioner. | Stöd för modulen Braintree ingår inte längre i Adobe Commerce eller Magento Open Source 2.4.0 och senare. Ta bort variabeln CONFIG_STORES_DEFAULT_PAYMENT_BRAINTREE__CHANNEL från variabeln variabeln variabler i `.magento.app.yaml` -fil. För stöd från Braintree ska du i stället använda en officiell Braintree-betalningsförlängning från Commerce Marketplace. |
 | 134 | validate-config | Adobe Commerce och Magento Open Source 2.4.0 kräver att tjänsten Elasticsearch installeras | Installera tjänsten Elasticsearch |
 | 138 | validate-config | Adobe Commerce och Magento Open Source 2.4.4 kräver att tjänsten OpenSearch eller Elasticsearch är installerad | Installera OpenSearch-tjänsten |
 | 135 | validate-config | Sökmotorn måste anges till Elasticsearch för Adobe Commerce och Magento Open Source >= 2.4.0 | Kontrollera variabeln SEARCH_CONFIGURATION för `engine` alternativ. Om den är konfigurerad tar du bort alternativet eller anger värdet som elasticsearch. |
-| 136 | validate-config | Delad databas har tagits bort från Adobe Commerce och Magento Open Source 2.5.0. | Om du använder en delad databas som du måste återställa eller migrera till en enskild databas eller använda ett annat tillvägagångssätt. |
+| 136 | validate-config | Delad databas har tagits bort från Adobe Commerce och Magento Open Source 2.5.0. | Om du använder en delad databas måste du återgå till eller migrera till en enda databas eller använda ett annat tillvägagångssätt. |
 | 139 | validate-config | Felaktig sökmotor | Denna version av Adobe Commerce eller Magento Open Source stöder inte OpenSearch. Du måste använda version 2.3.7-p3, 2.4.3-p2 eller senare |
 
 ### Steg efter driftsättning
@@ -118,11 +118,11 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | - | - | - | - |
 | 201 | is-deploy-failed | Distributionsfasen misslyckades |  |
 | 202 |  | The `./app/etc/env.php` filen är inte skrivbar | Distributionsskriptet kan inte göra nödvändiga ändringar i `/app/etc/env.php` -fil. Kontrollera din behörighet i filsystemet. |
-| 203 |  | Konfigurationen är inte definierad i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
+| 203 |  | Konfigurationen har inte definierats i `schema.yaml` fil | Konfigurationen har inte definierats i `./vendor/magento/ece-tools/config/schema.yaml` -fil. Kontrollera att namnet på config-variabeln är korrekt och att det är definierat. |
 | 204 |  | Det gick inte att analysera `.magento.env.yaml` fil | The `./.magento.env.yaml` filformatet är ogiltigt. Använd en YAML-tolk för att kontrollera syntaxen och åtgärda eventuella fel. |
 | 205 |  | Kan inte läsa `.magento.env.yaml` fil | Kontrollera filbehörigheter. |
 | 206 |  | Kan inte läsa `.schema.yaml` fil |  |
-| 207 | uppvärmning | Det gick inte att värma upp vissa sidor |  |
+| 207 | uppvärmning | Det gick inte att förhandsladda vissa uppvärmningssidor |  |
 | 208 | time-to-first-byte | Det gick inte att testa tiden till den första byten (TTFB) |  |
 | 227 | rensningscache | Kommando `/bin/magento cache:flush` misslyckades | Kontrollera `cloud.log` för mer information. Lägg till `VERBOSE_COMMANDS: '-vvv'` till `.magento.env.yaml` för mer detaljerad kommandoutskrift. |
 
@@ -136,6 +136,8 @@ Kritiska fel indikerar ett problem med Adobe Commerce i molninfrastrukturens pro
 | 246 |  | Kan inte läsa `.schema.yaml` fil |  |
 | 247 |  | Det går inte att generera en modul för inaktivering | Kontrollera `cloud.log` för mer information. |
 | 248 |  | Det går inte att aktivera en modul för inaktivering | Kontrollera `cloud.log` för mer information. |
+| 249 |  | Det gick inte att generera modulen AdobeCommerceWebhookPlugins | Kontrollera `cloud.log` för mer information. |
+| 250 |  | Det gick inte att aktivera modulen AdobeCommerceWebhookPlugins | Kontrollera `cloud.log` för mer information. |
 
 ## Varningsfel
 
@@ -148,10 +150,10 @@ Varningsfel indikerar ett problem med konfigurationen av Commerce för molninfra
 | 1001 | validate-config | Filen app/etc/config.php finns inte |  |
 | 1002 | validate-config | The ./build_options.ini stöds inte längre |  |
 | 1003 | validate-config | Modulavsnittet saknas i den delade konfigurationsfilen |  |
-| 1004 | validate-config | Konfigurationen är inte kompatibel med den här versionen av Commerce |  |
+| 1004 | validate-config | Konfigurationen är inte kompatibel med den här versionen av Magento |  |
 | 1005 | validate-config | SCD-alternativ ignorerade |  |
 | 1006 | validate-config | Det konfigurerade tillståndet är inte idealiskt |  |
-| 1007 | run-baler | JS-paketering för baler kan inte användas |  |
+| 1007 | run-baler | Baler JS-paketering kan inte användas |  |
 
 ### Distribuera fas
 
