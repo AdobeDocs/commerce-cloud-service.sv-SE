@@ -3,9 +3,9 @@ title: Hantering av säkerhetskopiering
 description: Lär dig hur du manuellt skapar och återställer en säkerhetskopia för ditt Adobe Commerce i molninfrastrukturprojekt.
 feature: Cloud, Paas, Snapshots, Storage
 exl-id: 1cb00db7-2375-4761-9c07-1e20a74859e0
-source-git-commit: 1d8ffabb9f903e89495d11c973a9f0a5a8dd1d43
+source-git-commit: 069cbc233492d22932e8dce5bf0426dce8459727
 workflow-type: tm+mt
-source-wordcount: '682'
+source-wordcount: '685'
 ht-degree: 0%
 
 ---
@@ -16,7 +16,7 @@ Du kan när som helst utföra en manuell säkerhetskopiering av aktiva startmilj
 
 En säkerhetskopia eller _ögonblicksbild_ är en fullständig säkerhetskopiering av miljödata som innehåller alla beständiga data från tjänster som körs (MySQL-databas) och alla filer som lagras på de monterade volymerna (var, pub/media, app/etc). Ögonblicksbilden gör _not_ inkludera kod, eftersom koden redan lagras i den Git-baserade databasen. Du kan inte hämta en kopia av en ögonblicksbild.
 
-Säkerhetskopieringsfunktionen gör det **not** gäller för Pro-miljöerna. Proffsen för mellanlagring och produktion får regelbundna säkerhetskopieringar för katastrofåterställning som standard, se [Säkerhetskopiering och katastrofåterställning för Pro](../architecture/pro-architecture.md#backup-and-disaster-recovery). Till skillnad från automatiska direktsäkerhetskopieringar i Pro Staging- och Production-miljöer är det **not** automatisk. Det är _din_ ansvar för att manuellt skapa en säkerhetskopia eller konfigurera ett cron-jobb för att regelbundet skapa en säkerhetskopia av dina integreringsmiljöer i Starter eller Pro.
+Funktionen för säkerhetskopiering/fixering gör **not** gäller för Pro Staging and Production-miljöer, som som standard får regelbundna säkerhetskopieringar för katastrofåterställning. Se [Säkerhetskopiering och katastrofåterställning för Pro](../architecture/pro-architecture.md#backup-and-disaster-recovery) för mer information. Till skillnad från automatiska direktsäkerhetskopieringar i Pro Staging- och Production-miljöer är det **not** automatisk. Det är _din_ ansvar för att manuellt skapa en säkerhetskopia eller konfigurera ett cron-jobb för att regelbundet skapa en säkerhetskopia av dina integreringsmiljöer i Starter eller Pro.
 
 ## Skapa manuell säkerhetskopiering
 
