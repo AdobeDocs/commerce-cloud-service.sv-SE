@@ -6,9 +6,9 @@ feature: Cloud, Roles/Permissions
 last-substantial-update: 2023-06-27T00:00:00Z
 topic: Security
 exl-id: 3357a3ea-bf86-4a65-95d1-6b24f1152248
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: b85a163ff62f8a63430dff7c96b5cf391cf38d79
 workflow-type: tm+mt
-source-wordcount: '1441'
+source-wordcount: '1454'
 ht-degree: 0%
 
 ---
@@ -161,7 +161,11 @@ Du kan använda [[!DNL Cloud Console]](../../get-started/cloud-console.md) för 
 
 1. Klicka på **[!UICONTROL Add User]**.
 
-1. Distribuera om alla miljöer för att tillämpa ändringarna när du har lagt till användare. När du lägger till en användare aktiveras inte distributionen automatiskt. Omdistribution är ett viktigt steg för att se till att användaren kan komma åt en miljö med SSH.
+   >[!IMPORTANT]
+   >
+   >När du lägger till en användare aktiveras inte distributionen automatiskt.
+
+1. Distribuera om alla miljöer för att tillämpa ändringarna när du har lagt till användare. När du lägger till en användare aktiveras inte distributionen automatiskt. Omdistribution är ett viktigt steg för att se till att användaren kan komma åt en miljö med SSH eller utföra administratörsuppgifter.
 
 När du har lagt till användaren skickar Adobe ett e-postmeddelande till den angivna adressen med instruktioner om hur du får åtkomst till Adobe Commerce i molninfrastrukturprojektet.
 
