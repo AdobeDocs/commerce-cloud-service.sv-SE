@@ -1,7 +1,7 @@
 ---
-source-git-commit: 78e19b0cb274caf3799882d1f5d8242225c936ad
+source-git-commit: 6d8c082d78259f8f7adb0fb7f11ff4fcdb234124
 workflow-type: tm+mt
-source-wordcount: '4098'
+source-wordcount: '4030'
 ht-degree: 0%
 
 ---
@@ -58,7 +58,7 @@ inaktuell
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -115,7 +115,7 @@ ece-tools build
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -185,7 +185,7 @@ Avsluta felsökningsloggen
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -264,7 +264,7 @@ Använd alternativ katalog för att spara dumpen
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -321,7 +321,7 @@ ece-tools deploy
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -400,7 +400,7 @@ Hjälp för att skriva ut råformat
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -484,7 +484,7 @@ Så här beskriver du inte kommandots argument
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -541,7 +541,7 @@ ece-tools patch
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -598,7 +598,7 @@ ece-tools post-deploy
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -665,7 +665,7 @@ Scenario(er)
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -722,7 +722,7 @@ ece-tools backup:list
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -792,7 +792,7 @@ En specifik filåterställningssökväg
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -849,7 +849,7 @@ ece-tools build:generate
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -906,7 +906,7 @@ ece-tools build:transfer
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -970,7 +970,7 @@ Konfiguration i JSON-format
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1034,7 +1034,7 @@ Konfiguration i JSON-format
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1091,7 +1091,7 @@ ece-tools cloud:config:validate
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1153,7 +1153,7 @@ ece-tools dump
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1210,7 +1210,7 @@ ece-tools cron:disable
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1267,7 +1267,7 @@ ece-tools cron:enable
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1324,7 +1324,7 @@ ece-tools cron:kill
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1388,7 +1388,7 @@ Upplås genom att krona jobbkoden.
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1445,7 +1445,7 @@ ece-tools dev:generate:schema-error
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1502,7 +1502,7 @@ ece-tools dev:git:update-composer
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1568,7 +1568,7 @@ Miljövariabler som ska visas, möjliga alternativ: tjänster, flöden, variable
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1638,7 +1638,7 @@ Används för att få resultat i JSON-format
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1695,7 +1695,7 @@ ece-tools module:refresh
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1752,7 +1752,7 @@ ece-tools schema:generate
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1809,7 +1809,7 @@ ece-tools wizard:ideal-state
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1866,7 +1866,7 @@ ece-tools wizard:master-slave
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1923,7 +1923,7 @@ ece-tools wizard:scd-on-build
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1980,7 +1980,7 @@ ece-tools wizard:scd-on-demand
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -2037,7 +2037,7 @@ ece-tools wizard:scd-on-deploy
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -2094,7 +2094,7 @@ ece-tools wizard:split-db-state
 
 ### `--help`, `-h`
 
-Visa hjälp för det angivna kommandot. Om inget kommando anges visas hjälpen för \&lt;info>list\&lt;/info> kommando
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
 
 - Standard: `false`
 - Accepterar inte ett värde
