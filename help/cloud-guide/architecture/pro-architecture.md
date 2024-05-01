@@ -4,7 +4,7 @@ description: Läs om de miljöer som stöds av Pro-arkitekturen.
 feature: Cloud, Auto Scaling, Iaas, Paas, Storage
 topic: Architecture
 exl-id: d10d5760-44da-4ffe-b4b7-093406d8b702
-source-git-commit: 6807b572366d28fd54fbec89e7c119ec158b5e10
+source-git-commit: 95b033ba430cb5dc74fa654b9d519dfcd5b6d319
 workflow-type: tm+mt
 source-wordcount: '1472'
 ht-degree: 0%
@@ -195,8 +195,6 @@ RTO beror på lagringens storlek. Stora EBS-volymer tar längre tid att återst�
 - En stor databas (200+ GB) kan ta 5 timmar
 - En medelstor databas (150 GB) kan ta 2 1/2 timmar
 - En liten databas (60 GB) kan ta en timme
-
-{{pro-backups}}
 
 ## Pro, klusterskalning
 
