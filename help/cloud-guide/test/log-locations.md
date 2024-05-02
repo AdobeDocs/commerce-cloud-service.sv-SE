@@ -3,9 +3,9 @@ title: Visa och hantera loggar
 description: Förstå vilka typer av loggfiler som finns i molninfrastrukturen och var de finns.
 last-substantial-update: 2023-05-23T00:00:00Z
 exl-id: d7f63dab-23bf-4b95-b58c-3ef9b46979d4
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: 86af69eed16e8fe464de93bd0f33cfbfd4ed8f49
 workflow-type: tm+mt
-source-wordcount: '1024'
+source-wordcount: '0'
 ht-degree: 0%
 
 ---
@@ -76,7 +76,7 @@ ssh 1.ent-project-environment-id@ssh.region.magento.cloud "cat var/log/cron.log"
 
 >[!TIP]
 >
->I Pro-miljöer aktiveras automatisk loggrotation, komprimering och borttagning för loggfiler med ett fast filnamn. Varje loggfilstyp har ett roterande mönster och en livstid. Startmiljöer har ingen loggrotation. Fullständig information om miljöns loggrotation och livscykeln för komprimerade loggar finns i: `/etc/logrotate.conf` och `/etc/logrotate.d/<various>`
+>I Pro Staging- och Production-miljöer aktiveras automatisk loggrotation, komprimering och borttagning för loggfiler med ett fast filnamn. Varje loggfilstyp har ett roterande mönster och en livstid. Startmiljöer har ingen loggrotation. Fullständig information om miljöns loggrotation och livscykeln för komprimerade loggar finns i: `/etc/logrotate.conf` och `/etc/logrotate.d/<various>`. Loggrotation kan inte konfigureras i Pro Integration-miljöer. För Pro Integration måste du implementera en anpassad lösning/skript och [konfigurera din cron](../application/crons-property.md) för att köra skriptet efter behov.
 
 ## Skapa och distribuera loggar
 
