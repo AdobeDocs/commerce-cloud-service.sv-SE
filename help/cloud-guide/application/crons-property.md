@@ -3,9 +3,9 @@ title: Egenskapen Crons
 description: Se exempel på hur du konfigurerar egenskapen "crons" i [!DNL Commerce] programkonfigurationsfil.
 feature: Cloud, Configuration
 exl-id: 67d592c1-2933-4cdf-b4f6-d73cd44b9f59
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: 1c0e05c3d8461bea473bcf6ec35162d65ef2774f
 workflow-type: tm+mt
-source-wordcount: '1063'
+source-wordcount: '1069'
 ht-degree: 0%
 
 ---
@@ -27,7 +27,7 @@ The `crons` egenskap beskriver processer som aktiveras enligt ett schema. Varje 
 - `shutdown_timeout`—(_Valfritt_) Om ett cron-jobb avbryts är detta antalet sekunder som en SIGKILL-signal skickas för att stoppa jobbet eller processen. Standardvärdet är 10 sekunder.
 - `timeout`—(_Valfritt_) Den längsta tid ett cron-jobb kan köras före timeout. Standardvärdet är det högsta tillåtna värdet 86400 sekunder (24 timmar).
 
-Som standard har varje Commerce Cloud-projekt följande standardvärde `crons` i `.magento.app.yaml` fil:
+Som standard har alla Commerce-molnprojekt följande standardinställningar `crons` i `.magento.app.yaml` fil:
 
 ```yaml
 crons:
@@ -56,7 +56,7 @@ Du kan använda `crontab` för att granska konfiguration i Pro-projekt, använde
 
    >[!NOTE]
    >
-   >Om `crontab -l` returnerar ett `Command not found` fel måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera självbetjäningskonfigurationsalternativet för automatiska kroner i ditt Pro-projekt.
+   >Om `crontab -l` returnerar ett `Command not found` fel (endast i Pro Staging- och Production-miljöer) måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera självbetjäningskonfigurationsalternativet för automatiska kroner i ditt projekt.
 
 I följande exempel visas `crontab` utdata för en miljö som bara har standardvärdet `crons` konfiguration:
 
