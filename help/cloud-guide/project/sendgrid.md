@@ -2,9 +2,9 @@
 title: SkickaGrid-e-posttjänst
 description: Lär dig mer om e-posttjänsten SendGrid för Adobe Commerce i molninfrastrukturen och hur du kan testa din DNS-konfiguration.
 exl-id: 30d3c780-603d-4cde-ab65-44f73c04f34d
-source-git-commit: 7c22dc3b0e736043a3e176d2b7ae6c9dcbbf1eb5
+source-git-commit: 2b106edcaaacb63c0e785f094b7e1b755885abd0
 workflow-type: tm+mt
-source-wordcount: '1019'
+source-wordcount: '1090'
 ht-degree: 0%
 
 ---
@@ -27,13 +27,21 @@ SendGrid SMTP-proxyn är inte avsedd att användas som en allmän e-postserver f
 
 ## Aktivera eller inaktivera e-post
 
-Som standard är utgående e-post aktiverad i Pro Production- och Staging-miljöer. The [!UICONTROL Outgoing emails] kan visas i miljöinställningarna oavsett status tills du anger `enable_smtp` -egenskap. Du kan aktivera utgående e-postmeddelanden för andra miljöer för att skicka autentiseringsmeddelanden i två nivåer till användare av Cloud-projekt. Se [Konfigurera e-postmeddelanden för testning](outgoing-emails.md).
+Du kan aktivera eller inaktivera utgående e-post för varje miljö från molnkonsolen eller från kommandoraden.
+
+Som standard är utgående e-post aktiverat i Pro Production- och Staging-miljöer. Men [!UICONTROL Outgoing emails] kan vara inaktiverat i miljöinställningarna tills du ställer in `enable_smtp` -egenskapen via [kommandorad](outgoing-emails.md#enable-emails-in-the-cli) eller [Cloud Console](outgoing-emails.md#enable-emails-in-the-cloud-console). Du kan aktivera utgående e-postmeddelanden för integrerings- och staging-miljöer för att skicka tvåfaktorsautentisering eller återställa e-postmeddelanden med lösenord för användare av Cloud-projekt. Se [Konfigurera e-postmeddelanden för testning](outgoing-emails.md).
+
+Om utgående e-post måste inaktiveras eller återaktiveras i Pro Production- eller Staging-miljöer kan du skicka en [Adobe Commerce Support](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide).
+
+>[!TIP]
+>
+>Uppdaterar [!UICONTROL enable_smtp] egenskapsvärde efter [kommandorad](outgoing-emails.md#enable-emails-in-the-cli) ändrar även [!UICONTROL Enable outgoing emails] ange värde för den här miljön på [Cloud Console](outgoing-emails.md#enable-emails-in-the-cloud-console).
 
 ## Kontrollpanel för SendGrid
 
 Alla Cloud-projekt hanteras under ett centralt konto, så bara supporten har tillgång till kontrollpanelen SendGrid. SendGrid innehåller inga funktioner för begränsning av underkonto.
 
-Om du vill granska aktivitetsloggarna för leveransstatus eller en lista över e-postadresser som studsat, avvisats eller blockerats, [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket). Supportteamet **inte** hämta aktivitetsloggar som är äldre än 30 dagar.
+Om du vill granska aktivitetsloggarna för leveransstatus eller en lista över e-postadresser som studsat, avvisats eller blockerats, [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide#submit-ticket). Supportteamet **inte** hämta aktivitetsloggar som är äldre än 30 dagar.
 
 Om det är möjligt kan du inkludera följande information i din begäran:
 
@@ -47,7 +55,7 @@ DKIM är en teknik för e-postautentisering som gör det möjligt för internetl
 
 >[!WARNING]
 >
->Stöd för SendGrid DKIM-signaturer och domänautentisering är bara tillgängligt för Pro-projekt och inte för Starter. Därför är det troligt att utgående transaktionsmejl flaggas av skräppostfilter. Om du använder DKIM förbättras leveransfrekvensen som en autentiserad e-postavsändare. Om du vill förbättra leveransfrekvensen för meddelanden kan du uppgradera från Starter till Pro eller använda en egen SMTP-server eller e-postleverantör. Se [Konfigurera e-postanslutningar](https://experienceleague.adobe.com/docs/commerce-admin/systems/communications/email-communications.html) i _Administratörssystemguide_.
+>Stöd för SendGrid DKIM-signaturer och domänautentisering är bara tillgängligt för Pro-projekt och inte för Starter-projekt. Därför är det troligt att utgående transaktionsmejl flaggas av skräppostfilter. Om du använder DKIM förbättras leveransfrekvensen som en autentiserad e-postavsändare. Om du vill förbättra leveransfrekvensen för meddelanden kan du uppgradera från Starter till Pro eller använda en egen SMTP-server eller e-postleverantör. Se [Konfigurera e-postanslutningar](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/communications/email-communications) i _Administratörssystemguide_.
 
 ### Avsändare och domänautentisering
 
@@ -55,7 +63,7 @@ För att SendGrid ska kunna skicka transaktionsmeddelanden för din räkning fr�
 
 **Aktivera domänautentisering**:
 
-1. Skicka en [supportbiljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) som begär att DKIM ska aktiveras för en specifik domän (**Proffsmiljöer för mellanlagring och produktion**).
+1. Skicka en [supportbiljett](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide#submit-ticket) för att begära aktivering av DKIM för en specifik domän (**Proffsmiljöer för mellanlagring och produktion**).
 1. Uppdatera din DNS-konfiguration med `TXT` och `CNAME` poster som du har fått i supportanmälan.
 
 **Exempel `TXT` post med konto-ID**:
@@ -106,7 +114,7 @@ dig CNAME s2._domainkey.domain_name
 
 Tröskelvärdet för transaktionella e-postmeddelanden avser antalet transaktionsmeddelanden som du kan skicka från Pro-miljöer under en viss tidsperiod, till exempel 12 000 e-postmeddelanden per månad från icke-produktionsmiljöer. Tröskelvärdet är utformat för att skydda mot att skicka skräppost och eventuellt skada ditt e-postrykte.
 
-Det finns inga strikta gränser för hur många e-postmeddelanden som kan skickas i produktionsmiljön, så länge poängen Sender Reputation är över 95 %. Anseendet påverkas av antalet avvisade eller avvisade e-postmeddelanden och om DNS-baserade skräppostregister har flaggat din domän som en potentiell skräppostkälla. Se [E-postmeddelanden skickas inte när SendGrid-krediter överskrids på Adobe Commerce](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/emails-not-being-sent-sendgrid-credits-exceeded.html) i _Knowledge Base för Commerce Support_.
+Det finns inga strikta gränser för hur många e-postmeddelanden som kan skickas i produktionsmiljön, så länge poängen Sender Reputation är över 95 %. Anseendet påverkas av antalet avvisade eller avvisade e-postmeddelanden och om DNS-baserade skräppostregister har flaggat din domän som en potentiell skräppostkälla. Se [E-postmeddelanden skickas inte när SendGrid-krediter överskrids på Adobe Commerce](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/emails-not-being-sent-sendgrid-credits-exceeded) i _Knowledge Base för Commerce Support_.
 
 **Kontrollera om det maximala antalet krediter har överskridits**:
 
@@ -120,8 +128,8 @@ Det finns inga strikta gränser för hur många e-postmeddelanden som kan skicka
 
 1. Kontrollera `/var/log/mail.log` for `authentication failed : Maxium credits exceeded` poster.
 
-   Om du ser `authentication failed` loggposter och **E-postavsändarens rykte** är minst 95, du kan [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära en ökning av kredittilldelningen.
+   Om du ser `authentication failed` loggposter och **E-postavsändarens rykte** är minst 95, du kan [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide#submit-ticket) för att begära en ökning av kredittilldelningen.
 
 ### E-postavsändarens rykte
 
-Ett e-postrykte är en poäng som tilldelats av en Internet-leverantör (ISP) till ett företag som skickar e-postmeddelanden. Ju högre poäng, desto troligare är det att en Internet-leverantör levererar meddelanden till en mottagares inkorg. Om poängen ligger under en viss nivå kan Internet-leverantören dirigera meddelanden till mottagarnas skräppostmapp eller till och med avvisa meddelanden helt. Anseendepoängen bestäms av flera faktorer, som ett 30-dagars genomsnitt av dina IP-adresser, jämfört med andra IP-adresser och andelen skräppost. Se [5 sätt att kontrollera ditt rykte](https://sendgrid.com/blog/5-ways-check-sending-reputation/).
+Ett e-postrykte är en poäng som tilldelats av en Internet-leverantör (ISP) till ett företag som skickar e-postmeddelanden. Ju högre poäng, desto troligare är det att en Internet-leverantör levererar meddelanden till en mottagares inkorg. Om poängen ligger under en viss nivå kan Internet-leverantören dirigera meddelanden till mottagarnas skräppostmapp eller till och med avvisa meddelanden helt. Anseendepoängen bestäms av flera faktorer, som ett 30-dagars genomsnitt av dina IP-adresser, jämfört med andra IP-adresser och andelen skräppost. Se [8 sätt att kontrollera din e-postutskick](https://sendgrid.com/en-us/blog/5-ways-check-sending-reputation).

@@ -2,9 +2,9 @@
 title: Konfigurera utgående e-post
 description: Lär dig hur du aktiverar utgående e-post för Adobe Commerce i molninfrastruktur.
 exl-id: 814fe2a9-15bf-4bcb-a8de-ae288fd7f284
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: 59f82d891bb7b1953c1e19b4c1d0a272defb89c1
 workflow-type: tm+mt
-source-wordcount: '279'
+source-wordcount: '363'
 ht-degree: 0%
 
 ---
@@ -13,13 +13,21 @@ ht-degree: 0%
 
 Du kan aktivera och inaktivera utgående e-post för varje miljö från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-post för integrering och staging-miljöer för att skicka tvåfaktorsautentisering eller återställa lösenordsmeddelanden för användare av Cloud-projekt.
 
-Som standard är utgående e-post aktiverad i produktionsmiljöer. The [!UICONTROL Enable outgoing emails] kan visas vara inaktiverat i miljöinställningarna oavsett status tills du anger [`enable_smtp` property](#enable-emails-in-the-cli).
+Som standard är utgående e-post aktiverat i produktions- och mellanlagringsmiljöer. Men [!UICONTROL Enable outgoing emails] kan vara inaktiverat i miljöinställningarna tills du ställer in `enable_smtp` -egenskapen via [kommandorad](#enable-emails-in-the-cli) eller [Cloud Console](outgoing-emails.md#enable-emails-in-the-cloud-console).
+
+Uppdaterar [!UICONTROL enable_smtp] egenskapsvärde efter [kommandorad](#enable-emails-in-the-cli) ändrar även [!UICONTROL Enable outgoing emails] ange ett värde för den här miljön på molnkonsolen.
 
 {{redeploy-warning}}
 
-## Aktivera e-post i [!DNL Cloud Console]
+## Aktivera e-post i molnkonsolen
 
 Använd **[!UICONTROL Outgoing emails]** växla i _Konfigurera miljö_ för att aktivera eller inaktivera e-postsupport.
+
+Om utgående e-post måste inaktiveras eller återaktiveras i Pro Production- eller Staging-miljöer kan du skicka en [Adobe Commerce Support](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide).
+
+>[!TIP]
+>
+>Status för utgående e-post kanske inte återspeglas för Pro-miljöer på molnkonsolen. Använd i stället [kommandorad](#enable-emails-in-the-cli) för att aktivera och testa utgående e-postmeddelanden.
 
 **Hantera e-postsupport från[!DNL Cloud Console]**:
 
@@ -61,4 +69,10 @@ Du kan ändra e-postkonfigurationen för en aktiv miljö med `magento-cloud` CLI
 
    ```bash
    php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
+   ```
+
+1. Kontrollera att e-postmeddelandet har hämtats av SendGrid.
+
+   ```bash
+   grep mail@example.com /var/log/mail.log
    ```
