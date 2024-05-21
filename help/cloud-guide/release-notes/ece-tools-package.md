@@ -2,18 +2,18 @@
 title: Versionsinformation för ECE-verktyg
 description: Se en lista över de senaste förbättringarna av ECE-verktygspaketet.
 recommendations: noDisplay, catalog
-last-substantial-update: 2024-04-08T00:00:00Z
+last-substantial-update: 2024-05-21T00:00:00Z
 exl-id: a464b940-c56e-4a7c-9948-559539e25361
-source-git-commit: e21f21e34f89b62842bd22c99ff5705f984898e0
+source-git-commit: 923e2114270df22e134e0676ac97f84d770bb226
 workflow-type: tm+mt
-source-wordcount: '2905'
+source-wordcount: '2929'
 ht-degree: 0%
 
 ---
 
 # Versionsinformation för ECE-verktyg
 
-The [ece-tools](https://github.com/magento/ece-tools) paket är en uppsättning skript och verktyg som är utformade för att hantera och distribuera Cloud-projekt. I versionsinformationen beskrivs de senaste förbättringarna av det här paketet, som ingår i [Cloud Tools Suite for Commerce](cloud-tools-suite.md).
+The [ece-tools](https://github.com/magento/ece-tools) paket är en uppsättning skript och verktyg som är utformade för att hantera och distribuera Cloud-projekt. I versionsinformationen beskrivs de senaste förbättringarna av det här paketet, som ingår i [Cloud Tools Suite för Commerce](cloud-tools-suite.md).
 
 >[!NOTE]
 >
@@ -28,8 +28,14 @@ Versionsinformationen innehåller:
 
 <!--Add release notes below-->
 
+## v2002.1.19 {#latest}
 
-## v2002.1.18 {#latest}
+Releasedatum: 21 maj 2024
+
+- ![ny ikon](../../assets/new.svg) **Lua**—Added option useLua for CACHE_CONFIGURATION.
+- ![korrigeringsikon](../../assets/fix.svg) **Validerare**—Uppdaterade validerare för nya versioner av Redis och RabbitMQ.
+
+## v2002.1.18
 
 Releasedatum: 8 april 2024
 
@@ -47,7 +53,7 @@ Releasedatum: 16 januari 2024
 
 Releasedatum: 16 oktober 2023
 
-- ![ny ikon](../../assets/new.svg) **ENABLE_WEBHOOKS global miljövariabel**—Added the [ENABLE_WEBHOOKS](../environment/variables-global.md#enable_webhooks) global variabel som kan användas med Commerce-webhooks för att ansluta till en extern slutpunkt, till exempel en App Builder-körningsåtgärd eller ett lagerhanteringssystem från tredje part.
+- ![ny ikon](../../assets/new.svg) **ENABLE_WEBHOOKS global miljövariabel**—Added the [ENABLE_WEBHOOKS](../environment/variables-global.md#enable_webhooks) global variabel som kan användas med Commerce webhooks för att ansluta till en extern slutpunkt, som App Builder-körningsåtgärd eller ett lagerhanteringssystem från tredje part.
 
 ## v2002.1.15
 
@@ -63,14 +69,14 @@ Releasedatum: 31 juli 2023
 Releasedatum: 10 mars 2023
 
 - ![ny ikon](../../assets/new.svg) **PHP**- Stöd för PHP 8.2 har lagts till.
-- ![ny ikon](../../assets/new.svg) **Validerare för tjänster**—Uppdaterade validerare för Commerce 2.4.6 kräver tjänster: MariaDB 10.6, Redis 7.0, PHP 8.2, OpenSearch 2.x och RabbitMQ 3.9.
+- ![ny ikon](../../assets/new.svg) **Validerare för tjänster**—Uppdaterade validerare för Commerce 2.4.6 som krävs: MariaDB 10.6, Redis 7.0, PHP 8.2, OpenSearch 2.x och RabbitMQ 3.9.
 - ![korrigeringsikon](../../assets/fix.svg) **ece-tools db-dump**—Ett problem som orsakade `db-dump` för att stoppa i förtid.
 
 ## v2002.1.13
 
 Releasedatum: 27 oktober 2022
 
-- ![ny ikon](../../assets/new.svg) **Stöd för Adobe I/O Events för Adobe Commerce har lagts till**. Tilläggsutvecklare kan nu använda [Adobe I/O Events](https://developer.adobe.com/events/docs/) ramverk för att skicka Commerce-händelseinformation från molninstanser till deras program skrivna för [Adobe App Builder](https://developer.adobe.com/app-builder/docs/overview/). Adobe I/O Events for Adobe Commerce finns i Partner Preview.<!-- CEXT-932 -->
+- ![ny ikon](../../assets/new.svg) **Stöd för Adobe I/O Events för Adobe Commerce har lagts till**. Tilläggsutvecklare kan nu använda [Adobe I/O Events](https://developer.adobe.com/events/docs/) ramverk för att skicka händelseinformation från Commerce-instanser till deras program skrivna för [Adobe App Builder](https://developer.adobe.com/app-builder/docs/overview/). Adobe I/O Events for Adobe Commerce finns i Partner Preview.<!-- CEXT-932 -->
 - ![ny ikon](../../assets/new.svg) **Validerare för OPCache-konfiguration**—En validerare har lagts till för att kontrollera om det finns uteslutna sökvägar i OPcache-konfigurationen.<!-- MCLOUD-9485 -->
 - ![korrigeringsikon](../../assets/fix.svg) **Ett problem med GraphQL cachekonfiguration har korrigerats**—Nu håller ECE-Tools GraphQL `id_salt` värde i `cache` i `app/etc/env.php` -fil.<!-- MCLOUD-9486 -->
 
@@ -87,7 +93,7 @@ Releasedatum: 4 augusti 2022
 
 - ![korrigeringsikon](../../assets/fix.svg) **ElasticSuite Validator och OpenSearch**—Ett problem med validering av ElasticSuite-integritetskontroll när OpenSearch är installerat har åtgärdats.<!-- MCLOUD-8767 -->
 - ![korrigeringsikon](../../assets/fix.svg) **Returtyper för distributionskommandon**—Fasta returtyper för distributionskommandon.<!-- AC-3208 -->
-- ![korrigeringsikon](../../assets/fix.svg) **[!DNL RabbitMQ]problem med installation av nya Commerce 2.4.5**—Fixed [!DNL RabbitMQ] krasch vid installation av nya Commerce 2.4.5.<!-- MCLOUD-9059 -->
+- ![korrigeringsikon](../../assets/fix.svg) **[!DNL RabbitMQ]problem med installation av nya Commerce 2.4.5**—Fixed [!DNL RabbitMQ] kraschproblem vid installation av nya Commerce 2.4.5.<!-- MCLOUD-9059 -->
 
 ## v2002.1.10
 
@@ -209,7 +215,7 @@ Releasedatum: 9 november 2020
 
 **Miljövariabeluppdateringar**—
 
-- ![ny ikon](../../assets/new.svg) Lagt till [SKIP_COMPOSER_DUMP_AUTOLOAD](../environment/variables-build.md#skip_composer_dump_autoload) build-variabel. Ange variabeln till `true` stoppar programmet från att köra `composer dump-autoload` under en installation av Cloud Docker för Commerce. Variabeln är endast relevant för Cloud Docker för Commerce-behållare med skrivbara filsystem (skapade för testning och utveckling med `./vendor/bin/ece-docker build:compose --with-test`). Hoppa över `composer dump-autoload` -kommandot förhindrar fel när andra kommandon som försöker få åtkomst till filer från en borttagen `generated` katalog.<!--MCLOUD-6939-->
+- ![ny ikon](../../assets/new.svg) Lagt till [SKIP_COMPOSER_DUMP_AUTOLOAD](../environment/variables-build.md#skip_composer_dump_autoload) build-variabel. Ange variabeln till `true` stoppar programmet från att köra `composer dump-autoload` under en installation av Cloud Docker för Commerce. Variabeln gäller endast för Commerce-behållare med skrivbara filsystem (skapade för testning och utveckling med `./vendor/bin/ece-docker build:compose --with-test`). Hoppa över `composer dump-autoload` -kommandot förhindrar fel när andra kommandon som försöker få åtkomst till filer från en borttagen `generated` katalog.<!--MCLOUD-6939-->
 
 ## v2002.1.2
 
@@ -217,7 +223,7 @@ Releasedatum: 5 augusti 2020
 
 **Förbättrad validering och loggning**—
 
-- ![ny ikon](../../assets/new.svg) Lagt till `schema.error.yaml` -fil som innehåller alla fel- och varningsmeddelanden som kan inträffa under processen för att skapa, distribuera och efterdistribuera samt förslag på hur felen kan åtgärdas. Informationen i den här filen finns också i _Cloud Guide for Commerce_. Se [Felmeddelandereferens för e-postverktyg](../dev-tools/error-reference.md).<!--MCLOUD-5878-->
+- ![ny ikon](../../assets/new.svg) Lagt till `schema.error.yaml` -fil som innehåller alla fel- och varningsmeddelanden som kan inträffa under processen för att skapa, distribuera och efterdistribuera samt förslag på hur felen kan åtgärdas. Informationen i den här filen finns också i _Molnguide för Commerce_. Se [Felmeddelandereferens för e-postverktyg](../dev-tools/error-reference.md).<!--MCLOUD-5878-->
 
 - ![ny ikon](../../assets/new.svg) Ändrad fellogg för molnet (`/var/log/cloud.error.log`) till JSON-format för att göra loggen enklare att tolka programmatiskt.<!--MCLOUD-5879-->
 

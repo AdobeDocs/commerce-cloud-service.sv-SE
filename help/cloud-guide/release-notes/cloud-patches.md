@@ -2,11 +2,11 @@
 title: Cloud Patches for Commerce
 description: Se en lista över de senaste förbättringarna av Cloud Patches-paketet.
 recommendations: noDisplay, catalog
-last-substantial-update: 2024-04-08T00:00:00Z
+last-substantial-update: 2024-05-21T00:00:00Z
 exl-id: ae6b511b-a37d-4776-9a5e-ad7d9f9f6611
-source-git-commit: d5ab7c4f1d2edbd85eab5a4ca098b3d156e562e5
+source-git-commit: 61c42a1bd1d5a28f90b8756032ee6f45be4565b2
 workflow-type: tm+mt
-source-wordcount: '2187'
+source-wordcount: '2208'
 ht-degree: 0%
 
 ---
@@ -29,7 +29,13 @@ The `magento/magento-cloud-patches` paketet använder följande versionssekvens:
 
 <!--Add release notes below-->
 
-## v1.0.26 {#latest}
+## v1.0.27 {#latest}
+
+Releasedatum: 21 maj 2024
+
+- **Stöd för PHP 8.3**- Den här korrigeringen åtgärdar kompatibilitetsfel mellan PHP 8.3 och Composer-paketets version.
+
+## v1.0.26
 
 Releasedatum: 8 april 2024
 
@@ -59,7 +65,7 @@ Releasedatum: 31 juli 2023
 Releasedatum: 19 juni 2023
 
 - **Förbättrad QPT CLI-guide/utdata**- En varning har lagts till i QPT CLI-guiden/utdatafilen som påminner dig om att verifiera korrigeringsinformation och -krav om det finns beroenden.<!-- ACP2E-1963 -->
-- **Lagt till patchar för Commerce 2.4.6:**
+- **Patchar för Commerce 2.4.6:**
    - Korrigerade `regexp cache tag` validering.<!-- MCLOUD-10226 -->
    - Förbättrade prestanda genom att minska antalet gånger som samma distributionskonfigurationer läses in.<!-- MCLOUD-10604 -->
 - **Lagt till patchar för Commerce 2.3.7 till 2.4.6**—Korrigerade ett problem som orsakade en ökning med ett slumpmässigt värde i stället för en ökning med 1 för `catalog_product_entity_*` tabeller.<!-- MCLOUD-10032 -->
@@ -75,7 +81,7 @@ Releasedatum: 10 mars 2023
 
 Releasedatum: 27 oktober 2022
 
-- **Lagt till förbättringar av L2-cache**- Den här korrigeringen åtgärdar ett problem med att tömma den lokala L2-cachen för Commerce version 2.4.0 och 2.4.1.<!-- MCLOUD-7845 -->
+- **Lagt till förbättringar av L2-cache**- Den här korrigeringen åtgärdar ett problem med tömning av det lokala L2-cacheminnet för Commerce version 2.4.0 och 2.4.1.<!-- MCLOUD-7845 -->
 
 ## v1.0.19
 
@@ -210,7 +216,7 @@ Releasedatum: 26 juni 2020
 
 - **Prestandaförbättringar i Redis**—Lägger till Redis-optimeringsfunktioner i Adobe Commerce version 2.3.3 och 2.3.4. Dessa korrigeringar ingick i Adobe Commerce version 2.3.5. Se [Prestandaförbättringar](https://devdocs.magento.com/guides/v2.3/release-notes/release-notes-2-3-5-commerce.html#performance-boosts) i _Versionsinformation om Adobe Commerce 2.3.5_.<!--MCLOUD-5771-->
 
-- **New Relic logganrikare**—Lägger till det Monolog ProcessorInterface som krävs för att stödja förbättringar av loggningsfunktionerna i New Relic som introducerades i molnkomponenter i Commerce version 1.0.4. Den här korrigeringen krävs för att installera Adobe Commerce 2.1.x. Om korrigeringen inte tillämpas misslyckas bygget under `di:compile` -processen.<!--MCLOUD-6029-->
+- **New Relic logganrikare**—Lägger till det Monolog ProcessorInterface som krävs för att stödja förbättringar av loggningsfunktionerna i New Relic som introducerades i Cloud Components i Commerce version 1.0.4. Den här korrigeringen krävs för att installera Adobe Commerce 2.1.x. Om korrigeringen inte tillämpas misslyckas bygget under `di:compile` -processen.<!--MCLOUD-6029-->
 
 ## v1.0.4
 
