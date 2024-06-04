@@ -3,9 +3,9 @@ title: Öppna Commerce Admin-panelen
 description: Lär dig hur du kommer åt din Commerce Admin-panel.
 recommendations: noDisplay, catalog
 exl-id: 9a8a0a49-b108-48bd-b413-ec9431370c06
-source-git-commit: 85ff1283f773823ff2c6e6ab8f391fd5b4aa00e4
+source-git-commit: 3ca09243dc0a714c1d86cccf9f0620a8a39fd1e1
 workflow-type: tm+mt
-source-wordcount: '228'
+source-wordcount: '323'
 ht-degree: 0%
 
 ---
@@ -27,3 +27,7 @@ När du har skickat begäran om lösenordsändring kan du kontrollera om det fin
 >[!TIP]
 >
 >Om lösenordsåterställningen misslyckas eller du inte kan logga in på Admin-panelen, kan en användare med administratörsåtkomst ansluta till projektet med SSH och lägga till en administratörsanvändare med `admin:user:create` CLI-kommando. Se [Skapa, redigera eller låsa upp ett administratörskonto](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/tutorials/admin.html) i _Installationsguide_.
+
+## Övervaka webbplatshälsa
+
+The [Site-Wide Analysis Tool](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/intro) är ett proaktivt självbetjäningsverktyg och en central lagringsplats som innehåller detaljerade systeminsikter och rekommendationer för att säkerställa säkerheten och användbarheten för din Adobe Commerce-installation. Den ger prestandaövervakning, rapporter och råd i realtid dygnet runt alla dagar för att identifiera potentiella problem och bättre synlighet för webbplatsens hälsa, säkerhet och programkonfigurationer. Det minskar upplösningstiden och förbättrar webbplatsens stabilitet och prestanda. Du kan komma åt verktyget för webbplatsövergripande analys direkt från [Administratörspanelen](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/access#option-2-logging-in-to-your-site-wide-analysis-tool-dashboard-from-your-stores-admin-panel) eller från [dedikerad domän](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/access#option-1-logging-in-to-your-site-wide-analysis-tool-dashboard-directly-from-the-site-wide-analysis-tool-domain-for-adobe-commerce-on-cloud-infrastructure-only) (Adobe Commerce endast i molninfrastrukturprojekt).
