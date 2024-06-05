@@ -3,9 +3,9 @@ title: Konfigurera RabbitMQ-tjänst
 description: Lär dig hur du aktiverar tjänsten RabbitMQ för att hantera meddelandeköer för Adobe Commerce i molninfrastruktur.
 feature: Cloud, Services
 exl-id: 85794b8f-2260-4a6e-b5a6-a1b4c356594e
-source-git-commit: d4c36b084094846cfad69adc2bffd567a58fab26
+source-git-commit: adcfbb7217c70122a4003a66d1bec1a623fbf11a
 workflow-type: tm+mt
-source-wordcount: '378'
+source-wordcount: '399'
 ht-degree: 0%
 
 ---
@@ -114,7 +114,7 @@ I felsökningssyfte är det praktiskt att ansluta direkt till en tjänstinstans 
    }
    ```
 
-1. Aktivera lokal portvidarebefordran till RabbitMQ.
+1. Aktivera lokal portvidarebefordran till RabbitMQ (om ditt projekt finns i en annan region, till exempel USA-3, EU-5 eller AP-3-region, ersätt ``us-3``/``eu-5``/``ap-3`` for ``us``)
 
    ```bash
    ssh -L <port-number>:rabbitmq.internal:<port-number> <project-ID>-<branch-ID>@ssh.us.magentosite.cloud
