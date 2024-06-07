@@ -3,9 +3,9 @@ title: Hantera tillägg
 description: Lär dig hur du installerar och hanterar tillägg i Adobe Commerce i molninfrastruktur.
 feature: Cloud, Extensions, Upgrade
 exl-id: 9c6e98ca-85da-4342-8402-d576eb382ba2
-source-git-commit: bb7a866b1896a8a43d01ad3f83dc655bcf383374
+source-git-commit: f8fb9d4d43c85f91ff87686160bcddb7cd417635
 workflow-type: tm+mt
-source-wordcount: '626'
+source-wordcount: '646'
 ht-degree: 0%
 
 ---
@@ -13,6 +13,10 @@ ht-degree: 0%
 # Hantera tillägg
 
 Du kan utöka dina Adobe Commerce-programfunktioner genom att lägga till ett tillägg från [Commerce Marketplace](https://marketplace.magento.com). Du kan till exempel lägga till ett tema för att ändra utseendet på din butik eller lägga till ett språkpaket för att lokalisera din butik och administratör.
+
+>[!NOTE]
+>
+>För att undvika installationsproblem måste alla Marketplace-inköp slutföras med samma konto (MAGEID) som äger molnprojektet.
 
 ## Kompositörens namn för ett tillägg
 
