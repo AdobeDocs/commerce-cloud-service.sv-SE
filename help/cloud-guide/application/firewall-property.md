@@ -1,6 +1,6 @@
 ---
 title: Brandväggsegenskap
-description: Se exempel på hur du konfigurerar brandväggsegenskapen i konfigurationsfilen för Commerce-programmet.
+description: Se exempel på hur du konfigurerar brandväggsegenskapen i Commerce-programmets konfigurationsfil.
 feature: Cloud, Configuration, Security
 exl-id: f169c008-c62a-41b7-a98d-cccd81c7291a
 source-git-commit: 74d88560db3b65294673a1e1827f9cea098d707a
@@ -16,21 +16,21 @@ ht-degree: 0%
 >
 >Endast startprojekt
 
-För Starter-projekt finns `firewall` egenskapen lägger till en _utgående_ brandväggen till programmet. Den här brandväggen påverkar inte inkommande begäranden. Den definierar vilken `tcp` utgående förfrågningar kan _lämna_ en Adobe Commerce webbplats. Detta kallas för egresfiltrering. Den utgående brandväggen filtrerar det som kan gå ur - gå ut eller fly från webbplatsen. Genom att begränsa vad som kan kringgås läggs ett kraftfullt säkerhetsverktyg till på servern.
+För Starter-projekt lägger egenskapen `firewall` till en _utgående_ brandvägg i programmet. Den här brandväggen påverkar inte inkommande begäranden. Den definierar vilka `tcp` utgående begäranden som kan _lämna_ en Adobe Commerce-webbplats. Detta kallas för egresfiltrering. Den utgående brandväggen filtrerar det som kan gå ur - gå ut eller fly från webbplatsen. Genom att begränsa vad som kan kringgås läggs ett kraftfullt säkerhetsverktyg till på servern.
 
 ## Standardbegränsningsprinciper
 
-Brandväggen innehåller två standardprinciper som styr utgående trafik: `allow` och `deny`. The `allow` policy _tillåter_ all utgående trafik som standard. Och `deny` policy _förnedrande_ all utgående trafik som standard. Men när du lägger till en regel åsidosätts standardprincipen och brandväggen blockeras **alla** utgående trafik tillåts inte av regeln.
+Brandväggen innehåller två standardprinciper som styr utgående trafik: `allow` och `deny`. `allow`-principen _tillåter_ all utgående trafik som standard. Och principen `deny` _nekar_ all utgående trafik som standard. Men när du lägger till en regel åsidosätts standardprincipen och brandväggen blockerar **all** utgående trafik som inte tillåts av regeln.
 
-För Starter-planer är standardprincipen inställd på `allow`. Med den här inställningen kan du vara säker på att all utgående trafik inte blockeras förrän du lägger till regler för utgående filtrering. Standardprincipen kan anges till `deny` på begäran.
+Standardprincipen är `allow` för Starter-planer. Med den här inställningen kan du vara säker på att all utgående trafik inte blockeras förrän du lägger till regler för utgående filtrering. Standardprincipen kan anges till `deny` på begäran.
 
-**Så här kontrollerar du standardprofilen**:
+**Så här kontrollerar du standardprincipen**:
 
 ```bash
 magento-cloud p:curl --project PROJECT_ID /settings | grep -i outbound
 ```
 
-Om du inte har begärt det `deny` för din profil bör kommandot visa din princip som `allow`:
+Om du inte har begärt `deny` för din princip ska kommandot visa din princip som `allow`:
 
 ```terminal
 "outbound_restrictions_default_policy": "allow"
@@ -38,11 +38,11 @@ Om du inte har begärt det `deny` för din profil bör kommandot visa din princi
 
 >[!NOTE]
 >
->**Nyckeltagning**: När du lägger till en utgående regel blockerar du all utgående trafik förutom de domäner, IP-adresser eller portar som du lägger till i regeln. Därför är det viktigt att ha en fullständig utgående lista definierad och testad innan du lägger till den på produktionsplatsen.
+>**Nyckelhanterare**: När du lägger till en utgående regel blockerar du all utgående trafik utom de domäner, IP-adresser eller portar som du lägger till i regeln. Därför är det viktigt att ha en fullständig utgående lista definierad och testad innan du lägger till den på produktionsplatsen.
 
 ## Brandväggsalternativ
 
-Följande exempelkonfiguration i `.magento.app.yaml` filen visar alla `firewall` alternativ som du kan använda för att lägga till regler för urklippsfiltrering.
+I följande exempelkonfiguration i filen `.magento.app.yaml` visas alla `firewall`-alternativ som du kan använda för att lägga till regler för urklippsfiltreringen.
 
 ```yaml
 firewall:
@@ -138,8 +138,8 @@ Konfigurationer för utgående brandvägg består av regler. Du kan definiera s�
 **Varje regel:**
 
 - Måste börja med ett bindestreck (`-`). Om du lägger till en kommentar på samma rad blir det lättare att dokumentera och visuellt skilja en regel från nästa.
-- Måste definiera minst ett av följande alternativ: `domains`, `ips`, eller `ports`.
-- Måste använda `tcp` -protokoll. Eftersom det här är standardprotokollet för alla regler kan du utesluta det från regeln.
+- Du måste definiera minst ett av följande alternativ: `domains`, `ips` eller `ports`.
+- `tcp`-protokollet måste användas. Eftersom det här är standardprotokollet för alla regler kan du utesluta det från regeln.
 - Kan definiera `domains` eller `ips`, men inte båda i samma regel.
 - Kan innehålla `yaml` kommentarer (`#`) och radbrytningar för att organisera vilka domäner, IP-adresser och portar som tillåts.
 
@@ -147,41 +147,41 @@ För varje regel används följande egenskaper:
 
 ### `domains`
 
-The `domains` tillåter en lista med fullständigt kvalificerade domännamn (FQDN).
+Alternativet `domains` tillåter en lista med fullständigt kvalificerade domännamn (FQDN).
 
-Om en regel definierar `domains` men inte `ports`tillåter brandväggen domänförfrågningar på alla portar.
+Om en regel definierar `domains` men inte `ports` tillåter brandväggen domänförfrågningar på alla portar.
 
 ### `ips`
 
-The `ips` tillåter en lista med IP-adresser i CIDR-notationen. Du kan ange enskilda IP-adresser eller intervall med IP-adresser.
+Alternativet `ips` tillåter en lista med IP-adresser i CIDR-notationen. Du kan ange enskilda IP-adresser eller intervall med IP-adresser.
 
-Lägg till `/32` CIDR-prefix till slutet av din IP-adress:
+Om du vill ange en enda IP-adress lägger du till CIDR-prefixet `/32` i slutet av IP-adressen:
 
 ```terminal
 172.217.11.174/32  # google.com
 ```
 
-Använd kommandot [IP-intervall till CIDR](https://ipaddressguide.com/cidr) kalkylator.
+Om du vill ange ett intervall med IP-adresser använder du beräknaren [IP-intervall till CIDR](https://ipaddressguide.com/cidr).
 
-Om en regel definierar `ips` men inte `ports`tillåter brandväggen IP-begäranden på alla portar.
+Om en regel definierar `ips` men inte `ports` tillåter brandväggen IP-begäranden på alla portar.
 
 ### `ports`
 
-The `ports` kan användas med en lista över portar mellan 1 och 65535. För de flesta regler i exemplet, portar `80` och `443` tillåter både HTTP- och HTTPS-begäranden. Men för New Relic tillåter reglerna bara åtkomst till domäner och IP-adresser på port `443`, vilket rekommenderas i New Relic-dokumentationen för [Nätverkstrafik](https://docs.newrelic.com/docs/new-relic-solutions/get-started/networks/#agents).
+Alternativet `ports` tillåter en lista med portar mellan 1 och 65535. För de flesta regler i exemplet tillåter portarna `80` och `443` både HTTP- och HTTPS-begäranden. Men för New Relic tillåter reglerna bara åtkomst till domäner och IP-adresser på port `443`, vilket rekommenderas i New Relic-dokumentationen för [Nätverkstrafik](https://docs.newrelic.com/docs/new-relic-solutions/get-started/networks/#agents).
 
-Om en regel bara definierar `ports`tillåter brandväggen åtkomst till alla domäner och IP-adresser för de definierade portarna.
+Om en regel bara definierar `ports` tillåter brandväggen åtkomst till alla domäner och IP-adresser för de definierade portarna.
 
 >[!NOTE]
 >
->Port `25`, den SMTP-port som ska skicka e-post blockeras alltid, utan undantag.
+>Port `25`, den SMTP-port som ska skicka e-post, är alltid blockerad, utan undantag.
 
 ### `protocol`
 
-Som vi nämnt är TCP standard och endast tillåtet protokoll för regler. UDP och dess portar tillåts inte. Därför kan du utelämna `protocol` från alla regler. Om du vill ta med den ändå måste du ange värdet till `tcp`, vilket visas i exemplets första regel.
+Som vi nämnt är TCP standard och endast tillåtet protokoll för regler. UDP och dess portar tillåts inte. Därför kan du utelämna alternativet `protocol` från alla regler. Om du ändå vill ta med den måste du ange värdet till `tcp`, vilket visas i exempelens första regel.
 
 ## Söker efter domännamn som ska tillåtas
 
-Använd följande kommando för att tolka serverns `dns.log` och visa en lista över alla DNS-begäranden som din plats har loggat:
+Använd följande kommando för att analysera serverns `dns.log`-fil och visa en lista över alla DNS-begäranden som platsen har loggat, så att du lättare kan identifiera de domäner som ska ingå i reglerna för adressfiltrering:
 
 ```shell
 awk '($5 ~/query/)' /var/log/dns.log | awk '{print $6}' | sort | uniq -c | sort -rn
@@ -211,15 +211,15 @@ När du har samlat in och konfigurerat åtkomstregler för de domäner och IP-ad
 
 Så här testar du regler för filtrering av utgångar:
 
-1. Skapa ett gränssnittsskript för `curl` -kommandon för att komma åt domänerna och IP-adresserna i reglerna. Inkludera kommandon som testar åtkomst till domäner och IP-adresser som ska blockeras.
+1. Skapa ett gränssnittsskript med `curl` kommandon för att komma åt domänerna och IP-adresserna i reglerna. Inkludera kommandon som testar åtkomst till domäner och IP-adresser som ska blockeras.
 
-1. Konfigurera en `post_deploy` krok i din `.magento.app.yaml` fil som ska köra skriptet.
+1. Konfigurera en `post_deploy`-krok i din `.magento.app.yaml`-fil för att köra skriptet.
 
-1. Tryck `firewall` konfiguration och testskript för `integration` gren.
+1. Flytta din `firewall`-konfiguration och ditt testskript till din `integration`-gren.
 
-1. Undersök `post_deploy` från `curl` kommandon.
+1. Granska `post_deploy`-utdata från dina `curl`-kommandon.
 
-1. Förfina `firewall` regler, uppdatera `curl` skript, implementera, push och upprepa.
+1. Förfina dina `firewall`-regler, uppdatera `curl`-skriptet, implementera, push och upprepa.
 
 ### `curl` skriptexempel
 
@@ -257,7 +257,7 @@ curl -v twitter.com
 ...
 ```
 
-### `post_deploy` exempel
+### `post_deploy`-exempel
 
 ```yaml
 hooks:

@@ -15,7 +15,7 @@ Denna begäran om utdragning (PR) ...
 
 - ...
 
-## Länkar till handelskod
+## Länkar till Commerce-kod
 
 <!--  OPTIONAL - REMOVE THIS SECTION IF NOT USED.
 If this pull request references a file in a Magento Open Source or Adobe Commerce codebase repository, add the link here. -->

@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Det finns många sätt att anpassa din butik, till exempel genom att lägga till ett anpassat tema, installera ett tillägg eller använda en specifik konfiguration i olika miljöer i molnet. Du kan konfigurera inställningar för specifika tjänster direkt i mellanlagrings- och produktionsmiljöer. Du kan konfigurera flera webbplatser och butiker. Med Store-konfigurationen kan du konfigurera de här alternativen i din lokala arbetsstation och distribuera specifika inställningar i olika miljöer.
 
-Använd `magento-cloud url` kommando och svara på uppmaningarna. Du kan också hitta URL:en i [!DNL Cloud Console] under **Åtkomstplats**.
+Om du vill få åtkomst till din butik använder du kommandot `magento-cloud url` och svarar på uppmaningarna. Du kan också hitta URL:en i [!DNL Cloud Console] under **Åtkomstwebbplatsen**.
 
 ## Konfigurera butiksalternativ
 
@@ -28,7 +28,7 @@ Butiksalternativen är följande:
 
 ## Konfigurera tjänster och integreringar
 
-Det finns specifika [konfigurationsfiler](../environment/overview.md) som hanterar vissa distributionsbeteenden för fjärrmiljöer. Du kan läsa dessa ämnen separat:
+Det finns specifika [konfigurationsfiler](../environment/overview.md) som hanterar vissa distributionsbeteenden till fjärrmiljöer. Du kan läsa dessa ämnen separat:
 
 * [Programdistribution](../application/configure-app-yaml.md)
 * [Åtgärder för att bygga och driftsätta miljöer](../environment/configure-env-yaml.md)

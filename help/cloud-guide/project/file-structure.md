@@ -11,42 +11,42 @@ ht-degree: 0%
 
 # Projektstruktur
 
-Ett Adobe Commerce-projekt för molninfrastruktur innehåller viktiga filer för autentiseringsuppgifter och programkonfiguration. Dessa filer är tillgängliga i som mallar enligt Adobe Commerce-versionen. Se molnmallarna som bygger på Adobe Commerce-versionen i [`magento/magento-cloud` GitHub-databas](https://github.com/magento/magento-cloud).
+Ett Adobe Commerce-projekt för molninfrastruktur innehåller viktiga filer för autentiseringsuppgifter och programkonfiguration. Dessa filer är tillgängliga i som mallar enligt Adobe Commerce-versionen. Se molnmallarna som baseras på Adobe Commerce-versionen i [`magento/magento-cloud` GitHub-databasen ](https://github.com/magento/magento-cloud).
 
 I följande tabell beskrivs filerna som ingår i ett molnprojekt:
 
 | Fil | Beskrivning |
 | ------------------------- | ------------ |
-| `/.magento/routes.yaml` | Konfigurationsfil som omdirigeras `www` till huvuddomänen och `php` program för HTTP. Se [Konfigurera flöden](../routes/routes-yaml.md). |
+| `/.magento/routes.yaml` | Konfigurationsfil som omdirigerar `www` till den överordnade domänen och `php`-programmet för HTTP. Se [Konfigurera vägar](../routes/routes-yaml.md). |
 | `/.magento/services.yaml` | En konfigurationsfil som definierar en MySQL-instans (MariaDB), Redis, OpenSearch eller Elasticsearch. Se [Konfigurera tjänster](../services/services-yaml.md). |
-| `/app` | The `code` används för anpassade moduler. The `design` används för [egna teman](../store/custom-theme.md). The `etc` -mappen innehåller konfigurationsfiler för programmet. |
+| `/app` | Mappen `code` används för anpassade moduler. Mappen `design` används för [anpassade teman](../store/custom-theme.md). Mappen `etc` innehåller konfigurationsfiler för programmet. |
 | `/m2-hotfixes` | Används för anpassade patchar. |
 | `/update` | En tjänstmapp som används av supportmodulen. |
-| `.gitignore` | Ange vilka filer och kataloger som ska ignoreras. Se [`.gitignore` referens](#ignoring-files). |
+| `.gitignore` | Ange vilka filer och kataloger som ska ignoreras. Se [`.gitignore` referens ](#ignoring-files). |
 | `.magento.app.yaml` | En konfigurationsfil som definierar egenskaperna för att skapa programmet. Se [Konfigurera program](../application/configure-app-yaml.md). |
-| `.magento.env.yaml` | Konfigurationsfil för byggnings-, distributions- och postdistributionsfaserna. The `ece-tools` innehåller ett exempel på den här filen. Se [Konfigurera miljöer](../environment/configure-env-yaml.md). |
+| `.magento.env.yaml` | Konfigurationsfil för byggnings-, distributions- och postdistributionsfaserna. Paketet `ece-tools` innehåller ett exempel på filen. Se [Konfigurera miljöer](../environment/configure-env-yaml.md). |
 | `composer.json` | Hämtar Adobe Commerce och konfigurationsskripten för att förbereda programmet. Se [Obligatoriska paket](../development/overview.md#required-packages). |
 | `composer.lock` | Lagrar versionsberoenden för varje paket. Se [Obligatoriska paket](../development/overview.md#required-packages). |
-| `magento-vars.php` | Används för att definiera [flera butiker](../store/multiple-sites.md) och webbplatser som använder variabler. |
+| `magento-vars.php` | Används för att definiera [flera arkiv](../store/multiple-sites.md) och webbplatser med variabler. |
 
 {style="table-layout:auto"}
 
 >[!NOTE]
 >
->När du skickar dina lokala ändringar till fjärrservern använder distributionsskriptet de värden som definieras av konfigurationsfilerna i `.magento` och skriptet tar bort katalogen och dess innehåll. Din lokala utvecklingsmiljö påverkas inte.
+>När du skickar dina lokala ändringar till fjärrservern använder distributionsskriptet de värden som definieras av konfigurationsfilerna i katalogen `.magento`, och skriptet tar sedan bort katalogen och dess innehåll. Din lokala utvecklingsmiljö påverkas inte.
 
 ## Programmets rotkatalog
 
 Platsen för programmets rotkatalog beror på miljön.
 
-- **Integrering med Starter och Pro**: `/app`
+- **Start- och Pro-integrering**: `/app`
 - **Startproduktion**: `/<project-ID>`
 - **Pro Staging**: `/<project-ID>_stg`
 - **Pro Production**: `/<project-ID>`
 
 ### Skrivbara kataloger
 
-Miljöerna för fjärrintegrering, mellanlagring och produktion är skrivskyddade. Följande kataloger är *endast* skrivbara kataloger av säkerhetsskäl:
+Miljöerna för fjärrintegrering, mellanlagring och produktion är skrivskyddade. Följande kataloger är de *enda* skrivbara katalogerna av säkerhetsskäl:
 
 - `var`
 - `pub/static`
@@ -56,11 +56,11 @@ Miljöerna för fjärrintegrering, mellanlagring och produktion är skrivskyddad
 
 >[!NOTE]
 >
->I produktions- och mellanlagringsmiljöer har varje nod i klustret med tre noder en `/tmp` katalog som inte delas med andra noder.
+>I produktions- och mellanlagringsmiljöer har varje nod i trenodsklustret en `/tmp`-katalog som inte delas med de andra noderna.
 
 ## Ignorera filer
 
-Det finns en bas `.gitignore` med Adobe Commerce i molninfrastrukturens projektarkiv. Se de senaste [.gitignore-fil i databasen magento-cloud](https://github.com/magento/magento-cloud/blob/master/.gitignore). Lägga till en fil som finns i `.gitignore` kan du använda `-f` (force) när en implementering mellanlagras:
+Det finns en `.gitignore`-basfil hos Adobe Commerce i molninfrastrukturens projektdatabas. Se den senaste [.gitignore-filen i magento-cloud-databasen ](https://github.com/magento/magento-cloud/blob/master/.gitignore). Om du vill lägga till en fil som finns i listan `.gitignore` kan du använda alternativet `-f` (force) när du mellanlagrar en implementering:
 
 ```bash
 git add <path/filename> -f
@@ -72,7 +72,7 @@ Du kan använda följande steg för att ändra strukturen i ett befintligt proje
 
 1. Klona projektet till en lokal arbetsstation.
 
-1. Uppdatera `composer.json` fil med följande värden för `extra` -avsnitt.
+1. Uppdatera filen `composer.json` med följande värden för avsnittet `extra`.
 
    ```json
    "extra": {
@@ -81,7 +81,7 @@ Du kan använda följande steg för att ändra strukturen i ett befintligt proje
    }
    ```
 
-1. Lägg till `.gitignore` -fil utformad för basmallen. Om du till exempel behöver `.gitignore` -filen för version 2.2.6-mallen använder du [.gitignore för 2.2.6](https://github.com/magento/magento-cloud/blob/2.2.6/.gitignore) som referens.
+1. Lägg till filen `.gitignore` som är utformad för basmallen. Om du till exempel behöver filen `.gitignore` för mallen version 2.2.6 använder du filen [.gitignore för 2.2.6](https://github.com/magento/magento-cloud/blob/2.2.6/.gitignore) som referens.
 
 1. Rensa Git-cachen.
 

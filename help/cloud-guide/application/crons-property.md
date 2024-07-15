@@ -1,6 +1,6 @@
 ---
 title: Egenskapen Crons
-description: Se exempel på hur du konfigurerar egenskapen "crons" i [!DNL Commerce] programkonfigurationsfil.
+description: Se exempel på hur du konfigurerar egenskapen "crons" i  [!DNL Commerce] programkonfigurationsfilen.
 feature: Cloud, Configuration
 exl-id: 67d592c1-2933-4cdf-b4f6-d73cd44b9f59
 source-git-commit: 1c0e05c3d8461bea473bcf6ec35162d65ef2774f
@@ -12,22 +12,22 @@ ht-degree: 0%
 
 # Egenskapen Crons
 
-Adobe Commerce använder `crons` för att schemalägga repetitiva aktiviteter. Det är idealiskt för schemaläggning av en viss uppgift som ska köras vid vissa tidpunkter på dygnet. På grund av skrivskyddade miljöer kan endast ett kroniskt jobb köras åt gången på webbinstansen för Adobe Commerce i molninfrastrukturprojekt. Det är en god rutin att dela upp långvariga uppgifter i mindre uppgifter som ligger i kö. Du kan även skapa en [arbetarinstans](workers-property.md).
+Adobe Commerce använder egenskapen `crons` för att schemalägga återkommande aktiviteter. Det är idealiskt för schemaläggning av en viss uppgift som ska köras vid vissa tidpunkter på dygnet. På grund av skrivskyddade miljöer kan endast ett kroniskt jobb köras åt gången på webbinstansen för Adobe Commerce i molninfrastrukturprojekt. Det är en god rutin att dela upp långvariga uppgifter i mindre uppgifter som ligger i kö. Du kan också skapa en [worker-instans](workers-property.md).
 
-Adobe rekommenderar att du kör `crons` som [ägare av filsystem](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html). Gör _not_ run `crons` as `root` eller som webbserveranvändare.
+Adobe rekommenderar att du kör `crons` som [filsystemsägare](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html). Kör _inte_ `crons` som `root` eller som webbserveranvändare.
 
-Den här konfigurationen skiljer sig från lokala distributioner av Adobe Commerce, som har flera standardcron-jobb. Se [Konfigurera cron-jobb](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/configure-cron-jobs.html) i _Konfigurationsguide_.
+Den här konfigurationen skiljer sig från lokala distributioner av Adobe Commerce, som har flera standardcron-jobb. Se [Konfigurera cron-jobb](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/configure-cron-jobs.html) i _Konfigurationsguiden_.
 
 ## Ställ in cron-jobb
 
-The `crons` egenskap beskriver processer som aktiveras enligt ett schema. Varje jobb kräver ett namn och följande alternativ:
+Egenskapen `crons` beskriver processer som aktiveras enligt ett schema. Varje jobb kräver ett namn och följande alternativ:
 
-- `spec`—Kronuttrycket som används för schemaläggning.
-- `cmd`—Det kommando som ska köras på `start` och `stop`.
+- `spec` - Det cron-uttryck som används för schemaläggning.
+- `cmd` - Det kommando som ska köras på `start` och `stop`.
 - `shutdown_timeout`—(_Valfritt_) Om ett cron-jobb avbryts är detta antalet sekunder som en SIGKILL-signal skickas för att stoppa jobbet eller processen. Standardvärdet är 10 sekunder.
 - `timeout`—(_Valfritt_) Den längsta tid ett cron-jobb kan köras före timeout. Standardvärdet är det högsta tillåtna värdet 86400 sekunder (24 timmar).
 
-Som standard har alla Commerce-molnprojekt följande standardinställningar `crons` i `.magento.app.yaml` fil:
+Som standard har varje Commerce-molnprojekt följande standardkonfiguration för `crons` i filen `.magento.app.yaml`:
 
 ```yaml
 crons:
@@ -36,15 +36,15 @@ crons:
         cmd: "php bin/magento cron:run"
 ```
 
-Om ditt projekt kräver anpassade cron-jobb kan du lägga till dem i standardinställningarna `crons` konfiguration. Se [Bygg ett cron-jobb](#build-a-cron-job).
+Om ditt projekt kräver anpassade cron-jobb kan du lägga till dem i standardkonfigurationen för `crons`. Se [Skapa ett cron-jobb](#build-a-cron-job).
 
 ### `crontab`
 
-Adobe Commerce har lagt till ett konfigurationsalternativ för automatiska kroner endast i Pro-projekt som stöder självbetjäning `crons` konfiguration i mellanlagrings- och produktionsmiljöer. Om det här alternativet är aktiverat kan du använda `crontab` för att granska cron-konfigurationen. Det här är _not_ som är tillgängliga med Starter-projekt.
+Adobe Commerce har lagt till ett konfigurationsalternativ för automatiska kroner endast i Pro-projekt för att ge stöd för självbetjäningskonfigurationen `crons` i mellanlagrings- och produktionsmiljöerna. Om det här alternativet är aktiverat kan du använda `crontab` för att granska cron-konfigurationen. Detta är _inte_ tillgängligt med Starter-projekt.
 
-Du kan använda `crontab` för att granska konfiguration i Pro-projekt, använder inte Adobe Commerce `crontab` för att köra cron-jobb för webbplatser som distribueras i molninfrastrukturen.
+Även om du kan använda `crontab` för att granska konfigurationen i Pro-projekt, använder inte Adobe Commerce `crontab` för att köra cron-jobb för webbplatser som distribueras i molninfrastrukturen.
 
-**Granska cron-konfigurationen i Pro-miljöer**:
+**Så här granskar du cron-konfigurationen i Pro-miljöer**:
 
 1. Använd [SSH](../development/secure-connections.md#use-an-ssh-command) för att logga in på fjärrmiljön.
 
@@ -56,9 +56,9 @@ Du kan använda `crontab` för att granska konfiguration i Pro-projekt, använde
 
    >[!NOTE]
    >
-   >Om `crontab -l` returnerar ett `Command not found` fel (endast i Pro Staging- och Production-miljöer) måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera självbetjäningskonfigurationsalternativet för automatiska kroner i ditt projekt.
+   >Om kommandot `crontab -l` returnerar ett `Command not found`-fel (endast i Pro Staging- och Production-miljöer) måste du [skicka en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera självbetjäningskonfigurationsalternativet för automatiska kopior i ditt projekt.
 
-I följande exempel visas `crontab` utdata för en miljö som bara har standardvärdet `crons` konfiguration:
+I följande exempel visas `crontab`-utdata för en miljö som bara har standardkonfigurationen `crons`:
 
 ```terminal
 username@hostname:~$ crontab -l
@@ -73,11 +73,11 @@ MAILTO=""
 
 ## Bygg ett cron-jobb
 
-Ett cron-jobb innehåller schema- och timingspecifikationen och det kommando som ska köras vid den schemalagda tidpunkten. För Starter-miljöer och Pro `integration` i miljöer är minimiintervallet en gång per fem minuter. För Pro Staging- och Production-miljöer är minimiintervallet en gång per minut. På Adobe Commerce i molninfrastruktur lägger du till anpassade kundvärdesjobb i `.magento.app.yaml` i `crons` -avsnitt. Det allmänna formatet är `spec` för planering och `cmd` för att ange det kommando eller anpassade skript som ska köras.
+Ett cron-jobb innehåller schema- och timingspecifikationen och det kommando som ska köras vid den schemalagda tidpunkten. För Starter-miljöer och Pro `integration`-miljöer är det minsta intervallet en gång per fem minuter. För Pro Staging- och Production-miljöer är minimiintervallet en gång per minut. På Adobe Commerce i molninfrastruktur lägger du till anpassade cron-jobb i filen `.magento.app.yaml` i avsnittet `crons`. Det allmänna formatet är `spec` för schemaläggning och `cmd` för att ange det kommando eller anpassade skript som ska köras.
 
 ### Specifikation
 
-Adobe Commerce använder ett femvärdesuttryck för `crons` specifikation (spec): `* * * * *`
+Adobe Commerce använder ett femvärdesuttryck för en `crons`-specifikation (spec): `* * * * *`
 
 1. Minut (0 till 59) För alla Starter- och Pro-miljöer är den minsta frekvens som stöds för kronijobb fem minuter. Du kan behöva konfigurera inställningarna i din administratör.
 2. Timme (0 till 23)
@@ -87,20 +87,20 @@ Adobe Commerce använder ett femvärdesuttryck för `crons` specifikation (spec)
 
 Några exempel:
 
-- `00 */3 * * *` kör var tredje timme på den första minuten (12:00, 3:00, 6:00)
-- `20 */8 * * *` kör var 8:e timme klockan 20 (12:20, 8:20, 4:20)
-- `00 00 * * *` kör en gång om dagen vid midnatt
-- `00 * * * 1` kör en gång i veckan på måndag vid midnatt.
+- `00 */3 * * *` körs var tredje timme på den första minuten (12:00, 3:00, 6:00)
+- `20 */8 * * *` körs var 8:e timme vid minut 20 (12:20, 8:20, 4:20)
+- `00 00 * * *` körs en gång om dagen vid midnatt
+- `00 * * * 1` körs en gång i veckan på måndag vid midnatt.
 
 >[!NOTE]
 >
->The `crons` den tid som anges i `.magento.app.yaml` filen baseras på serverns tidszon, inte på den tidszon som anges i lagringskonfigurationsvärdena i databasen.
+>Den `crons`-tid som anges i filen `.magento.app.yaml` baseras på serverns tidszon, inte på den tidszon som anges i lagringskonfigurationsvärdena i databasen.
 
 När du bestämmer schemaläggningen bör du tänka på hur lång tid det tar att slutföra uppgiften. Om du till exempel kör ett jobb var tredje timme och aktiviteten tar 40 minuter att slutföra kan du ändra den schemalagda tidpunkten.
 
 ### Kommando
 
-The `cmd` anger det kommando eller anpassade skript som ska köras. Kommandots skriptformat kan innehålla följande:
+`cmd` anger det kommando eller anpassade skript som ska köras. Kommandots skriptformat kan innehålla följande:
 
 ```text
 <path-to-php-binary> <project-dir>/<script-command>
@@ -114,23 +114,23 @@ crons:
     cmd: "/usr/bin/php /app/abc123edf890/bin/magento export:start catalog_category_product"
 ```
 
-I detta exempel `<path-to-php-binary>` är `/usr/bin/php`. Installationskatalogen som innehåller projekt-ID:t är `/app/abc123edf890/bin/magento`och skriptåtgärden är `export:start catalog_category_product`.
+I detta exempel är `<path-to-php-binary>` `/usr/bin/php`. Installationskatalogen, som innehåller projekt-ID:t, är `/app/abc123edf890/bin/magento` och skriptåtgärden är `export:start catalog_category_product`.
 
 ### Lägg till anpassade cron-jobb i ditt projekt
 
-På Adobe Commerce om molninfrastrukturplattform kan du lägga till anpassningar i `crons` i [`.magento.app.yaml`](../application/configure-app-yaml.md) -fil.
+På Adobe Commerce på molninfrastrukturplattformen kan du lägga till anpassningar i avsnittet `crons` i filen [`.magento.app.yaml`](../application/configure-app-yaml.md).
 
 >[!NOTE]
 >
->För Starter-miljöer och Pro `integration` i miljöer är minimiintervallet en gång per fem minuter. För Pro Staging- och Production-miljöer är minimiintervallet en gång per minut. Du kan inte konfigurera mer frekventa intervall än standardminimumen.
+>För Starter-miljöer och Pro `integration`-miljöer är det minsta intervallet en gång per fem minuter. För Pro Staging- och Production-miljöer är minimiintervallet en gång per minut. Du kan inte konfigurera mer frekventa intervall än standardminimumen.
 
-I Adobe Commerce Pro-projekt finns [funktionen för automatiska kroner](#set-up-cron-jobs) måste vara aktiverat i ditt projekt innan du kan lägga till anpassade cron-jobb i förings- och produktionsmiljöer med `.magento.app.yaml` -fil. Om funktionen inte är aktiverad [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera autocrons.
+I Adobe Commerce Pro-projekt måste funktionen [för automatiska kroner](#set-up-cron-jobs) vara aktiverad i ditt projekt innan du kan lägga till anpassade kron-jobb i mellanlagrings- och produktionsmiljöer med hjälp av filen `.magento.app.yaml`. Om den här funktionen inte är aktiverad kan du [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du vill aktivera automatiska korrigeringar.
 
-**Lägga till anpassade cron-jobb**:
+**Så här lägger du till anpassade cron-jobb**:
 
-1. I den lokala utvecklingsmiljön kan du redigera `.magento.app.yaml` i ADOBE COMMERCE `/app` katalog.
+1. Redigera filen `.magento.app.yaml` i Adobe Commerce `/app`-katalogen i den lokala utvecklingsmiljön.
 
-1. I `crons` lägger du till din anpassning med följande format:
+1. I avsnittet `crons` lägger du till din anpassning med följande format:
 
    ```yaml
    crons:
@@ -142,7 +142,7 @@ I Adobe Commerce Pro-projekt finns [funktionen för automatiska kroner](#set-up-
            cmd: "<schedule_command>"
    ```
 
-   I följande exempel `productcatalog` exporterar produktkatalogen var 8:e timme, 20:e minut efter timmen.
+   I följande exempel exporterar jobbet `productcatalog` produktkatalogen var 8:e timme, 20:e minut efter timmen.
 
    ```yaml
    crons:
@@ -162,11 +162,11 @@ I Adobe Commerce Pro-projekt finns [funktionen för automatiska kroner](#set-up-
 
 ### Uppdatera cron-jobb
 
-Om du vill lägga till, ta bort eller uppdatera ett anpassat jobb ändrar du konfigurationen i `crons` i `.magento.app.yaml` -fil. Testa sedan uppdateringarna på fjärrkontrollen `integration` miljö innan ändringarna implementeras i förproduktionsmiljö.
+Om du vill lägga till, ta bort eller uppdatera ett anpassat jobb ändrar du konfigurationen i avsnittet `crons` i filen `.magento.app.yaml`. Testa sedan uppdateringarna i fjärrmiljön `integration` innan du överför ändringarna till mellanlagrings- och produktionsmiljöerna.
 
 ## Inaktivera cron-jobb
 
-Du kan inaktivera cron-jobb manuellt innan du slutför underhållsåtgärder som att indexera om eller rensa cachen för att förhindra prestandaproblem. Du kan använda `ece-tools` CLI, kommando `cron:disable` för att inaktivera alla kronjobb och stoppa alla aktiva kronprocesser.
+Du kan inaktivera cron-jobb manuellt innan du slutför underhållsåtgärder som att indexera om eller rensa cachen för att förhindra prestandaproblem. Du kan använda kommandot `ece-tools` CLI `cron:disable` för att inaktivera alla cron-jobb och stoppa alla aktiva cron-processer.
 
 **Så här inaktiverar du cron-jobb**:
 
@@ -192,12 +192,12 @@ Du kan inaktivera cron-jobb manuellt innan du slutför underhållsåtgärder som
 
 ## Felsökning av cron-jobb
 
-Adobe har uppdaterat Adobe Commerce om molninfrastrukturspaket för att optimera kundbearbetningen på Adobe Commerce om molninfrastrukturplattformen och för att åtgärda kronrelaterade problem. Om du får problem med seriebearbetningen bör du kontrollera att projektet använder den senaste versionen av `ece-tools` paket. Se [Uppdatera ECE-verktyg](../dev-tools/update-package.md).
+Adobe har uppdaterat Adobe Commerce om molninfrastrukturspaket för att optimera kundbearbetningen på Adobe Commerce om molninfrastrukturplattformen och för att åtgärda kronrelaterade problem. Om du får problem med seriebearbetningen bör du kontrollera att projektet använder den senaste versionen av paketet `ece-tools`. Se [Uppdatera ECE-verktyg](../dev-tools/update-package.md).
 
 Du kan granska information om cron processing i loggfiler på programnivå för varje miljö. Se [Programloggar](../test/log-locations.md#application-logs).
 
 Se följande Adobe Commerce supportartiklar för hjälp med felsökning av kronrelaterade problem:
 
-- [Kravuppgifter låser uppgifter från andra grupper](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/cron-tasks-lock-tasks-from-other-groups.html)
+- [Kronuppgifter låser uppgifter från andra grupper](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/cron-tasks-lock-tasks-from-other-groups.html)
 
 - [Återställ fastnade cron-jobb manuellt i molnet](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/reset-stuck-magento-cron-jobs-manually-on-cloud.html)

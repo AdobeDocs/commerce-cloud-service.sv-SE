@@ -14,45 +14,45 @@ ht-degree: 0%
 
 >[!WARNING]
 >
->Om du vill upprätthålla PCI-kompatibilitet för Adobe Commerce-webbplatser som distribueras på molnplattformen ska du konfigurera snabbt på startgrenen, Pro Production och Pro Staging-miljöerna. Om du använder Adobe Commerce i en headlessdistribution rekommenderar vi att du använder Fast för att cachelagra GraphQL-svar. Se [Cachelagra snabbt](https://developer.adobe.com/commerce/webapi/graphql/usage/caching/#caching-with-fastly) i *GraphQL Developer Guide*.
+>Om du vill upprätthålla PCI-kompatibilitet för Adobe Commerce-webbplatser som distribueras på molnplattformen ska du konfigurera snabbt på startgrenen, Pro Production och Pro Staging-miljöerna. Om du använder Adobe Commerce i en headlessdistribution rekommenderar vi att du använder Fast för att cachelagra GraphQL-svar. Se [Cachelagra med Snabb](https://developer.adobe.com/commerce/webapi/graphql/usage/caching/#caching-with-fastly) i *GraphQL Developer Guide*.
 
 Tillhandahåller snabbt följande tjänster för att optimera och skydda innehållsleveranser för Adobe Commerce i molninfrastrukturprojekt. Dessa tjänster ingår utan extra kostnad i Adobe Commerce molninfrastruktur.
 
-- **CDN (Content Delivery Network)**- En lack-baserad tjänst som cachelagrar dina webbplatssidor, resurser, CSS med mera i de datacenter du konfigurerar. När kunderna kommer in på er webbplats och i era butiker går förfrågningarna igenom snabbt för att läsa in cachelagrade sidor snabbare. CDN-tjänsten har följande funktioner:
+- **CDN (Content Delivery Network)** - Slutbaserad tjänst som cachelagrar dina webbplatssidor, resurser, CSS med mera i de serverdelsdatacenter du konfigurerar. När kunderna kommer in på er webbplats och i era butiker går förfrågningarna igenom snabbt för att läsa in cachelagrade sidor snabbare. CDN-tjänsten har följande funktioner:
 
-- **Cachehantering**—Cachelagra dina webbplatssidor, resurser, CSS med mera i datacenter som du konfigurerat för att minska bandbreddsbelastningen och kostnaderna
+- **Cachehantering** - Cachelagra dina webbplatssidor, resurser, CSS med mera i datacenter som du konfigurerat för att minska bandbreddsbelastningen och kostnaderna
 
-   - Använd [Snabbt anpassade VCL-kodfragment](fastly-vcl-custom-snippets.md) (Perniska 2.1-kompatibel) för att ändra hur cachelagring svarar på begäranden
+   - Använd [snabbt anpassade VCL-fragment](fastly-vcl-custom-snippets.md) (kompatibla med engelska 2.1) för att ändra hur cachning svarar på begäranden
 
    - Konfigurera [Stöd för GeoIP-tjänster](fastly-custom-cache-configuration.md#configure-geoip-handling)
 
    - [Tvinga okrypterade begäranden till TLS](fastly-custom-cache-configuration.md#force-tls)
 
-   - [Anpassa tidsgränsen snabbt](fastly-custom-cache-configuration.md#extend-fastly-timeout) inställningar för att förhindra 503 svar på begäranden om gruppåtgärder
+   - [Anpassa inställningar för snabb timeout](fastly-custom-cache-configuration.md#extend-fastly-timeout) för att förhindra 503 svar på gruppåtgärdsbegäranden
 
    - Skapa [anpassade felsvarssidor](fastly-custom-response.md)
 
-- **Säkerhet**- När du har aktiverat snabbfunktioner för Adobe Commerce webbplatser finns det ytterligare säkerhetsfunktioner som skyddar dina webbplatser och nätverk:
+- **Säkerhet** - När du har aktiverat snabbtjänster för Adobe Commerce-webbplatser finns ytterligare säkerhetsfunktioner tillgängliga för att skydda dina webbplatser och ditt nätverk:
 
-   - [Brandvägg för webbaserade program](fastly-waf-service.md) (WAF) - Hanterad brandvägg för webbapplikationer som ger PCI-kompatibelt skydd för att blockera skadlig trafik innan den kan skada produktionen av Adobe Commerce på molninfrastrukturplatser och nätverk. Tjänsten WAF är endast tillgänglig i Pro- och Starter Production-miljöer.
+   - [Brandvägg för webbaserade program](fastly-waf-service.md) (WAF) - Brandvägg för hanterade webbprogram som tillhandahåller PCI-kompatibelt skydd för att blockera skadlig trafik innan den kan skada din produktion av Adobe Commerce på webbplatser och nätverk i molnet. Tjänsten WAF är endast tillgänglig i Pro- och Starter Production-miljöer.
 
-   - [DoS-skydd (Distributed Denial of Service)](#ddos-protection)- Inbyggt DDoS-skydd mot vanliga attacker som Ping of Döden, Smurf-attacker och andra ICMP-baserade översvämningsattacker.
+   - [DoS-skydd (Distributed Denial of Service)](#ddos-protection) - Inbyggt DDoS-skydd mot vanliga attacker som Ping of Kill, Smurf-attacker och andra ICMP-baserade översvämningsattacker.
 
-   - [SSL-/TLS-certifikat](fastly-configuration.md#provision-ssltls-certificates)- Tjänsten Fast kräver ett SSL/TLS-certifikat för säker trafik över HTTPS.
+   - [SSL-/TLS-certifikat](fastly-configuration.md#provision-ssltls-certificates) - Snabbtjänsten kräver ett SSL-/TLS-certifikat för att kunna hantera säker trafik över HTTPS.
 
      Adobe Commerce tillhandahåller ett domänvaliderat Låt oss kryptera SSL-/TLS-certifikat för varje mellanlagrings- och produktionsmiljö. Adobe Commerce slutför domänvalidering och certifikatetablering under processen för snabb installation.
 
-- **Insvepning av ursprung**- Förhindrar att trafik kringgår Fast WAF och döljer IP-adresserna för era ursprungliga servrar för att skydda dem mot direkt åtkomst och DDoS-attacker.
+- **Insvepning av ursprung** - Förhindrar att trafik kringgår Fast WAF och döljer IP-adresserna för dina ursprungliga servrar för att skydda dem mot direkt åtkomst och DDoS-attacker.
 
-  Insvepning av ursprung är aktiverat som standard på Adobe Commerce i projekt för molninfrastruktur och Pro Production. Om du vill aktivera ursprungsinsvepning på Adobe Commerce i projekt för molninfrastruktur ska du skicka ett [Adobe Commerce Support](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket). Om du har trafik som inte kräver cachelagring kan du anpassa snabbtjänstkonfigurationen för att tillåta begäranden att [kringgå cachelagringen snabbt](fastly-vcl-bypass-to-origin.md).
+  Insvepning av ursprung är aktiverat som standard på Adobe Commerce i projekt för molninfrastruktur och Pro Production. Om du vill aktivera ursprungsinsvepning på Adobe Commerce i startproduktionsprojekt för molninfrastruktur skickar du en [Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket). Om du har trafik som inte kräver cachelagring kan du anpassa snabbtjänstkonfigurationen så att begäranden kan [kringgå snabbcachen](fastly-vcl-bypass-to-origin.md).
 
-- **[Bildoptimering](fastly-image-optimization.md)**—Avlastar bildbearbetning och storleksändring till tjänsten Snabbt så att servrar kan bearbeta beställningar och konverteringar mer effektivt.
+- **[Bildoptimering](fastly-image-optimization.md)** - Avlastar bildbearbetning och storleksändring från tjänsten Snabbt så att servrar kan bearbeta beställningar och konverteringar mer effektivt.
 
-- **[Snabba CDN- och WAF-loggar](../monitor/new-relic-service.md#new-relic-log-management)**- För Adobe Commerce-projekt i molninfrastruktur Pro kan du använda tjänsten New Relic Logs för att granska och analysera data i Fast CDN- och WAF-loggar.
+- **[Snabbt CDN- och WAF-loggar](../monitor/new-relic-service.md#new-relic-log-management)** - För Adobe Commerce i molninfrastrukturprojekt kan du använda tjänsten New Relic Logs för att granska och analysera Fast CDN- och WAF-loggdata.
 
 ## Snabb CDN-modul för Magento 2
 
-Snabba tjänster för Adobe Commerce i molninfrastruktur använder [Snabb CDN-modul för Magento 2] installerade i följande miljöer: Pro Staging and Production, Starter Production (`master` förgrening).
+Snabba tjänster för Adobe Commerce i molninfrastruktur använder modulen [Snabbt CDN för Magento 2] som är installerad i följande miljöer: Pro Staging and Production, Starter Production (`master` grenen).
 
 Vid första etableringen eller uppgraderingen av ditt Adobe Commerce-projekt installerar Adobe den senaste versionen av snabbuppdateringsmodulen i dina miljö för förproduktion och produktion. När modulen uppdateras snabbt får du meddelanden i Admin för dina miljöer. Adobe rekommenderar att du uppdaterar dina miljöer så att de använder den senaste versionen. Se [Uppgradera snabbt](fastly-configuration.md#upgrade-the-fastly-module).
 
@@ -60,7 +60,7 @@ Vid första etableringen eller uppgraderingen av ditt Adobe Commerce-projekt ins
 
 Adobe Commerces i molninfrastrukturprojekt kräver inte ett dedikerat konto eller kontoägare. I stället har varje mellanlagrings- och produktionsmiljö unika snabbinloggningsuppgifter (API-token och tjänst-ID) för att konfigurera och hantera snabbtjänster från administratören. Du behöver också autentiseringsuppgifterna för att skicka API-begäranden snabbt och enkelt.
 
-Under etableringen av ett projekt lägger Adobe till ditt projekt på snabbtjänstkontot för Adobe Commerce i molninfrastrukturen och lägger till snabbinloggningsuppgifterna i konfigurationen för mellanlagrings- och produktionsmiljöerna. Se [Få inloggningsuppgifter snabbt](fastly-configuration.md#get-fastly-credentials).
+Under etableringen av ett projekt lägger Adobe till ditt projekt på snabbtjänstkontot för Adobe Commerce i molninfrastrukturen och lägger till snabbinloggningsuppgifterna i konfigurationen för mellanlagrings- och produktionsmiljöerna. Se [Få snabbt inloggningsuppgifter](fastly-configuration.md#get-fastly-credentials).
 
 ### Ändra snabbt API-token
 
@@ -68,11 +68,11 @@ Skicka en Adobe Commerce Support-biljett för att ändra autentiseringsuppgifter
 
 **Så här ändrar du autentiseringsuppgifter för snabb API-token**:
 
-1. [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) begär nya autentiseringsuppgifter för Fast API.
+1. [Skicka in en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) och begär nya Snabb-API-autentiseringsuppgifter.
 
    Inkludera ditt Adobe Commerce i projekt-ID för molninfrastruktur och miljöer som kräver nya autentiseringsuppgifter.
 
-1. Uppdatera API-tokenvärdet i [Snabb konfiguration av autentiseringsuppgifter](fastly-configuration.md#test-the-fastly-credentials) i Admin eller från [[!DNL Cloud Console] miljövariabler](../project/overview.md#configure-environment).
+1. När du har tagit emot den nya API-token uppdaterar du API-tokenvärdet i konfigurationen [Snabba autentiseringsuppgifter](fastly-configuration.md#test-the-fastly-credentials) i Admin eller från [[!DNL Cloud Console] miljövariablerna](../project/overview.md#configure-environment).
 
 1. [Testa de nya autentiseringsuppgifterna](fastly-configuration.md#test-the-fastly-credentials).
 
@@ -82,7 +82,7 @@ Skicka en Adobe Commerce Support-biljett för att ändra autentiseringsuppgifter
 
 Du kan bara snabbt tilldela en apex-domän och associerade underdomäner till en snabbast-tjänst och ett konto. Om du har ett befintligt Fast-konto som länkar samma index och underdomäner som används för din Adobe Commerce-webbplats har du följande alternativ:
 
-- Ta bort API:er och underdomäner från det befintliga kontot innan du begär snabb inloggning för Adobe Commerce i miljöer med molninfrastrukturprojekt. Se [Arbeta med domäner] i Snabbas dokumentation.
+- Ta bort API:er och underdomäner från det befintliga kontot innan du begär snabb inloggning för Adobe Commerce i miljöer med molninfrastrukturprojekt. Se [Arbeta med domäner] i dokumentationen Snabbt.
 
   Använd det här alternativet om du vill länka apex-domänen och alla underdomäner till snabbtjänstkontot för Adobe Commerce i molninfrastrukturen.
 
@@ -92,17 +92,17 @@ Du kan bara snabbt tilldela en apex-domän och associerade underdomäner till en
 
 #### Begär domändelegering
 
-*Scenario 1*
+*Scenario 1:*
 
-The apex domain (`testweb.com` och `www.testweb.com`) är länkat till ett befintligt Fast-konto. Du har ett Adobe Commerce i molninfrastrukturprojekt konfigurerat med följande underdomäner: `mcstaging.testweb.com` och `mcprod.testweb.com`. Du vill inte flytta apex-domänen till snabbtjänstkontot för Adobe Commerce i molninfrastrukturen.
+Den överordnade domänen (`testweb.com` och `www.testweb.com`) är länkad till ett befintligt Fast-konto. Du har ett Adobe Commerce i molninfrastrukturprojekt konfigurerat med följande underdomäner: `mcstaging.testweb.com` och `mcprod.testweb.com`. Du vill inte flytta apex-domänen till snabbtjänstkontot för Adobe Commerce i molninfrastrukturen.
 
-Skicka en [Snabbt supportärende] begär att underdomänerna ska delegeras från det befintliga Fast-kontot till Fast-kontot för Adobe Commerce i molninfrastrukturen. Inkludera ditt Adobe Commerce projekt-ID i biljetten.
+Skicka en [snabbsupportbiljett] med en begäran om att underdomänerna ska delegeras från det befintliga snabbkontot till snabbkontot för Adobe Commerce i molninfrastrukturen. Inkludera ditt Adobe Commerce projekt-ID i biljetten.
 
-När delegeringen är klar kan dina projektunderdomäner läggas till i snabbtjänstkontot för Adobe Commerce i molninfrastrukturen. Se [Få inloggningsuppgifter snabbt](fastly-configuration.md#get-fastly-credentials).
+När delegeringen är klar kan dina projektunderdomäner läggas till i snabbtjänstkontot för Adobe Commerce i molninfrastrukturen. Se [Få snabbt inloggningsuppgifter](fastly-configuration.md#get-fastly-credentials).
 
-*Scenario 2*
+*Scenario 2:*
 
-The apex domain (`testweb.com` och `www.testweb.com`) är kopplat till Adobe Commerce på kontot för molninfrastruktur Snabbt. Du vill hantera snabbtjänster för `service.testweb.com` och `product-updates.testweb.com` underdomäner från ett annat Fastly-konto.
+Den överordnade domänen (`testweb.com` och `www.testweb.com`) är länkad till Adobe Commerce på kontot för snabb molninfrastruktur. Du vill hantera snabbtjänster för underdomänerna `service.testweb.com` och `product-updates.testweb.com` från ett annat snabbkonto.
 
 Skicka en Adobe Commerce Support-biljett med en begäran om att underdomänerna ska delegeras från Adobe Commerce på kontot för molninfrastruktur Snabbt till kontot Snabbt. Inkludera tjänst-ID:t för snabbkontot i biljetten.
 
@@ -114,7 +114,7 @@ DDOS-skyddet är inbyggt i tjänsten Fast CDN. När du har aktiverat Snabba tjä
 
   Hanterar snabbt attacker på TCP-nivå i cache-lagret. Denna strategi ger den skala och kontext per klient som krävs för att hantera en SYN-översvämningsattack och dess många varianter, inklusive TCP-stacken, resursattacker och TLS-attacker inom Fastly-system.
 
-- Skyddar dig snabbt mot Layer 7-attacker. Om din butik har prestandaproblem och du misstänker en Layer 7 DDoS-attack skickar du en Adobe Commerce Support-anmälan. Adobe kan skapa och tillämpa anpassade regler på tjänsten Snabbt för att undersöka och filtrera bort skadliga förfrågningar baserat på huvud, nyttolast eller en kombination av attribut som identifierar attacktrafiken. Se [Söka efter DDoS-attacker] och [Blockera skadlig trafik] i *Adobe Commerce Help Center*.
+- Skyddar dig snabbt mot Layer 7-attacker. Om din butik har prestandaproblem och du misstänker en Layer 7 DDoS-attack skickar du en Adobe Commerce Support-anmälan. Adobe kan skapa och tillämpa anpassade regler på tjänsten Snabbt för att undersöka och filtrera bort skadliga förfrågningar baserat på huvud, nyttolast eller en kombination av attribut som identifierar attacktrafiken. Se [Leta efter DDoS-attacker] och [Blockera skadlig trafik] i *Adobe Commerce Help Center*.
 
 <!--Link definitions-->
 

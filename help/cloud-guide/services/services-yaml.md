@@ -12,13 +12,13 @@ ht-degree: 0%
 
 # Konfigurera tjänster
 
-The `services.yaml` filen definierar de tjänster som stöds och används av Adobe Commerce i molninfrastruktur, som MySQL, Redis och Elasticsearch eller OpenSearch. Du behöver inte prenumerera på externa tjänsteleverantörer. Den här filen finns i `.magento` projektkatalog.
+Filen `services.yaml` definierar de tjänster som stöds och används av Adobe Commerce i molninfrastrukturen, till exempel MySQL, Redis och Elasticsearch eller OpenSearch. Du behöver inte prenumerera på externa tjänsteleverantörer. Den här filen finns i katalogen `.magento` för ditt projekt.
 
-Distributionsskriptet använder konfigurationsfilerna i `.magento` katalog för att tillhandahålla miljön med de konfigurerade tjänsterna. En tjänst blir tillgänglig för ditt program om den ingår i [`relationships`](../application/properties.md#relationships) egenskapen för `.magento.app.yaml` -fil. The `services.yaml` filen innehåller _type_ och _disk_ värden. Tjänsttypen definierar tjänsten _name_ och _version_.
+Distributionsskriptet använder konfigurationsfilerna i katalogen `.magento` för att etablera miljön med de konfigurerade tjänsterna. En tjänst blir tillgänglig för ditt program om den ingår i egenskapen [`relationships`](../application/properties.md#relationships) för filen `.magento.app.yaml`. Filen `services.yaml` innehåller värdena _type_ och _disk_. Tjänsttypen definierar tjänsten _name_ och _version_.
 
 Om du ändrar en tjänstkonfiguration tillhandahålls miljön med de uppdaterade tjänsterna, vilket påverkar följande miljöer:
 
-- Alla startmiljöer inklusive Production `master`
+- Alla startmiljöer inklusive produktion `master`
 - Integreringsmiljöer för Pro
 
 {{pro-update-service}}
@@ -33,7 +33,7 @@ Molninfrastrukturen stöder och distribuerar följande tjänster:
 - [Elasticsearch](elasticsearch.md)
 - [OpenSearch](opensearch.md)
 
-Du kan visa standardversioner och diskvärden i den aktuella, [standard `services.yaml` fil](https://github.com/magento/magento-cloud/blob/master/.magento/services.yaml). I följande exempel visas `mysql`, `redis`, `opensearch` eller `elasticsearch`och `rabbitmq` tjänster som definieras i `services.yaml` konfigurationsfil:
+Du kan visa standardversioner och diskvärden i den aktuella [standardfilen `services.yaml`](https://github.com/magento/magento-cloud/blob/master/.magento/services.yaml). I följande exempel visas tjänsterna `mysql`, `redis`, `opensearch` eller `elasticsearch` och `rabbitmq` som definieras i konfigurationsfilen `services.yaml`:
 
 ```yaml
 mysql:
@@ -54,7 +54,7 @@ rabbitmq:
 
 ## Tjänstvärden
 
-Du måste ange tjänstens ID och tjänsttypskonfigurationen `type: <name>:<version>`. Om tjänsten använder beständig lagring måste du ange ett diskvärde.
+Du måste ange tjänst-ID och tjänsttypskonfigurationen `type: <name>:<version>`. Om tjänsten använder beständig lagring måste du ange ett diskvärde.
 
 Använd följande format:
 
@@ -66,9 +66,9 @@ Använd följande format:
 
 ### `service-id`
 
-The `service-id` värde identifierar tjänsten i projektet. Du kan bara använda gemena alfanumeriska tecken: `a` till `z` och `0` till `9`, till exempel `redis`.
+Värdet `service-id` identifierar tjänsten i projektet. Du kan bara använda alfanumeriska gemener: `a` till `z` och `0` till `9`, till exempel `redis`.
 
-Detta _service-id_ värdet används i [`relationships`](../application/properties.md#relationships) egenskapen för `.magento.app.yaml` konfigurationsfil:
+Det här _service-id_-värdet används i [`relationships`](../application/properties.md#relationships)-egenskapen i konfigurationsfilen `.magento.app.yaml`:
 
 ```yaml
 relationships:
@@ -85,14 +85,14 @@ redis2:
     type: redis:<version>
 ```
 
-Byta namn på en tjänst i `services.yaml` fil **permanent tar bort** följande:
+Om du byter namn på en tjänst i `services.yaml`-filen **tas följande bort permanent**:
 
 - Den befintliga tjänsten innan du skapar en tjänst med det nya namn du anger.
-- Alla befintliga data för tjänsten tas bort. Adobe rekommenderar starkt att du [säkerhetskopiera startmiljön](../storage/snapshots.md) innan du ändrar namnet på en befintlig tjänst.
+- Alla befintliga data för tjänsten tas bort. Adobe rekommenderar att du [säkerhetskopierar startmiljön](../storage/snapshots.md) innan du ändrar namnet på en befintlig tjänst.
 
 ### `type`
 
-The `type` värdet anger tjänstens namn och version. Exempel:
+Värdet `type` anger tjänstens namn och version. Exempel:
 
 ```yaml
 mysql:
@@ -101,7 +101,7 @@ mysql:
 
 ### `disk`
 
-The `disk` värdet anger storleken på den beständiga disklagringen (i MB) som ska allokeras till tjänsten. Tjänster som använder beständig lagring, till exempel MySQL, måste ange ett diskvärde. Tjänster som använder minne i stället för beständig lagring, som Redis, kräver inget diskvärde.
+Värdet `disk` anger storleken på den beständiga disklagringen (i MB) som ska allokeras till tjänsten. Tjänster som använder beständig lagring, till exempel MySQL, måste ange ett diskvärde. Tjänster som använder minne i stället för beständig lagring, som Redis, kräver inget diskvärde.
 
 ```yaml
 mysql:
@@ -113,11 +113,11 @@ Det aktuella standardlagringsutrymmet per projekt är 5 GB eller 512 MB. Du kan 
 
 ## Servicerelationer
 
-I Adobe Commerce om molninfrastrukturprojekt [relationer](../application/properties.md#relationships) som konfigurerats i `.magento.app.yaml` filen avgör vilka tjänster som är tillgängliga för ditt program.
+I Adobe Commerce för molninfrastrukturprojekt avgör tjänsten [relationer](../application/properties.md#relationships) som konfigurerats i filen `.magento.app.yaml` vilka tjänster som är tillgängliga för ditt program.
 
-Du kan hämta konfigurationsdata för alla tjänstrelationer från [`$MAGENTO_CLOUD_RELATIONSHIPS`](../environment/variables-cloud.md) miljövariabel. Konfigurationsdata innehåller tjänstnamn, typ och version tillsammans med all nödvändig anslutningsinformation, t.ex. portnummer och inloggningsuppgifter.
+Du kan hämta konfigurationsdata för alla tjänstrelationer från miljövariabeln [`$MAGENTO_CLOUD_RELATIONSHIPS`](../environment/variables-cloud.md). Konfigurationsdata innehåller tjänstnamn, typ och version tillsammans med all nödvändig anslutningsinformation, t.ex. portnummer och inloggningsuppgifter.
 
-**Så här verifierar du relationer i lokal miljö**:
+**Så här verifierar du relationer i den lokala miljön**:
 
 1. Visa relationerna för den aktiva miljön i din lokala miljö.
 
@@ -147,7 +147,7 @@ Du kan hämta konfigurationsdata för alla tjänstrelationer från [`$MAGENTO_CL
            port: 3306
    ```
 
-**Verifiera relationer i fjärrmiljöer**:
+**Så här verifierar du relationer i fjärrmiljöer**:
 
 1. Använd SSH för att logga in i fjärrmiljön.
 
@@ -157,7 +157,7 @@ Du kan hämta konfigurationsdata för alla tjänstrelationer från [`$MAGENTO_CL
    echo $MAGENTO_CLOUD_RELATIONSHIPS | base64 -d | json_pp
    ```
 
-   eller använd följande `ece-tools` kommando för att visa relationer:
+   eller använd följande `ece-tools`-kommando för att visa relationer:
 
    ```bash
    php ./vendor/bin/ece-tools env:config:show services
@@ -167,34 +167,34 @@ Du kan hämta konfigurationsdata för alla tjänstrelationer från [`$MAGENTO_CL
 
 ## Tjänstversioner
 
-Tjänstversion och kompatibilitetsstöd för Adobe Commerce i molninfrastruktur avgörs av vilka versioner som distribueras och testas i molninfrastrukturen, och skiljer sig ibland från de versioner som stöds av Adobe Commerce lokala distributioner. Se [Systemkrav](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) i _Installation_ för att få en lista över programvaruberoenden från tredje part som Adobe har testat med specifika utgåvor av Adobe Commerce och Magento Open Source.
+Tjänstversion och kompatibilitetsstöd för Adobe Commerce i molninfrastruktur avgörs av vilka versioner som distribueras och testas i molninfrastrukturen, och skiljer sig ibland från de versioner som stöds av Adobe Commerce lokala distributioner. Se [Systemkrav](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) i _installationshandboken_ för en lista över tredjepartsprogramvaruberoenden som Adobe har testat med specifika versioner av Adobe Commerce och Magento Open Source.
 
 ### EOL-kontroller för programvara
 
-Under distributionsprocessen `ece-tools` paketet kontrollerar installerade tjänstversioner mot slutdatum (EOL) för varje tjänst.
+Under distributionsprocessen kontrollerar paketet `ece-tools` installerade tjänstversioner mot slutdatum (EOL) för varje tjänst.
 
 - Om en tjänstversion är inom tre månader från EOL-datumet visas ett meddelande i distributionsloggen.
 - Om EOL-datumet redan har infallit visas ett varningsmeddelande.
 
-För att upprätthålla säkerheten måste du uppdatera de installerade programversionerna innan de når EOL. Du kan läsa EOL-datumen i [ece-tools&#39; `eol.yaml` fil](https://github.com/magento/ece-tools/blob/develop/config/eol.yaml).
+För att upprätthålla säkerheten måste du uppdatera de installerade programversionerna innan de når EOL. Du kan granska EOL-datum i [ece-tools&#39; `eol.yaml` file](https://github.com/magento/ece-tools/blob/develop/config/eol.yaml).
 
 ### Migrera till OpenSearch
 
 {{elasticsearch-support}}
 
-För Adobe Commerce version 2.4.4 och senare, se [Konfigurera OpenSearch-tjänsten](opensearch.md).
+Information om Adobe Commerce version 2.4.4 och senare finns i [Konfigurera OpenSearch-tjänsten](opensearch.md).
 
 ## Ändra tjänstversion
 
 Du kan uppgradera den installerade tjänstversionen för kompatibilitet med den Adobe Commerce-version som är distribuerad i din molnmiljö.
 
-Du kan inte nedgradera tjänstversionen för en installerad tjänst direkt. Du kan dock skapa en tjänst med den version som krävs. Se [Nedgradera serviceversion](#downgrade-version).
+Du kan inte nedgradera tjänstversionen för en installerad tjänst direkt. Du kan dock skapa en tjänst med den version som krävs. Se [Nedgradera tjänstversion](#downgrade-version).
 
 ### Uppgradera installerad tjänstversion
 
-Du kan uppgradera den installerade tjänstversionen genom att uppdatera tjänstkonfigurationen i `services.yaml` -fil.
+Du kan uppgradera den installerade tjänstversionen genom att uppdatera tjänstkonfigurationen i filen `services.yaml`.
 
-1. Ändra [`type`](#type) värdet för tjänsten i `.magento/services.yaml` fil:
+1. Ändra värdet [`type`](#type) för tjänsten i filen `.magento/services.yaml`:
 
    > Ursprunglig tjänstdefinition
 
@@ -234,19 +234,19 @@ Du kan inte nedgradera en installerad tjänst direkt. Du har två alternativ:
 
 1. Skapa en tjänst och spara data från den befintliga tjänsten.
 
-När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i `services.yaml` och uppdatera relationerna i `.magento.app.yaml` -fil.
+När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i filen `services.yaml` och uppdatera relationerna i filen `.magento.app.yaml`.
 
 **Så här nedgraderar du en tjänstversion genom att byta namn på en befintlig tjänst**:
 
-1. Byt namn på den befintliga tjänsten i `.magento/services.yaml` och ändra versionen.
+1. Byt namn på den befintliga tjänsten i filen `.magento/services.yaml` och ändra versionen.
 
    >[!WARNING]
    >
    >Om du byter namn på en befintlig tjänst ersätts den och alla data tas bort. Om du behöver behålla data skapar du en tjänst i stället för att byta namn på den befintliga.
 
-   Om du till exempel vill nedgradera MariaDB-versionen för _mysql_ från version 10.4 till 10.3, ändra den befintliga _service-id_ och _type_ konfiguration.
+   Om du till exempel vill nedgradera MariaDB-versionen för tjänsten _mysql_ från version 10.4 till 10.3 ändrar du den befintliga konfigurationen för _service-id_ och _typ_ .
 
-   > Original `services.yaml` definition
+   > Ursprunglig `services.yaml`-definition
 
    ```yaml
    mysql:
@@ -254,7 +254,7 @@ När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i `s
        disk: 5120
    ```
 
-   > Nytt `services.yaml` definition
+   > Ny `services.yaml`-definition
 
    ```yaml
    mysql2:
@@ -262,16 +262,16 @@ När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i `s
         disk: 5120
    ```
 
-1. Uppdatera relationerna i `.magento.app.yaml` -fil.
+1. Uppdatera relationerna i filen `.magento.app.yaml`.
 
-   > Original `.magento.app.yaml` konfiguration
+   > Ursprunglig `.magento.app.yaml`-konfiguration
 
    ```yaml
    relationships:
        database: "mysql:mysql"
    ```
 
-   > Uppdaterat `.magento.app.yaml` konfiguration
+   > Uppdaterad `.magento.app.yaml`-konfiguration
 
    ```yaml
    relationships:
@@ -280,9 +280,9 @@ När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i `s
 
 1. Lägg till, implementera och push-överföra kodändringar.
 
-**Så här minskar du en tjänst genom att skapa en tjänst**:
+**Så här nedgraderar du en tjänst genom att skapa en tjänst**:
 
-1. Lägg till en tjänstdefinition i `services.yaml` -fil för ditt projekt med den nedgraderade versionsspecifikationen. Se _mysql2_ i följande exempel:
+1. Lägg till en tjänstdefinition i filen `services.yaml` för ditt projekt med den nedgraderade versionsspecifikationen. Se _mysql2_ i följande exempel:
 
    > services.yaml
 
@@ -295,16 +295,16 @@ När du ändrar tjänstversionen måste du uppdatera tjänstkonfigurationen i `s
        disk: 5120
    ```
 
-1. Ändra relationskonfigurationen i `.magento.app.yaml` som ska använda den nya tjänsten.
+1. Ändra relationskonfigurationen i filen `.magento.app.yaml` om du vill använda den nya tjänsten.
 
-   > Original `.magento.app.yaml` konfiguration
+   > Ursprunglig `.magento.app.yaml`-konfiguration
 
    ```yaml
    relationships:
        database: "mysql:mysql"
    ```
 
-   > Nytt `.magento.app.yaml` konfiguration
+   > Ny `.magento.app.yaml`-konfiguration
 
    ```yaml
    relationships:

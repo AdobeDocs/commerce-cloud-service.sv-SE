@@ -24,15 +24,15 @@ Du kan konfigurera fragmentet så att det kringgår snabb cachelagring för beg�
 
 {{$include /help/_includes/vcl-snippet-prerequisites.md}}
 
-**För att kringgå snabb cachelagring baserat på IP-adress eller URL**:
+**Om du vill kringgå snabbcachelagring baserat på IP-adress eller URL**:
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
 
 1. Expandera **Helsidescache** > **Snabb konfiguration** > **Anpassade VCL-kodfragment**.
 
-1. Klicka **Skapa anpassat fragment**.
+1. Klicka på **Skapa anpassat fragment**.
 
 1. Lägg till VCL-fragmentvärden:
 
@@ -42,7 +42,7 @@ Du kan konfigurera fragmentet så att det kringgår snabb cachelagring för beg�
 
    - **Prioritet** — `5`
 
-   - **VCL** textutdrag —
+   - **VCL**-fragmentinnehåll —
 
      Följande exempel kringgår Fastly för en specifik IP-adress:
 
@@ -58,13 +58,13 @@ Du kan konfigurera fragmentet så att det kringgår snabb cachelagring för beg�
      if (req.url ~ "/media/feeds/GoogleShoppingHiVisNew.xml") {  return (pass);}
      ```
 
-     Om du vill ha en exakt URL-matchning använder du `==` operatorn i stället för `~` -operator. Se [Snabb VCL-referens] för mer information.
+     Använd operatorn `==` i stället för operatorn `~` för en exakt URL-matchning. Mer information finns i [Snabbt VCL-referens].
 
-1. Klicka **Skapa**.
+1. Klicka på **Skapa**.
 
-   ![Skapa VCL-kodfragment med snabb åsidosättning](/help/assets/cdn/fastly-create-bypass-snippet.png)
+   ![Skapa VCL-fragment med snabb åsidosättning](/help/assets/cdn/fastly-create-bypass-snippet.png)
 
-1. När sidan har lästs in igen klickar du på **Ladda upp VCL snabbt** i *Snabb konfiguration* -avsnitt.
+1. När sidan har lästs in på nytt klickar du på **Överför VCL till Snabbt** i avsnittet *Snabbkonfiguration*.
 
 1. När överföringen är klar uppdaterar du cacheminnet enligt meddelandet längst upp på sidan.
 

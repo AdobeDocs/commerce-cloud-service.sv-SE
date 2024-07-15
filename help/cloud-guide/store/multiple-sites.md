@@ -36,7 +36,7 @@ https://store.com/second/
 
 >[!TIP]
 >
->Om du vill lägga till en butiksvy i webbplatsens bas-URL behöver du inte skapa flera kataloger. Se [Lägg till butikskoden i bas-URL:en](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/multi-sites/ms-admin.html) i _Konfigurationshandbok_.
+>Om du vill lägga till en butiksvy i webbplatsens bas-URL behöver du inte skapa flera kataloger. Se [Lägg till lagringskoden i bas-URL:en](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/multi-sites/ms-admin.html) i _konfigurationshandboken_.
 
 ## Lägg till domäner
 
@@ -46,30 +46,30 @@ Hur du lägger till en domän beror på typen av molnkonto:
 
 - För Pro Staging and Production
 
-  Lägg till den nya domänen snabbt, se [Hantera domäner](../cdn/fastly-custom-cache-configuration.md#manage-domains)eller öppna en supportanmälan för att få hjälp. Dessutom måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära att nya domäner läggs till i ett kluster.
+  Lägg till den nya domänen i Snabb, se [Hantera domäner](../cdn/fastly-custom-cache-configuration.md#manage-domains) eller öppna en supportbiljett för att begära hjälp. Dessutom måste du [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära att nya domäner läggs till i ett kluster.
 
 - Endast för startproduktion
 
-  Lägg till den nya domänen snabbt, se [Hantera domäner](../cdn/fastly-custom-cache-configuration.md#manage-domains), eller [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära hjälp. Dessutom måste du lägga till den nya domänen i **Domäner** i [!DNL Cloud Console]: `https://<zone>.magento.cloud/projects/<project-ID>/edit`
+  Lägg till den nya domänen i Snabb, se [Hantera domäner](../cdn/fastly-custom-cache-configuration.md#manage-domains) eller [Skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att få hjälp. Dessutom måste du lägga till den nya domänen på fliken **Domäner** i [!DNL Cloud Console]: `https://<zone>.magento.cloud/projects/<project-ID>/edit`
 
 ## Konfigurera lokal installation
 
-Information om hur du konfigurerar din lokala installation att använda flera butiker finns i [Flera webbplatser eller butiker][config-multiweb] i _Konfigurationshandbok_.
+Mer information om hur du konfigurerar din lokala installation så att du kan använda flera butiker finns i [Flera webbplatser eller butiker][config-multiweb] i _Konfigurationshandboken_.
 
 När du har skapat och testat den lokala installationen för att kunna använda flera butiker måste du förbereda din integreringsmiljö:
 
-1. **Konfigurera vägar eller platser**—ange hur inkommande URL:er hanteras av Adobe Commerce
+1. **Konfigurera vägar eller platser** - ange hur inkommande URL:er hanteras av Adobe Commerce
 
    - [Vägar för separata domäner](#configure-routes-for-separate-domains)
    - [Platser för delade domäner](#configure-locations-for-shared-domains)
 
-1. **Konfigurera webbplatser, butiker och butiksvyer**—configure using the Adobe Commerce Admin UI
-1. **Ändra variabler**—ange värdena för `MAGE_RUN_TYPE` och `MAGE_RUN_CODE` variabler i `magento-vars.php` fil
-1. **Driftsätt och testa miljöer**—driftsätta och testa `integration` bankkontor
+1. **Konfigurera webbplatser, butiker och butiksvyer** - konfigurera med användargränssnittet i Adobe Commerce Admin
+1. **Ändra variabler** - ange värden för variablerna `MAGE_RUN_TYPE` och `MAGE_RUN_CODE` i filen `magento-vars.php`
+1. **Distribuera och testa miljöer** - distribuera och testa grenen `integration`
 
 >[!TIP]
 >
->Du kan använda en lokal miljö för att konfigurera flera webbplatser eller butiker. Se anvisningarna för Cloud Docker för att [Konfigurera flera webbplatser eller butiker](https://developer.adobe.com/commerce/cloud-tools/docker/configure/multiple-sites/).
+>Du kan använda en lokal miljö för att konfigurera flera webbplatser eller butiker. Se anvisningarna för Cloud Docker om hur du [konfigurerar flera webbplatser eller butiker](https://developer.adobe.com/commerce/cloud-tools/docker/configure/multiple-sites/).
 
 ### Konfigurationsuppdateringar för Pro-miljöer
 
@@ -77,13 +77,13 @@ När du har skapat och testat den lokala installationen för att kunna använda 
 
 ### Konfigurera vägar för separata domäner
 
-Rutorna definierar hur inkommande URL:er ska behandlas. Flera arkiv med unika domäner kräver att du definierar varje domän i `routes.yaml` -fil. Hur du konfigurerar vägar beror på hur du vill att webbplatsen ska fungera.
+Rutorna definierar hur inkommande URL:er ska behandlas. Flera arkiv med unika domäner kräver att du definierar varje domän i filen `routes.yaml`. Hur du konfigurerar vägar beror på hur du vill att webbplatsen ska fungera.
 
-**Konfigurera vägar i en integreringsmiljö**:
+**Så här konfigurerar du vägar i en integreringsmiljö**:
 
-1. Öppna `.magento/routes.yaml` i en textredigerare.
+1. Öppna filen `.magento/routes.yaml` i en textredigerare på din lokala arbetsstation.
 
-1. Definiera domänen och underdomänerna. The `mymagento` värdet upstream är samma värde som egenskapen name i `.magento.app.yaml` -fil.
+1. Definiera domänen och underdomänerna. Värdet `mymagento` uppströms är samma värde som egenskapen name i filen `.magento.app.yaml`.
 
    ```yaml
    "http://{default}/":
@@ -95,17 +95,17 @@ Rutorna definierar hur inkommande URL:er ska behandlas. Flera arkiv med unika do
        upstream: "mymagento:http"
    ```
 
-1. Spara ändringarna i `routes.yaml` -fil.
+1. Spara ändringarna i filen `routes.yaml`.
 
 1. Fortsätt till [Konfigurera webbplatser, butiker och butiksvyer](#set-up-websites-stores-and-store-views).
 
 ### Konfigurera platser för delade domäner
 
-Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egenskapen i `.magento.app.yaml` -filen definierar hur programmet exponeras för webben. Webb _platser_ tillåter mer granularitet för inkommande begäranden. Om din domän till exempel är `store.com`kan du använda `/first` (standardplats) och `/second` för begäranden till två olika butiker som delar en domän.
+Där routningskonfigurationen definierar hur URL-adresserna behandlas, definierar egenskapen `web` i filen `.magento.app.yaml` hur ditt program exponeras för webben. Webb _platser_ tillåter mer granularitet för inkommande begäranden. Om din domän till exempel är `store.com` kan du använda `/first` (standardplats) och `/second` för begäranden till två olika butiker som delar en domän.
 
-**Konfigurera en ny webbplats**:
+**Så här konfigurerar du en ny webbplats**:
 
-1. Skapa ett alias för roten (`/`). I det här exemplet är alias `&app` på rad 3.
+1. Skapa ett alias för roten (`/`). I det här exemplet är aliaset `&app` på rad 3.
 
    ```yaml
    web:
@@ -121,7 +121,7 @@ Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egen
 
 1. Skapa en vidarekoppling för webbplatsen (`/website`) och referera till roten med hjälp av aliaset från föregående steg.
 
-   Aliaset tillåter `website` om du vill komma åt värden från rotplatsen. I det här exemplet har webbplatsen `passthru` står på rad 21.
+   Aliaset tillåter `website` att komma åt värden från rotplatsen. I det här exemplet finns webbplatsen `passthru` på rad 21.
 
    ```yaml
    web:
@@ -148,9 +148,9 @@ Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egen
              ...
    ```
 
-**Konfigurera en plats med en annan katalog**:
+**Så här konfigurerar du en plats med en annan katalog**:
 
-1. Skapa ett alias för roten (`/`) och för de statiska (`/static`).
+1. Skapa ett alias för roten (`/`) och för de statiska (`/static`) platserna.
 
    ```yaml
    web:
@@ -166,9 +166,9 @@ Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egen
                root: "pub/static"
    ```
 
-1. Skapa en underkatalog för webbplatsen under `pub` katalog: `pub/<website>`
+1. Skapa en underkatalog för webbplatsen under katalogen `pub`: `pub/<website>`
 
-1. Kopiera `pub/index.php` till `pub/<website>` och uppdatera `bootstrap` bana (`/../../app/bootstrap.php`).
+1. Kopiera filen `pub/index.php` till katalogen `pub/<website>` och uppdatera sökvägen `bootstrap` (`/../../app/bootstrap.php`).
 
    ```
    try {
@@ -176,7 +176,7 @@ Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egen
    } catch (\Exception $e) { 
    ```
 
-1. Skapa en vidarekoppling för `index.php` -fil.
+1. Skapa en vidarekoppling för filen `index.php`.
 
    ```yaml
    web:
@@ -208,24 +208,24 @@ Där flödeskonfigurationen definierar hur URL-adresserna behandlas, `web` -egen
 
 1. Verkställ och skicka de ändrade filerna.
 
-   - `pub/<website>/index.php` (Om den här filen finns i `.gitignore`, kan push-funktionen kräva kraftalternativet.)
+   - `pub/<website>/index.php` (Om den här filen finns i `.gitignore` kan push-funktionen kräva alternativet force.)
    - `.magento.app.yaml`
 
 ### Konfigurera webbplatser, butiker och butiksvyer
 
-I _Administratörsgränssnitt_, konfigurera din Adobe Commerce **Webbplatser**, **Lager** och **Lagra vyer**. Se [Konfigurera flera webbplatser, butiker och butiksvyer i administratören](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/multi-sites/ms-admin.html) i _Konfigurationshandbok_.
+Konfigurera dina **webbplatser**, **Store** och **Store-vyer** i _administratörsgränssnittet_. Se [Konfigurera flera webbplatser, butiker och butiksvyer i Admin](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/multi-sites/ms-admin.html) i _Konfigurationshandboken_.
 
-Det är viktigt att du använder samma namn och kod för dina webbplatser, butiker och butiksvyer från din administratör när du konfigurerar din lokala installation. Du behöver dessa värden när du uppdaterar `magento-vars.php` -fil.
+Det är viktigt att du använder samma namn och kod för dina webbplatser, butiker och butiksvyer från din administratör när du konfigurerar din lokala installation. Du behöver dessa värden när du uppdaterar filen `magento-vars.php`.
 
 ### Ändra variabler
 
-I stället för att konfigurera en virtuell NGINX-värd skickar du `MAGE_RUN_CODE` och `MAGE_RUN_TYPE` variabler med `magento-vars.php` i projektets rotkatalog.
+I stället för att konfigurera en virtuell NGINX-värd skickar du variablerna `MAGE_RUN_CODE` och `MAGE_RUN_TYPE` med hjälp av filen `magento-vars.php` i projektets rotkatalog.
 
-**Skicka variabler med `magento-vars.php` fil**:
+**Så här skickar du variabler med `magento-vars.php` file**:
 
-1. Öppna `magento-vars.php` i en textredigerare.
+1. Öppna filen `magento-vars.php` i en textredigerare.
 
-   The [standard `magento-vars.php` fil](https://github.com/magento/magento-cloud/blob/master/magento-vars.php) ska se ut så här:
+   [standardfilen `magento-vars.php`](https://github.com/magento/magento-cloud/blob/master/magento-vars.php) ska se ut så här:
 
    ```php
    <?php
@@ -244,7 +244,7 @@ I stället för att konfigurera en virtuell NGINX-värd skickar du `MAGE_RUN_COD
    }
    ```
 
-1. Flytta kommenterade `if` blockera så att den _efter_ den `function` och inte längre kommenterade.
+1. Flytta det kommenterade `if`-blocket så att det är _efter_ `function`-blocket och inte längre kommenteras.
 
    ```php
    <?php
@@ -265,12 +265,12 @@ I stället för att konfigurera en virtuell NGINX-värd skickar du `MAGE_RUN_COD
    }
    ```
 
-1. Ersätt följande värden i `if (isHttpHost("example.com"))` block:
-   - `example.com`- med bas-URL:en för _webbplats_
-   - `default`- med den unika KODEN för _webbplats_ eller _butiksvy_
-   - `store`—med ett av följande värden:
-      - `website`—load the _webbplats_ i butiken
-      - `store`—load a _butiksvy_ i butiken
+1. Ersätt följande värden i blocket `if (isHttpHost("example.com"))`:
+   - `example.com` - med bas-URL:en för din _webbplats_
+   - `default` - med den unika KODEN för din _webbplats_ eller _butiksvy_
+   - `store` - med ett av följande värden:
+      - `website` - läs in _webbplatsen_ i butiken
+      - `store` - läs in en _butiksvy_ i butiken
 
    För flera platser som använder unika domäner:
 
@@ -293,7 +293,7 @@ I stället för att konfigurera en virtuell NGINX-värd skickar du `MAGE_RUN_COD
    }
    ```
 
-   För flera webbplatser med samma domän måste du kontrollera _värd_ och _URI_:
+   För flera webbplatser med samma domän måste du kontrollera _host_ och _URI_:
 
    ```php
    <?php
@@ -319,7 +319,7 @@ I stället för att konfigurera en virtuell NGINX-värd skickar du `MAGE_RUN_COD
    }
    ```
 
-1. Spara ändringarna i `magento-vars.php` -fil.
+1. Spara ändringarna i filen `magento-vars.php`.
 
 ### Distribuera och testa på integreringsservern
 
@@ -335,19 +335,19 @@ Gör ändringar i er Adobe Commerce i molninfrastruktursintegreringsmiljö och t
 
 1. Efter distributionen öppnar du din Store-URL i en webbläsare.
 
-   Använd formatet med en unik domän: `http://<magento-run-code>.<site-URL>`
+   Använd formatet `http://<magento-run-code>.<site-URL>` med en unik domän
 
    Exempel: `http://french.master-name-projectID.us.magentosite.cloud/`
 
-   Använd formatet med en delad domän: `http://<site-URL>/<magento-run-code>`
+   Använd formatet `http://<site-URL>/<magento-run-code>` med en delad domän
 
    Exempel: `http://master-name-projectID.us.magentosite.cloud/french/`
 
-1. Testa webbplatsen noggrant och sammanfoga koden med `integration` för vidare driftsättning.
+1. Testa webbplatsen noggrant och sammanfoga koden till grenen `integration` för ytterligare distribution.
 
 ## Distribuera till mellanlagring och produktion
 
-Följ distributionsprocessen för [driftsätta till förproduktion och produktion](../deploy/staging-production.md). För Starter- och Pro-miljöer använder du [!DNL Cloud Console] för att föra över kod mellan olika miljöer.
+Följ distributionsprocessen för [distribution till Förproduktion och produktion](../deploy/staging-production.md). I Starter- och Pro-miljöer använder du [!DNL Cloud Console] för att skicka kod mellan miljöer.
 
 Adobe rekommenderar att du gör en fullständig testning i mellanlagringsmiljön innan du går vidare till produktionsmiljön. Gör kodändringar i integreringsmiljön och börja distribuera i olika miljöer igen.
 

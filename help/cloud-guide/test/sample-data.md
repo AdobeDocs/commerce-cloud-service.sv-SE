@@ -13,7 +13,7 @@ ht-degree: 0%
 
 Om du behöver exempeldata när du utvecklar din butik kan du installera exempeldata. Dessa data simulerar en aktiv Adobe Commerce-butik med kunder, produkter och andra data. Dessa exempeldata fungerar bäst med en ny installation av Adobe Commerce i en molninfrastruktursmall.
 
-Det bästa sättet är att installera exempeldata i utvecklings- och integreringsmiljöer. Om du använder exempeldata i Förproduktion eller Produktion måste du [ta bort](#reset-or-uninstall-sample-data) information och produkter innan de publiceras.
+Det bästa sättet är att installera exempeldata i utvecklings- och integreringsmiljöer. Om du använder exempeldata i Förproduktion eller Produktion måste du [ta bort](#reset-or-uninstall-sample-data) informationen och produkterna innan du går live.
 
 ## Installera exempeldata
 

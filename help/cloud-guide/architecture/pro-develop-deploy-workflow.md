@@ -12,45 +12,45 @@ ht-degree: 0%
 
 # Arbetsflöde för Pro-projekt
 
-Pro-projektet innehåller en enda Git-databas med en global `master` grenen och tre huvudmiljöer:
+Pro-projektet innehåller en enda Git-databas med en global `master`-gren och tre huvudmiljöer:
 
-1. **Produktion** miljö för att starta och underhålla den publicerade webbplatsen
-1. **Mellanlagring** miljö för testning med alla tjänster
-1. **Integrering** miljö för utveckling och testning
+1. **Produktionsmiljö** för att starta och underhålla den publicerade webbplatsen
+1. **Mellanlagringsmiljö** för testning med alla tjänster
+1. **Integrationsmiljö** för utveckling och testning
 
-![Miljölista för Pro](../../assets/pro-environments.png)
+![Proffsmiljölista](../../assets/pro-environments.png)
 
-Dessa miljöer `read-only`, som godkänner distribuerade kodändringar från grenar som har flyttats från den lokala arbetsytan. Se [Pro-arkitektur](pro-architecture.md) för en fullständig översikt över Pro-miljöerna. Se [[!DNL Cloud Console]](../project/overview.md#cloud-console) om du vill ha en översikt över Pro-miljölistan i projektvyn.
+De här miljöerna är `read-only`, och godkänner distribuerade kodändringar från grenar som skickats från den lokala arbetsytan. En fullständig översikt över Pro-miljöerna finns i [Pro-arkitekturen](pro-architecture.md) . Se [[!DNL Cloud Console]](../project/overview.md#cloud-console) för en översikt över Pro-miljölistan i projektvyn.
 
-I följande bild visas arbetsflödet för Pro-utveckling och -distribution, som använder en enkel Git-förgrening. Du [utveckla](#development-workflow) kod som använder en aktiv gren baserad på `integration` miljö, _push_ och _dra_ koden ändras till och från din aktiva gren på fjärrbasis. Distribuera verifierad kod med _sammanfoga_ fjärrgrenen till basgrenen, som aktiverar en automatiserad [bygga och driftsätta](#deployment-workflow) för den miljön.
+I följande bild visas arbetsflödet för Pro-utveckling och -distribution, som använder en enkel Git-förgrening. Du [utvecklar](#development-workflow)-kod med en aktiv gren baserad på `integration`-miljön, _push_- och _pull_-kodsändringar till och från din aktiva fjärrgren. Du distribuerar verifierad kod genom att _sammanfoga_ fjärrgrenen till basgrenen, vilket aktiverar en automatiserad [bygg- och distributionsprocess](#deployment-workflow) för den miljön.
 
-![Översikt över arbetsflödet för utveckling av Pro-arkitektur](../../assets/pro-dev-workflow.png)
+![Högnivåvy av arbetsflödet för utveckling av Pro-arkitektur](../../assets/pro-dev-workflow.png)
 
 ## Arbetsflöde för utveckling
 
-Integreringsmiljön ger en enda bas `integration` en gren som innehåller din Adobe Commerce på molninfrastrukturkoden. Du kan skapa ytterligare en aktiv miljögren. Detta tillåter upp till två aktiva grenar som distribueras till plattformsbehållare (PaaS). Det finns ingen gräns för antalet inaktiva miljöer.
+Integreringsmiljön tillhandahåller en enda `integration`-bas-gren som innehåller din Adobe Commerce på molninfrastrukturkoden. Du kan skapa ytterligare en aktiv miljögren. Detta tillåter upp till två aktiva grenar som distribueras till plattformsbehållare (PaaS). Det finns ingen gräns för antalet inaktiva miljöer.
 
 {{enhanced-integration-envs}}
 
-Projektmiljöerna har stöd för en flexibel, kontinuerlig integrationsprocess. Börja med att klona `integration` till din lokala projektmapp. Skapa en gren, eller flera grenar, utveckla nya funktioner, konfigurera ändringar, lägga till tillägg och distribuera uppdateringar:
+Projektmiljöerna har stöd för en flexibel, kontinuerlig integrationsprocess. Börja med att klona grenen `integration` till din lokala projektmapp. Skapa en gren, eller flera grenar, utveckla nya funktioner, konfigurera ändringar, lägga till tillägg och distribuera uppdateringar:
 
 - **Hämta** ändringar från `integration`
 
-- **Gren** från `integration`
+- **Förgrening** från `integration`
 
 - **Utveckla** kod på en lokal arbetsstation, inklusive [!DNL Composer] uppdateringar
 
-- **Push** kodsändringar i fjärrkatalogen och validera
+- **Skjut in**-koden ändras till fjärrkoden och validera
 
-- **Sammanfoga** till `integration` och testa
+- **Koppla** till `integration` och testa
 
-Med en utvecklad kodgren och motsvarande konfigurationsfiler är dina kodändringar klara att sammanfogas med `integration` för mer omfattande testning. The `integration` passar också bäst för:
+Med en utvecklad kodgren och motsvarande konfigurationsfiler är dina kodändringar klara att sammanfogas med grenen `integration` för mer omfattande testning. Miljön `integration` passar också bäst för:
 
-- **Integrera tredjepartstjänster**- Alla tjänster är inte tillgängliga i PaaS-miljön.
+- **Integrerar tredjepartstjänster** - Alla tjänster är inte tillgängliga i PaaS-miljön.
 
-- **Genererar konfigurationshanteringsfiler**—Vissa konfigurationsinställningar är _Skrivskyddad_ i en distribuerad miljö.
+- **Genererar konfigurationshanteringsfiler** - Vissa konfigurationsinställningar är _skrivskyddade_ i en distribuerad miljö.
 
-- **Konfigurera din butik**- Du bör konfigurera alla butiksinställningar fullständigt i integreringsmiljön. Du hittar **Administratörs-URL för butik** på _integration_ miljövyn i _[!DNL Cloud Console]_.
+- **Konfigurerar din butik** - Du bör konfigurera alla butiksinställningar fullständigt med integreringsmiljön. Du hittar **Administratörs-URL:en för** i _integreringsvyn_ i _[!DNL Cloud Console]_.
 
 ## Arbetsflöde för distribution
 
@@ -72,7 +72,7 @@ Skapa skriptåtgärder:
 
 Distribuera skriptåtgärder:
 
-- Placera platsen i målmiljön i en _Underhåll_ läge
+- Placera platsen i målmiljön i _underhållsläge_
 
 - Distribuera statiskt innehåll om det inte slutförs under bygget
 
@@ -84,11 +84,11 @@ Efter bygg- och distributionsprocessen kommer din butik tillbaka online med dina
 
 ### Sammanfoga till integration
 
-Kombinera alla verifierade kodändringar genom att sammanfoga din aktiva utvecklingsgren i basen `integration` gren. Du kan testa alla dina ändringar på `integration` innan du befordrar ändringar i mellanlagringsmiljön.
+Kombinera alla verifierade kodändringar genom att slå samman din aktiva utvecklingsgren med basgrenen `integration`. Du kan testa alla ändringar i `integration`-grenen innan du befordrar ändringar i mellanlagringsmiljön.
 
 ### Sammanfoga till mellanlagring
 
-Mellanlagring är en förproduktionsmiljö som tillhandahåller alla tjänster och inställningar så nära produktionsmiljön som möjligt. Flytta alltid dina kodändringar från `integration` miljö till `staging` så att du kan utföra grundliga tester med alla tjänster. Första gången du använder testmiljön måste du konfigurera tjänster, som [Snabb CDN](../cdn/fastly.md) och [New Relic](../monitor/new-relic-service.md). Konfigurera betalningsgatewayar, leveranser, meddelanden och andra viktiga tjänster med sandlåda eller testningsreferenser.
+Mellanlagring är en förproduktionsmiljö som tillhandahåller alla tjänster och inställningar så nära produktionsmiljön som möjligt. Flytta alltid dina kodändringar från miljön `integration` till miljön `staging` så att du kan utföra grundliga tester med alla tjänster. Första gången du använder testmiljön måste du konfigurera tjänster som [Fast CDN](../cdn/fastly.md) och [New Relic](../monitor/new-relic-service.md). Konfigurera betalningsgatewayar, leveranser, meddelanden och andra viktiga tjänster med sandlåda eller testningsreferenser.
 
 Det är bäst att noggrant testa alla tjänster, verifiera prestandatestningsverktygen och utföra UAT-tester som administratör och kund tills du känner att butiken är redo för produktionsmiljön. Se [Distribuera din butik](../deploy/staging-production.md).
 
@@ -101,6 +101,6 @@ Efter grundlig testning i staging-miljön kan du slå samman till produktionsmil
 
 ### Sammanfoga till global mallsida
 
-Skicka alltid en kopia av produktionskoden till Global `master` om det finns ett akut behov av att felsöka produktionsmiljön utan att avbryta tjänsterna.
+Skicka alltid en kopia av produktionskoden till Global `master` om det finns ett behov av att felsöka produktionsmiljön utan att avbryta tjänsterna.
 
-Gör **not** skapa en gren från Global `master`. Använd `integration` gren för att skapa nya, aktiva grenar för utveckling och korrigeringar.
+Skapa **inte** en gren från global `master`. Använd grenen `integration` för att skapa nya, aktiva grenar för utveckling och korrigeringar.

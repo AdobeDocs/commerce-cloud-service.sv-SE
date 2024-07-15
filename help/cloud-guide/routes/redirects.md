@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Hantering av omdirigeringsregler är ett vanligt krav för webbprogram, särskilt när du inte vill förlora inkommande länkar som har ändrats eller tagits bort över tid.
 
-Följande visar hur du hanterar omdirigeringsregler på din Adobe Commerce i molninfrastrukturprojekt med hjälp av `routes.yaml` konfigurationsfil. Om omdirigeringsmetoderna som beskrivs i det här avsnittet inte fungerar för dig kan du använda cachelagringshuvuden för att göra samma sak.
+I följande exempel visas hur du hanterar omdirigeringsregler på din Adobe Commerce för molninfrastrukturprojekt med konfigurationsfilen `routes.yaml`. Om omdirigeringsmetoderna som beskrivs i det här avsnittet inte fungerar för dig kan du använda cachelagringshuvuden för att göra samma sak.
 
 {{route-placeholder}}
 
@@ -24,11 +24,11 @@ Följande visar hur du hanterar omdirigeringsregler på din Adobe Commerce i mol
 
 >[!WARNING]
 >
->För Adobe Commerce i molninfrastrukturprojekt konfigureras flera icke-regex-omdirigeringar och omskrivningar i `routes.yaml` filen kan orsaka prestandaproblem. Om `routes.yaml` filen är 32 kB eller större, avlastar du icke-regex omdirigerar och skriver om till Fastly. Se [Avlasta icke-regex-omdirigeringar till Fast istället för Nginx (rutter)](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/offload-non-regex-redirects-to-fastly-instead-of-nginx-routes.html) i _Adobe Commerce Help Center_.
+>Om du konfigurerar flera icke-regex-omdirigeringar och omskrivningar i filen `routes.yaml` för Adobe Commerce i molninfrastrukturprojekt kan det orsaka prestandaproblem. Om din `routes.yaml`-fil är 32 kB eller större kan du avlasta din icke-regex och omdirigera den till Fast. Se [Avlasta icke-regex-omdirigeringar till Fast istället för Nginx (vägar)](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/offload-non-regex-redirects-to-fastly-instead-of-nginx-routes.html) i _Adobe Commerce Help Center_.
 
 ## Omdirigeringar i hela flödet
 
-Med omdirigeringar i hela flödet kan du definiera enkla vägar med `routes.yaml` -fil. Du kan till exempel omdirigera från en apex-domän till en `www` underdomän enligt följande:
+Med hjälp av omdirigeringar för hela vägen kan du definiera enkla vägar med hjälp av filen `routes.yaml`. Du kan till exempel omdirigera från en huvuddomän till en `www`-underdomän enligt följande:
 
 ```yaml
 http://{default}/:
@@ -38,7 +38,7 @@ http://{default}/:
 
 ## Omdirigeringar för delväg
 
-I `.magento/routes.yaml` kan du lägga till regler för partiell omdirigering till befintliga flöden baserat på mönstermatchning:
+I filen `.magento/routes.yaml` kan du lägga till regler för partiell omdirigering till befintliga flöden baserat på mönstermatchning:
 
 ```yaml
 http://{default}/:
@@ -51,11 +51,11 @@ http://{default}/:
 
 Delvisa omdirigeringar fungerar med alla typer av vägar, inklusive flöden som betjänas direkt av programmet.
 
-Två nycklar finns under `redirects`:
+Det finns två nycklar under `redirects`:
 
-- **förfaller**- Valfritt, anger hur lång tid det tar att cachelagra omdirigeringen i webbläsaren. Exempel på giltiga värden är `3600s`, `1d`, `2w`, `3m`.
+- **förfaller** - Valfritt, anger hur lång tid omdirigeringen ska cachelagras i webbläsaren. Exempel på giltiga värden är `3600s`, `1d`, `2w`, `3m`.
 
-- **banor**—Ett eller flera nyckelvärdepar som anger konfigurationen för omdirigeringsregler för partiell väg.
+- **paths** - Ett eller flera nyckelvärdepar som anger konfigurationen för omdirigeringsregler för partiell väg.
 
   För varje omdirigeringsregel är nyckeln ett uttryck för att filtrera sökvägar för omdirigering. Värdet är ett objekt som anger målmålet för omdirigeringen och alternativ för bearbetning av omdirigeringen.
 
@@ -65,14 +65,14 @@ Två nycklar finns under `redirects`:
   | ---------- | ----------- |
   | `to` | Obligatoriskt, en partiell absolut sökväg, URL med protokoll och värd, eller mönster som anger målmålet för omdirigeringsregeln. |
   | `regexp` | Valfritt, standardvärdet är `false`. Anger om sökvägsnyckeln ska tolkas som ett reguljärt PCRE-uttryck. |
-  | `prefix` | Anger om omdirigeringen gäller både banan och alla dess underordnade objekt, eller bara själva banan. Standardvärdet är `true`. Detta värde stöds inte om `regexp` är `true`. |
-  | `append_suffix` | Avgör om suffixet överförs med omdirigeringen. Standardvärdet är `true`. Detta värde stöds inte om `regexp` key is `true` eller* om `prefix` key is `false`. |
-  | `code` | Anger HTTP-statuskoden. Giltiga statuskoder [`301` (Flyttad permanent)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.2), [`302`](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3), [`307`](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.8)och [`308`](https://www.rfc-editor.org/rfc/rfc7238). Standardvärdet är `302`. |
-  | `expires` | Valfritt, anger hur lång tid det tar att cachelagra omdirigeringen i webbläsaren. Standardvärdet är `expires` värde definierat direkt under `redirects` på den här nivån kan du finjustera cacheminnets förfallotid för enskilda partiella omdirigeringar. |
+  | `prefix` | Anger om omdirigeringen gäller både banan och alla dess underordnade objekt, eller bara själva banan. Standardvärdet är `true`. Det här värdet stöds inte om `regexp` är `true`. |
+  | `append_suffix` | Avgör om suffixet överförs med omdirigeringen. Standardvärdet är `true`. Det här värdet stöds inte om nyckeln `regexp` är `true` eller* om nyckeln `prefix` är `false`. |
+  | `code` | Anger HTTP-statuskoden. Giltiga statuskoder är [`301` (Flyttad permanent)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.2), [`302`](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3), [`307`](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.8) och [`308`](https://www.rfc-editor.org/rfc/rfc7238). Standardvärdet är `302`. |
+  | `expires` | Valfritt, anger hur lång tid det tar att cachelagra omdirigeringen i webbläsaren. Standardvärdet är det `expires`-värde som definieras direkt under nyckeln `redirects`, men på den här nivån kan du finjustera cacheminnets förfallotid för enskilda partiella omdirigeringar. |
 
 ## Exempel på delvägsomdirigeringar
 
-I följande exempel visas hur du anger delvägsomdirigeringar i `routes.yaml` fil med olika `paths` konfigurationsalternativ.
+I följande exempel visas hur du anger delvägsomdirigeringar i filen `routes.yaml` med hjälp av olika `paths`-konfigurationsalternativ.
 
 ### Mönstermatchning för reguljära uttryck
 
@@ -86,7 +86,7 @@ http://{default}/:
         "/regexp/(.*)/match": { to: "http://example.com/$1", regexp: true }
 ```
 
-Den här konfigurationen filtrerar sökvägar mot ett reguljärt uttryck och dirigerar om matchande begäranden till `https://example.com`. Till exempel en begäran till `https://example.com/regexp/a/b/c/match` omdirigerar till `https://example.com/a/b/c`.
+Den här konfigurationen filtrerar sökvägar mot ett reguljärt uttryck och dirigerar om matchande begäranden till `https://example.com`. En begäran om `https://example.com/regexp/a/b/c/match` dirigeras till exempel om till `https://example.com/a/b/c`.
 
 ### Matchning av prefixmönster
 
@@ -102,11 +102,11 @@ http://{default}/:
 
 Den här konfigurationen fungerar så här:
 
-- Omdirigerar begäranden som matchar mönstret `/from` till banan `http://{default}/to`.
+- Omdirigerar begäranden som matchar mönstret `/from` till sökvägen `http://{default}/to`.
 
 - Omdirigerar begäranden som matchar mönstret `/from/another/path` till `https://{default}/to/another/path`.
 
-- Om du ändrar `prefix` egenskap till `false`, begäranden som matchar `/from` mönstret utlöser en omdirigering, men förfrågningar som matchar `/from/another/path` inte mönstret.
+- Om du ändrar egenskapen `prefix` till `false` utlöser förfrågningar som matchar mönstret `/from` en omdirigering, men förfrågningar som matchar mönstret `/from/another/path` gör det inte.
 
 ### Matchning av suffixmönster
 
@@ -121,9 +121,9 @@ http://{default}/:
 
 Den här konfigurationen fungerar så här:
 
-- Omdirigerar begäranden som matchar mönstret `/from/path/suffix` till banan `https://{default}/to`.
+- Omdirigerar begäranden som matchar mönstret `/from/path/suffix` till sökvägen `https://{default}/to`.
 
-- Om du ändrar `append_suffix` egenskap till `true`och sedan förfrågningar som matchar `/from/path/suffix`  omdirigera till banan `https://{default}/to/path/suffix`.
+- Om du ändrar egenskapen `append_suffix` till `true` dirigeras förfrågningar som matchar `/from/path/suffix` om till sökvägen `https://{default}/to/path/suffix`.
 
 ### Sökvägsspecifik cachekonfiguration
 
@@ -141,6 +141,6 @@ http://{default}/:
 
 Den här konfigurationen fungerar så här:
 
-- Omdirigerar från den första banan (`/from`) cachelagras i en dag.
+- Omdirigeringar från den första sökvägen (`/from`) cachas i en dag.
 
-- Omdirigerar från den andra sökvägen (`/here`) cachas i två veckor.
+- Omdirigeringar från den andra sökvägen (`/here`) cachelagras i två veckor.

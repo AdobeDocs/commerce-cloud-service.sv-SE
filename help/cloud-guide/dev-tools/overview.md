@@ -13,10 +13,10 @@ ht-degree: 0%
 
 # Översikt över verktyg för utvecklare
 
-Adobe tillhandahåller en Cloud Tools Suite för handel, som innehåller paket som utformats för att distribuera och hantera Adobe Commerce-installationer och uppgraderingar på molnplattformen.
+Adobe tillhandahåller en Cloud Tools Suite för Commerce, som innehåller paket som utformats för att distribuera och hantera Adobe Commerce-installationer och uppgraderingar på molnplattformen.
 
-- [Cloud CLI](cloud-cli-overview.md)—Hantera Cloud-projekt och -miljöer, utför rutinuppgifter och kör automatiseringsuppgifter med `magento-cloud` CLI.
-- [Cloud Docker for Commerce](cloud-docker.md)- Driftsätt Adobe Commerce i en Docker-miljö för lokal utveckling, testning och automatisering.
-- [Molnkorrigeringar](../development/apply-patches.md)- Använd patchar för att integrera Commerce-versioner med molnmiljöer och leverera viktiga korrigeringar snabbt.
-- [ECE-verktygspaket](package-overview.md)—Hantera konfigurationer, bygg och distribuera Adobe Commerce-programmet till fjärrmiljöer i molnet.
-- [Integreringar](../integrations/overview.md)- Integrera vanliga utvecklingsverktyg, som aviseringar, webbhooks och Git-baserade tjänster.
+- [Cloud CLI](cloud-cli-overview.md) - Hantera molnprojekt och miljöer, utför rutinuppgifter och kör automatiseringsåtgärder med `magento-cloud` CLI.
+- [Cloud Docker för Commerce](cloud-docker.md) - Distribuera Adobe Commerce till en Docker-miljö för lokal utveckling, testning och automatisering.
+- [Molnkorrigeringar](../development/apply-patches.md) - Använd korrigeringsfiler för att integrera Commerce-versioner med molnmiljöer och leverera viktiga korrigeringsfiler snabbt.
+- [ECE-verktygspaket](package-overview.md) - Hantera konfigurationer, bygg och distribuera Adobe Commerce-programmet till fjärranslutna molnmiljöer.
+- [Integrationer](../integrations/overview.md) - Integrera vanliga utvecklingsverktyg, till exempel meddelanden, webbhookar och Git-baserade tjänster.

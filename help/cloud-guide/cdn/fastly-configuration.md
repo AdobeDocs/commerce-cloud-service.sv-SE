@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Det krävs snabbt för Adobe Commerce i miljöer med molnbaserad infrastruktur, staging och produktion.
 
-Fungerar snabbt med Varnish för att tillhandahålla snabba cachningsfunktioner och en [Content Delivery Network](https://glossary.magento.com/content-delivery-network) (CDN) för statiska resurser. Tillhandahåller snabbt även en Brandvägg för webbaserade program (WAF) för att säkra din webbplats och molninfrastrukturen. För att skydda din webbplats och molninfrastruktur från skadlig trafik och attacker dirigerar du all inkommande webbplatstrafik via Fast.
+Fungerar snabbt med engelska för att tillhandahålla snabba cachningsfunktioner och ett [CDN (Content Delivery Network)](https://glossary.magento.com/content-delivery-network) (Content Delivery Network) för statiska resurser. Tillhandahåller snabbt även en Brandvägg för webbaserade program (WAF) för att säkra din webbplats och molninfrastrukturen. För att skydda din webbplats och molninfrastruktur från skadlig trafik och attacker dirigerar du all inkommande webbplatstrafik via Fast.
 
 >[!NOTE]
 >
@@ -34,29 +34,29 @@ Följ de här stegen för att aktivera, konfigurera och testa snabbt i webbplats
 
 ## Få inloggningsuppgifter snabbt
 
-Under etableringen lägger Adobe till ditt projekt i [Snabb service](fastly.md#fastly-service-account-and-credentials) för Adobe Commerce i molninfrastrukturen och skapar kontoautentiseringsuppgifter för Fast för Starter `master` och Pro Staging- och Production-miljöer. Varje miljö har unika referenser.
+Under etableringen av projektet lägger Adobe till ditt projekt i [snabbtjänstkontot](fastly.md#fastly-service-account-and-credentials) för Adobe Commerce i molninfrastrukturen och skapar snabbkontoautentiseringsuppgifter för Starter `master` - och Pro Staging- och Production-miljöerna. Varje miljö har unika referenser.
 
 Du behöver snabbinloggningsuppgifterna för att kunna konfigurera Fast CDN-tjänster från administratören och skicka in Fast API-begäranden.
 
 >[!NOTE]
 >
->Med Adobe Commerce i molninfrastruktur har du inte tillgång till Snabbadministratör direkt. Använd administratören för att granska och uppdatera snabbkonfigurationen för dina miljöer. Om du inte kan lösa ett problem med hjälp av snabbfunktionerna i Admin skickar du in en [Adobe Commerce Support](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
+>Med Adobe Commerce i molninfrastruktur har du inte tillgång till Snabbadministratör direkt. Använd administratören för att granska och uppdatera snabbkonfigurationen för dina miljöer. Om du inte kan lösa ett problem med hjälp av snabbfunktionerna i Admin skickar du en [Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
 
 Använd följande metoder för att hitta och spara snabb service-ID och API-token för din miljö:
 
-**Visa dina inloggningsuppgifter snabbt**:
+**Så här visar du dina snabbuppgifter**:
 
 Metoden för att visa inloggningsuppgifter skiljer sig åt för Pro- och Starter-projekt.
 
-- IaaS-monterad delad katalog - I Pro-projekt använder du SSH för att ansluta till servern och få de snabba inloggningsuppgifterna från `/mnt/shared/fastly_tokens.txt` -fil. För mellanlagrings- och produktionsmiljöer finns unika autentiseringsuppgifter. Du måste hämta autentiseringsuppgifterna för varje miljö.
+- IaaS-monterad delad katalog - I Pro-projekt använder du SSH för att ansluta till servern och hämta snabbinloggningsuppgifterna från filen `/mnt/shared/fastly_tokens.txt`. För mellanlagrings- och produktionsmiljöer finns unika autentiseringsuppgifter. Du måste hämta autentiseringsuppgifterna för varje miljö.
 
-- Lokal arbetsyta - Från kommandoraden använder du `magento-cloud` CLI till [lista och granskning](../environment/variables-cloud.md#viewing-environment-variables) Snabba miljövariabler.
+- Lokal arbetsyta - Använd `magento-cloud` CLI från kommandoraden för att [lista och granska](../environment/variables-cloud.md#viewing-environment-variables) snabbt systemvariabler.
 
   ```bash
   magento-cloud variable:get -e <environment-ID>
   ```
 
-- [!DNL Cloud Console]—Kontrollera följande miljövariabler i [Miljökonfiguration](../project/overview.md#configure-environment).
+- [!DNL Cloud Console] - Kontrollera följande miljövariabler i [miljökonfigurationen](../project/overview.md#configure-environment).
 
    - `CONFIG__DEFAULT__SYSTEM__FULL_PAGE_CACHE__FASTLY__FASTLY_API_KEY`
 
@@ -70,49 +70,49 @@ Metoden för att visa inloggningsuppgifter skiljer sig åt för Pro- och Starter
 
 Du behöver följande komponenter för att aktivera och konfigurera snabbfunktioner:
 
-- Senaste versionen av [Snabbt CDN för modulen Magento 2](fastly.md#fastly-cdn-module-for-magento-2) installeras i miljö för förproduktion och produktion. Se [Uppgradera snabbt](#upgrade-the-fastly-module).
+- Senaste versionen av [Snabbt CDN för modulen Magento 2](fastly.md#fastly-cdn-module-for-magento-2) som är installerad i miljö för förproduktion och produktion. Se [Uppgradera snabbt](#upgrade-the-fastly-module).
 
-- [Autentiseringsuppgifter snabbt](#get-fastly-credentials) för Adobe Commerce i molnbaserade miljöer Staging and Production
+- [Autentiseringsuppgifter snabbt](#get-fastly-credentials) för Adobe Commerce i molninfrastrukturerna Staging- och Production-miljöer
 
-**Aktivera snabb CDN-cachning i mellanlagring och produktion**:
+**Så här aktiverar du snabb CDN-cachelagring i mellanlagring och produktion**:
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System** och expandera **Helsidescache**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System** och expandera **Helsidescache**.
 
-   ![Expandera för att markera snabbt](../../assets/cdn/fastly-menu.png)
+   ![Expandera och markera snabbt](../../assets/cdn/fastly-menu.png)
 
-1. I _Cachelagring_ tar du bort markeringen från **Använd systemvärde** och sedan markera **Snabb CDN** i listrutan.
+1. I avsnittet _Cachelagring av program_ tar du bort markeringen från **Använd systemvärde** och väljer sedan **Snabbt CDN** i listrutan.
 
    ![Välj snabbt](../../assets/cdn/fastly-enable-admin.png)
 
-1. Expandera **Snabb konfiguration** och [välj cachealternativ](https://github.com/fastly/fastly-magento2/blob/master/Documentation/CONFIGURATION.md#configure-the-module).
+1. Expandera **Snabb konfiguration** och [välj cachelagringsalternativ](https://github.com/fastly/fastly-magento2/blob/master/Documentation/CONFIGURATION.md#configure-the-module).
 
 1. När du har konfigurerat cachelagringsalternativen klickar du på **Spara konfiguration** överst på sidan.
 
 1. Rensa cacheminnet enligt meddelandet.
 
-1. Fortsätt konfigurera snabbt genom att gå tillbaka till **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System** > **Snabb konfiguration**.
+1. Fortsätt konfigurera snabbt genom att gå tillbaka till **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System** > **Snabbt konfigurering**.
 
 ### Testa autentiseringsuppgifter snabbt
 
-1. Gå till Admin **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System** > **Snabb konfiguration**.
+1. Gå till **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System** > **Snabbt konfigurering** i Admin.
 
-1. Lägg till **Snabb service-ID** och **API-token** värden för din projektmiljö.
+1. Lägg till värdena **Snabbt service-ID** och **API-token** för din projektmiljö om det behövs.
 
-   ![Snabb inloggningsadministration](../../assets/cdn/fastly-credentials-admin-ui.png)
+   ![Administratör för snabb inloggning](../../assets/cdn/fastly-credentials-admin-ui.png)
 
    >[!NOTE]
    >
-   >Välj inte länken för att skapa en API-token snabbt. Använd i stället [Autentiseringsuppgifter snabbt (Service ID och API-token) från Adobe](#get-fastly-credentials) tillhandahålls av Adobe.
+   >Välj inte länken för att skapa en API-token snabbt. Använd i stället de [snabba autentiseringsuppgifterna (Service ID och API-token) som tillhandahålls av Adobe ](#get-fastly-credentials) från Adobe.
 
-1. Klicka **Testa autentiseringsuppgifter**.
+1. Klicka på **Testa autentiseringsuppgifter**.
 
-1. Om testet lyckas klickar du på **Spara konfiguration** och rensa sedan cachen.
+1. Om testet lyckas klickar du på **Spara konfiguration** och rensar sedan cachen.
 
    Om testet misslyckas kontrollerar du att rätt Service ID- och API-tokenvärden matchar autentiseringsuppgifterna för den aktuella miljön.
 
-   Om testet misslyckas igen skickar du en Adobe Commerce supportanmälan eller kontaktar din Adobe-kontorepresentant. För Pro-projekt ska du inkludera URL:er för dina produktions- och mellanlagringswebbplatser. Inkludera URL:er för dina Starter-projekt `Master` och mellanlagringsplats.
+   Om testet misslyckas igen skickar du en Adobe Commerce supportanmälan eller kontaktar din Adobe-kontorepresentant. För Pro-projekt ska du inkludera URL:er för dina produktions- och mellanlagringswebbplatser. Inkludera URL:er för din `Master`- och mellanlagringsplats för startprojekt.
 
 >[!NOTE]
 >
@@ -120,23 +120,23 @@ Du behöver följande komponenter för att aktivera och konfigurera snabbfunktio
 
 ### Ladda upp VCL snabbt
 
-När du har aktiverat modulen Snabbt överför du standardinställningen [VCL-kod](https://github.com/fastly/fastly-magento2/tree/master/etc/vcl_snippets) till snabbservrarna. Den här koden innehåller en serie VCL-kodfragment som anger konfigurationsinställningarna för att aktivera cachelagring och andra Fast CDN-tjänster för din Adobe Commerce i molninfrastruktur.
+När du har aktiverat modulen Snabbt överför du [VCL-standardkoden](https://github.com/fastly/fastly-magento2/tree/master/etc/vcl_snippets) till snabbservrarna. Den här koden innehåller en serie VCL-kodfragment som anger konfigurationsinställningarna för att aktivera cachelagring och andra Fast CDN-tjänster för din Adobe Commerce i molninfrastruktur.
 
 >[!NOTE]
 >
 >Tjänster för snabb cachning fungerar inte förrän du har slutfört den initiala överföringen av den Fast VCL-koden till Adobe Commerce Staging and Production.
 
-**Så här överför du den snabba VCL-filen**:
+**Så här överför du den fasta VCL**:
 
-1. I _Snabb konfiguration_ avsnitt, klicka **Ladda upp VCL snabbt** som bilden nedan visar.
+1. I avsnittet _Snabbkonfiguration_ klickar du på **Överför VCL till Snabbt** enligt bilden nedan.
 
-   ![Ladda upp en Magento-VCL för snabb](../../assets/cdn/fastly-upload-vcl-admin.png)
+   ![Överför en Magento-VCL till snabbast](../../assets/cdn/fastly-upload-vcl-admin.png)
 
 1. När överföringen är klar uppdaterar du cacheminnet enligt meddelandet längst upp på sidan.
 
 ## Tillhandahåll SSL-/TLS-certifikat
 
-Adobe tillhandahåller ett domänvaliderat SSL-/TLS-certifikat (Let&#39;s Encrypt SSL/TLS) för säker HTTPS-trafik snabbt. Adobe tillhandahåller ett certifikat för varje Pro Production-, Staging- och Starter Production-miljö för att skydda alla domäner i den miljön. Mer information om det certifikat du anger finns i [Adobe SSL-certifikat (TLS) för Adobe Commerce på molninfrastruktur](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/ssl-tls-certificates-for-magento-commerce-cloud-faq.html).
+Adobe tillhandahåller ett domänvaliderat SSL-/TLS-certifikat (Let&#39;s Encrypt SSL/TLS) för säker HTTPS-trafik snabbt. Adobe tillhandahåller ett certifikat för varje Pro Production-, Staging- och Starter Production-miljö för att skydda alla domäner i den miljön. Mer information om det angivna certifikatet finns i [Adobe SSL-certifikat (TLS) för Adobe Commerce om molninfrastruktur](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/ssl-tls-certificates-for-magento-commerce-cloud-faq.html).
 
 >[!NOTE]
 >
@@ -150,8 +150,8 @@ Om du vill aktivera SSL-/TLS-certifikaten för Adobe Commerce-miljöer utför Ad
 
 Den här automatiseringen kräver att du uppdaterar DNS-konfigurationen för din plats för att kunna tillhandahålla domänverifieringsinformation. Använd **en** av följande metoder:
 
-- **DNS-validering**-För publicerade webbplatser ska du uppdatera din DNS-konfiguration med CNAME-poster som pekar på tjänsten Snabbt
-- **ACME-utmaning - CNAME-poster**-Uppdatera din DNS-konfiguration med ACME-utmanings-CNAME-poster som tillhandahålls av Adobe för varje domän i din miljö
+- **DNS-validering**-Uppdatera din DNS-konfiguration med CNAME-poster som pekar på tjänsten Snabbt för livewebbplatser
+- **ACME-utmaning CNAME-poster**-Uppdatera din DNS-konfiguration med ACME-utmaning CNAME-poster som tillhandahålls av Adobe för varje domän i din miljö
 
 >[!TIP]
 >
@@ -182,7 +182,7 @@ Uppdatera din DNS-konfiguration om du vill dirigera trafik från dina webbutiks-
 
 >[!NOTE]
 >
->När du är redo att starta din produktionsplats måste du uppdatera DNS-konfigurationen igen så att den pekar på produktionsdomänerna mot tjänsten Snabbt och slutföra ytterligare konfigurationsåtgärder. Se [Öppna checklista](../launch/checklist.md).
+>När du är redo att starta din produktionsplats måste du uppdatera DNS-konfigurationen igen så att den pekar på produktionsdomänerna mot tjänsten Snabbt och slutföra ytterligare konfigurationsåtgärder. Se [Startchecklista](../launch/checklist.md).
 
 **Förutsättningar:**
 
@@ -191,11 +191,11 @@ Uppdatera din DNS-konfiguration om du vill dirigera trafik från dina webbutiks-
 - Ange en lista över de översta domänerna och underdomänerna för varje miljö till Adobe, eller skicka en Adobe Commerce supportanmälan.
 - Vänta på bekräftelse på att de angivna domänerna har lagts till i dina molnmiljöer.
 - I Starter-projekt lägger du till domänerna i din snabbtjänstkonfiguration. Se [Hantera domäner](fastly-custom-cache-configuration.md#manage-domains).
-- Mer information om hur du uppdaterar DNS-konfigurationen finns i [DNS-registrator](https://lookup.icann.org/) för att hitta rätt metod för domäntjänsten.
+- Om du vill ha information om hur du uppdaterar DNS-konfigurationen kan du fråga din [DNS-registrator](https://lookup.icann.org/) om du vill ha rätt metod för domäntjänsten.
 
 **Så här uppdaterar du DNS-konfigurationen för utveckling**:
 
-1. Poäng för förproduktion av URL:er till tjänsten Snabb genom att lägga till CNAME-poster: `prod.magentocloud.map.fastly.net`, till exempel:
+1. Peka förproduktions-URL:er till tjänsten Snabbt genom att lägga till CNAME-poster: `prod.magentocloud.map.fastly.net`, till exempel:
 
    | Domän eller underdomän | CNAME |
    |---------------------------|----------------------------------|
@@ -240,7 +240,7 @@ Uppdatera din DNS-konfiguration om du vill dirigera trafik från dina webbutiks-
 
    >[!NOTE]
    >
-   >Som ett alternativ till molnbaserad CLI kan du uppdatera bas-URL:en från [Administratör](https://experienceleague.adobe.com/docs/commerce-admin/stores-sales/site-store/store-urls.html)
+   >Som ett alternativ till molnbaserad CLI kan du uppdatera bas-URL:en från [administratören](https://experienceleague.adobe.com/docs/commerce-admin/stores-sales/site-store/store-urls.html)
 
 1. Starta om webbläsaren.
 
@@ -248,35 +248,35 @@ Uppdatera din DNS-konfiguration om du vill dirigera trafik från dina webbutiks-
 
 ## Testa cachelagring snabbt
 
-När du är klar med ändringarna av DNS-konfigurationen använder du [cURL](https://curl.se/) kommandoradsverktyget för att verifiera att snabbcachen fungerar.
+När du har slutfört ändringarna av DNS-konfigurationen använder du kommandoradsverktyget [cURL](https://curl.se/) för att kontrollera att snabbcachen fungerar.
 
-**Kontrollera svarshuvuden**:
+**Så här kontrollerar du svarsrubrikerna**:
 
-1. Använd följande i en terminal: `curl` för att testa din webbplats-URL:
+1. Använd följande `curl`-kommando i en terminal för att testa din webbplats-URL:
 
    ```bash
    curl -vo /dev/null -H Fastly-Debug:1 https://<live-URL>
    ```
 
-   Använd kommandot `--resolve` som åsidosätter DNS-namnmatchning.
+   Om du inte har angett en statisk väg eller slutfört DNS-konfigurationen för domänerna på den publicerade webbplatsen använder du flaggan `--resolve`, som åsidosätter DNS-namnmatchningen.
 
    ```bash
    curl -vo /dev/null -H Fastly-Debug:1 --resolve <live-URL-hostname>:443:<live-IP-address>
    ```
 
-1. I svaret kontrollerar du att [rubriker](fastly-troubleshooting.md#check-cache-hit-and-miss-response-headers) för att säkerställa att Fastly fungerar. Du bör se följande unika rubriker i svaret:
+1. Verifiera [headers](fastly-troubleshooting.md#check-cache-hit-and-miss-response-headers) i svaret för att kontrollera att Fastly fungerar. Du bör se följande unika rubriker i svaret:
 
    ```http
    < Fastly-Magento-VCL-Uploaded: yes
    < X-Cache: HIT, MISS
    ```
 
-Om rubrikerna inte har rätt värden läser du [Åtgärda fel i svarshuvuden](fastly-troubleshooting.md#curl) för felsökningshjälp.
+Om rubrikerna inte har rätt värden läser du [Åtgärda fel i svarsrubrikerna](fastly-troubleshooting.md#curl) för felsökning.
 
 ## Uppgradera modulen Snabbt
 
 Uppdaterar snabbt CDN för Magento 2-modulen för att lösa problem, öka prestandan och tillhandahålla nya funktioner.
-Vi rekommenderar att du uppdaterar modulen Snabbt i dina miljö för stapling och produktion till [senaste versionen](https://github.com/fastly/fastly-magento2/blob/master/VERSION).
+Vi rekommenderar att du uppdaterar modulen Snabbt i dina miljö för förproduktion och produktion till den [senaste versionen](https://github.com/fastly/fastly-magento2/blob/master/VERSION).
 
 När du har uppdaterat modulen måste du överföra VCL-koden för att ändringarna ska gälla för snabbtjänstkonfigurationen.
 
@@ -294,11 +294,11 @@ När du har uppdaterat modulen måste du överföra VCL-koden för att ändringa
    composer show *fastly*
    ```
 
-1. Om [senaste versionen](https://github.com/fastly/fastly-magento2/releases) är inte installerat, slutför stegen för att uppgradera modulen Snabbt.
+1. Om den [senaste versionen](https://github.com/fastly/fastly-magento2/releases) inte är installerad slutför du stegen för att uppgradera snabbmodulen.
 
-**Så här uppgraderar du modulen Snabbt**:
+**Så här uppgraderar du snabbmodulen**:
 
-1. I den lokala integreringsmiljön använder du följande modulinformation för att [uppgradera snabbmodulen](../store/extensions.md#upgrade-an-extension).
+1. Använd följande modulinformation i din lokala integreringsmiljö för att [uppgradera snabbmodulen](../store/extensions.md#upgrade-an-extension).
 
    ```text
    module name: fastly/magento2
@@ -307,12 +307,12 @@ När du har uppdaterat modulen måste du överföra VCL-koden för att ändringa
 
 1. Skicka dina uppdateringar till mellanlagringsmiljön.
 
-1. Logga in i Admin for your Staging environment på [ladda upp VCL-koden](#upload-vcl-to-fastly).
+1. Logga in på Admin for your Staging environment för att [överföra VCL-koden](#upload-vcl-to-fastly).
 
-1. [Verifiera snabbt tjänster](fastly-troubleshooting.md#verify-or-debug-fastly-services) på webbplatsen Adobe Commerce Staging.
+1. [Verifiera snabbtjänster](fastly-troubleshooting.md#verify-or-debug-fastly-services) på webbplatsen för Adobe Commerce mellanlagring.
 
 När du har verifierat Snabba tjänster på mellanlagringsplatsen upprepar du uppgraderingsprocessen i produktionsmiljön.
 
 >[!TIP]
 >
-> Om du har problem med Fastly-tjänsterna i dina Adobe Commerce-miljöer kan du läsa [Adobe Commerce snabbfelsökare](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/magento-fastly-troubleshooter.html).
+> Om du har problem med Snabba tjänster i dina Adobe Commerce-miljöer kan du läsa [Adobe Commerce Snabbt felsökning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/magento-fastly-troubleshooter.html).

@@ -33,17 +33,17 @@ Du måste hämta en GitHub-token och en webkrok för att kunna fortsätta proces
 
 ## Generera en GitHub-token
 
-Skapa en klassisk token för personlig åtkomst i inställningarna för GitHub-utvecklare. Du måste vara medlem i en grupp med skrivåtkomst till GitHub-databasen så att du kan _push_ till databasen. Inkludera följande scope när du skapar din token:
+Skapa en klassisk token för personlig åtkomst i inställningarna för GitHub-utvecklare. Du måste vara medlem i en grupp med skrivåtkomst till GitHub-databasen, så att du kan _push_ till databasen. Inkludera följande scope när du skapar din token:
 
-- `admin:repo_hook`—Skapa webbhotell
-- `repo`—Integrera med databasen
-- `read:org`- Integrera med er organisationsdatabas
+- `admin:repo_hook` - Skapa webbkrokar
+- `repo` - Integrera med din databas
+- `read:org` - Integrera med din organisationsdatabas
 
 Se [GitHub: Skapa](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
 ## Förbered databasen
 
-Klona ditt Adobe Commerce i molninfrastrukturprojekt från en befintlig miljö och migrera projektgrenarna till en ny, tom GitHub-databas, med samma filialnamn intakta. Det är **kritisk** för att behålla ett identiskt Git-träd, så att du inte förlorar några befintliga miljöer eller grenar i ditt Adobe Commerce i molninfrastrukturprojekt.
+Klona ditt Adobe Commerce i molninfrastrukturprojekt från en befintlig miljö och migrera projektgrenarna till en ny, tom GitHub-databas, med samma filialnamn intakta. Det är **viktigt** att behålla ett identiskt Git-träd, så att du inte förlorar några befintliga miljöer eller grenar i ditt Adobe Commerce i molninfrastrukturprojekt.
 
 1. Logga in på ditt Adobe Commerce i molninfrastrukturprojekt från terminalen.
 
@@ -69,7 +69,7 @@ Klona ditt Adobe Commerce i molninfrastrukturprojekt från en befintlig miljö o
    git remote add origin git@github.com:<user-name>/<repo-name>.git
    ```
 
-   Standardnamnet för fjärranslutningen kan vara `origin` eller `magento`. If `origin` finns kan du välja ett annat namn eller så kan du byta namn på eller ta bort den befintliga referensen. Se [git-remote-dokumentation](https://git-scm.com/docs/git-remote).
+   Standardnamnet för fjärranslutningen kan vara `origin` eller `magento`. Om `origin` finns kan du välja ett annat namn eller ändra namn på eller ta bort den befintliga referensen. Se [git-remote-dokumentation](https://git-scm.com/docs/git-remote).
 
 1. Kontrollera att du har lagt till GitHub-fjärrkontrollen korrekt.
 
@@ -90,29 +90,29 @@ Klona ditt Adobe Commerce i molninfrastrukturprojekt från en befintlig miljö o
    git push -u origin master
    ```
 
-   Om du börjar med en ny GitHub-databas kan du behöva använda `-f` eftersom fjärrdatabasen inte matchar din lokala kopia.
+   Om du börjar med en ny GitHub-databas kan du behöva använda alternativet `-f` eftersom fjärrdatabasen inte matchar din lokala kopia.
 
 1. Kontrollera att din GitHub-databas innehåller alla dina projektfiler.
 
 ## Aktivera GitHub-integrering
 
-Innan du börjar måste projektkoden och miljöerna finnas i GitHub-databasen. När integreringen har aktiverats blir GitHub-databasen kodkälla. Om du trycker på koden ändras den till originalet `magento` -databasen skrivs den över av integreringen när du skickar kodändringar till din GitHub-databas.
+Innan du börjar måste projektkoden och miljöerna finnas i GitHub-databasen. När integreringen har aktiverats blir GitHub-databasen kodkälla. Om du skickar kodändringar till den ursprungliga `magento`-databasen skrivs den över av integreringen när du skickar kodändringar till din GitHub-databas.
 
 Följande aktiverar GitHub-integreringen och tillhandahåller en Payload URL som kan användas när en webkrok skapas.
 
 >[!WARNING]
 >
->Följande kommando skriver över _alla_ kod i ditt Adobe Commerce i molninfrastrukturprojekt med kod från din GitHub-databas, som innehåller alla grenar, inklusive `production` gren. Den här åtgärden utförs omedelbart och kan inte ångras. Det är en god vana att klona alla dina grenar från Adobe Commerce i molninfrastrukturprojekt och överföra dem till din GitHub-databas **före** lägga till GitHub-integrering.
+>Följande kommando skriver över _all_ -kod i ditt Adobe Commerce-molninfrastrukturprojekt med kod från din GitHub-databas, som innehåller alla grenar, inklusive `production`-grenen. Den här åtgärden utförs omedelbart och kan inte ångras. Det är en god vana att klona alla dina grenar från Adobe Commerce i molninfrastrukturprojektet och överföra dem till GitHub-databasen **innan** GitHub-integreringen läggs till.
 
-Du kan gå igenom CLI-instruktionerna med `magento-cloud integration:add` eller så kan du bygga integrationskommandot med följande alternativ:
+Du kan välja att stega igenom CLI-prompterna med `magento-cloud integration:add` eller så kan du skapa integreringskommandot med följande alternativ:
 
 | Alternativ | Obligatoriskt? | Beskrivning |
 | ----------------------- | --------- | --------------------------------- |
-| `--base-url` | Ja | Bas-URL för serverinstallationen, som kan vara `https://github.com/` eller en egen. Utelämna det här alternativet om din databas ligger hos Github. |
+| `--base-url` | Ja | Bas-URL:en för serverinstallationen, som kan vara `https://github.com/` eller en anpassad. Utelämna det här alternativet om din databas ligger hos Github. |
 | `--token` | Ja | Den personliga åtkomsttoken som du genererade för GitHub |
 | `--repository` | Ja | Databasnamnet: `owner-or-organisation/repository` |
-| `--build-pull-requests` | Valfritt | Instruerar Adobe Commerce på molninfrastruktur att distribueras när du har sammanfogat en pull-begäran (`true` som standard) |
-| `--fetch-branches` | Valfritt | Gör att Adobe Commerce i molninfrastrukturen spårar grenar och distribueras efter att du har uppdaterat en gren (`true` som standard) |
+| `--build-pull-requests` | Valfritt | Instruerar Adobe Commerce på molninfrastruktur att distribueras efter att du har sammanfogat en pull-begäran (`true` som standard) |
+| `--fetch-branches` | Valfritt | Gör att Adobe Commerce i molninfrastrukturen spårar grenar och distribuerar efter att du har uppdaterat en gren (`true` som standard) |
 | `--prune-branches` | Valfritt | Ta bort grenar som inte finns på fjärrkontrollen (`true` som standard) |
 
 Det finns många fler alternativ och du kan se dem med hjälp av hjälpalternativet:
@@ -121,7 +121,7 @@ Det finns många fler alternativ och du kan se dem med hjälp av hjälpalternati
 magento-cloud integration:add --help
 ```
 
-**Aktivera GitHub-integrering**:
+**Så här aktiverar du GitHub-integreringen**:
 
 1. Aktivera integreringen.
 
@@ -143,7 +143,7 @@ magento-cloud integration:add --help
 
 1. Ange den obligatoriska informationen när du uppmanas till det.
 
-1. Kopiera **URL för nyttolast** visas som returutdata.
+1. Kopiera **Nyttolast-URL:en** som visas av returutdata.
 
    ```terminal
    Created integration <integration-ID> (type: github)
@@ -157,21 +157,21 @@ magento-cloud integration:add --help
 
 Om du vill kommunicera händelser, t.ex. en push-funktion, med din Creative Cloud Git-server måste du skapa en webkrok för din GitHub-databas:
 
-1. Klicka på **Inställningar** -fliken.
+1. Klicka på fliken **Inställningar** i GitHub-databasen.
 
-1. Klicka på i det vänstra navigeringsfältet **Webhooks**.
+1. Klicka på **Webhooks** i det vänstra navigeringsfältet.
 
-1. I _Webhooks_ ruta, klicka **Lägg till webkrok**.
+1. Klicka på **Lägg till webkrok** i rutan _Webhooks_.
 
-1. I _Webhooks/Lägg till webkrok_ kan du redigera följande fält:
+1. Redigera följande fält i formuläret _Webhooks/Lägg till webkrok_:
 
-   - **URL för nyttolast**: Ange den URL som returneras när du aktiverade GitHub-integreringen.
-   - **Innehållstyp**: Välj **application/json** från listan.
+   - **Nyttolast-URL**: Ange den URL som returneras när du aktiverade GitHub-integreringen.
+   - **Innehållstyp**: Välj **program/json** i listan.
    - **Hemlighet**: Ange en verifieringshemlighet.
-   - **Vilka händelser vill du utlösa den här webbkroken?**: Välj **Skicka mig allt**.
-   - Välj **Aktiv** kryssrutan.
+   - **Vilka händelser vill du utlösa den här webkroken?**: Välj **Skicka mig allt**.
+   - Markera kryssrutan **Aktiv**.
 
-1. Klicka **Lägg till webkrok**.
+1. Klicka på **Lägg till webkrok**.
 
 ## Testa integreringen
 
@@ -201,7 +201,7 @@ Du kan också testa den genom att göra en enkel ändring i din GitHub-databas.
 
 Du kan ta bort GitHub-integreringen från ditt projekt utan att koden påverkas.
 
-**Ta bort GitHub-integreringen**:
+**Så här tar du bort GitHub-integreringen**:
 
 1. Logga in på ditt Adobe Commerce i molninfrastrukturprojekt från terminalen.
 
@@ -217,4 +217,4 @@ Du kan ta bort GitHub-integreringen från ditt projekt utan att koden påverkas.
    magento-cloud integration:delete <int-ID>
    ```
 
-Du kan även ta bort GitHub-integreringen genom att logga in på ditt GitHub-konto och ta bort webbokroken i _Webhooks_ databasflik _Inställningar_.
+Du kan även ta bort GitHub-integreringen genom att logga in på ditt GitHub-konto och ta bort webbokroken på fliken _Webhooks_ i _inställningarna_ för databasen.

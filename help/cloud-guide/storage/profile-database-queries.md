@@ -14,7 +14,7 @@ ht-degree: 0%
 
 När du skriver till en databas kan det hjälpa att köra profilering för att identifiera effekten av dessa ändringar. Profilering bevarar en logg med databasfrågor och ökar exaktheten vid körning.
 
-**Aktivera databasfrågeprofilering**:
+**Så här aktiverar du databasfrågeprofilering**:
 
 1. [Logga in i databasen](../services/mysql.md#connect-to-the-database).
 

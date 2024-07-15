@@ -12,7 +12,7 @@ ht-degree: 0%
 
 # Konfigurera meddelanden
 
-Som standard skriver Adobe Commerce på molninfrastruktur bygg- och distributionsåtgärder till `app/var/log/cloud.log` i Adobe Commerce rotkatalog. Du kan också skicka loggar till ett meddelandesystem, som Slack och e-post, för att få meddelanden i realtid.
+Som standard skriver Adobe Commerce i molninfrastruktur build- och deploy-åtgärder till filen `app/var/log/cloud.log` i Adobe Commerce rotkatalog. Du kan också skicka loggar till ett meddelandesystem, som Slack och e-post, för att få meddelanden i realtid.
 
 Du kan t.ex. skicka ett Slack-meddelande för att varna en grupp personer när en distribution misslyckas och fråga en fråga om vad som gick fel.
 
@@ -35,9 +35,9 @@ Under den inledande utvecklingen kan du till exempel föredra e-postmeddelanden 
 Så här konfigurerar du meddelanden:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
-1. I `.magento.env.yaml` i projektroten, lägga till inställningarna för meddelandesystemet, inklusive meddelanden som föredras [Loggnivåer](log-handlers.md#log-levels).
+1. I filen `.magento.env.yaml` i projektroten lägger du till inställningarna för meddelandesystemet, inklusive det rekommenderade meddelandet [Loggnivåer](log-handlers.md#log-levels).
 
-   Om du till exempel vill konfigurera båda Slack _och_ e-postkonfigurationer använder du följande:
+   Om du till exempel vill konfigurera e-postkonfigurationer för både Slack _och_ använder du följande:
 
    ```yaml
    log:
@@ -80,10 +80,10 @@ log:
     min_level: "info"
 ```
 
-- `token`—Din Slack [användartoken](https://api.slack.com/docs/token-types#user). Ditt användartoken tillåter att Adobe Commerce i molninfrastrukturen skickar meddelanden.
-- `channel`- Namn på den kanal som Adobe Commerce på molninfrastruktur skickar meddelanden till Slack.
-- `username`—Användare i molninfrastruktur använder Adobe Commerce för att skicka meddelanden i Slack.
-- `min_level`—Minsta loggnivå för meddelanden. Vi rekommenderar att du `info`.
+- `token` - Din [användartoken](https://api.slack.com/docs/token-types#user) för Slack. Ditt användartoken tillåter att Adobe Commerce i molninfrastrukturen skickar meddelanden.
+- `channel` - Slack-kanalens namn Adobe Commerce på molninfrastrukturen skickar meddelanden.
+- `username` - Använd användarnamnet Adobe Commerce i molninfrastrukturen för att skicka meddelanden i Slack.
+- `min_level` - Minsta loggnivå för meddelanden. Vi rekommenderar att du använder `info`.
 
 ### Exempel på e-postkonfiguration
 
@@ -102,7 +102,7 @@ log:
     min_level: "notice"
 ```
 
-- `to`—E-postadress Adobe Commerce på molninfrastrukturen skickar meddelanden.
-- `from`—E-postadress för att skicka meddelanden till mottagare.
-- `subject`—Beskrivning av e-postmeddelandet.
-- `min_level`—Minsta loggnivå för meddelanden. Vi rekommenderar att du `notice` eller `warning`.
+- `to` - E-postadressen Adobe Commerce på molninfrastrukturen skickar meddelanden.
+- `from` - E-postadress för att skicka meddelanden till mottagare.
+- `subject` - Beskrivning av e-postmeddelandet.
+- `min_level` - Minsta loggnivå för meddelanden. Vi rekommenderar att du använder `notice` eller `warning`.

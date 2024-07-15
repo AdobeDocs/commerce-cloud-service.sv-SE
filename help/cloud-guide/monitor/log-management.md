@@ -16,8 +16,8 @@ Alla molninfrastrukturprojekt innehåller [New Relic logghantering](https://docs
 
 De aggregerade uppgifterna innehåller information från följande loggar:
 
-- Alla `ece-tools` och programloggar från `~/var/log` katalog
-- Loggar för molntjänster från `var/log/platform/<project-ID>` katalog
+- Alla `ece-tools` och programloggar från katalogen `~/var/log`
+- Loggar för molntjänster från katalogen `var/log/platform/<project-ID>`
 - Snabbt CDN och WAF
 
 När ditt projekt är anslutet till New Relic kan du använda tjänsten New Relic Logs för att utföra följande uppgifter:
@@ -33,28 +33,28 @@ Använd New Relic Logs-programmet för att söka igenom samlade loggdata och fel
 
 **Så här använder du New Relic Logs-programmet**:
 
-1. Logga in på [New Relic](https://login.newrelic.com/login).
+1. Logga in på ditt [New Relic-konto](https://login.newrelic.com/login).
 
 1. Välj **Loggar** på menyn i Utforskaren.
 
-1. Verifiera att ditt konto är markerat högst upp i _Alla loggar_ vy.
+1. Kontrollera att ditt konto är markerat högst upp i vyn _Alla loggar_.
 
 1. Välj ett tidsintervall för loggfrågan.
 
-1. Granska infrastrukturloggdata för molntjänster (loggar från `~/var/log/`) anger du frågesträngen `has: "filePath"` i _Sök efter loggar_ fält. Klicka sedan på **[!UICONTROL Query logs]**.
+1. Om du vill granska infrastrukturloggdata för molntjänster (loggar från `~/var/log/`) anger du frågesträngen `has: "filePath"` i fältet _Sök efter loggar_. Klicka sedan på **[!UICONTROL Query logs]**.
 
-   Namnen på loggfilerna lagras i `filePath` -kolumn, med fullständiga sökvägar till loggfilen.
+   Namnen på loggfilerna lagras i kolumnen `filePath`, med fullständiga sökvägar till loggfilen.
 
-   ![Data i New Relic-tjänstloggen för molnprojekt](../../assets/new-relic/var-log-query.png)
+   ![Loggdata för New Relic-tjänsten för molnprojekt](../../assets/new-relic/var-log-query.png)
 
-1. Om du snabbt vill granska loggdata anger du frågesträngen `has: "client_ip"` i _Sök efter loggar_ fält. Klicka sedan på **[!UICONTROL Query logs]**.
+1. Om du snabbt vill granska loggdata anger du frågesträngen `has: "client_ip"` i fältet _Sök efter loggar_. Klicka sedan på **[!UICONTROL Query logs]**.
 
-1. Om du vill filtrera loggresultaten efter landskod klickar du på **[!UICONTROL Add column]** väljer **[!UICONTROL geo_country_code]**.
+1. Om du vill filtrera loggresultaten snabbt efter landskod klickar du på **[!UICONTROL Add column]** och väljer sedan **[!UICONTROL geo_country_code]**.
 
    ![New Relic CDN-loggattributfilter för molnprojekt](../../assets/new-relic/fastly-countrycode-filter.png)
 
 >[!TIP]
 >
->Du kan spara frågevyn från _Sparade vyer_ nedrullningsbar meny. Klicka **[!UICONTROL Create new]**, ange ett namn, markera alternativ och klicka på **[!UICONTROL Save view]**.
+>Du kan spara frågevyn i listrutan _Sparade vyer_. Klicka på **[!UICONTROL Create new]**, ange ett namn, välj alternativ och klicka på **[!UICONTROL Save view]**.
 >
->Se [Kom igång med logghantering](https://docs.newrelic.com/docs/logs/get-started/get-started-log-management/) och [Introduktion till New Relic-frågespråket](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/) på _New Relic Docs_ webbplats.
+>Se [Kom igång med logghantering](https://docs.newrelic.com/docs/logs/get-started/get-started-log-management/) och [Introduktion till New Relic-frågespråket](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/) på webbplatsen _New Relic Docs_.

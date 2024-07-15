@@ -14,16 +14,16 @@ ht-degree: 0%
 
 Välkommen till Adobe Commerce!
 
-I avsnittet Kom igång får du hjälp med att initiera ditt Adobe Commerce-konto och få tillgång till [!DNL Cloud Console]. The _Nästa steg_ länken längst ned i varje ämne öppnar nästa koncept och procedur. Varje ämne bygger vidare på de föregående ämnena med nya uppgifter och länkar till lärande.
+I avsnittet Kom igång får du hjälp med att initiera ditt Adobe Commerce-konto och få tillgång till [!DNL Cloud Console]. Länken _Nästa steg_ längst ned i varje avsnitt öppnar nästa koncept och procedur. Varje ämne bygger vidare på de föregående ämnena med nya uppgifter och länkar till lärande.
 
-Den här handboken förutsätter att du har en viss arbetskunskap och förståelse för [!DNL Commerce] program. Du kan läsa de senaste användarhandböckerna för Commerce Developer och Commerce:
+I den här handboken förutsätts att du har viss arbetsförståelse för programmet [!DNL Commerce]. Du kan läsa de senaste användarhandböckerna för Commerce Developer och Commerce:
 
 - [Adobe Commerce Developer Documentation](https://developer.adobe.com/commerce/docs/) (Adobe Developer webbplats) - Utveckla, anpassa, integrera, utöka och använda avancerade funktioner
 
-- [Adobe Commerce Documentation](https://experienceleague.adobe.com/docs/commerce.html) (Adobe Experience League) - Planera, implementera, driva, uppgradera och underhålla dina affärsprojekt
+- [Adobe Commerce Documentation](https://experienceleague.adobe.com/docs/commerce.html) (Adobe Experience League) - Planera, implementera, använd, uppgradera och underhåll dina Commerce-projekt
 
 >[!TIP]
 >
 >Förbered dig för ditt välkomstsamtal för att initiera ditt Adobe Commerce i molninfrastrukturprojekt.
 >
->**Nästa steg**: [Etablera handel i molnet](new-project.md)
+>**Nästa steg**: [Etablera Commerce i molnet](new-project.md)

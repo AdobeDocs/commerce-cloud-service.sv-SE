@@ -28,9 +28,9 @@ Om en allvarlig säkerhetslucka upptäcks i programmet avvisas Git-push.
 
 Det finns två typer av block som körs:
 
-1. **Komplett block**- för utvecklingswebbplatser. Felmeddelandet som medföljer `git push` ger detaljerad information om sårbarheten.
+1. **Hela blocket** - för utvecklingswebbplatser. Felmeddelandet som medföljer `git push` innehåller detaljerad information om sårbarheten.
 
-1. **Delblock**- för produktionswebbplatser, som gör att sajten i huvudsak kan vara online. Beroende på säkerhetsluckans natur kan delar av en begäran, t.ex. en frågesträng, cookies eller andra rubriker, tas bort från GET-begäranden. Alla andra förfrågningar kan blockeras helt, t.ex. inloggning, formuläröverföring eller produktutcheckning.
+1. **Delblock** - för produktionswebbplatser, vilket gör att webbplatsen i huvudsak kan vara online. Beroende på säkerhetsluckans natur kan delar av en begäran, t.ex. en frågesträng, cookies eller andra rubriker, tas bort från GET-begäranden. Alla andra förfrågningar kan blockeras helt, t.ex. inloggning, formuläröverföring eller produktutcheckning.
 
 Avblockering sker automatiskt när säkerhetsrisken har åtgärdats. Blocket tas bort kort efter att du har tillämpat en säkerhetsuppgradering som tar bort säkerhetsluckan.
 
@@ -38,7 +38,7 @@ Avblockering sker automatiskt när säkerhetsrisken har åtgärdats. Blocket tas
 
 Skyddsdelen finns till för att skydda dig mot kända säkerhetsluckor i den programvara du distribuerar Adobe Commerce i molninfrastruktur.
 
-Du kan dock avanmäla dig från skyddsblocket genom att lägga till följande: [`.magento.app.yaml`](../application/configure-app-yaml.md):
+Du kan dock avanmäla dig från skyddsblocket genom att lägga till följande i [`.magento.app.yaml`](../application/configure-app-yaml.md):
 
 ```yaml
    preflight:

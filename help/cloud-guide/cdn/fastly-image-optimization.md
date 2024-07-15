@@ -32,26 +32,26 @@ Aktivera snabb bildoptimering (Snabb IO) från panelen Admin genom att ladda upp
 - Installera eller uppgradera till Snabb modulversion 1.2.62 eller senare
 - [Konfigurera skärm med fast startpunkt och serverdel](fastly-custom-cache-configuration.md#configure-back-ends-and-origin-shielding)
 
-**Aktivera snabb IO**:
+**Så här aktiverar du snabb IO**:
 
-1. Logga in lokalt [Administratör](../../get-started/onboarding.md#access-your-admin-panel) som administratör.
+1. Logga in som administratör på din lokala [Admin](../../get-started/onboarding.md#access-your-admin-panel) -panel.
 
-1. Välj **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Välj **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
-1. Expandera i den högra rutan **Helsidescache**.
+1. Expandera **Helsidescache** i den högra rutan.
 
 1. Välj **Snabb konfiguration** > **Bildoptimering** för att ange konfigurationsinställningarna.
 
-1. I _IO-kodfragment snabbt_ fält, markera **Aktivera/inaktivera**.
+1. I fältet _Snabbt IO-kodfragment_ väljer du **Aktivera/inaktivera**.
 
 1. Ladda upp IO-kodutdraget Fast:
 
-   - Välj **Standardalternativ för IO-konfiguration** för att öppna sidan med standardkonfigurationsalternativ för bildoptimering.
+   - Välj **Standardalternativ för I/O-konfiguration** för att öppna sidan med standardkonfigurationsalternativ för bildoptimering.
    - Välj **Överför** om du vill överföra VCL-fragmentet till servern.
 
 ## Konfigurera IO snabbt
 
-Granska och uppdatera standardinställningarna för I/O-konfiguration för bildoptimering efter behov. Du kan till exempel ändra kvalitetsnivåerna för WebP och JPEG för förstörande format, eller ändra formatet för visning av JPEG-bilder till _Progressiv_ eller _Baslinje_. Du kan även använda Fast IO för mer detaljrika bildoptimeringsfunktioner, som:
+Granska och uppdatera standardinställningarna för I/O-konfiguration för bildoptimering efter behov. Du kan till exempel ändra WebP- och JPEG-kvalitetsnivåerna för förstörande format, eller ändra formatet för visning av JPEG-bilder till _Progressiv_ eller _Baslinje_. Du kan även använda Fast IO för mer detaljrika bildoptimeringsfunktioner, som:
 
 - Tvinga förlustkonvertering
 - Djupgående bildoptimering
@@ -59,46 +59,46 @@ Granska och uppdatera standardinställningarna för I/O-konfiguration för bildo
 
 **Så här uppdaterar du snabbt IO**:
 
-1. På _Snabb konfiguration_ sidan i _Standardalternativ för IO-konfiguration_ fält, markera **Konfigurera**.
+1. Välj **Konfigurera** på sidan _Snabb konfiguration_ i fältet _Standardalternativ för I/O-konfiguration_.
 
    ![Visa IO-konfigurationsinställningarna snabbt](../../assets/cdn/fastly-io-default-config.png)
 
-1. Granska och uppdatera IO-konfigurationsinställningarna snabbt på _Standardkonfigurationsalternativ för bildoptimering_ sida:
+1. Granska och uppdatera IO-konfigurationsinställningarna snabbt på sidan _Standardkonfigurationsalternativ för bildoptimering_:
 
    ![Granska IO-konfigurationen snabbt](../../assets/cdn/fastly-io-config-options.png)
 
-   - **Auto WebP?**—lämna standardinställningen (`Yes`) för att konvertera bilder till WebP-format i webbläsare som stöder det. Om du ändrar inställningen till **Nej** används bildfiltypen i stället för att bilden konverteras till WebP-format.
+   - **Automatisk WebP?** - lämna standardinställningen (`Yes`) för att konvertera bilder till WebP-format i webbläsare som stöder det. Om du ändrar inställningen till **Nej** används bildfiltypen i stället för att bilden konverteras till WebP-format.
 
-   - **Standardkvalitet för WebP (förstörande)**—lämna standardinställningen (`85`) eller ange komprimeringsnivån för förlustgivande filformaterade bilder. Du kan ange ett heltal mellan 1 och 100.
+   - **Standardkvalitet för WebP (förstörande)** - lämna standardinställningen (`85`) eller skriv in komprimeringsnivån för förstörande filformaterade bilder. Du kan ange ett heltal mellan 1 och 100.
 
-   - **Standardformatkontroller för JPEG** — lämna standardinställningen (`Auto`), eller välj den JPEG-typ som ska användas när en bild visas. Om värdet är inställt på _Auto_ levererar bilder med den utdatatyp som matchar indatatypen. Välj _Baslinje_ om du vill visa bilderna rad för rad från det övre vänstra hörnet till det nedre högra hörnet. Välj _Progressiv_ för att visa en suddig bild som blir tydlig när den läses in.
+   - **Standardformatkontroller för JPEG** - låt standardinställningen (`Auto`) stå kvar, eller välj den JPEG-typ som ska användas när en bild visas. Om värdet är inställt på _Auto_ levereras bilder med den utdatatyp som matchar indatatypen fast. Välj _Baslinje_ om du vill visa bilderna rad för rad från det övre vänstra hörnet till det nedre högra hörnet. Välj _Progressiv_ om du vill visa en suddig bild som blir tydlig när den läses in.
 
-   - **Standardkvalitet för JPEG**—lämna standardinställningen (`85`) eller skriv in komprimeringsnivån för kvalitet på förstörande filformat. Ange ett heltal mellan 1 och 100.
+   - **Standardkvalitet för JPEG** - lämna standardinställningen (`85`) eller skriv in komprimeringsnivån för kvalitet på förlustfilformat. Ange ett heltal mellan 1 och 100.
 
-   - **Tillåt uppskalning?**—lämna standardinställningen (`No`), eller markera `Yes` för att returnera bilder som är större än originalkällfilen så att de passar de begärda dimensionerna.
+   - **Tillåt uppskalning?** - lämna standardinställningen (`No`), eller välj `Yes` om du vill att bilder som är större än originalkällfilen ska returneras så att de får plats med de begärda dimensionerna.
 
-   - **Ändra storlek på filter**—lämna standardinställningen (`Lancsoz3`) eller välj ett alternativ. Den här inställningen anger vilket filter som används för att skapa en storleksändrad bild. Beroende på vilket filter som är markerat kan den storleksändrade bilden ha ett högre eller lägre antal pixlar.
+   - **Ändra storlek på filter** - behåll standardinställningen (`Lancsoz3`) eller välj ett alternativ. Den här inställningen anger vilket filter som används för att skapa en storleksändrad bild. Beroende på vilket filter som är markerat kan den storleksändrade bilden ha ett högre eller lägre antal pixlar.
 
-      - `Lanczos3` (standard) - Ger bilden med bäst kvalitet. Det ökar möjligheten att identifiera kanter och linjära funktioner i en bild och använder _[!DNL sinc]_omsampling för att ge bästa möjliga rekonstruktion.
-      - `Lanczos2`—Använder samma filter som `Lancsoz3` men med en mindre exakt uppskattning av _[!DNL sinc]_omsamplingsfunktion.
-      - `Bicubic`- Har en naturlig skärpeeffekt när du gör en bild mindre.
-      - `Bilinear`- Har en naturlig utjämningseffekt när du gör en bild större.
-      - `Nearest`- Har en naturlig pixelförvandlingseffekt när du ändrar storlek på pixelbilder.
+      - `Lanczos3` (standard) - Ger bilden med bäst kvalitet. Det ökar möjligheten att identifiera kanter och linjära funktioner i en bild och använder _[!DNL sinc]_-omsampling för att ge bästa möjliga rekonstruktion.
+      - `Lanczos2` - Använder samma filter som `Lancsoz3` men med en mindre exakt uppskattning av omsamplingsfunktionen _[!DNL sinc]_.
+      - `Bicubic` - Har en naturlig skärpeeffekt när en bild blir mindre.
+      - `Bilinear` - Har en naturlig utjämningseffekt när du gör en bild större.
+      - `Nearest` - Har en naturlig pixelförvandlingseffekt när du ändrar storlek på pixelbilder.
 
-1. När du har angett IO-konfigurationsinställningar för snabbtjänsten väljer du **Avbryt** för att återgå till inställningarna för snabb konfiguration.
+1. När du har angett IO-konfigurationsinställningar för tjänsten Snabbt väljer du **Avbryt** för att återgå till inställningarna för snabb konfiguration.
 
-1. I konfigurationen för bildoptimering _Aktivera djupbildsoptimering_ fält, markera **Ja** för att aktivera djupbildsoptimering.
+1. I konfigurationsfältet _Aktivera djupbildsoptimering_ i Bildoptimering väljer du **Ja** för att aktivera djupbildsoptimering.
 
-   ![Aktivera snabb IO-optimering](../../assets/cdn/fastly-io-deep-image-config.png)
+   ![Aktivera snabb I/O-optimering av bilder](../../assets/cdn/fastly-io-deep-image-config.png)
 
-   Djupbildsoptimering är inaktiverat som standard. När den här funktionen är aktiverad inaktiveras den inbyggda storleksförändringsfunktionen i Adobe Commerce och storleksändringen avlastas till tjänsten Snabbt IO. Bildoptimering gäller endast produktbilder. Storleken på CMS-bilder ändras inte. Se [Snabb dokumentation](#deep-image-optimization).
+   Djupbildsoptimering är inaktiverat som standard. När den här funktionen är aktiverad inaktiveras den inbyggda storleksförändringsfunktionen i Adobe Commerce och storleksändringen avlastas till tjänsten Snabbt IO. Bildoptimering gäller endast produktbilder. Storleken på CMS-bilder ändras inte. Se [Snabbt dokumentation](#deep-image-optimization).
 
-1. När du har aktiverat djupbildsoptimering aktiverar du [adaptiva pixelproportioner](#adaptive-pixel-ratios) för att generera bilder som är optimerade för användning på responsiva webbplatser.
+1. När du har aktiverat djupbildsoptimering aktiverar du funktionen [adaptiva pixelproportioner](#adaptive-pixel-ratios) för att generera bilder som är optimerade för användning på responsiva webbplatser.
 
    ![Aktivera IO-adaptiva pixelproportioner snabbt](../../assets/cdn/fastly-io-config-adaptive-pixel.png)
 
-   - I _Aktivera adaptiva enhetens pixelproportioner_ fält, markera **Ja**.
-   - I _Enhetens pixelproportioner_ om du accepterar standardinställningen eller väljer **Systemindata** om du vill ta bort inställningen. Välj sedan önskat förhållande. En högre inställning för pixelproportioner för enheten ger större bilder.
+   - Välj **Ja** i fältet _Aktivera pixelproportioner för adaptiva enheter_.
+   - Acceptera standardinställningen i fältet _Enhetspixelproportioner_ eller markera kryssrutan **Systemindata** om du vill ta bort inställningen. Välj sedan önskat förhållande. En högre inställning för pixelproportioner för enheten ger större bilder.
 
 1. Välj **Spara konfiguration**.
 
@@ -116,7 +116,7 @@ Om du inaktiverar förlustkonvertering (`WebP Auto? = No`) ändras JPEG-bilder e
 ### Djupgående bildoptimering
 
 Djupbildsoptimering är inaktiverat som standard. Om du aktiverar det här alternativet inaktiveras den inbyggda storleksändringen i Adobe Commerce och den avlastas helt till tjänsten Fast IO.
-Den här funktionen ändrar bara storlek _produkt_ bilder. Storleken på CMS-bilder ändras inte.
+Den här funktionen ändrar bara storlek på _product_-bilder. Storleken på CMS-bilder ändras inte.
 
 Om du aktiverar djupbildsoptimering läggs en bakgrundsfärgdefinition till i alla bilder som definieras i ditt tema. Detta resulterar i att WebP-bilder växlas från förlustfria WebP-bilder till förlustfria WebP-bilder. En av de största skillnaderna mellan förlustfri och förstörande är att alfakanalen tas bort från PNG-bilder, som innehåller mycket mindre bilder. Bilder med genomskinlighet kan dock se udda ut på produkt- och kampanjsidor som använder en annan bakgrund.
 
@@ -142,9 +142,9 @@ När funktionen för snabb IO-djup-optimering är aktiverad skrivs den ursprungl
 
 ### Adaptiva pixelproportioner
 
-Funktionen Adaptiva pixelproportioner är användbar för att optimera bilder för progressiva webbprogram. Med den kan du leverera flera bildstorlekar och upplösningar från en bildkällfil genom att lägga till en `srcset` för varje produktbild.
+Funktionen Adaptiva pixelproportioner är användbar för att optimera bilder för progressiva webbprogram. Du kan leverera flera bildstorlekar och upplösningar från en bildkällfil genom att lägga till en `srcset` för varje produktbild.
 
-När funktionen Adaptiva pixelproportioner är aktiverad ger tjänsten Snabb IO en bild med fast bredd som kan anpassas till varierande `device-pixel-ratios`.
+När funktionen Adaptiva pixelproportioner är aktiverad levererar tjänsten Snabb IO en bild med fast bredd som kan anpassas till varierande `device-pixel-ratios`.
 Tjänsten ändrar till exempel produktbilddefinitionen så som visas i följande exempel:
 
 ```html

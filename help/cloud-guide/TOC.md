@@ -13,7 +13,7 @@ ht-degree: 4%
 
 # Commerce on Cloud Infrastructure {#user-guide}
 
-+ [Handel](overview.md)
++ [Commerce](overview.md)
 + Arkitektur {#architecture}
    + [Molninfrastruktur](architecture/cloud-architecture.md)
    + [Teknikstack](architecture/tech-stack.md)
@@ -55,7 +55,7 @@ ht-degree: 4%
       + [Uppdateringspaket för ECE-verktyg](dev-tools/update-package.md)
       + [CLI-referens](dev-tools/ece-tools-cli-reference.md)
       + [Felreferens](dev-tools/error-reference.md)
-   + Integreringar {#integrations}
+   + Integrationer {#integrations}
       + [Ökning](integrations/overview.md)
       + [Bitbucket](integrations/bitbucket.md)
       + [GitHub](integrations/github.md)
@@ -90,9 +90,9 @@ ht-degree: 4%
       + [Profildatabasfrågor](storage/profile-database-queries.md)
       + [Säkerhetskopiera databasen](storage/database-dump.md)
       + [Hantering av säkerhetskopiering](storage/snapshots.md)
-   + Uppgraderingar och patchar {#upgrade}
+   + Uppgraderingar och korrigeringar {#upgrade}
       + [God praxis](development/best-practices.md)
-      + [Uppgradera Commerce-version](development/commerce-version.md)
+      + [Uppgradera Commerce](development/commerce-version.md)
       + [Tillämpa patchar](development/apply-patches.md)
 + Konfiguration {#configure}
    + [Ökning](environment/overview.md)
@@ -111,14 +111,14 @@ ht-degree: 4%
    + Miljö {#env}
       + [Konfigurera miljödistribution](environment/configure-env-yaml.md)
       + [Variabla nivåer och alternativ](environment/variable-levels.md)
-      + Åsidosätta variabler {#stage}
+      + Åsidosätt variabler {#stage}
          + [Miljövariabler](environment/variables-intro.md)
          + [ADMIN](environment/variables-admin.md)
          + [Molnvariabler](environment/variables-cloud.md)
          + [Global](environment/variables-global.md)
          + [Bygge](environment/variables-build.md)
          + [Distribuera](environment/variables-deploy.md)
-         + [Efter driftsättning](environment/variables-post-deploy.md)
+         + [Post-driftsätta](environment/variables-post-deploy.md)
       + Konfigurera meddelanden {#log}
          + [Meddelanden](environment/set-up-notifications.md)
          + [Logghanterare](environment/log-handlers.md)
@@ -164,9 +164,9 @@ ht-degree: 4%
    + [Ökning](launch/overview.md)
    + [Öppna checklista](launch/checklist.md)
    + [Starta steg](launch/steps.md)
-+ Övervaka webbplats {#monitor}
++ Övervaka plats {#monitor}
    + [Prestanda](monitor/performance.md)
-   + New Relic {#new-relic}
+   + New Relic-tjänst {#new-relic}
       + [New Relic - översikt](monitor/new-relic-service.md)
       + [Konto- och användarhantering](monitor/account-management.md)
       + Undersök prestanda {#investigate}

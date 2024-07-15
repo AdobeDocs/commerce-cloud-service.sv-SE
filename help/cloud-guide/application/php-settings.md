@@ -1,6 +1,6 @@
 ---
 title: PHP-inställningar
-description: Lär dig mer om de optimala PHP-inställningarna för konfiguration av Commerce-program i molninfrastrukturen.
+description: Läs om de optimala PHP-inställningarna för Commerce-programkonfiguration i molninfrastrukturen.
 feature: Cloud, Configuration, Extensions
 exl-id: b4180265-f7a1-48e4-8c23-27835253e171
 source-git-commit: 94c1e16a07567471d446478e3bd2a33977247ef3
@@ -12,7 +12,7 @@ ht-degree: 0%
 
 # PHP-inställningar
 
-Du kan välja vilken [PHP-version](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) för att köra `.magento.app.yaml` fil:
+Du kan välja vilken [version av PHP](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) som ska köras i `.magento.app.yaml`-filen:
 
 ```yaml
 name: mymagento
@@ -21,13 +21,13 @@ type: php:<version>
 
 >[!TIP]
 >
->Om du uppgraderar till PHP 8.1 och senare tar du bort JSON från [`runtime: extensions:` property](properties.md#runtime) i `.magento.app.yaml` och distribuera om. JSON-tillägget installeras i molnmiljön sedan PHP 8.0.
+>Om du uppgraderar till PHP 8.1 och senare tar du bort JSON från egenskapen [`runtime: extensions:` ](properties.md#runtime) i filen `.magento.app.yaml` och distribuerar om. JSON-tillägget installeras i molnmiljön sedan PHP 8.0.
 
 ## Konfigurera PHP
 
-Du kan anpassa PHP-inställningarna för din miljö med en `php.ini` som läggs till i konfigurationen som hanteras av Adobe Commerce.
+Du kan anpassa PHP-inställningarna för din miljö med hjälp av en `php.ini`-fil som läggs till i konfigurationen som underhålls av Adobe Commerce.
 
-Lägg till `php.ini` till programmets rot (databasroten).
+Lägg till filen `php.ini` i programmets rot (databasroten) i databasen.
 
 >[!TIP]
 >
@@ -35,7 +35,7 @@ Lägg till `php.ini` till programmets rot (databasroten).
 
 ### Öka PHP-minnesgränsen
 
-Om du vill öka PHP-minnesgränsen lägger du till följande inställning i `php.ini` fil:
+Om du vill öka PHP-minnesgränsen lägger du till följande inställning i filen `php.ini`:
 
 ```ini
 memory_limit = 1G
@@ -45,7 +45,7 @@ För felsökning ökar du värdet till 2G.
 
 ### Optimera konfigurationen för realpath_cache
 
-Ange följande `realpath_cache` för att förbättra programmets prestanda.
+Ange följande `realpath_cache`-inställningar för att förbättra programmets prestanda.
 
 ```conf
 ;
@@ -63,11 +63,11 @@ Med de här inställningarna kan PHP-processer cachelagra sökvägar till filer 
 
 >[!NOTE]
 >
->En lista över rekommenderade PHP-konfigurationsinställningar finns i [Nödvändiga PHP-inställningar](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/php-settings.html) i _Installationsguide_.
+>En lista med rekommenderade PHP-konfigurationsinställningar finns i [Nödvändiga PHP-inställningar](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/php-settings.html) i _installationshandboken_.
 
 ### Kontrollera anpassade PHP-inställningar
 
-När du har tryckt in `php.ini` ändringar i molnmiljön kan du kontrollera att den anpassade PHP-konfigurationen har lagts till i din miljö. Använd till exempel SSH för att logga in i fjärrmiljön och visa filen med något som liknar följande:
+När du har överfört `php.ini`-ändringarna till molnmiljön kan du kontrollera att den anpassade PHP-konfigurationen har lagts till i din miljö. Använd till exempel SSH för att logga in i fjärrmiljön och visa filen med något som liknar följande:
 
 ```bash
 cat /etc/php/<php-version>/fpm/php.ini
@@ -75,17 +75,17 @@ cat /etc/php/<php-version>/fpm/php.ini
 
 >[!WARNING]
 >
->Om du använder Cloud Docker för Commerce för lokal utveckling, se [Dockningsbehållare](https://developer.adobe.com/commerce/cloud-tools/docker/containers/service/#fpm-container) för information om hur du använder en anpassad `php.ini` i en Docker-miljö.
+>Om du använder Cloud Docker för Commerce för lokal utveckling läser du [Docker-tjänstbehållare](https://developer.adobe.com/commerce/cloud-tools/docker/containers/service/#fpm-container) för mer information om hur du använder en anpassad `php.ini` fil i en Docker-miljö.
 
 ## Aktivera tillägg
 
-Du kan aktivera eller inaktivera PHP-tillägg i dialogrutan `runtime:extension` -avsnitt. Dessutom blir de angivna tilläggen tillgängliga i Docker PHP-behållarna.
+Du kan aktivera eller inaktivera PHP-tillägg i avsnittet `runtime:extension`. Dessutom blir de angivna tilläggen tillgängliga i Docker PHP-behållarna.
 
 >[!IMPORTANT]
 >
 >Innan du aktiverar tillägg är det viktigt att du förstår att PHP-versionen måste vara kompatibel med det operativsystem som är värd för projektet. Din projektmiljö kan kräva att infrastrukturteamet uppgraderar operativsystemet innan du kan fortsätta.
 
-Exempel i `.magento.app.yaml` fil:
+Exempel i filen `.magento.app.yaml`:
 
 ```yaml
 runtime:
@@ -106,7 +106,7 @@ Använd SSH för att logga in i en miljö och lista PHP-tilläggen.
 php -m
 ```
 
-Mer information om ett specifikt PHP-tillägg finns i [PHP-tilläggslista](https://www.php.net/manual/en/extensions.alphabetical.php).
+Mer information om ett specifikt PHP-tillägg finns i [PHP-tilläggslistan](https://www.php.net/manual/en/extensions.alphabetical.php).
 
 Följande tabell visar vilka PHP-tillägg som stöds när du distribuerar Adobe Commerce på molnplattformen.
 
@@ -120,17 +120,17 @@ För Pro-projekt krävs ytterligare stöd för följande tillägg:
 
 - `sourceguardian`
 
-Om du till exempel vill konfigurera PHP så att bara SourceGuardian-skyddade skript körs i alla miljöer måste följande alternativ anges i `php.ini` fil:
+Om du till exempel vill konfigurera PHP så att bara SourceGuardian-skyddade skript körs i alla miljöer, måste följande alternativ anges i filen `php.ini`:
 
 ```ini
 [SourceGuardian]
 sourceguardian.restrict_unencoded = "1"
 ```
 
-Se [avsnitt 3.5 i SourceGuardian-dokumentationen](https://sourceguardian.com/demofiles/files/SourceGuardian%20for%20Linux%20User%20Manual.pdf). _Det här är en länk till en PDF_.
+Se [avsnitt 3.5 i SourceGuardian-dokumentationen](https://sourceguardian.com/demofiles/files/SourceGuardian%20for%20Linux%20User%20Manual.pdf). _Det här är en länk till PDF_.
 
-[Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du vill ha hjälp med att installera dessa PHP-tillägg i alla produktionsmiljöer och i Pro Staging-miljöer. Inkludera dina uppdaterade `.magento/services.yaml` fil, `.magento.app.yaml` med den uppdaterade PHP-versionen och eventuella ytterligare PHP-tillägg. Om du vill ändra en produktionsmiljö måste du ange minst 48 timmars varsel. Det kan ta upp till 48 timmar för molninfrastrukturteamet att uppdatera ditt projekt.
+[Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du vill ha hjälp med att installera dessa PHP-tillägg i alla produktionsmiljöer och Pro Staging-miljöer. Inkludera din uppdaterade `.magento/services.yaml`-fil, `.magento.app.yaml`-fil med den uppdaterade PHP-versionen och eventuella ytterligare PHP-tillägg. Om du vill ändra en produktionsmiljö måste du ange minst 48 timmars varsel. Det kan ta upp till 48 timmar för molninfrastrukturteamet att uppdatera ditt projekt.
 
 >[!WARNING]
 >
->PHP kompilerad med felsökning stöds inte och sonden kan hamna i konflikt med [!DNL XDebug] eller [!DNL XHProf]. Inaktivera dessa tillägg när du aktiverar avsökningen. Avsökningen står i konflikt med vissa PHP-tillägg som [!DNL Pinba] eller IonCube.
+>PHP som kompilerats med felsökning stöds inte och avsökningen kan hamna i konflikt med [!DNL XDebug] eller [!DNL XHProf]. Inaktivera dessa tillägg när du aktiverar avsökningen. Avsökningen står i konflikt med vissa PHP-tillägg som [!DNL Pinba] eller IonCube.

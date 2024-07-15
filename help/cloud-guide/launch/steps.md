@@ -35,9 +35,9 @@ Värdet för TTL (Time-to-Live) är viktigt för att kontrollera din ändrade do
 
 ## Testa livebutiken
 
-Slutför några UAT-tester i din livebutik för att bekräfta att allt läses in och att åtgärderna slutförs korrekt. En lista med tester finns på [Testa distributionen](../test/staging-and-production.md#complete-uat-testing).
+Slutför några UAT-tester i din livebutik för att bekräfta att allt läses in och att åtgärderna slutförs korrekt. En lista med tester finns i [Testa distributionen](../test/staging-and-production.md#complete-uat-testing).
 
-## Efter start
+## Post-Launch
 
 Adobe kontrollerar och övervakar webbplatsen för att säkerställa att alla tjänster och all åtkomst är grön. Vi finns till hands för att kunna gå igenom och kontrollera att alla systemloggar, tjänster, cachning och funktioner fungerar som du och dina kunder behöver.
 

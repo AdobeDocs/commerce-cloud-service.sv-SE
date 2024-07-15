@@ -14,24 +14,24 @@ ht-degree: 0%
 
 # Spåra distributioner
 
-Du kan aktivera New Relic _Spåra ändringar_ för att övervaka distributionshändelser i din Commerce för molninfrastrukturprojekt.
+Du kan aktivera funktionen _Spåra ändringar_ i New Relic för att övervaka distributionshändelser i ditt Commerce i molninfrastrukturprojekt.
 
-Datainsamlingen för driftsättningar hjälper till att analysera effekten av driftsättningsändringar på övergripande prestanda, som CPU, minne, svarstid med mera. Se [Spåra ändringar med NerdGraph](https://docs.newrelic.com/docs/change-tracking/change-tracking-graphql/) i _New Relic-dokumentation_.
+Datainsamlingen för driftsättningar hjälper till att analysera effekten av driftsättningsändringar på övergripande prestanda, som CPU, minne, svarstid med mera. Se [Spåra ändringar med NerdGraph](https://docs.newrelic.com/docs/change-tracking/change-tracking-graphql/) i _New Relic-dokumentationen_.
 
 >[!PREREQUISITES]
 >
 >- `NR_API_URL`: New Relic API-slutpunkt, i det här fallet NerdGraph API URL `https://api.newrelic.com/graphql`
->- `NR_API_KEY`: Skapa en användarnyckel, se [New Relic API-nycklar](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys) i _New Relic_ dokumentation.
->- `NR_APP_GUID`: En entitet som rapporterar data till New Relic har ett unikt ID (GUID). Om du till exempel vill aktivera i en mellanlagringsmiljö justerar du mellanlagringsmiljön `NR_APP_GUID` molnvariabel med _GUID för mellanlagringsenhet_ från New Relic. Se [Läs om New Relic enheter](https://docs.newrelic.com/docs/new-relic-solutions/new-relic-one/core-concepts/what-entity-new-relic/) och [NerdGraph, självstudiekurs: Visa entitetsdata](https://docs.newrelic.com/docs/apis/nerdgraph/examples/nerdgraph-entities-api-tutorial/) i _New Relic_ dokumentation.
+>- `NR_API_KEY`: Skapa en användarnyckel, se [New Relic API-nycklar](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys) i _New Relic_ -dokumentationen.
+>- `NR_APP_GUID`: En entitet som rapporterar data till New Relic har ett unikt ID (GUID). Om du till exempel vill aktivera i en mellanlagringsmiljö justerar du mellanlagringsmiljöns `NR_APP_GUID` molnvariabel med _mellanlagringsenhetens GUID_ från New Relic. Se självstudiekursen [Lär dig mer om New Relic-entiteter](https://docs.newrelic.com/docs/new-relic-solutions/new-relic-one/core-concepts/what-entity-new-relic/) och [NerdGraph: Visa entitetsdata](https://docs.newrelic.com/docs/apis/nerdgraph/examples/nerdgraph-entities-api-tutorial/) i _New Relic_ -dokumentationen.
 
 ## Aktivera spårning av distributioner
 
-Spåra era Commerce-projektdistributionsevenemang i New Relic genom att skapa en _script_ integrering.
+Spåra dina Commerce-projektdistributionshändelser i New Relic genom att skapa en _script_-integrering.
 
-**Aktivera spårdistributioner**:
+**Så här aktiverar du spårdistributioner**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
-1. Skapa en `action-integration.js` -fil. Kopiera följande kod och klistra in den i `action-integration.js` och spara:
+1. Skapa en `action-integration.js`-fil. Kopiera följande kod och klistra in den i filen `action-integration.js` och spara den:
 
    ```javascript
    function trackDeployments() {
@@ -91,7 +91,7 @@ Spåra era Commerce-projektdistributionsevenemang i New Relic genom att skapa en
    trackDeployments();
    ```
 
-1. Skapa en _script_ integrering med `magento-cloud` CLI-kommando och referens till `action-integration.js` -fil.
+1. Skapa en _skript_-integrering med CLI-kommandot `magento-cloud` och referera till filen `action-integration.js`.
 
    ```bash
    magento-cloud integration:add --type script --events='environment.restore, environment.push, environment.branch, environment.activate, environment.synchronize, environment.initialize, environment.merge, environment.redeploy, environment.variable.create, environment.variable.delete, environment.variable.update' --file ./action-integration.js --project=<YOUR_PROJECT_ID> --environments=<YOUR_ENVIRONMENT_ID>
@@ -220,10 +220,10 @@ Spåra era Commerce-projektdistributionsevenemang i New Relic genom att skapa en
    {"data":{"changeTrackingCreateDeployment":{"deploymentId":"some-deployment-id","entityGuid":"SomeGUIDhere"}}}
    ```
 
-1. Logga in på [New Relic](https://login.newrelic.com/login).
+1. Logga in på ditt [New Relic-konto](https://login.newrelic.com/login).
 
-1. Klicka på **[!UICONTROL APM & Services]**. Välj miljö [!UICONTROL Name] och [!UICONTROL Account].
+1. Klicka på **[!UICONTROL APM & Services]** på navigeringsmenyn i Utforskaren. Välj din miljö [!UICONTROL Name] och [!UICONTROL Account].
 
-1. Under _Händelser_, klicka **[!UICONTROL Change tracking]**.
+1. Klicka på **[!UICONTROL Change tracking]** under _Händelser_.
 
    ![Distributioner](../../assets/new-relic/deployments.png)

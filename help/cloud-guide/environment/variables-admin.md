@@ -17,9 +17,9 @@ Användare som har administratörsbehörighet för Adobe Commerce i molninfrastr
 
 ## Administratörsreferenser
 
-Du kan åsidosätta administratörens inloggningsuppgifter under Commerce-installation med ADMIN-variablerna i följande tabell.
+Du kan åsidosätta administratörens inloggningsuppgifter under Commerce-installationen med ADMIN-variablerna i följande tabell.
 
-Om du vill ändra värdena efter installationen ansluter du till miljön med SSH och använder Adobe Commerce CLI [`admin:user` kommando](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/tutorials/admin.html) för att skapa eller redigera administratörens användaruppgifter.
+Om du vill ändra värdena efter installationen ansluter du till miljön med SSH och använder Adobe Commerce CLI [`admin:user`-kommandot ](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/tutorials/admin.html) för att skapa eller redigera administratörens inloggningsuppgifter.
 
 | Variabel | Standard | Beskrivning |
 | -------------- | --------------------------- | ----------- |
@@ -32,13 +32,13 @@ Om du vill ändra värdena efter installationen ansluter du till miljön med SSH
 
 Använd följande miljövariabel för att skydda åtkomsten till ditt administratörsgränssnitt. Om det här värdet anges åsidosätts standardwebbadressen under installationen.
 
-`ADMIN_URL`- Den relativa URL-adressen för åtkomst till Admin-gränssnittet. Standardwebbadressen är `/admin`. Av säkerhetsskäl rekommenderar Adobe att du ändrar standardvärdet till en unik, anpassad Admin-URL som inte är enkel att gissa sig till.
+`ADMIN_URL` - Den relativa URL-adressen för åtkomst till administratörsgränssnittet. Standardwebbadressen är `/admin`. Av säkerhetsskäl rekommenderar Adobe att du ändrar standardvärdet till en unik, anpassad Admin-URL som inte är enkel att gissa sig till.
 
 ### Ändra Admin-URL
 
-Adobe rekommenderar att du ändrar miljönivåvariabeln för Admin URL efter installationen. Konfigurera den här inställningen av säkerhetsskäl innan den förgrenas från klonade `master` miljö. Alla förgreningar som har skapats från `master` gren ärver miljönivåvariablerna och deras värden.
+Adobe rekommenderar att du ändrar miljönivåvariabeln för Admin URL efter installationen. Konfigurera den här inställningen av säkerhetsskäl innan du förgrenar dig från den klonade `master`-miljön. Alla grenar som skapats från grenen `master` ärver miljönivåvariablerna och deras värden.
 
-Använd `magento-cloud variable:update` för att uppdatera variabelvärdet. (Med `variable:set` -kommandot har tagits bort och är inte tillgängligt.) I följande exempel uppdateras ADMIN_URL till `newAdmin_A8v10`:
+Använd kommandot `magento-cloud variable:update` för att uppdatera variabelvärdet. (Kommandot `variable:set` har tagits bort och är inte tillgängligt.) I följande exempel uppdateras ADMIN_URL till `newAdmin_A8v10`:
 
 ```bash
 magento-cloud variable:update ADMIN_URL --value newAdmin_A8v10 -e master
@@ -46,27 +46,27 @@ magento-cloud variable:update ADMIN_URL --value newAdmin_A8v10 -e master
 
 >[!NOTE]
 >
->The `ADMIN_URL` värdet accepterar bokstäver (a-z eller A-Z), siffror (0-9) och understreck (_) för en anpassad administratörssökväg. Blanksteg och andra tecken är **not** accepterad.
+>Värdet `ADMIN_URL` accepterar bokstäver (a-z eller A-Z), siffror (0-9) och understreck (_) för en anpassad administratörssökväg. Blanksteg eller andra tecken **accepteras inte**.
 
-**Om du vill ändra URL:en använder du[!DNL Cloud Console]**:
+**Så här ändrar du URL-adressen med[!DNL Cloud Console]**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 
-1. Välj ett projekt i _Alla projekt_ lista.
+1. Välj ett projekt i listan _Alla projekt_.
 
 1. I projektöversikten markerar du miljön och klickar på konfigurationsikonen.
 
    ![Projektkonfiguration](../../assets/icon-configure.png){width="36"}
 
-1. Välj **Variabel** -fliken.
+1. Välj fliken **Variabler**.
 
-1. Klicka **Skapa variabel**.
+1. Klicka på **Skapa variabel**.
 
 1. Ange följande:
 
    - **Variabelnamn** = `ADMIN_URL`
-   - **value** = Ny URL. Ange till exempel Admin URL till `magento_A8v10`.
+   - **värde** = Ny URL. Ange till exempel Admin URL till `magento_A8v10`.
 
-   Som standard `Available during runtime` och `Make inheritable` är markerade.
+   Som standard är `Available during runtime` och `Make inheritable` markerade.
 
-1. Klicka **Skapa variabel** och vänta tills distributionen är klar. Den här knappen visas bara när de obligatoriska fälten innehåller värden.
+1. Klicka på **Skapa variabel** och vänta tills distributionen har slutförts. Den här knappen visas bara när de obligatoriska fälten innehåller värden.

@@ -12,32 +12,32 @@ ht-degree: 0%
 
 # Hantering av säkerhetskopiering
 
-Du kan när som helst utföra en manuell säkerhetskopiering av aktiva startmiljöer med **[!UICONTROL Backup]** knappen i [!DNL Cloud Console] eller med `magento-cloud snapshot:create` -kommando.
+Du kan när som helst utföra en manuell säkerhetskopiering av aktiva startmiljöer med knappen **[!UICONTROL Backup]** i [!DNL Cloud Console] eller med kommandot `magento-cloud snapshot:create`.
 
-En säkerhetskopia eller _ögonblicksbild_ är en fullständig säkerhetskopiering av miljödata som innehåller alla beständiga data från tjänster som körs (MySQL-databas) och alla filer som lagras på de monterade volymerna (var, pub/media, app/etc). Ögonblicksbilden gör _not_ inkludera kod, eftersom koden redan lagras i den Git-baserade databasen. Du kan inte hämta en kopia av en ögonblicksbild.
+En säkerhetskopia eller _ögonblicksbild_ är en fullständig säkerhetskopia av miljödata som innehåller alla beständiga data från tjänster som körs (MySQL-databas) och alla filer som lagras på de monterade volymerna (var, pub/media, app/etc). Ögonblicksbilden innehåller _inte_ kod, eftersom koden redan lagras i den Git-baserade databasen. Du kan inte hämta en kopia av en ögonblicksbild.
 
-Funktionen för säkerhetskopiering/fixering gör **not** gäller för Pro Staging and Production-miljöer, som som standard får regelbundna säkerhetskopieringar för katastrofåterställning. Se [Säkerhetskopiering och katastrofåterställning för Pro](../architecture/pro-architecture.md#backup-and-disaster-recovery) för mer information. Till skillnad från automatiska direktsäkerhetskopieringar i Pro Staging- och Production-miljöer är det **not** automatisk. Det är _din_ ansvar för att manuellt skapa en säkerhetskopia eller konfigurera ett cron-jobb för att regelbundet skapa en säkerhetskopia av dina integreringsmiljöer i Starter eller Pro.
+Säkerhetskopierings-/ögonblicksbildsfunktionen **gäller inte** för Pro Staging- och Production-miljöer, som får regelbundna säkerhetskopieringar för katastrofåterställning som standard. Mer information finns i [Pro Backup &amp; Disaster Recovery](../architecture/pro-architecture.md#backup-and-disaster-recovery). Till skillnad från automatiska direktsäkerhetskopieringar i Pro Staging- och Production-miljöerna är säkerhetskopieringarna **inte** automatiska. Det är _ditt_ ansvar att manuellt skapa en säkerhetskopia eller konfigurera ett cron-jobb för att regelbundet skapa en säkerhetskopia av dina integreringsmiljöer i Starter eller Pro.
 
 ## Skapa manuell säkerhetskopiering
 
-Du kan skapa en manuell säkerhetskopia av alla aktiva Starter-miljöer och integreringstjänstmiljö från [!DNL Cloud Console] eller skapa en ögonblicksbild från Cloud CLI. Du måste ha en [Administratörsroll](../project/user-access.md) för miljön.
+Du kan skapa en manuell säkerhetskopia av alla aktiva Starter-miljöer och integreringPro-miljöer från [!DNL Cloud Console] eller skapa en ögonblicksbild från molnet-CLI. Du måste ha en [administratörsroll](../project/user-access.md) för miljön.
 
-**Skapa en säkerhetskopia av valfri Starter-miljö med[!DNL Cloud Console]**:
+**Så här skapar du en säkerhetskopia av en startmiljö med[!DNL Cloud Console]**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 1. Välj en miljö i projektnavigeringsfältet. Miljön måste vara aktiv.
-1. I _Säkerhetskopior_ visa, klicka **[!UICONTROL Backup]**. Det här alternativet är inte tillgängligt för en Pro-miljö.
+1. Klicka på **[!UICONTROL Backup]** i vyn _Säkerhetskopior_. Det här alternativet är inte tillgängligt för en Pro-miljö.
 
    ![Säkerhetskopiera](../../assets/button-backup.png){width="150"}
 
-**Skapa en säkerhetskopia av en integreringsmiljö med[!DNL Cloud Console]**:
+**Så här skapar du en säkerhetskopia av en integreringsmiljö med[!DNL Cloud Console]**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 1. Välj en integrerings-/utvecklingsmiljö i projektnavigeringsfältet. Miljön måste vara aktiv.
-1. Välj **[!UICONTROL Backup]** i den övre högra menyn. Det här alternativet är tillgängligt för både Starter- och Pro-miljöer.
-1. Klicka på **[!UICONTROL Yes]** -knappen.
+1. Välj alternativet **[!UICONTROL Backup]** i den övre högra menyn. Det här alternativet är tillgängligt för både Starter- och Pro-miljöer.
+1. Klicka på knappen **[!UICONTROL Yes]**.
 
-**Skapa en ögonblicksbild med `magento-cloud` CLI**:
+**Så här skapar du en ögonblicksbild med `magento-cloud` CLI**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 1. Kolla in miljögrenen för att ta en ögonblicksbild.
@@ -47,7 +47,7 @@ Du kan skapa en manuell säkerhetskopia av alla aktiva Starter-miljöer och inte
    magento-cloud snapshot:create --live
    ```
 
-   Du kan också använda `magento-cloud backup` kortkommando. The `--live` gör att miljön inte körs för att undvika driftavbrott. Om du vill se en fullständig lista över alternativen anger du `magento-cloud snapshot:create --help`.
+   Du kan också använda kortkommandot `magento-cloud backup`. Alternativet `--live` låter miljön vara igång för att undvika driftavbrott. Ange `magento-cloud snapshot:create --help` om du vill se en fullständig lista över alternativ.
 
    Exempelsvar:
 
@@ -81,7 +81,7 @@ Du kan skapa en manuell säkerhetskopia av alla aktiva Starter-miljöer och inte
 
 ## Återställa en manuell säkerhetskopia
 
-Du måste ha [Administratörsåtkomst](../project/user-access.md) till miljön. Du har upp till **sju dagar** till _återställ_ manuell säkerhetskopiering. Koden för den aktuella Git-grenen ändras inte när du återställer en säkerhetskopia. Återställning av en säkerhetskopia på det här sättet gäller inte för testnings- och produktionsmiljöer i Pro. Se [Säkerhetskopiering och katastrofåterställning för Pro](../architecture/pro-architecture.md#backup-and-disaster-recovery).
+Du måste ha [administratörsåtkomst](../project/user-access.md) till miljön. Du har upp till **sju dagar** att _återställa_ en manuell säkerhetskopia. Koden för den aktuella Git-grenen ändras inte när du återställer en säkerhetskopia. Återställning av en säkerhetskopia på det här sättet gäller inte testmiljöer och produktionsmiljöer i Pro. Se [Pro Backup &amp; Disaster Recovery](../architecture/pro-architecture.md#backup-and-disaster-recovery).
 
 Återställningstiden varierar beroende på databasens storlek:
 
@@ -93,18 +93,18 @@ Du måste ha [Administratörsåtkomst](../project/user-access.md) till miljön. 
 >
 >Återställa utan säkerhetskopiering:
 >
->- Om du vill återställa till föregående kod eller ta bort tillagda tillägg i en miljö läser du [Återställningskod](#roll-back-code).
->- Återställa en instabil miljö som _not_ har en säkerhetskopia, se [Återställa en miljö](../development/restore-environment.md).
+>- Information om hur du återställer till föregående kod eller tar bort tillägg i en miljö finns i [Återställa kod](#roll-back-code).
+>- Information om hur du återställer en instabil miljö som _inte_ har en säkerhetskopia finns i [Återställa en miljö](../development/restore-environment.md).
 
 **Så här återställer du en säkerhetskopia med[!DNL Cloud Console]**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 1. Välj en miljö i projektnavigeringsfältet.
-1. I _Säkerhetskopior_ välj en säkerhetskopia i _Lagrad_ lista. Säkerhetskopieringsfunktionen gör det **not** gäller för Pro-miljöerna.
-1. I ![Mer](../../assets/icon-more.png){width="32"} (_mer_)-menyn, klicka **Återställ**.
-1. Granska informationen för Återställ från säkerhetskopia och klicka på **Ja, återställ**.
+1. I vyn _Säkerhetskopior_ väljer du en säkerhetskopia i listan _Lagrade_. Säkerhetskopieringsfunktionen gäller **inte** för Pro-miljöer.
+1. Klicka på **Återställ** på menyn ![Mer](../../assets/icon-more.png){width="32"} (_mer_).
+1. Granska informationen för återställning från säkerhetskopia och klicka på **Ja, återställ**.
 
-**Återställa en ögonblicksbild med hjälp av molnet-CLI**:
+**Så här återställer du en ögonblicksbild med molnet-CLI**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 1. Kolla in den miljögren som ska återställas.
@@ -133,10 +133,10 @@ Du måste ha [Administratörsåtkomst](../project/user-access.md) till miljön. 
 
 ## Återställ en ögonblicksbild av Disaster Recovery
 
-För att återställa ögonblicksbilden av Disaster Recovery i Pro-miljöer för stapling och produktion, [Importera databasdumpen direkt från servern](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/how-to/restore-a-db-snapshot-from-staging-or-production#meth3).
+[Importera databasdumpen direkt från servern](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/how-to/restore-a-db-snapshot-from-staging-or-production#meth3) om du vill återställa ögonblicksbilden av Disaster Recovery i Pro-miljöer för förproduktion och produktion.
 
 ## Återställningskod
 
-Säkerhetskopior och fixeringar gör det _not_ ta med en kopia av koden. Koden lagras redan i den Git-baserade databasen, så du kan använda Git-baserade kommandon för att återställa (återställa) kod. Använd till exempel `git log --oneline` för att bläddra igenom tidigare implementeringar och sedan använda [`git revert`](https://git-scm.com/docs/git-revert) för att återställa kod från en specifik implementering.
+Säkerhetskopior och ögonblicksbilder innehåller _inte_ en kopia av koden. Koden lagras redan i den Git-baserade databasen, så du kan använda Git-baserade kommandon för att återställa (återställa) kod. Använd till exempel `git log --oneline` för att bläddra igenom tidigare implementeringar och använd sedan [`git revert`](https://git-scm.com/docs/git-revert) för att återställa kod från en specifik implementering.
 
-Du kan också välja att lagra kod i en _inaktiv_ gren. Skapa en gren med Git-kommandon i stället för att använda `magento-cloud` kommandon. Se om [Git-kommandon](../dev-tools/cloud-cli-overview.md#git-commands) i Cloud CLI-avsnittet.
+Du kan också välja att lagra kod i en _inaktiv_-gren. Använd Git-kommandon för att skapa en gren i stället för att använda `magento-cloud`-kommandon. Läs mer om [Git-kommandon](../dev-tools/cloud-cli-overview.md#git-commands) i Cloud CLI-avsnittet.

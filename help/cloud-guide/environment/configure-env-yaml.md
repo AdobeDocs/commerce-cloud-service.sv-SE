@@ -1,6 +1,6 @@
 ---
 title: Konfigurera miljö
-description: Lär dig hur du konfigurerar bygg- och distributionsåtgärder i alla Commerce för molninfrastrukturmiljöer, inklusive Pro Staging och Production, med hjälp av miljövariabler.
+description: Lär dig hur du konfigurerar bygg- och distributionsåtgärder i alla Commerce-miljöer på molninfrastrukturer, inklusive Pro Staging och Production, med hjälp av miljövariabler.
 feature: Cloud, Build, Configuration, Deploy, SCD
 role: Developer
 exl-id: 66e257e2-1eca-4af5-9b56-01348341400b
@@ -13,40 +13,40 @@ ht-degree: 0%
 
 # Konfigurera miljövariabler för distribution
 
-The `.magento.env.yaml` -filen använder miljövariabler för att centralisera hanteringen av bygg- och distributionsåtgärder i alla dina miljöer, inklusive Pro Staging och Production. Om du vill konfigurera unika åtgärder i varje miljö måste du ändra den här filen i varje miljö.
+Filen `.magento.env.yaml` använder miljövariabler för att centralisera hanteringen av bygg- och distributionsåtgärder i alla dina miljöer, inklusive Pro Staging och Production. Om du vill konfigurera unika åtgärder i varje miljö måste du ändra den här filen i varje miljö.
 
 >[!TIP]
 >
->YAML-filer är skiftlägeskänsliga och tillåter inte tabbar. Var noga med att använda konsekvent indrag i hela `.magento.env.yaml` filen eller konfigurationen kanske inte fungerar som förväntat. Exemplen i dokumentationen och i exempelfilen använder _två blanksteg_ indrag. Använd [ece-tools validate, kommando](#validate-configuration-file) för att kontrollera konfigurationen.
+>YAML-filer är skiftlägeskänsliga och tillåter inte tabbar. Var noga med att använda konsekvent indrag i hela `.magento.env.yaml`-filen, annars kanske inte konfigurationen fungerar som förväntat. Exemplen i dokumentationen och i exempelfilen använder _indrag med två blanksteg_. Använd kommandot [ece-tools validate](#validate-configuration-file) för att kontrollera konfigurationen.
 
 ## Filstruktur
 
-The `.magento.env.yaml` filen innehåller två avsnitt: `stage` och `log`. The `stage` -avsnittet kontrollerar åtgärder som utförs under faserna i [Driftsättningsprocess i molnet](../deploy/process.md).
+Filen `.magento.env.yaml` innehåller två avsnitt: `stage` och `log`. Avsnittet `stage` kontrollerar åtgärder som utförs under faserna i [Cloud-distributionsprocessen](../deploy/process.md).
 
-- `stage`—Använd scenavsnittet för att definiera vissa åtgärder för följande distributionssteg:
-   - `global`—Styr åtgärder i både bygg-, distributions- och efterdriftfaserna. Du kan åsidosätta dessa inställningar i avsnitten för att skapa, distribuera och efterdistribuera.
-   - `build`—Kontrollerar endast åtgärder i byggfasen. Om du inte anger några inställningar i det här avsnittet, kommer byggfasen att använda inställningar från det globala avsnittet.
-   - `deploy`—Kontrollerar endast åtgärder i distributionsfasen. Om du inte anger inställningar i det här avsnittet används inställningarna från det globala avsnittet i distributionsfasen.
-   - `post-deploy`—Kontrollerar åtgärder _efter_ driftsätta ditt program och _efter_ behållaren accepterar anslutningar.
-- `log`—Konfigurera med loggavsnittet [meddelanden](set-up-notifications.md), inklusive meddelandetyper och detaljnivå.
-   - `slack`—Konfigurera ett meddelande som ska skickas till en robot från Slack.
-   - `email`- Konfigurera ett e-postmeddelande som ska skickas till en eller flera e-postmottagare.
-   - [logghanterare](log-handlers.md)- Konfigurera maskinvaru- och programmeddelanden som skickas till en fjärrloggningsserver.
+- `stage` - Använd scenavsnittet för att definiera vissa åtgärder för följande distributionssteg:
+   - `global` - Styr åtgärder i både bygg-, distributions- och postdistributionsfaserna. Du kan åsidosätta dessa inställningar i avsnitten för att skapa, distribuera och efterdistribuera.
+   - `build` - Kontrollerar endast åtgärder i byggfasen. Om du inte anger några inställningar i det här avsnittet, kommer byggfasen att använda inställningar från det globala avsnittet.
+   - `deploy` - Kontrollerar endast åtgärder i distributionsfasen. Om du inte anger inställningar i det här avsnittet används inställningarna från det globala avsnittet i distributionsfasen.
+   - `post-deploy` - Kontrollerar åtgärder _efter_-distributionen av programmet och _efter_ kan behållaren börja acceptera anslutningar.
+- `log` - Använd loggavsnittet för att konfigurera [meddelanden](set-up-notifications.md), inklusive meddelandetyper och detaljnivå.
+   - `slack` - Konfigurera ett meddelande som ska skickas till en robot från Slack.
+   - `email` - Konfigurera ett e-postmeddelande som ska skickas till en eller flera e-postmottagare.
+   - [logghanterare](log-handlers.md) - Konfigurera maskinvaru- och programprogrammeddelanden som skickas till en fjärrloggningsserver.
 
 ### Miljövariabler
 
-The `ece-tools` paket anger värden i `env.php` fil baserad på värden från [Molnvariabler](variables-cloud.md), variabler som anges i [!DNL Cloud Console]och `.magento.env.yaml` konfigurationsfil. Miljövariablerna i `.magento.env.yaml` anpassa molnmiljön genom att åsidosätta din befintliga Commerce-konfiguration. Om ett standardvärde är `Not Set`och sedan `ece-tools` paket **NEJ** och använder [!DNL Commerce] standard eller värdet från MAGENTO_CLOUD_RELATIONSHIPS-konfigurationen. Om standardvärdet är inställt visas `ece-tools` paketet fungerar för att ange den standardinställningen.
+Paketet `ece-tools` ställer in värden i filen `env.php` baserat på värden från [Cloud-variabler](variables-cloud.md), variabler som angetts i [!DNL Cloud Console] och konfigurationsfilen `.magento.env.yaml`. Miljövariablerna i filen `.magento.env.yaml` anpassar molnmiljön genom att åsidosätta din befintliga Commerce-konfiguration. Om standardvärdet är `Not Set` utför `ece-tools`-paketet **NO**-åtgärden och använder standardvärdet [!DNL Commerce] eller värdet från MAGENTO_CLOUD_RELATIONSHIPS-konfigurationen. Om standardvärdet anges används `ece-tools`-paketet för att ange standardvärdet.
 
-Följande avsnitt innehåller detaljerade definitioner, t.ex. om ett standardvärde har angetts eller inte, av alla variabler som du kan använda i `.magento.env.yaml` fil:
+Följande avsnitt innehåller detaljerade definitioner, till exempel om ett standardvärde har angetts eller inte, av alla variabler som du kan använda i filen `.magento.env.yaml`:
 
-- [Global](variables-global.md)—variabelkontrollåtgärder i varje fas: skapa, distribuera och efterdistribuera
-- [Bygge](variables-build.md)—variabelkontrollbygge
-- [Distribuera](variables-deploy.md)—variabelstyrningsdistributionsåtgärder
-- [Efter driftsättning](variables-post-deploy.md)—variabelkontrollåtgärder efter distributionen
+- [Global](variables-global.md) - variabelkontrollåtgärder i varje fas: skapa, distribuera och efterdistribuera
+- [Build](variables-build.md) - variabelkontrollbyggåtgärder
+- [Distribuera](variables-deploy.md) - variabelstyrningsdistributionsåtgärder
+- [Post-deploy](variables-post-deploy.md) - variabelkontrollåtgärder efter distribution
 
 ### Skapa konfigurationsfil från CLI
 
-Du kan generera en `.magento.env.yaml` konfigurationsfil för en molnmiljö med följande `ece-tools` kommandon.
+Du kan generera en `.magento.env.yaml`-konfigurationsfil för en molnmiljö med följande `ece-tools`-kommandon.
 
 >Skapar en konfigurationsfil
 
@@ -60,13 +60,13 @@ php ./vendor/bin/ece-tools cloud:config:create `<configuration-json>`
 php ./vendor/bin/ece-tools cloud:config:update `<configuration-json>`
 ```
 
-Båda kommandona kräver ett enda argument: en JSON-formaterad array som anger ett värde för minst en variabel för build, deploy eller post-deploy. Följande kommando anger till exempel värden för `SCD_THREADS` och `CLEAN_STATIC_FILES` variabler:
+Båda kommandona kräver ett enda argument: en JSON-formaterad array som anger ett värde för minst en variabel för build, deploy eller post-deploy. Följande kommando anger till exempel värden för variablerna `SCD_THREADS` och `CLEAN_STATIC_FILES`:
 
 ```bash
 php vendor/bin/ece-tools cloud:config:create '{"stage":{"build":{"SCD_THREADS":5}, "deploy":{"CLEAN_STATIC_FILES":false}}}'
 ```
 
-Och skapar `.magento.env.yaml` fil med följande inställningar:
+Och skapar en `.magento.env.yaml`-fil med följande inställningar:
 
 ```yaml
 stage:
@@ -76,7 +76,7 @@ stage:
     CLEAN_STATIC_FILES: false
 ```
 
-Du kan använda `cloud:config:update` för att uppdatera den nya filen. Följande kommando ändrar till exempel `SCD_THREADS` värdet och lägger till `SCD_COMPRESSION_TIMEOUT` konfiguration:
+Du kan använda kommandot `cloud:config:update` för att uppdatera den nya filen. Följande kommando ändrar till exempel värdet `SCD_THREADS` och lägger till konfigurationen `SCD_COMPRESSION_TIMEOUT`:
 
 ```bash
 php vendor/bin/ece-tools cloud:config:update '{"stage":{"build":{"SCD_THREADS":3, "SCD_COMPRESSION_TIMEOUT":1000}}}'
@@ -95,7 +95,7 @@ stage:
 
 ### Verifiera konfigurationsfil
 
-Använd följande `ece-tools` för att validera `.magento.env.yaml` konfigurationsfilen innan ändringar skickas till fjärrmolnmiljön.
+Använd följande `ece-tools`-kommando för att validera konfigurationsfilen `.magento.env.yaml` innan du skickar ändringar till fjärrmolnmiljön.
 
 ```bash
 php ./vendor/bin/ece-tools cloud:config:validate
@@ -112,7 +112,7 @@ The NOT_EXIST_OPTION variable is not allowed in configuration.
 
 ## PHP-konstanter
 
-Du kan använda PHP-konstanter i `.magento.env.yaml` fildefinitioner i stället för hårdkodade värden. I följande exempel definieras `driver_options` med en PHP-konstant:
+Du kan använda PHP-konstanter i `.magento.env.yaml`-fildefinitioner i stället för hårdkodade värden. I följande exempel definieras `driver_options` med en PHP-konstant:
 
 ```yaml
 stage:
@@ -130,11 +130,11 @@ stage:
 
 >[!WARNING]
 >
->Konstantparsning fungerar inte när en `symfony/yaml` tidigare än 3.2.
+>Konstantparsning fungerar inte när en tidigare version av ett `symfony/yaml`-paket än 3.2 används.
 
 ## Felhantering
 
-När ett fel inträffar på grund av ett oväntat värde i `.magento.env.yaml` konfigurationsfilen får du ett felmeddelande. I följande felmeddelande visas en lista med föreslagna ändringar av varje objekt med ett oväntat värde, som ibland innehåller giltiga alternativ:
+När ett fel inträffar på grund av ett oväntat värde i konfigurationsfilen `.magento.env.yaml` får du ett felmeddelande. I följande felmeddelande visas en lista med föreslagna ändringar av varje objekt med ett oväntat värde, som ibland innehåller giltiga alternativ:
 
 ```terminal
 - Environment configuration is not valid. Please correct .magento.env.yaml file with next suggestions:
@@ -151,7 +151,7 @@ Gör eventuella korrigeringar, implementera och skicka ändringarna vidare. Om d
 
 ## Optimering av konfigurationshantering
 
-Om du har aktiverat Configuration Management efter att ha dumpat konfigurationerna, bör du flytta SCD_*-variablerna från distributionen till byggfasen. Se [Strategier för distribution av statiskt innehåll](../deploy/static-content.md).
+Om du har aktiverat Configuration Management efter att ha dumpat konfigurationerna, bör du flytta SCD_*-variablerna från distributionen till byggfasen. Se [Statiska strategier för innehållsdistribution](../deploy/static-content.md).
 
 >Före konfigurationshantering:
 

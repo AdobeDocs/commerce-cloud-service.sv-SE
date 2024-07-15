@@ -13,9 +13,9 @@ ht-degree: 0%
 
 # Logghanterare
 
-Du kan konfigurera logghanterare så att meddelanden skickas till en fjärrloggningsserver. En logghanterare pushar build- och deploy-loggar till andra system, på samma sätt som du skickar loggar till Slack och e-post. Du kan aktivera en _syslog_ -hanterare, som är idealisk för att logga meddelanden som rör maskinvara, eller en GELF-hanterare (Graylog Extended Log Format), som är idealisk för att logga meddelanden från program.
+Du kan konfigurera logghanterare så att meddelanden skickas till en fjärrloggningsserver. En logghanterare pushar build- och deploy-loggar till andra system, på samma sätt som du skickar loggar till Slack och e-post. Du kan aktivera en _syslog_-hanterare, vilket är idealiskt för att logga meddelanden som är relaterade till maskinvara, eller en GELF-hanterare (Graylog Extended Log Format), som är idealisk för att logga meddelanden från program.
 
-I följande exempel konfigureras båda dessa hanterare genom att konfigurationen läggs till i `.magento.env.yaml` -fil. För lägsta loggningsnivå (`min_level`) värden, se [Loggnivåer](#log-levels).
+I följande exempel konfigureras båda hanterarna genom att konfigurationen läggs till i filen `.magento.env.yaml`. Information om lägsta loggningsnivå (`min_level`) finns i [Loggnivåer](#log-levels).
 
 ```yaml
 log:
@@ -56,13 +56,13 @@ log:
 
 ## Loggnivåer
 
-Loggnivåer avgör detaljnivån i meddelanden. Följande loggnivåkategorier innehåller alla loggnivåer under den. Till exempel en `debug` -nivån omfattar loggning från alla nivåer, medan `alert` nivån visar endast varningar och nödsituationer.
+Loggnivåer avgör detaljnivån i meddelanden. Följande loggnivåkategorier innehåller alla loggnivåer under den. En `debug`-nivå omfattar till exempel loggning från alla nivåer, medan en `alert`-nivå bara visar varningar och nödsituationer.
 
-- **debug**—detaljerad felsökningsinformation
-- **info**—intressanta händelser, t.ex. användarinloggning eller SQL-logg
-- **meddelande**—normal, men signifikanta händelser
-- **varning**—exceptionella händelser som inte är fel, t.ex. användning av en föråldrad API eller dålig användning av en API
-- **fel**—körningsfel som inte kräver omedelbar åtgärd
-- **kritisk**—kritiska förhållanden, t.ex. en otillgänglig programkomponent eller ett oväntat undantag
-- **varning**—omedelbar åtgärd krävs - till exempel att en webbplats är nere eller att databasen inte är tillgänglig - som utlöser en SMS-varning
-- **nödsituation**—systemet är oanvändbart
+- **debug** - detaljerad felsökningsinformation
+- **info** - intressanta händelser, till exempel användarinloggning eller SQL-logg
+- **Obs!** - normala, men viktiga händelser
+- **varning** - exceptionella händelser som inte är fel, som användning av ett inaktuellt API eller dålig användning av ett API
+- **error** - körningsfel som inte kräver omedelbar åtgärd
+- **critical** - kritiska villkor, t.ex. en otillgänglig programkomponent eller ett oväntat undantag
+- **alert** - omedelbar åtgärd krävs - till exempel att en webbplats är nere eller att databasen inte är tillgänglig - som utlöser en SMS-avisering
+- **kris** - systemet kan inte användas

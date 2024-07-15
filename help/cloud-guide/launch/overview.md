@@ -25,7 +25,7 @@ Vi rekommenderar starkt att du testar i integrerings-, mellanlagrings- och produ
 
 - Integrationsmiljöer stöder inte vissa tjänster som är tillgängliga i Förproduktion, som Fastly och New Relic.
 
-- [Fullständig provning](../test/guidance.md) sajten med olika verktyg i Förproduktion för belastning, stress, prestanda och webbplatsresurser.
+- [Testa](../test/guidance.md) din webbplats fullständigt med olika verktyg i Mellanlagring för inläsning, stress, prestanda och webbplatsresurser.
 
 - Eftersom integreringsmiljöer bara har databaser ifyllda med testdata, och inte matchar en produktionsliknande miljö, kan du hitta ytterligare fel eller oväntade beteenden när du testar i staging- eller produktionsmiljöer.
 
@@ -39,11 +39,11 @@ Du behöver följande information och resurser för att förbereda dig för att 
 
 - SSL-/TLS-certifikat
 
-Som en del av Adobe Commerce prenumeration på molninfrastruktur tillhandahåller Adobe ett domänvaliderat SSL/TLS-certifikat som utfärdas av Låt oss kryptera. Varje Pro Production, Staging och Starter Production (`master`) har en unik certifikatmiljö som omfattar alla domäner och underdomäner i den miljön. Dessa certifikat etableras och överförs automatiskt till din plats när du har uppdaterat din DNS-konfiguration för utveckling och produktion. Se [Tillhandahåll SSL-/TLS-certifikat](../cdn/fastly-configuration.md#provision-ssltls-certificates).
+Som en del av Adobe Commerce prenumeration på molninfrastruktur tillhandahåller Adobe ett domänvaliderat SSL/TLS-certifikat som utfärdas av Låt oss kryptera. Varje Pro Production-, Staging- och Starter Production-miljö (`master`) har ett unikt certifikat som omfattar alla domäner och underdomäner i den miljön. Dessa certifikat etableras och överförs automatiskt till din plats när du har uppdaterat din DNS-konfiguration för utveckling och produktion. Se [Etablera SSL-/TLS-certifikat](../cdn/fastly-configuration.md#provision-ssltls-certificates).
 
 >[!NOTE]
 >
->Om du vill distribuera ditt eget SSL-certifikat för utökad validering för ditt företag i stället för att använda certifikatet för Låt oss kryptera, kontaktar du din CTA eller [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
+>Om du vill distribuera ditt eget SSL-certifikat för utökad validering för ditt företag i stället för att använda dess krypteringscertifikat, kontaktar du din CTA eller [skickar en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
 
 ## Konfigurera verktyget för säkerhetsgenomsökning
 
@@ -59,13 +59,13 @@ Som en del av Adobe Commerce prenumeration på molninfrastruktur tillhandahålle
 >
 >Lägg till de här IP-adresserna till en tillåtelselista i brandväggsreglerna för nätverket så att verktyget kan skanna din webbplats. Verktyget skickar endast begäranden till portarna 80 och 443.
 
-Med verktyget för säkerhetsgenomsökning kan du regelbundet övervaka dina butikers webbplatser och få uppdateringar för kända säkerhetsrisker, skadlig programvara och inaktuell programvara. Det här verktyget är en kostnadsfri tjänst för alla implementeringar och versioner av Adobe Commerce i molninfrastrukturen. Du kommer åt verktyget via [Commerce Marketplace](https://account.magento.com/customer/account/login).
+Med verktyget för säkerhetsgenomsökning kan du regelbundet övervaka dina butikers webbplatser och få uppdateringar för kända säkerhetsrisker, skadlig programvara och inaktuell programvara. Det här verktyget är en kostnadsfri tjänst för alla implementeringar och versioner av Adobe Commerce i molninfrastrukturen. Du kommer åt verktyget via ditt [Commerce Marketplace-konto](https://account.magento.com/customer/account/login).
 
 - Övervaka webbplatsens säkerhetsstatus och använda säkerhetsuppdateringar
 
 - Ta emot säkerhetsuppdateringar och platsspecifika meddelanden
 
-Se [Användarhandbok](https://docs.magento.com/user-guide/magento/security-scan.html) om du vill ha information om hur du konfigurerar och använder verktyget för säkerhetsgenomsökning. Vanligtvis börjar du använda det här verktyget när du börjar testa användargodkännande (UAT).
+Mer information om hur du konfigurerar och använder verktyget för säkerhetssökning finns i [användarhandboken](https://docs.magento.com/user-guide/magento/security-scan.html). Vanligtvis börjar du använda det här verktyget när du börjar testa användargodkännande (UAT).
 
 Varje plats som du skannar måste registreras via fliken Security Scan. Under registreringsprocessen måste du godkänna ansvarsfriskrivningen innan du kan börja skanna. Du styr både schemat och auktoriserar användaren att ta emot meddelanden när varje skanning är klar. Du kan schemalägga genomsökningar efter ett visst, återkommande datum och tid, eller köra en genomsökning på begäran efter behov.
 
@@ -80,17 +80,17 @@ Visbot/2.0 (+http://www.visvo.com/en/webmasters.jsp;bot@visvo.com)
 
 ## Skanna din webbplats
 
-1. Få åtkomst till dina [Commerce Marketplace](https://account.magento.com/customer/account/login).
+1. Gå till ditt [Commerce Marketplace-konto](https://account.magento.com/customer/account/login).
 
-1. Klicka på fliken Säkerhetsgenomsökning och välj **Gå till säkerhetsgenomsökning**.
+1. Klicka på fliken Säkerhetsgenomsökning och välj **Gå till Säkerhetsgenomsökning**.
 
-1. I _Åtgärder_ -kolumn för platsen, välj **Kör genomsökning**. En meddelandestatus visar den schemalagda sökningen.
+1. Välj **Kör skanning** i kolumnen _Åtgärder_ för platsen. En meddelandestatus visar den schemalagda sökningen.
 
 ### Så här granskar du rapporten:
 
 1. När rapporten är klar visas ett meddelande.
 
-1. På webbplatsraden väljer du den rapport som du vill visa på **Rapporter** kolumn. Ordern är den senaste till den äldsta.
+1. Markera den rapport som du vill visa i kolumnen **Rapporter** på webbplatsraden. Ordern är den senaste till den äldsta.
 
 I rapporten listas problem, inklusive misslyckade sökningar, oidentifierade resultat och lyckade sökningar. Varje tävlingsbidrag innehåller detaljerad information om sökningen, en lista över problem som ska undersökas och vilka åtgärder som ska vidtas. Vissa av dessa åtgärder kan kräva att du hämtar och installerar säkerhetsuppdateringar. Lägg till nödvändiga korrigeringsfiler i en utvecklingsgren på den lokala arbetsstationen innan du lägger till dem i produktionsgrenen.
 

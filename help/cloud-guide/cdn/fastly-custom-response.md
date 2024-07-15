@@ -14,11 +14,11 @@ ht-degree: 0%
 
 När en begäran till Fastly origin misslyckas returnerar Fastly standardsvarssidor med grundläggande formatering och generiska meddelanden som kan vara förvirrande för användarna. Följande standardfelsida returneras till exempel när en begäran till Fastly origin misslyckas på grund av ett 503-fel.
 
-![Standardfelsida snabbt](../../assets/cdn/fastly-503-example.png)
+![Snabbt standardfelsida](../../assets/cdn/fastly-503-example.png)
 
 Du kan uppdatera din Adobe Commerce Store-konfiguration så att vissa standardsvarssidor ersätts med sidor som har enklare meddelanden och förbättrad HTML-formatering, vilket visas i följande exempel.
 
-![Snabb anpassad felsida](../../assets/cdn/fastly-new-error-page.png)
+![Snabbt anpassad felsida](../../assets/cdn/fastly-new-error-page.png)
 
 För närvarande kan du anpassa följande snabbsvarssidor för ditt Adobe Commerce i molninfrastrukturprojekt.
 
@@ -60,9 +60,9 @@ Så här lägger du till den anpassade svarssidan i snabbkonfigurationen:
 
 {{admin-login-step}}
 
-1. Välj **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Välj **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
-1. Expandera i den högra rutan **Helsidescache** > **Snabb konfiguration** > **Anpassade syntetiska sidor**.
+1. Expandera **Helsidescache** > **Snabbkonfiguration** > **Anpassade syntetiska sidor** i den högra rutan.
 
    ![Redigera felsida 503](../../assets/cdn/fastly-custom-synthetic-pages-edit-html.png)
 
@@ -70,21 +70,21 @@ Så här lägger du till den anpassade svarssidan i snabbkonfigurationen:
 
 1. Kopiera och klistra in källkoden för den anpassade svarssidan i fältet HTML.
 
-   ![Felsida för uppdatering 503](../../assets/cdn/fastly-customize-503-response.png)
+   ![Uppdatera felsida 503](../../assets/cdn/fastly-customize-503-response.png)
 
-1. Välj **Överför** överst på sidan om du vill överföra den anpassade HTML-källan till snabbservern.
+1. Välj **Överför** högst upp på sidan om du vill överföra den anpassade HTML-källan till snabbservern.
 
-1. Välj **Spara konfiguration** överst på sidan om du vill spara den uppdaterade konfigurationsfilen.
+1. Välj **Spara konfiguration** högst upp på sidan om du vill spara den uppdaterade konfigurationsfilen.
 
 1. Uppdatera cachen.
 
-   - I meddelandet längst upp på sidan väljer du *Cachehantering* länk.
+   - Markera länken *Cachehantering* i meddelandet längst upp på sidan.
 
    - På sidan Cachehantering väljer du **Rensa Magento-cache**.
 
 ## Anpassa WAF-felsidan
 
-Kunderna ser följande standardfelsida för WAF när en begäran till Fastly origin misslyckas med en `403 Forbidden` fel orsakade av [WAF](fastly-waf-service.md) blockeringshändelse.
+Kunderna ser följande standardsida för WAF-fel när en begäran till Fastly origin misslyckas med ett `403 Forbidden`-fel som orsakas av en [WAF](fastly-waf-service.md) -blockeringshändelse.
 
 ![WAF-felsida](../../assets/cdn/fastly-waf-403-error.png)
 
@@ -104,7 +104,7 @@ I följande kodexempel visas HTML-källan för standardsidan:
 </html>
 ```
 
-Du kan använda **Anpassade syntetiska sidor** > **Redigera WAF-sida** på snabbkonfigurationsmenyn för att anpassa standardkoden för ditt Adobe Commerce i molninfrastrukturprojekt. När du redigerar koden ska du behålla följande rad som innehåller referens-ID:t för WAF-blockeringshändelsen:
+Du kan använda alternativet **Anpassade syntetiska sidor** > **Redigera WAF-sida** på snabbkonfigurationsmenyn för att anpassa standardkoden för ditt Adobe Commerce i molninfrastrukturprojekt. När du redigerar koden ska du behålla följande rad som innehåller referens-ID:t för WAF-blockeringshändelsen:
 
 ```html
 <p>"} req.http.x-request-id {"</p>
@@ -114,15 +114,15 @@ Du kan använda **Anpassade syntetiska sidor** > **Redigera WAF-sida** på snabb
 >
 >Alternativet Redigera WAF är bara tillgängligt om tjänsten Managed Cloud WAF är aktiverad för ditt Adobe Commerce-infrastrukturprojekt i molnet.
 
-**Redigera WAF-felsidan**:
+**Så här redigerar du WAF-felsidan**:
 
 1. [Logga in på Admin](../../get-started/onboarding.md#access-your-admin-panel).
 
-1. Välj **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Välj **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
-1. Expandera i den högra rutan **Helsidescache** > **Snabb konfiguration** > **Anpassade syntetiska sidor**.
+1. Expandera **Helsidescache** > **Snabbkonfiguration** > **Anpassade syntetiska sidor** i den högra rutan.
 
-   ![Alternativet Redigera WAF-felsida](../../assets/cdn/fastly-custom-synthetic-pages-edit-waf.png)
+   ![Redigera WAF-felsidalternativ](../../assets/cdn/fastly-custom-synthetic-pages-edit-waf.png)
 
 1. Välj **Redigera WAF-sida**.
 
@@ -130,23 +130,23 @@ Du kan använda **Anpassade syntetiska sidor** > **Redigera WAF-sida** på snabb
 
    ![Uppdatera WAF-felsida](../../assets/cdn/fastly-edit-waf-html.png)
 
-   - **Status** — Välj `403 Forbidden` status.
-   - **MIME-typ** — Typ `text/html`.
-   - **Innehåll** — Redigera standardsvaret från HTML för att lägga till anpassad CSS och uppdatera titeln och meddelandet efter behov.
+   - **Status** - Välj `403 Forbidden`-status.
+   - **MIME-typ** - typ `text/html`.
+   - **Innehåll** - Redigera standardsvaret från HTML för att lägga till anpassad CSS och uppdatera titeln och meddelandet efter behov.
 
-1. Välj **Överför** överst på sidan om du vill överföra den anpassade HTML-källan till snabbservern.
+1. Välj **Överför** högst upp på sidan om du vill överföra den anpassade HTML-källan till snabbservern.
 
-1. Välj **Spara konfiguration** överst på sidan om du vill spara den uppdaterade konfigurationsfilen.
+1. Välj **Spara konfiguration** högst upp på sidan om du vill spara den uppdaterade konfigurationsfilen.
 
 1. Uppdatera cachen.
 
-   - I meddelandet längst upp på sidan väljer du **Cachehantering** länk.
+   - Markera länken **Cachehantering** i meddelandet längst upp på sidan.
 
    - På sidan Cachehantering väljer du **Rensa Magento-cache**.
 
 ## Visa felrapportnummer
 
-Som standard döljs alla Adobe Commerce-fel bakom *503 Tjänsten är inte tillgänglig* fel. Om du vill visa rapportnumret för felloggen så att du kan hitta och granska felinformationen i loggarna öppnar du webbplatsen utan att använda dessa steg:
+Som standard döljer Fastly alla Adobe Commerce-fel bakom felet *503-tjänsten är inte tillgänglig* . Om du vill visa rapportnumret för felloggen så att du kan hitta och granska felinformationen i loggarna öppnar du webbplatsen utan att använda dessa steg:
 
 1. Hämta IP-adressen till din butik:
 
@@ -176,4 +176,4 @@ Som standard döljs alla Adobe Commerce-fel bakom *503 Tjänsten är inte tillg�
 
    - [Anslut till den drabbade miljön med SSH](../development/secure-connections.md#connect-to-a-remote-environment)
 
-   - Leta reda på `./var/report/{error_number}` -fil.
+   - Leta reda på filen `./var/report/{error_number}`.

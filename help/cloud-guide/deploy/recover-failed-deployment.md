@@ -21,7 +21,7 @@ Du kan återställa efter en misslyckad distribution på något av följande sä
 
 ## Rensa, ta bort och omdistribuera
 
-Om du vill rensa upp från den tidigare distributionen identifierar du komponenten som lades till eller uppdaterades och tar sedan bort den. Logga först in på fjärrmiljön och rensa innehållet i `var` katalog. Ta sedan bort komponenten från `composer.json` och distribuera om miljön.
+Om du vill rensa upp från den tidigare distributionen identifierar du komponenten som lades till eller uppdaterades och tar sedan bort den. Logga först in i fjärrmiljön och rensa innehållet i katalogen `var` manuellt. Ta sedan bort komponenten från filen `composer.json` och distribuera om miljön.
 
 **Så här rensar du `var` kataloger**:
 
@@ -33,7 +33,7 @@ Om du vill rensa upp från den tidigare distributionen identifierar du komponent
    magento-cloud ssh
    ```
 
-1. Rensa `var` kataloger.
+1. Rensa katalogerna `var`.
 
    ```shell
    rm -rf var/*
@@ -41,7 +41,7 @@ Om du vill rensa upp från den tidigare distributionen identifierar du komponent
 
 1. Logga ut.
 
-**Ta bort komponenten**:
+**Så här tar du bort komponenten**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -51,7 +51,7 @@ Om du vill rensa upp från den tidigare distributionen identifierar du komponent
    composer clear-cache
    ```
 
-1. Ta bort komponenten från `composer.json` -fil.
+1. Ta bort komponenten från filen `composer.json`.
 
    ```bash
    composer remove <component-name>:<version>
@@ -81,6 +81,6 @@ Om du vill rensa upp från den tidigare distributionen identifierar du komponent
 
 {{redeploy-warning}}
 
-Läs mer om återställning av en miljö utan säkerhetskopiering i [Återställa en miljö](../development/restore-environment.md).
+Mer information om hur du återställer en miljö utan säkerhetskopiering finns i [Återställa en miljö](../development/restore-environment.md).
 
 {{stuck-deployment-tip}}

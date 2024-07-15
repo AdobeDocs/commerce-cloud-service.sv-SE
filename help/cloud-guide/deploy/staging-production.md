@@ -18,51 +18,51 @@ När du är redo att distribuera din butik måste du slutföra distributionen oc
 
 >[!TIP]
 >
->Adobe rekommenderar att du skapar en [säkerhetskopia](../storage/snapshots.md) av miljön före driftsättning.
+>Adobe rekommenderar att du skapar en [säkerhetskopia](../storage/snapshots.md) av miljön före distributioner.
 
-Du kan även aktivera [Spåra driftsättningar med New Relic](../monitor/track-deployments.md) för att övervaka distributionshändelser och hjälpa er att analysera prestanda mellan distributioner.
+Du kan även aktivera [Spåra distributioner med New Relic](../monitor/track-deployments.md) för att övervaka distributionshändelser och hjälpa dig att analysera prestanda mellan distributioner.
 
 ## Startdistributionsflöde
 
-Adobe rekommenderar att du skapar en `staging` förgrening från `master` för att ge bästa möjliga stöd för utveckling och driftsättning av Starter-planer. Sedan har du två av fyra aktiva miljöer: `master` för produktion och `staging` för mellanlagring.
+Adobe rekommenderar att du skapar en `staging`-gren från `master`-grenen för att få bästa möjliga stöd för utveckling och distribution av Starter-planen. Sedan har du två av dina fyra aktiva miljöer klara: `master` för produktion och `staging` för mellanlagring.
 
-Detaljerad information om processen finns i [Arbetsflöde för att utveckla och distribuera](../architecture/starter-develop-deploy-workflow.md).
+Mer information om processen finns i [Arbetsflöde för att utveckla och distribuera start](../architecture/starter-develop-deploy-workflow.md).
 
 ## Driftsättningsflöde
 
-Pro har en stor integrationsmiljö med två aktiva grenar, en global `master` filialer, förproduktionsavdelningar och produktionsavdelningar. När du skapar ditt projekt är koden redo att förgrena, utveckla och pusha för att bygga och driftsätta din webbplats. Även om integreringsmiljön kan ha många grenar har Förproduktion och Produktion bara en gren för varje miljö.
+Pro levereras med en stor integreringsmiljö med två aktiva grenar, en global `master`-gren, mellanlagring och produktionsgrenar. När du skapar ditt projekt är koden redo att förgrena, utveckla och pusha för att bygga och driftsätta din webbplats. Även om integreringsmiljön kan ha många grenar har Förproduktion och Produktion bara en gren för varje miljö.
 
-Detaljerad information om processen finns i [Arbetsflöde för utveckling och distribution av Pro](../architecture/pro-develop-deploy-workflow.md).
+Mer information om processen finns i [Arbetsflödet Framkalla och distribuera i Pro](../architecture/pro-develop-deploy-workflow.md).
 
 ## Distribuera kod till mellanlagring
 
-I mellanlagringsmiljön finns en nästan produktionsmiljö som innehåller en databas, webbserver och alla tjänster, inklusive Fastly och New Relic. Du kan pusha, sammanfoga och distribuera via [[!DNL Cloud Console]](../project/overview.md) eller [CLI-kommandon i molnet](../dev-tools/cloud-cli-overview.md) via en terminalapplikation.
+I mellanlagringsmiljön finns en nästan produktionsmiljö som innehåller en databas, webbserver och alla tjänster, inklusive Fastly och New Relic. Du kan överföra, sammanfoga och distribuera fullständigt via [[!DNL Cloud Console]](../project/overview.md)- eller [ Cloud CLI-kommandona](../dev-tools/cloud-cli-overview.md) via ett terminalprogram.
 
 ### Distribuera kod med [!DNL Cloud Console]
 
-The [!DNL Cloud Console] innehåller funktioner för att skapa, hantera och distribuera kod i integrerings-, mellanlagrings- och produktionsmiljöer för Starter- och Pro-planer.
+[!DNL Cloud Console] innehåller funktioner för att skapa, hantera och distribuera kod i integrerings-, mellanlagrings- och produktionsmiljöer för Starter- och Pro-planer.
 
-**För Pro-projekt distribuerar du integreringsgrenen till mellanlagring**:
+**För Pro-projekt distribuerar du integrationsgrenen till mellanlagring**:
 
-1. [Logga in](https://accounts.magento.cloud) till ditt projekt.
-1. Välj `integration` gren.
-1. Välj **Sammanfoga** möjlighet att distribuera till mellanlagring.
+1. [Logga in](https://accounts.magento.cloud) i ditt projekt.
+1. Välj grenen `integration`.
+1. Välj alternativet **Koppla** som ska distribueras till Förproduktion.
 
    ![Sammanfoga](../../assets/button-merge.png){width="150"}
 
-1. Slutför alla [testning](../test/staging-and-production.md) i mellanlagringsmiljön.
-1. När mellanlagring är klar väljer du **Sammanfoga** möjlighet att distribuera till produktion.
+1. Slutför alla [tester](../test/staging-and-production.md) i mellanlagringsmiljön.
+1. När mellanlagring är klar väljer du alternativet **Sammanfoga** för att distribuera till Produktion.
 
-**Distribuera utvecklingsgrenen till mellanlagring för Starter**:
+**Distribuera utvecklingsgrenen till mellanlagring** för Starter:
 
-1. [Logga in](https://accounts.magento.cloud) till ditt projekt.
+1. [Logga in](https://accounts.magento.cloud) i ditt projekt.
 1. Välj den förberedda kodgrenen.
-1. Välj **Sammanfoga** möjlighet att distribuera till mellanlagring.
+1. Välj alternativet **Koppla** som ska distribueras till Förproduktion.
 
    ![Sammanfoga](../../assets/button-merge.png){width="150"}
 
-1. Slutför alla [testning](../test/staging-and-production.md) i mellanlagringsmiljön.
-1. När mellanlagring är klar väljer du **Sammanfoga** möjlighet att distribuera till produktion (`master`).
+1. Slutför alla [tester](../test/staging-and-production.md) i mellanlagringsmiljön.
+1. När mellanlagring är klar väljer du alternativet **Sammanfoga** som ska distribueras till produktion (`master`).
 
 ### Distribuera kod med kommandoraden
 
@@ -140,11 +140,11 @@ Cloud CLI innehåller kommandon för att distribuera kod. Du behöver SSH- och G
 
 ## Migrera statiska filer
 
-[Statiska filer](https://experienceleague.adobe.com/docs/commerce-operations/operational-playbook/glossary.html) lagras i `mounts`. Det finns två metoder för att migrera filer från en källmonteringsplats, till exempel din lokala miljö, till en målmonteringsplats. Båda metoderna använder `rsync` men Adobe rekommenderar att du använder `magento-cloud` CLI för att flytta filer mellan den lokala miljön och fjärrmiljön. Och Adobe rekommenderar att du använder `rsync` när du flyttar filer från en fjärrkälla till en annan fjärrplats.
+[Statiska filer](https://experienceleague.adobe.com/docs/commerce-operations/operational-playbook/glossary.html) lagras i `mounts`. Det finns två metoder för att migrera filer från en källmonteringsplats, till exempel din lokala miljö, till en målmonteringsplats. Båda metoderna använder verktyget `rsync`, men Adobe rekommenderar att du använder CLI `magento-cloud` för att flytta filer mellan den lokala miljön och fjärrmiljön. Och Adobe rekommenderar att du använder metoden `rsync` när du flyttar filer från en fjärrkälla till en annan fjärrplats.
 
 ### Migrera filer med CLI
 
-Du kan använda `mount:upload` och `mount:download` CLI-kommandon för att migrera filer mellan den lokala miljön och fjärrmiljön. Båda kommandona använder `rsync` men CLI-kommandona innehåller alternativ och instruktioner som är anpassade till Adobe Commerce i molninfrastrukturmiljö. Om du till exempel använder det enkla kommandot utan alternativ uppmanas du att välja vilka monteringar som ska laddas upp eller laddas ned.
+Du kan använda kommandona `mount:upload` och `mount:download` CLI för att migrera filer mellan den lokala miljön och fjärrmiljön. Båda kommandona använder verktyget `rsync`, men CLI-kommandona innehåller alternativ och uppmaningar som är anpassade till Adobe Commerce i molninfrastrukturmiljön. Om du till exempel använder det enkla kommandot utan alternativ uppmanas du att välja vilka monteringar som ska laddas upp eller laddas ned.
 
 ```bash
 magento-cloud mount:download
@@ -168,7 +168,7 @@ Downloading files from the remote mount pub/media to pub/media
 Are you sure you want to continue? [Y/n] Y
 ```
 
-**Så här överför du filer från en lokal `pub/media/` mapp till fjärrmappen `pub/media/` mapp för den aktuella miljön**:
+**Så här överför du filer från en lokal `pub/media/`-mapp till fjärrmappen `pub/media/` för den aktuella miljön**:
 
 ```bash
 magento-cloud mount:upload --source /path/to/project/pub/media/ --mount pub/media/
@@ -189,11 +189,11 @@ Are you sure you want to continue? [Y/n] Y
   total size is 154.57K  speedup is 18.23
 ```
 
-Använd `--help` för `mount:upload` och `mount:download` om du vill se fler alternativ. Det finns till exempel en `--delete` för att ta bort överflödiga filer under migreringen.
+Använd alternativet `--help` för kommandona `mount:upload` och `mount:download` om du vill se fler alternativ. Det finns till exempel ett `--delete`-alternativ för att ta bort överflödiga filer under migreringen.
 
 ### Migrera filer med hjälp av synkronisering
 
-Du kan också använda `rsync` verktyg för att migrera filer.
+Du kan också använda verktyget `rsync` för att migrera filer.
 
 ```bash
 rsync -azvP <source> <destination>
@@ -201,30 +201,30 @@ rsync -azvP <source> <destination>
 
 Det här kommandot använder följande alternativ:
 
-- `a`-archive
+- `a`-arkiv
 - `z`-komprimera filer under migreringen
-- `v`-verbose
-- `P`-delvis förlopp
+- `v` - utförlig
+- `P`-partiella förlopp
 
-Se [rsync](https://linux.die.net/man/1/rsync) hjälp.
+Se hjälpen för [rsync](https://linux.die.net/man/1/rsync).
 
 >[!NOTE]
 >
->Om du vill överföra media direkt från fjärr-till-fjärrmiljöer måste du aktivera vidarebefordran av SSH-agenten, se [GitHub-vägledning](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding).
+>Om du vill överföra media direkt från fjärr-till-fjärr-miljöer måste du aktivera vidarebefordran av SSH-agenten, se [GitHub-vägledning](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding).
 
-**Migrera statiska filer från fjärrmiljöer till fjärrmiljöer direkt (snabb hantering)**:
+**Så här migrerar du statiska filer från fjärr-till-fjärr-miljöer direkt (snabb hantering)**:
 
-1. Använd SSH för att logga in i källmiljön. Använd inte `magento-cloud` CLI. Använda `-A` Alternativet är viktigt eftersom det möjliggör vidarebefordran av autentiseringsagentanslutningen.
+1. Använd SSH för att logga in i källmiljön. Använd inte CLI:n för `magento-cloud`. Det är viktigt att använda alternativet `-A` eftersom det möjliggör vidarebefordran av autentiseringsagentanslutningen.
 
    >[!TIP]
    >
-   >För att hitta **SSH-åtkomst** länk i [!DNL Cloud Console], väljer miljö och klickar på **Åtkomstplats**.
+   >Om du vill hitta länken **SSH-åtkomst** i [!DNL Cloud Console] markerar du miljön och klickar på **Åtkomstplats**.
 
    ```bash
    ssh -A <environment_ssh_link@ssh.region.magento.cloud>
    ```
 
-1. Använd `rsync` för att kopiera `pub/media` från källmiljön till en annan fjärrmiljö.
+1. Använd kommandot `rsync` för att kopiera katalogen `pub/media` från källmiljön till en annan fjärrmiljö.
 
    ```bash
    rsync -azvP pub/media/ <destination_environment_ssh_link@ssh.region.magento.cloud>:pub/media/
@@ -240,21 +240,21 @@ Se [rsync](https://linux.die.net/man/1/rsync) hjälp.
 
 >[!BEGINSHADEBOX]
 
-**Krav:** En databasdump (se steg 3) bör innehålla databasutlösare. Bekräfta att du har [UTLÖSARprivilegium](https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_trigger).
+**Förutsättning:** En databasdump (se steg 3) ska innehålla databasutlösare. Bekräfta att du har privilegiet [TRIGGER](https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_trigger) om du vill dumpa dem.
 
 >[!IMPORTANT]
 >
 >Integreringsmiljödatabasen är endast till för utvecklingstestning och kan innehålla data som du inte vill migrera till Förproduktion och Produktion.
 
-För kontinuerlig integration, Adobe **rekommenderar inte** migrera data från integrering till förproduktion och produktion. Du kan skicka testdata eller skriva över viktiga data. Alla viktiga konfigurationer skickas med [konfigurationsfil](../store/store-settings.md) och `setup:upgrade` under bygge och driftsättning.
+Adobe **rekommenderar inte** att migrera data från integrering till mellanlagring och produktion för kontinuerlig integrering. Du kan skicka testdata eller skriva över viktiga data. Viktiga konfigurationer skickas med kommandot [konfigurationsfilen](../store/store-settings.md) och `setup:upgrade` under bygget och distributionen.
 
 >[!ENDSHADEBOX]
 
-Adobe **rekommenderas** migrera data från produktion till mellanlagring för att testa webbplatsen och lagra den i en nära produktionsmiljö med alla tjänster och inställningar.
+Adobe **rekommenderar** att du migrerar data från Production till Staging för att fullständigt testa din webbplats och lagra den i en närproduktionsmiljö med alla tjänster och inställningar.
 
 >[!NOTE]
 >
->Om du vill överföra media från fjärr-till-fjärrmiljöer direkt måste du aktivera vidarebefordran av Ssh Agent finns i [GitHub-vägledning](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding).
+>Om du vill överföra media från fjärr-till-fjärr-miljöer direkt måste du aktivera Ssh Agent-vidarebefordran, se [GitHub-vägledning](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding).
 
 ### Säkerhetskopiera databasen
 
@@ -262,7 +262,7 @@ Det är en god vana att skapa en säkerhetskopia av databasen. Följande procedu
 
 **Så här dumpar du databasen**:
 
-1. [Använd SSH för att logga in på fjärrmiljön](../development/secure-connections.md#use-an-ssh-command) som innehåller den databas som ska kopieras.
+1. [Använd SSH för att logga in i fjärrmiljön](../development/secure-connections.md#use-an-ssh-command) som innehåller den databas som ska kopieras.
 
 1. Visa en lista över miljörelationerna och notera databasinloggningsinformationen.
 
@@ -270,19 +270,19 @@ Det är en god vana att skapa en säkerhetskopia av databasen. Följande procedu
    php -r 'print_r(json_decode(base64_decode($_ENV["MAGENTO_CLOUD_RELATIONSHIPS"]))->database);'
    ```
 
-   För Pro Staging and Production heter databasen i `MAGENTO_CLOUD_RELATIONSHIPS` variabel (vanligtvis samma som programnamnet och användarnamnet).
+   För Pro Staging and Production finns databasens namn i variabeln `MAGENTO_CLOUD_RELATIONSHIPS` (vanligtvis samma som programnamnet och användarnamnet).
 
-1. Skapa en säkerhetskopia av databasen. Om du vill välja en målkatalog för databasdumpen använder du `--dump-directory` alternativ.
+1. Skapa en säkerhetskopia av databasen. Om du vill välja en målkatalog för DB-dumpen använder du alternativet `--dump-directory`.
 
-   För Starter-miljöer och Pro-integreringsmiljöer använder du `main` som databasens namn:
+   För Starter-miljöer och Pro-integreringsmiljöer använder du `main` som namn på databasen:
 
    ```bash
    php vendor/bin/ece-tools db-dump main
    ```
 
    Dumpa alternativ:
-   - `--dump-directory=<dir>`—Välj en målkatalog för databasdumpen
-   - `--remove-definers`—Ta bort DEFINER-satser från databasdumpen
+   - `--dump-directory=<dir>` - Välj en målkatalog för databasdumpen
+   - `--remove-definers` - Ta bort DEFINER-satser från databasdumpen
 
 1. Även om metoden ECE-Tools är att föredra är en annan metod att skapa en databasdumpfil med hjälp av MySQL i GZIP-format.
 
@@ -296,7 +296,7 @@ Det är en god vana att skapa en säkerhetskopia av databasen. Följande procedu
    mysqldump -h <database-host> --user=<database-username> --password=<password> --single-transaction --triggers --ignore-table=<database-name>.tfa_user_config --ignore-table=<database-name>.tfa_country_codes <database-name> | gzip - > /tmp/database.sql.gz
    ```
 
-1. Typ `logout` för att avsluta SSH-anslutningen.
+1. Skriv `logout` för att avsluta SSH-anslutningen.
 
 ### Släpp och återskapa databasen
 
@@ -312,7 +312,7 @@ När du importerar data måste du släppa och skapa en databas.
    mysql --host=127.0.0.1 --user='<database-username>' --pass='<user-password>' --database='<name>' --port='<port>'
    ```
 
-1. På `MariaDB [main]>` släpper du databasen.
+1. Släpp databasen vid `MariaDB [main]>`-prompten.
 
    För integrering med Starter och Pro:
 

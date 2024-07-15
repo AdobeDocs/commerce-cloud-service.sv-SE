@@ -12,19 +12,19 @@ ht-degree: 0%
 
 # Uppdatera ECE-verktygspaketet
 
-En uppdatering av `ece-tools` uppdaterar även det andra [Cloud Tools Suite for Commerce-paket](../release-notes/cloud-tools-suite.md), som är beroenden för `ece-tools`. Därför måste du använda en version av Adobe Commerce i molninfrastruktur som har stöd för `ece-tools` paket.
+En uppdatering av `ece-tools`-paketet uppdaterar även de andra [ Cloud Tools Suite för Commerce-paketen](../release-notes/cloud-tools-suite.md), som är beroenden för `ece-tools`. Därför måste du använda en version av Adobe Commerce i molninfrastrukturen som stöder paketet `ece-tools`.
 
 {{ece-tools-package}}
 
 **Förutsättningar**:
 
-- Innan du uppdaterar `ece-tools`, granska [Versionsinformation om Cloud Tools Suite för Commerce](../release-notes/cloud-tools-suite.md).
-- Om du uppdaterar från `ece-tools` 2002.0.22 eller tidigare till 2002.1.0, recension [Bakåtkompatibla ändringar](../release-notes/backward-incompatible-changes.md) och göra nödvändiga ändringar i ditt Adobe Commerce i molninfrastrukturprojekt.
-- Granska [Uppgraderingar och korrigeringar](../development/commerce-version.md#upgrade-from-older-versions) för att fastställa vilka versioner av ECE-verktygen som är kompatibla med din Adobe Commerce för molninfrastrukturprojekt.
+- Innan du uppdaterar `ece-tools` bör du läsa versionsinformationen för [Cloud Tools Suite for Commerce](../release-notes/cloud-tools-suite.md).
+- Om du uppdaterar från `ece-tools` 2002.0.22 eller tidigare till 2002.1.0 kan du granska [Inkompatibla ändringar bakåt](../release-notes/backward-incompatible-changes.md) och göra nödvändiga ändringar i ditt Adobe Commerce-infrastrukturprojekt i molnet.
+- Granska [Uppgraderingar och korrigeringar](../development/commerce-version.md#upgrade-from-older-versions) för att avgöra vilka ECE-verktyg-versioner som är kompatibla med ditt Adobe Commerce i molninfrastruktursprojekt.
 
 {{upgrade-tip}}
 
-**Uppdatera `ece-tools` package**:
+**Så här uppdaterar du `ece-tools` package**:
 
 1. Utför en uppdatering med Composer på din lokala arbetsstation.
 
@@ -34,7 +34,7 @@ En uppdatering av `ece-tools` uppdaterar även det andra [Cloud Tools Suite for 
 
    >[!NOTE]
    >
-   >Om du inte kan uppdatera bortom `ece-tools` version 2002.0.8, se [Uppgradera projekt till ECE-verktygspaket](install-package.md).
+   >Om du inte kan uppdatera efter `ece-tools` version 2002.0.8, se [Uppgradera projekt för att använda ECE-verktygspaket](install-package.md).
 
 1. Lägg till, implementera och push-ändra kod.
 

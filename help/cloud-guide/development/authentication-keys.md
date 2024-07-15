@@ -15,29 +15,29 @@ ht-degree: 0%
 
 Du måste ha en autentiseringsnyckel för att få tillgång till Adobe Commerce-databasen och för att kunna aktivera installations- och uppdateringskommandon för ditt Adobe Commerce i molninfrastrukturprojekt. Det finns två metoder för att ange autentiseringsuppgifter för Composer-autentisering.
 
-- **autentiseringsfil**—En fil som innehåller din Adobe Commerce [autentiseringsuppgifter](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/authentication-keys.html) i Adobe Commerce i molninfrastrukturens rotkatalog.
-- **miljövariabel**- En miljövariabel som konfigurerar autentiseringsnycklar i ditt Adobe Commerce-infrastrukturprojekt för att förhindra oavsiktlig exponering.
+- **autentiseringsfil** - En fil som innehåller dina Adobe Commerce [autentiseringsuppgifter](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/authentication-keys.html) i din Adobe Commerce i molninfrastrukturens rotkatalog.
+- **miljövariabel** - En miljövariabel som konfigurerar autentiseringsnycklar i ditt Adobe Commerce-infrastrukturprojekt för att förhindra oavsiktlig exponering.
 
 >[!BEGINSHADEBOX]
 
-**Säkerhetsanvisning**
+**Säkerhetsanteckning**
 
-Adobe rekommenderar att du använder [miljövariabel](#composer-auth-environment-variable) i ditt molnprojekt för att förhindra oavsiktlig exponering av dina autentiseringsuppgifter.
+Adobe rekommenderar att du använder metoden [för miljövariabel](#composer-auth-environment-variable) tillsammans med ditt molnprojekt för att förhindra oavsiktlig exponering av dina autentiseringsuppgifter.
 
-Metoden för autentiseringsfilen är idealisk när du använder Cloud Docker för Commerce som ett lokalt utvecklingsverktyg, men var noga med att inte överföra `auth.json` till en offentlig Git-baserad databas. Du kan lägga till `auth.json` till [`.gitignore` fil](../project/file-structure.md#ignoring-files).
+Autentiseringsfilmetoden är idealisk när du använder Cloud Docker för Commerce som ett lokalt utvecklingsverktyg, men du bör inte överföra filen `auth.json` till en offentlig Git-baserad databas. Du kan lägga till filen `auth.json` i filen [`.gitignore` ](../project/file-structure.md#ignoring-files).
 
 >[!ENDSHADEBOX]
 
 ## Autentiseringsfil
 
-**Skapa en `auth.json` fil**:
+**Så här skapar du en `auth.json` fil**:
 
-1. Om du inte har en `auth.json` i projektets rotkatalog, skapa en.
+1. Om du inte har någon `auth.json`-fil i projektets rotkatalog skapar du en.
 
-   - Skapa en `auth.json` i projektets rotkatalog.
-   - Kopiera innehållet i [exempel `auth.json`](https://github.com/magento/magento2/blob/2.3/auth.json.sample) till nya `auth.json` -fil.
+   - Skapa en `auth.json`-fil i projektets rotkatalog med en textredigerare.
+   - Kopiera innehållet i [exemplet `auth.json`](https://github.com/magento/magento2/blob/2.3/auth.json.sample) till den nya `auth.json`-filen.
 
-1. Ersätt `<public-key>` och `<private-key>` med dina inloggningsuppgifter för Adobe Commerce.
+1. Ersätt `<public-key>` och `<private-key>` med dina autentiseringsuppgifter för Adobe Commerce.
 
    ```json
    {
@@ -56,19 +56,19 @@ Metoden för autentiseringsfilen är idealisk när du använder Cloud Docker fö
 
 Följande metod är det bästa sättet att förhindra oavsiktlig exponering av känsliga uppgifter i en offentlig Git-baserad databas.
 
-**Lägga till autentiseringsnycklar med en miljövariabel**:
+**Så här lägger du till autentiseringsnycklar med en miljövariabel**:
 
-1. I _[!DNL Cloud Console]_klickar du på konfigurationsikonen till höger om projektnavigeringen.
+1. Klicka på konfigurationsikonen till höger om projektnavigeringen i _[!DNL Cloud Console]_.
 
    ![Konfigurera projekt](../../assets/icon-configure.png){width="36"}
 
-1. I _Projektinställningar_ lista, klicka på **[!UICONTROL Variables]**.
+1. Klicka på **[!UICONTROL Variables]** i listan _Projektinställningar_.
 
 1. Klicka på **[!UICONTROL Create variable]**.
 
-1. I **[!UICONTROL Variable name]** fält, ange `env:COMPOSER_AUTH`.
+1. Ange `env:COMPOSER_AUTH` i fältet **[!UICONTROL Variable name]**.
 
-1. I _Värde_ lägg till följande och ersätt `<public-key>` och `<private-key>` med dina inloggningsuppgifter för Adobe Commerce:
+1. I fältet _Värde_ lägger du till följande och ersätter `<public-key>` och `<private-key>` med dina autentiseringsuppgifter för Adobe Commerce:
 
    ```json
    {
@@ -81,8 +81,8 @@ Följande metod är det bästa sättet att förhindra oavsiktlig exponering av k
    }
    ```
 
-1. Välj **[!UICONTROL Available during buildtime]** och avmarkera **[!UICONTROL Available during runtime]**.
+1. Markera **[!UICONTROL Available during buildtime]** och avmarkera **[!UICONTROL Available during runtime]**.
 
 1. Klicka på **[!UICONTROL Create variable]**.
 
-1. Ta bort `auth.json` fil från varje miljö.
+1. Ta bort filen `auth.json` från varje miljö.

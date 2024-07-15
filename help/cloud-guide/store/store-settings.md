@@ -12,65 +12,65 @@ ht-degree: 0%
 
 # Hantera butikskonfiguration
 
-Standardkonfigurationerna för din butik lagras i en `config.xml` för lämplig modul. När du ändrar inställningar i Commerce Admin eller CLI `bin/magento config:set` -kommandot återspeglas ändringarna i kärndatabasen, särskilt `core_config_data` tabell. Dessa inställningar skriver över standardkonfigurationerna som lagras i `config.xml` -fil.
+Standardkonfigurationerna för din butik lagras i en `config.xml` för rätt modul. När du ändrar inställningarna i Commerce Admin eller CLI `bin/magento config:set` återspeglas ändringarna i kärndatabasen, särskilt i tabellen `core_config_data`. De här inställningarna skriver över standardkonfigurationerna som lagras i filen `config.xml`.
 
-Lagringsinställningar som refererar till konfigurationerna i administratören **Lager** > **Inställningar** > **Konfiguration** lagras i distributionskonfigurationsfilerna baserat på typen av konfiguration:
+Lagringsinställningarna, som refererar till konfigurationerna i avsnittet Admin **Stores** > **Settings** > **Configuration** , lagras i distributionskonfigurationsfilerna baserat på typen av konfiguration:
 
-- `app/etc/config.php`—konfigurationsinställningar för butiker, webbplatser, moduler eller tillägg, statisk filoptimering och systemvärden för statisk innehållsdistribution. Se [config.php-referens](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/files/config-reference-configphp.html) i _Konfigurationshandbok_.
-- `app/etc/env.php`—värden för systemspecifika åsidosättningar och känsliga inställningar som bör _NOT_ lagras i en källkontroll. Se [env.php reference](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/files/config-reference-envphp.html) i _Konfigurationshandbok_.
+- `app/etc/config.php` - konfigurationsinställningar för butiker, webbplatser, moduler eller tillägg, statisk filoptimering och systemvärden för statisk innehållsdistribution. Se referensen [config.php](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/files/config-reference-configphp.html) i _konfigurationshandboken_.
+- `app/etc/env.php` - värden för systemspecifika åsidosättningar och känsliga inställningar som _INTE_ ska lagras i källkontrollen. Se referensen [env.php](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/files/config-reference-envphp.html) i _konfigurationshandboken_.
 
 >[!NOTE]
 >
->Eftersom Adobe Commerce i molninfrastrukturen endast stöder produktions- och underhållslägen kan **Avancerat** > **Utvecklare** -avsnittet är inte tillgängligt i Admin. Du måste ha [behörighet för systemadministratör](../project/user-access.md) för att slutföra konfigurationshanteringsåtgärder. Du kan konfigurera ytterligare inställningar med [miljövariabler](../environment/configure-env-yaml.md).
+>Eftersom Adobe Commerce i molninfrastrukturen endast stöder produktions- och underhållslägen är **Avancerat** > **Utvecklare** inte tillgängligt i Admin. Du måste ha [systemadministratörsbehörighet](../project/user-access.md) för att kunna slutföra konfigurationshanteringsuppgifter. Du kan konfigurera ytterligare inställningar med [miljövariabler](../environment/configure-env-yaml.md).
 
-Konfigurationshantering är ett sätt att driftsätta enhetliga lagringsinställningar i alla miljöer med minimalt antal driftavbrott med hjälp av driftsättning i pipeline. Adobe Commerce i molninfrastrukturprojektet innehåller byggservern, bygg- och driftsättningsskript och driftsättningsmiljöer som utformats med [strategi för driftsättning av pipeline](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/deployment/technical-details.html) Jag tänker.
+Konfigurationshantering är ett sätt att driftsätta enhetliga lagringsinställningar i alla miljöer med minimalt antal driftavbrott med hjälp av driftsättning i pipeline. Adobe Commerce i molninfrastrukturprojektet innehåller byggservern, bygg och distribuera skript och distributionsmiljöer som utformats med [pipeline-distributionsstrategin](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/deployment/technical-details.html) i åtanke.
 
 ## Schema för åsidosättning av konfiguration
 
 Alla systemkonfigurationer ställs in under bygg- och distributionsfaserna enligt följande åsidosättningsschema:
 
 1. Om det finns en miljövariabel använder du den anpassade konfigurationen och ignorerar standardkonfigurationen.
-1. Om det inte finns någon systemvariabel använder du konfigurationen från en `MAGENTO_CLOUD_RELATIONSHIPS` namnvärdespar i [`.magento.app.yaml` fil](../application/configure-app-yaml.md). Ignorera standardkonfigurationen.
-1. Om en miljövariabel inte finns och `MAGENTO_CLOUD_RELATIONSHIPS` innehåller inget namn/värde-par, tar bort all anpassad konfiguration och använder värdena från standardkonfigurationen.
+1. Om det inte finns någon miljövariabel använder du konfigurationen från ett `MAGENTO_CLOUD_RELATIONSHIPS` namn/värde-par i [`.magento.app.yaml` file](../application/configure-app-yaml.md) . Ignorera standardkonfigurationen.
+1. Om det inte finns någon miljövariabel och `MAGENTO_CLOUD_RELATIONSHIPS` inte innehåller något namn/värde-par tar du bort all anpassad konfiguration och använder värdena från standardkonfigurationen.
 
 Sammanfattningsvis åsidosätter miljövariabler alla andra värden.
 
 >[!TIP]
 >
->Se [Konfigurationshantering](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/deployment/technical-details.html) i _Konfigurationsguide_ om du vill ha mer information om åsidosättningsschemat för distribution av pipeline.
+>Se [Konfigurationshantering](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/deployment/technical-details.html) i _Konfigurationsguiden_ för mer information om åsidosättningsschemat för pipeline-distribution.
 
 Om samma inställning är konfigurerad på flera platser använder programmet följande konfigurationshierarki för att avgöra vilket värde som ska användas i miljön:
 
 | Prioritet | Konfiguration<br>Metod | Beskrivning |
 | -------- | ------------------------ | ----------- |
-| 1 | [!DNL Cloud Console]<br>miljövariabler | Värden som lagts till från _Variabel_ fliken med miljökonfiguration i [!DNL Cloud Console]. Ange värden här för känsliga eller miljöspecifika konfigurationer. Inställningarna som anges här kan inte redigeras från administratören. Se [Miljökonfigurationsvariabler](../project/overview.md#configure-environment). |
-| 2 | `.magento.app.yaml` | Värden som lagts till i `variables` i `.magento.app.yaml` -fil. Ange värden här för att säkerställa en konsekvent konfiguration i alla miljöer. **Ange inte känsliga värden i `.magento.app.yaml` -fil.** Se [Programinställningar](../application/configure-app-yaml.md). |
-| 3 | `app/etc/env.php` | Miljöspecifika konfigurationsvärden som lagras här läggs till med `app:config:dump` -kommando. Ange systemspecifika och känsliga värden med hjälp av systemvariabler eller CLI. Se [Känsliga data](#sensitive-data). The `env.php` filen är **not** ingår i källkontrollen. |
-| 4 | `app/etc/config.php` | Värden som lagras här läggs till med `app:config:dump` -kommando. Delade konfigurationsvärden läggs till i `config.php`. Ange delad konfiguration från administratören eller med CLI. The `config.php` filen ingår i källkontrollen. |
+| 1 | [!DNL Cloud Console]<br> miljövariabler | Värden som lagts till från fliken _Variabler_ i miljökonfigurationen i [!DNL Cloud Console]. Ange värden här för känsliga eller miljöspecifika konfigurationer. Inställningarna som anges här kan inte redigeras från administratören. Se [Miljökonfigurationsvariabler](../project/overview.md#configure-environment). |
+| 2 | `.magento.app.yaml` | Värden som lagts till i `variables`-avsnittet i filen `.magento.app.yaml`. Ange värden här för att säkerställa en konsekvent konfiguration i alla miljöer. **Ange inte känsliga värden i filen `.magento.app.yaml`.** Se [Programinställningar](../application/configure-app-yaml.md). |
+| 3 | `app/etc/env.php` | Miljöspecifika konfigurationsvärden som lagras här läggs till med kommandot `app:config:dump`. Ange systemspecifika och känsliga värden med hjälp av systemvariabler eller CLI. Se [Känsliga data](#sensitive-data). Filen `env.php` ingår **inte** i källkontrollen. |
+| 4 | `app/etc/config.php` | Värden som lagras här läggs till med kommandot `app:config:dump`. Delade konfigurationsvärden läggs till i `config.php`. Ange delad konfiguration från administratören eller med CLI. Filen `config.php` ingår i källkontrollen. |
 | 5 | Databas | Värden som lagras här läggs till genom att konfigurationer ställs in i administratören. Konfigurationer som angetts med någon av ovanstående metoder är låsta (nedtonade) och kan inte redigeras från administratören. |
-| 6 | `config.xml` | Många konfigurationer har standardvärden angivna i `config.xml` för en modul. Om Adobe Commerce inte hittar något värde som angetts av någon av de föregående metoderna, återgår det till standardvärdet, om det angetts. |
+| 6 | `config.xml` | Många konfigurationer har standardvärden angivna i filen `config.xml` för en modul. Om Adobe Commerce inte hittar något värde som angetts av någon av de föregående metoderna, återgår det till standardvärdet, om det angetts. |
 
 {style="table-layout:auto"}
 
 ## Konfigurationsdump
 
-Du kan använda följande `ece-tools` kommando för att generera `config.php` fil som innehåller alla aktuella lagringskonfigurationer:
+Du kan använda följande `ece-tools`-kommando för att generera en `config.php`-fil som innehåller alla aktuella lagringskonfigurationer:
 
 ```bash
 ./vendor/bin/ece-tools config:dump
 ```
 
-Data&quot;dumpade&quot; till `app/etc/config.php` filen blir _låst_, vilket innebär att motsvarande fält i Commerce Admin blir **skrivskyddad**. The `config.php` -filen innehåller bara de inställningar som du konfigurerar. Standardvärdena låses inte. Genom att bara låsa de värden som du uppdaterar säkerställs också att alla tillägg som används i mellanlagrings- och produktionsmiljöer inte bryts på grund av skrivskyddade konfigurationer, speciellt Snabbt.
+Data&quot;dumpade&quot; till filen `app/etc/config.php` blir _låsta_, vilket innebär att motsvarande fält i Commerce Admin blir **skrivskyddade**. Filen `config.php` innehåller bara de inställningar som du konfigurerar. Standardvärdena låses inte. Genom att bara låsa de värden som du uppdaterar säkerställs också att alla tillägg som används i mellanlagrings- och produktionsmiljöer inte bryts på grund av skrivskyddade konfigurationer, speciellt Snabbt.
 
 >[!WARNING]
 >
->The `ece-tools config:dump` -kommandot hämtar inte detaljerade konfigurationer för moduler, som B2B. Om du behöver en omfattande konfigurationsdump använder du `app:config:dump` men det här kommandot låser konfigurationsvärden i ett skrivskyddat läge.
+>Kommandot `ece-tools config:dump` hämtar inte detaljerade konfigurationer för moduler, t.ex. B2B. Om du behöver en omfattande konfigurationsdump använder du kommandot `app:config:dump`, men det här kommandot låser konfigurationsvärden i ett skrivskyddat läge.
 
 ### Känsliga data
 
-Alla känsliga konfigurationer exporteras till `app/etc/env.php` när du använder `bin/magento app:config:dump` -kommando. Du kan ange känsliga värden med kommandot CLI: `bin/magento config:sensitive:set`. Se  [Känsliga och miljöspecifika inställningar](https://developer.adobe.com/commerce/php/development/configuration/sensitive-environment-settings/) i _Commerce PHP-tillägg_ för att lära dig hur du anger konfigurationsinställningar som känsliga eller systemspecifika.
+Alla känsliga konfigurationer exporteras till filen `app/etc/env.php` när du använder kommandot `bin/magento app:config:dump`. Du kan ange känsliga värden med CLI-kommandot: `bin/magento config:sensitive:set`. Mer information om hur du anger konfigurationsinställningar som känsliga eller systemspecifika finns i [Känsliga och miljöspecifika inställningar](https://developer.adobe.com/commerce/php/development/configuration/sensitive-environment-settings/) i guiden _Commerce PHP-tillägg_ .
 
-Se en lista med [Känsliga eller systemspecifika inställningar](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/paths/config-reference-sens.html) i _Konfigurationshandbok_.
+Se en lista med [känsliga eller systemspecifika inställningar](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/paths/config-reference-sens.html) i _konfigurationshandboken_.
 
 ### SCD-prestanda
 
@@ -109,15 +109,15 @@ Flytta SCD_*-variablerna till byggscenen:
 
 >[!NOTE]
 >
->Innan statiska filer distribueras komprimeras statiskt innehåll med GZIP i bygg- och distributionsfaserna. Komprimering av statiska filer minskar belastningen på servern och ökar platsens prestanda. Se [byggalternativ](../environment/variables-build.md) om du vill veta mer om hur du anpassar eller inaktiverar filkomprimering.
+>Innan statiska filer distribueras komprimeras statiskt innehåll med GZIP i bygg- och distributionsfaserna. Komprimering av statiska filer minskar belastningen på servern och ökar platsens prestanda. Mer information om hur du anpassar eller inaktiverar filkomprimering finns i [byggalternativ](../environment/variables-build.md).
 
 ## Procedur för att hantera dina inställningar
 
 Följande illustrerar en översikt över processen på hög nivå:
 
-![Översikt över konfigurationshantering för Starter](../../assets/starter/configuration-management-flow.png)
+![Översikt över hanteringen av startkonfigurationen](../../assets/starter/configuration-management-flow.png)
 
-**Konfigurera arkivet och generera en konfigurationsfil**:
+**Så här konfigurerar du arkivet och skapar en konfigurationsfil**:
 
 1. Slutför alla konfigurationer för butikerna i Admin för en av miljöerna:
 
@@ -152,15 +152,15 @@ När distributionen är klar loggar du in på Admin för den uppdaterade miljön
 
 ### Uppdatera konfigurationer
 
-När du ändrar miljön via Admin och kör kommandot igen läggs nya konfigurationer till i koden i `config.php` -fil.
+När du ändrar miljön via Admin och kör kommandot igen läggs nya konfigurationer till i koden i filen `config.php`.
 
 >[!WARNING]
 >
->Du kan redigera `config.php` -filen i mellanlagrings- och produktionsmiljöer är **not** rekommenderas. Filen hjälper till att hålla alla konfigurationer konsekventa i alla miljöer. Ta aldrig bort `config.php` fil för att återskapa den. Om du tar bort filen kan specifika konfigurationer och inställningar som krävs för bygg- och distributionsprocesser tas bort.
+>Du kan redigera filen `config.php` manuellt i miljö för förproduktion och produktion, men du bör **inte** göra det. Filen hjälper till att hålla alla konfigurationer konsekventa i alla miljöer. Ta aldrig bort filen `config.php` för att återskapa den. Om du tar bort filen kan specifika konfigurationer och inställningar som krävs för bygg- och distributionsprocesser tas bort.
 
 ### Återställ konfigurationsfiler
 
-Kopior av originalet `app/etc/env.php` och `app/etc/config.php` filer skapades under distributionsprocessen och lagras i samma mapp. Följande visar BAK (säkerhetskopierade filer) och PHP (ursprungliga filer) i samma `app/etc` mapp:
+Kopior av de ursprungliga `app/etc/env.php`- och `app/etc/config.php`-filerna skapades under distributionsprocessen och lagras i samma mapp. Följande visar BAK (säkerhetskopieringsfiler) och PHP (originalfiler) i samma `app/etc`-mapp:
 
 ```terminal
 ...
@@ -174,7 +174,7 @@ env.php
 ...
 ```
 
-Äldre konfigurationer som används i `app/etc/config.local.php` -fil. Se [Migrera äldre konfigurationer](#migrate-older-configurations).
+Äldre konfigurationer använde filen `app/etc/config.local.php`. Se [Migrera äldre konfigurationer](#migrate-older-configurations).
 
 **Så här återställer du konfigurationsfiler**:
 
@@ -206,37 +206,37 @@ env.php
 
 ### Migrera äldre konfigurationer
 
-Om du uppgraderar till Adobe Commerce i molninfrastruktur 2.2 eller senare kanske du vill migrera inställningarna från `config.local.php` till din nya `config.php` -fil. Om konfigurationsinställningarna i din administratör matchar innehållet i filen följer du instruktionerna för att generera och lägga till `config.php` -fil.
+Om du uppgraderar till Adobe Commerce i molninfrastruktur 2.2 eller senare kanske du vill migrera inställningar från filen `config.local.php` till den nya `config.php`-filen. Om konfigurationsinställningarna i din administratör matchar innehållet i filen följer du instruktionerna för att generera och lägga till filen `config.php`.
 
-Om de skiljer sig åt kan du lägga till innehåll från `config.local.php` till din nya `config.php` fil:
+Om de skiljer sig åt kan du lägga till innehåll från filen `config.local.php` till den nya `config.php`-filen:
 
-1. Följ instruktionerna för att generera `config.php` -fil.
+1. Följ instruktionerna för att generera filen `config.php`.
 
-1. Öppna `config.php` och ta bort den sista raden.
+1. Öppna filen `config.php` och ta bort den sista raden.
 
-1. Öppna `config.local.php` och kopiera innehållet.
+1. Öppna filen `config.local.php` och kopiera innehållet.
 
-1. Klistra in innehållet i `config.php` , spara och lägga till i Git.
+1. Klistra in innehållet i filen `config.php`, spara och lägg sedan till det i Git.
 
 1. Driftsätt i olika miljöer.
 
-Du slutför bara den här migreringen en gång. Efter migreringen använder du `config.php` -fil.
+Du slutför bara den här migreringen en gång. Efter migreringen använder du filen `config.php`.
 
 ### Ändra nationella inställningar
 
-Du kan ändra språkinställningarna i din butik utan att följa en komplex import- och exportprocess för konfiguration, _if_ du har [SCD_ON_DEMAND](../environment/variables-global.md#scd_on_demand) aktiverat. Du kan uppdatera språkinställningarna med Admin.
+Du kan ändra språkinställningarna för din butik utan att följa en komplex import- och exportprocess för konfiguration, _om_ du har [SCD_ON_DEMAND](../environment/variables-global.md#scd_on_demand) aktiverat. Du kan uppdatera språkinställningarna med Admin.
 
-Du kan lägga till ytterligare en språkinställning i förproduktionsmiljön eller produktionsmiljön genom att aktivera `SCD_ON_DEMAND` i en integreringsgren, generera en uppdaterad `config.php` med den nya språkinformationen och kopiera konfigurationsfilen till målmiljön.
+Du kan lägga till ytterligare en språkinställning i förings- eller produktionsmiljön genom att aktivera `SCD_ON_DEMAND` i en integrationsgren, generera en uppdaterad `config.php`-fil med den nya språkinställningsinformationen och kopiera konfigurationsfilen till målmiljön.
 
 >[!WARNING]
 >
->Den här processen **överskrivningar** lagringskonfigurationen. Gör bara följande om miljöerna innehåller samma butiker.
+>Den här processen **skriver över** lagringskonfigurationen. Gör bara följande om miljöerna innehåller samma arkiv.
 
-1. I integreringsmiljön aktiverar du `SCD_ON_DEMAND` variabeln med [`.magento.env.yaml` fil](../environment/configure-env-yaml.md).
+1. Aktivera variabeln `SCD_ON_DEMAND` med [`.magento.env.yaml` file](../environment/configure-env-yaml.md) i integreringsmiljön.
 
 1. Lägg till de nödvändiga språkinställningarna med din administratör.
 
-1. Använd SSH för att logga in i fjärrmiljön och generera `/app/etc/config.php` -fil som innehåller alla språkområden.
+1. Använd SSH för att logga in i fjärrmiljön och generera filen `/app/etc/config.php` som innehåller alla språkområden.
 
    ```bash
    ssh <SSH-URL> "./vendor/bin/ece-tools config:dump"

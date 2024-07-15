@@ -1,6 +1,6 @@
 ---
 title: Variables, egenskap
-description: Använd egenskapen variables för att anpassa butikskonfigurationsalternativen för [!DNL Commerce] program.
+description: Använd variabelegenskapen för att anpassa butikskonfigurationsalternativen för programmet  [!DNL Commerce] .
 feature: Cloud, Configuration
 exl-id: 5cd92fbb-8bff-48b1-9658-500140591344
 source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
@@ -12,9 +12,9 @@ ht-degree: 0%
 
 # Variables, egenskap
 
-Du kan använda programbaserade miljövariabler för att anpassa butikskonfigurationer. Dessa variabler använder en specifik syntax. Se [Åsidosätt konfigurationsinställningar](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/paths/override-config-settings.html) i _Konfigurationsguide_.
+Du kan använda programbaserade miljövariabler för att anpassa butikskonfigurationer. Dessa variabler använder en specifik syntax. Se [Åsidosätt konfigurationsinställningar](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/paths/override-config-settings.html) i _Konfigurationshandboken_.
 
-Följande miljövariabler ingår i `.magento.app.yaml` krävs för specifika versioner av [!DNL Commerce] program.
+Följande miljövariabler som ingår i filen `.magento.app.yaml` krävs för specifika versioner av programmet [!DNL Commerce].
 
 Krävs för Adobe Commerce 2.2.x till 2.3.x:
 

@@ -10,12 +10,12 @@ ht-degree: 0%
 <!-- The template to render with above values -->
 **Version**: 2002.1.18
 
-Referensen innehåller 34 kommandon som är tillgängliga via `ece-tools` kommandoradsverktyg.
-Den inledande listan genereras automatiskt med `ece-tools list` på Adobe Commerce om molninfrastruktur.
+Referensen innehåller 34 kommandon som är tillgängliga via kommandoradsverktyget `ece-tools`.
+Den inledande listan genereras automatiskt med kommandot `ece-tools list` på Adobe Commerce i molninfrastrukturen.
 
 >[!NOTE]
 >
->Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i [kodbas](https://github.com/magento/magento-cloud-cli) arkivera och skicka in dina ändringar för granskning. Ett annat sätt är att _Ge oss feedback_ (hitta länken i det övre högra hörnet). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
+>Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i databasen [codebase](https://github.com/magento/magento-cloud-cli) och skicka ändringarna för granskning. Ett annat sätt är att _ge oss feedback_ (hitta länken uppe till höger). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
 
 ## `_complete`
 
@@ -243,7 +243,7 @@ ece-tools db-dump [-d|--remove-definers] [-a|--dump-directory DUMP-DIRECTORY] [-
 
 ### `databases`
 
-Databaser för säkerhetskopiering. Tillgängliga värden: [försäljning av huvudofferter]. Om argumentvärdet inte anges skapas databassäkerhetskopior med hjälp av inloggningsuppgifterna som lagras i `MAGENTO_CLOUD_RELATIONSHIP` miljövariabel eller/och `stage.deploy.DATABASE_CONFIGURATION` -egenskapen i .magento.env.yaml-konfigurationsfilen.
+Databaser för säkerhetskopiering. Tillgängliga värden: [försäljning av huvudofferter]. Om argumentvärdet inte anges skapas databassäkerhetskopior med hjälp av autentiseringsuppgifterna som lagras i miljövariabeln `MAGENTO_CLOUD_RELATIONSHIP` eller `stage.deploy.DATABASE_CONFIGURATION` i konfigurationsfilen .magento.env.yaml.
 
 - Standard: `[]`
 
@@ -955,7 +955,7 @@ Ställ inga interaktiva frågor
 
 ## `cloud:config:create`
 
-Skapar en `.magento.env.yaml` fil med den angivna variabelkonfigurationen för bygge, distribution och efterdistribution. Skriver över befintliga `.magento,.env.yaml` -fil.
+Skapar en `.magento.env.yaml`-fil med den angivna variabelkonfigurationen för build, deploy och post-deploy. Skriver över befintlig `.magento,.env.yaml`-fil.
 
 ```bash
 ece-tools cloud:config:create <configuration>
@@ -1019,7 +1019,7 @@ Ställ inga interaktiva frågor
 
 ## `cloud:config:update`
 
-Uppdaterar befintliga `.magento.env.yaml` fil med den angivna konfigurationen. Skapar `.magento.env.yaml` om filen inte finns.
+Uppdaterar den befintliga `.magento.env.yaml`-filen med den angivna konfigurationen. Skapar filen `.magento.env.yaml` om den inte finns.
 
 ```bash
 ece-tools cloud:config:update <configuration>
@@ -1083,7 +1083,7 @@ Ställ inga interaktiva frågor
 
 ## `cloud:config:validate`
 
-Validerar `.magento.env.yaml` konfigurationsfil
+Verifierar konfigurationsfilen `.magento.env.yaml`
 
 ```bash
 ece-tools cloud:config:validate

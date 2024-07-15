@@ -12,11 +12,11 @@ ht-degree: 0%
 
 # Startarkitektur
 
-Din Adobe Commerce på molninfrastruktur Starter-arkitektur stöder upp till **fyra** miljöer, inklusive `master` miljö som innehåller den inledande projektkoden, mellanlagringsmiljön och upp till två integreringsmiljöer.
+Din Adobe Commerce på molninfrastruktur Starter-arkitektur stöder upp till **fyra** -miljöer, inklusive en `master` -miljö som innehåller den inledande projektkoden, mellanlagringsmiljön och upp till två integreringsmiljöer.
 
 Alla miljöer finns i PaaS-behållare (Platform as a service). Behållarna distribueras inuti mycket begränsade behållare på ett rutnät med servrar. De här miljöerna är skrivskyddade och godkänner distribuerade kodändringar från grenar som har skickats från den lokala arbetsytan. Varje miljö innehåller en databas- och webbserver.
 
-Du kan använda vilken utvecklings- och förgrenade metod du vill. Skapa en `staging` från `master` miljö. Skapa sedan `integration` miljö genom förgreningar från `staging`.
+Du kan använda vilken utvecklings- och förgrenade metod du vill. Skapa en `staging`-miljö från miljön `master` när du får den första åtkomsten till ditt projekt. Skapa sedan miljön `integration` genom att förgrena från `staging`.
 
 ## Arkitektur för startmiljö
 
@@ -26,15 +26,15 @@ I följande diagram visas de hierarkiska relationerna mellan Starter-miljöerna.
 
 ## Produktionsmiljö
 
-Produktionsmiljön innehåller källkoden för att distribuera Adobe Commerce till molninfrastrukturen som kör dina offentliga butiker för en och flera platser. Produktionsmiljön använder kod från `master` för att konfigurera och aktivera webbservern, databasen, konfigurerade tjänster och programkoden.
+Produktionsmiljön innehåller källkoden för att distribuera Adobe Commerce till molninfrastrukturen som kör dina offentliga butiker för en och flera platser. Produktionsmiljön använder kod från grenen `master` för att konfigurera och aktivera webbservern, databasen, konfigurerade tjänster och programkoden.
 
-På grund av `production` -miljön är skrivskyddad, använd `integration` miljö för att göra kodändringar, driftsätta i hela arkitekturen från `integration` till `staging`och slutligen till `production` miljö. Se [Distribuera din butik](../deploy/staging-production.md) och [Starta webbplatsen](../launch/overview.md).
+Eftersom miljön `production` är skrivskyddad kan du använda miljön `integration` för att göra kodändringar, distribuera över arkitekturen från `integration` till `staging` och slutligen till miljön `production`. Se [Distribuera din butik](../deploy/staging-production.md) och [Starta webbplatsen](../launch/overview.md).
 
-Adobe rekommenderar att du använder `staging` förgrening innan du går till `master` gren, som distribuerar till `production` miljö.
+Adobe rekommenderar att du utför fullständig testning i din `staging`-gren innan du går till `master`-grenen, som distribueras till `production`-miljön.
 
 ## Mellanlagringsmiljö
 
-Adobe rekommenderar att du skapar en gren med namnet `staging` från `master`. The `staging` filialen använder kod i staging-miljön för att tillhandahålla en förproduktionsmiljö för att testa kod, moduler och tillägg, betalningsgateways, leveranser, produktdata och mycket annat. Den här miljön innehåller konfigurationen för alla tjänster som matchar produktionsmiljön, inklusive Fastly, New Relic APM och sökning.
+Adobe rekommenderar att du skapar en gren med namnet `staging` från `master`. Branschen `staging` distribuerar kod till mellanlagringsmiljön för att tillhandahålla en förproduktionsmiljö där du kan testa kod, moduler och tillägg, betalningsgateways, leveranser, produktdata och mycket annat. Den här miljön innehåller konfigurationen för alla tjänster som matchar produktionsmiljön, inklusive Fastly, New Relic APM och sökning.
 
 Ytterligare avsnitt i den här guiden innehåller anvisningar för slutgiltig koddistribution och testning av interaktioner på produktionsnivå i en säker mellanlagringsmiljö. För bästa prestanda och funktionstestning ska du replikera databasen till mellanlagringsmiljön.
 
@@ -44,7 +44,7 @@ Ytterligare avsnitt i den här guiden innehåller anvisningar för slutgiltig ko
 
 ## Integreringsmiljö
 
-Utvecklare använder `integration` miljö för att utveckla, driftsätta och testa:
+Utvecklare använder miljön `integration` för att utveckla, distribuera och testa:
 
 - Adobe Commerce-programkod
 
@@ -70,7 +70,7 @@ För bästa prestanda i integreringsmiljön bör du följa dessa standarder:
 
 - Inaktivera cron-jobb och kör manuellt efter behov
 
-Du kan ha upp till **två** aktiva integreringsmiljöer. Du skapar en integreringsmiljö genom att skapa en gren från `staging` gren. När du skapar en integreringsmiljö matchar miljönamnet förgreningsnamnet. En integreringsmiljö innehåller en webbserver och en databas. Det omfattar inte alla tjänster, till exempel Fast CDN och New Relic är inte tillgängliga.
+Du kan ha upp till **två** aktiva integreringsmiljöer. Du skapar en integreringsmiljö genom att skapa en gren från grenen `staging`. När du skapar en integreringsmiljö matchar miljönamnet förgreningsnamnet. En integreringsmiljö innehåller en webbserver och en databas. Det omfattar inte alla tjänster, till exempel Fast CDN och New Relic är inte tillgängliga.
 
 Du kan ha ett obegränsat antal inaktiva grenar för kodlagring. Om du vill få åtkomst till, visa och testa en inaktiv gren måste du aktivera den
 
@@ -78,7 +78,7 @@ Du kan ha ett obegränsat antal inaktiva grenar för kodlagring. Om du vill få 
 
 ## Produktions- och stagingteknologi
 
-Produktions- och staging-miljöerna omfattar följande tekniker. Du kan ändra och konfigurera dessa tekniker via [`.magento.app.yaml`](../application/configure-app-yaml.md) -fil.
+Produktions- och staging-miljöerna omfattar följande tekniker. Du kan ändra och konfigurera dessa tekniker med hjälp av filen [`.magento.app.yaml`](../application/configure-app-yaml.md).
 
 - Snabbt för HTTP-cachning och CDN
 - Nginx webbserver som talar till PHP-FPM, en instans med flera arbetare
@@ -117,7 +117,7 @@ Adobe Commerce i molninfrastruktur använder operativsystemet Debian GNU/Linux o
 
 - [OpenSearch](../services/opensearch.md)
 
-I testmiljöer och produktionsmiljöer använder du snabbt för CDN och cachning. Den senaste versionen av tillägget Snabbt CDN installeras när ditt projekt etableras. Du kan uppgradera tillägget för att få de senaste felkorrigeringarna och förbättringarna. Se [Snabb CDN-modul för Magento 2](https://github.com/fastly/fastly-magento2). Du har även tillgång till [New Relic](../monitor/account-management.md) för prestandaövervakning.
+I testmiljöer och produktionsmiljöer använder du snabbt för CDN och cachning. Den senaste versionen av tillägget Snabbt CDN installeras när ditt projekt etableras. Du kan uppgradera tillägget för att få de senaste felkorrigeringarna och förbättringarna. Se [Snabbt CDN-modul för Magento 2](https://github.com/fastly/fastly-magento2). Du har även åtkomst till [New Relic](../monitor/account-management.md) för prestandaövervakning.
 
 Använd följande filer för att konfigurera de programversioner som du vill använda i implementeringen.
 
@@ -129,7 +129,7 @@ Använd följande filer för att konfigurera de programversioner som du vill anv
 
 ### Säkerhetskopiering och katastrofåterställning
 
-Du kan skapa en säkerhetskopia av databasen och filsystemet med hjälp av [!DNL Cloud Console] eller CLI. Se [Hantering av säkerhetskopiering](../storage/snapshots.md).
+Du kan skapa en säkerhetskopia av din databas och ditt filsystem med hjälp av [!DNL Cloud Console] eller CLI. Se [Hantering av säkerhetskopiering](../storage/snapshots.md).
 
 ## Förbered för utveckling
 
@@ -137,9 +137,9 @@ I följande arbetsflöde sammanfattas processen för att dela ut koden, utveckla
 
 1. Konfigurera din lokala miljö
 
-1. Klona `master` till din lokala miljö
+1. Klona grenen `master` till din lokala miljö
 
-1. Skapa en `staging` förgrening från `master`
+1. Skapa en `staging`-gren från `master`
 
 1. Skapa grenar för utveckling från `staging`
 
@@ -149,7 +149,7 @@ I följande avsnitt finns detaljerade anvisningar och genomgångar för att utve
 
 - [Arbetsflöde för utveckling och driftsättning](starter-develop-deploy-workflow.md)
 
-- [Dockningsutveckling](../dev-tools/cloud-docker.md) (lokal utvecklingsmiljö aktiverad av Cloud Docker för Commerce)
+- [Dockerutveckling](../dev-tools/cloud-docker.md) (lokal utvecklingsmiljö aktiverad av Cloud Docker för Commerce)
 
 - [Hantera grenar](../project/console-branches.md)
 

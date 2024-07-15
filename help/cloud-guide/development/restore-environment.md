@@ -13,10 +13,10 @@ ht-degree: 0%
 
 # Återställa en miljö
 
-Om du stöter på problem i integreringsmiljön och inte har en [giltig säkerhetskopia](../storage/snapshots.md)provar du att återställa miljön på något av följande sätt:
+Om du stöter på problem i integreringsmiljön och inte har någon [giltig säkerhetskopia](../storage/snapshots.md) kan du försöka återställa miljön på något av följande sätt:
 
 - Återställ eller återställa koden i Git-grenen
-- Avinstallera [!DNL Commerce] program
+- Avinstallera programmet [!DNL Commerce]
 - Tvinga omdistribution
 - Återställ databasen manuellt
 
@@ -26,7 +26,7 @@ Om du stöter på problem i integreringsmiljön och inte har en [giltig säkerhe
 
 Om du återställer Git-grenen återställs koden till ett stabilt läge tidigare.
 
-**Återställ din gren**:
+**Så här återställer du din gren**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -65,15 +65,15 @@ Om du återställer Git-grenen återställs koden till ett stabilt läge tidigar
 
 ## Avinstallera Commerce
 
-Avinstallerar [!DNL Commerce] programmet återställer miljön till ett ursprungligt tillstånd genom att återställa databasen, ta bort distributionskonfigurationen och rensa `var/` underkataloger. Den här vägledningen återställer också Git-grenen till ett tidigare stabilt läge. Om du inte har en nyligen använd säkerhetskopia, men kan komma åt fjärrmiljön med SSH, följer du de här stegen för att återställa miljön:
+Om du avinstallerar programmet [!DNL Commerce] återställs miljön till det ursprungliga tillståndet genom att databasen återställs, distributionskonfigurationen tas bort och underkatalogerna i `var/` rensas. Den här vägledningen återställer också Git-grenen till ett tidigare stabilt läge. Om du inte har en nyligen använd säkerhetskopia, men kan komma åt fjärrmiljön med SSH, följer du de här stegen för att återställa miljön:
 
 - Inaktivera konfigurationshantering
 - Avinstallera Adobe Commerce
 - Återställ Git-grenen
 
-Om du avinstallerar Adobe Commerce tas databasen bort och återställs, distributionskonfigurationen tas bort och `var/` underkataloger. Det är viktigt att inaktivera [Konfigurationshantering](../store/store-settings.md) så att de tidigare konfigurationsinställningarna inte tillämpas automatiskt vid nästa distribution. Se till att `app/etc/` katalogen innehåller inte `config.php` -fil.
+Om du avinstallerar Adobe Commerce tas databasen bort och återställs, distributionskonfigurationen tas bort och underkatalogerna `var/` rensas. Det är viktigt att inaktivera [Konfigurationshantering](../store/store-settings.md) så att den inte automatiskt tillämpar de tidigare konfigurationsinställningarna vid nästa distribution. Kontrollera att din `app/etc/`-katalog inte innehåller filen `config.php`.
 
-**Avinstallera Adobe Commerce**:
+**Så här avinstallerar du Adobe Commerce-programmet**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -110,7 +110,7 @@ Om du avinstallerar Adobe Commerce tas databasen bort och återställs, distribu
    [SUCCESS]: Magento uninstallation complete.
    ```
 
-1. Rensa `var/` underkataloger.
+1. Rensa `var/`-underkatalogerna.
 
    ```bash
    rm -rf var/*
@@ -138,7 +138,7 @@ git commit --allow-empty -m "<message>" && git push <origin> <branch>
 
 Om du har försökt avinstallera Adobe Commerce och kommandot misslyckades eller inte kunde slutföras kan du återställa databasen manuellt.
 
-**Återställ databasen**:
+**Så här återställer du databasen**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -154,13 +154,13 @@ Om du har försökt avinstallera Adobe Commerce och kommandot misslyckades eller
    mysql -h database.internal
    ```
 
-1. Släpp `main` databas.
+1. Släpp databasen `main`.
 
    ```shell
    drop database main;
    ```
 
-1. Skapa en tom `main` databas.
+1. Skapa en tom `main`-databas.
 
    ```shell
    create database main;

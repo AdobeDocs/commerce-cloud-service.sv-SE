@@ -22,11 +22,11 @@ Var och en av de smarta guidekommandona ger ett verifieringssvar och, om tilläm
 
 | Kommando | Beskrivning |
 | ------- | ------------|
-| `wizard:ideal-state` | Kontrollera att SCD finns på _bygg_ scenen, `SKIP_HTML_MINIFICATION` variabeln is `true`och funktionen post_deploy konfigurerades i molnmiljön. Ej till lokal utvecklingsmiljö. |
-| `wizard:master-slave` | Kontrollera att `REDIS_USE_SLAVE_CONNECTION` variabeln och `MYSQL_USE_SLAVE_CONNECTION` variabeln is `true`. |
-| `wizard:scd-on-demand` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `true`. |
-| `wizard:scd-on-build` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `false` och `SKIP_SCD` miljövariabeln är `false` för _bygg_ stage. Verifierar att `config.php` filen innehåller information om butiker, butiksgrupper och webbplatser. |
-| `wizard:scd-on-deploy` | Kontrollera att `SCD_ON_DEMAND` global miljövariabel är `false` och `SKIP_SCD` miljövariabeln är `false` för _driftsätta_ stage. Verifierar att `config.php` filen gör _NOT_ innehåller en lista med butiker, butiksgrupper och webbplatser med relaterad information. |
+| `wizard:ideal-state` | Kontrollera att SCD finns på scenen _build_, att variabeln `SKIP_HTML_MINIFICATION` är `true` och att funktionen post_deploy har konfigurerats i molnmiljön. Ej till lokal utvecklingsmiljö. |
+| `wizard:master-slave` | Kontrollera att variabeln `REDIS_USE_SLAVE_CONNECTION` och variabeln `MYSQL_USE_SLAVE_CONNECTION` är `true`. |
+| `wizard:scd-on-demand` | Kontrollera att den globala miljövariabeln `SCD_ON_DEMAND` är `true`. |
+| `wizard:scd-on-build` | Kontrollera att den globala miljövariabeln `SCD_ON_DEMAND` är `false` och miljövariabeln `SKIP_SCD` är `false` för scenen _build_. Verifierar att filen `config.php` innehåller information för arkiv, butiksgrupper och webbplatser. |
+| `wizard:scd-on-deploy` | Kontrollera att den globala miljövariabeln `SCD_ON_DEMAND` är `false` och miljövariabeln `SKIP_SCD` är `false` för scenen _deploy_. Verifierar att filen `config.php` inte innehåller _NOT_ med listan över butiker, butiksgrupper och webbplatser med relaterad information. |
 
 Du kan till exempel kontrollera att konfigurationen aktiverar funktionen för on demand-SCD:
 
@@ -48,7 +48,7 @@ SCD on-demand is disabled
 
 ## Verifiera en idealisk konfiguration
 
-The _idealisk_ konfiguration för ditt Cloud-projekt hjälper till att minimera driftsättningsdriftavbrott genom att värma cachen och generera statiskt innehåll när användaren begär det. Den här guiden körs automatiskt under distributionsprocessen. Om ditt moln inte är konfigurerat för detta _idealiskt läge_ får du ett meddelande som liknar följande:
+Konfigurationen _idealisk_ för ditt Cloud-projekt hjälper till att minimera driftsättningsdriftavbrott genom att värma cachen och generera statiskt innehåll när användaren begär det. Den här guiden körs automatiskt under distributionsprocessen. Om ditt moln inte är konfigurerat för det här _idealiska läget_ får du ett meddelande som liknar följande:
 
 ```terminal
 - SCD on build is not configured

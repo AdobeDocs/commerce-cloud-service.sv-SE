@@ -11,7 +11,7 @@ ht-degree: 0%
 
 # Regionala IP-adresser
 
-I följande tabell visas de inkommande och utgående IP-adresser som används av Adobe Commerce i molninfrastrukturen [integreringsmiljöer](../architecture/pro-architecture.md#integration-environment). Dessa IP-adresser är stabila, men kan komma att ändras. Adobe meddelar sina kunder innan de gör några IP-adressändringar.
+I följande tabeller visas de inkommande och utgående IP-adresser som används av Adobe Commerce i [integreringsmiljöer](../architecture/pro-architecture.md#integration-environment) för molninfrastrukturen. Dessa IP-adresser är stabila, men kan komma att ändras. Adobe meddelar sina kunder innan de gör några IP-adressändringar.
 
 Följande syntax används för att hantera integreringsmiljöer:
 
@@ -21,9 +21,9 @@ Följande syntax används för att hantera integreringsmiljöer:
 
 - **Unikt ID** = 7 slumpmässiga alfanumeriska tecken
 - **Projekt-ID** = projekt-ID med 13 tecken
-- **Län** = AWS- eller Azure-regionnamn
+- **Region** = AWS- eller Azure-regionnamn
 
-Du kan använda `ping` för att hämta den inkommande IP-adressen:
+Du kan använda kommandot `ping` för att hämta den inkommande IP-adressen:
 
 ```bash
 ping integration-abcd123-abcd78910.us-3.magentosite.cloud

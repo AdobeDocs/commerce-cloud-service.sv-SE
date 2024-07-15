@@ -12,35 +12,35 @@ ht-degree: 0%
 
 # Strategier för distribution av statiskt innehåll
 
-Distribution av statiskt innehåll (SCD) har stor inverkan på distributionsprocessen för butiken, vilket beror på hur mycket innehåll som ska genereras, till exempel bilder, skript, CSS, videor, teman, språkområden och webbsidor, och när innehållet ska genereras. Standardstrategin genererar till exempel statiskt innehåll under [distributionsfas](process.md#deploy-phase-deploy-phase) när platsen är i underhållsläge, men den här distributionsstrategin tar tid att skriva innehållet direkt till den monterade `pub/static` katalog. Du har flera alternativ eller strategier som hjälper dig att förbättra driftsättningstiden beroende på dina behov.
+Distribution av statiskt innehåll (SCD) har stor inverkan på distributionsprocessen för butiken, vilket beror på hur mycket innehåll som ska genereras, till exempel bilder, skript, CSS, videor, teman, språkområden och webbsidor, och när innehållet ska genereras. Standardstrategin genererar till exempel statiskt innehåll under [distributionsfasen](process.md#deploy-phase-deploy-phase) när platsen är i underhållsläge, men den här distributionsstrategin tar tid att skriva innehållet direkt till den monterade `pub/static`-katalogen. Du har flera alternativ eller strategier som hjälper dig att förbättra driftsättningstiden beroende på dina behov.
 
-## Optimera JavaScript och HTML
+## Optimera JavaScript- och HTML-innehåll
 
-Du kan använda paketering och miniatyrbilder för att skapa optimerat JavaScript- och HTML-innehåll under distributionen av statiskt innehåll.
+Ni kan använda paketering och miniatyrbilder för att skapa optimerat JavaScript- och HTML-innehåll under distributionen av statiskt innehåll.
 
 ### Minimera innehåll
 
-Du kan förbättra SCD-inläsningstiden under distributionsprocessen om du inte kopierar de statiska vyfilerna i `var/view_preprocessed` katalog och generera _minified_ HTML på begäran. Du kan aktivera detta genom att ställa in [SKIP_HTML_MINIFICATION](../environment/variables-global.md#skiphtmlminification) global miljövariabel till `true` i `.magento.env.yaml` -fil.
+Du kan förbättra SCD-inläsningstiden under distributionsprocessen om du hoppar över kopieringen av statiska vyfiler i katalogen `var/view_preprocessed` och genererar _minified_ HTML vid begäran. Du kan aktivera detta genom att ange den globala miljövariabeln [SKIP_HTML_MINIFICATION](../environment/variables-global.md#skiphtmlminification) till `true` i filen `.magento.env.yaml`.
 
 >[!NOTE]
 >
->Börja med `ece-tools` package version 2002.0.13, the default value for the SKIP_HTML_MINIFICATION variable is set to `true`.
+>Från och med paketversionen `ece-tools` 2002.0.13 är standardvärdet för variabeln SKIP_HTML_MINIFICATION inställt på `true`.
 
-Du kan spara **mer** driftsättningstid och diskutrymme genom att minska antalet onödiga temafiler. Du kan till exempel distribuera `magento/backend` tema på engelska och ett anpassat tema på andra språk. Du kan konfigurera de här temainställningarna med [SCD_MATRIX](../environment/variables-deploy.md#scdmatrix) miljövariabel.
+Du kan spara **mer** distributionstid och diskutrymme genom att minska antalet onödiga temafiler. Du kan till exempel distribuera `magento/backend`-temat på engelska och ett anpassat tema på andra språk. Du kan konfigurera de här temainställningarna med miljövariabeln [SCD_MATRIX](../environment/variables-deploy.md#scdmatrix) .
 
 ## Välja en distributionsstrategi
 
-Distributionsstrategierna skiljer sig åt beroende på om du väljer att generera statiskt innehåll under _bygg_ fas, _driftsätta_ fas, eller _on demand_. Som framgår av följande diagram är det minst optimala alternativet att generera statiskt innehåll under distributionsfasen. Även om det finns en minifierad HTML måste varje innehållsfil kopieras till den monterade `~/pub/static` som kan ta lång tid. Att generera statiskt innehåll on demand verkar vara det optimala valet. Men om innehållsfilen inte finns i cachen genereras den när den begärs, vilket ökar användarens inläsningstid. Därför är det mest optimala att generera statiskt innehåll under byggfasen.
+Distributionsstrategierna skiljer sig åt beroende på om du väljer att generera statiskt innehåll under fasen _build_, fasen _deploy_ eller fasen _on demand_. Som framgår av följande diagram är det minst optimala alternativet att generera statiskt innehåll under distributionsfasen. Även om det finns en minifierad HTML måste varje innehållsfil kopieras till den monterade katalogen `~/pub/static`, vilket kan ta lång tid. Att generera statiskt innehåll on demand verkar vara det optimala valet. Men om innehållsfilen inte finns i cachen genereras den när den begärs, vilket ökar användarens inläsningstid. Därför är det mest optimala att generera statiskt innehåll under byggfasen.
 
 ![SCD-belastningsjämförelse](../../assets/scd-load-times.png)
 
 ### Ställa in SCD vid skapande
 
-Den optimala konfigurationen för att skapa statiskt innehåll under byggfasen med minifierad HTML [**nolltid** distributioner](reduce-downtime.md), som också kallas **idealiskt läge**. I stället för att kopiera filer till en monterad enhet skapas en länk från `./init/pub/static` katalog.
+Att generera statiskt innehåll under byggfasen med minifierad HTML är den optimala konfigurationen för [**noll-driftstopp**-distributioner](reduce-downtime.md), som också kallas **idealiskt läge**. I stället för att kopiera filer till en monterad enhet skapas en länk från katalogen `./init/pub/static`.
 
-För att generera statiskt innehåll måste du ha tillgång till teman och språkområden. Adobe Commerce lagrar teman i filsystemet, som är tillgängligt under byggfasen, men i Adobe Commerce lagras språkinställningarna i databasen. Databasen är _not_ som är tillgängliga under byggfasen. För att kunna generera det statiska innehållet under byggfasen måste du använda `config:dump` i `ece-tools` paket för att flytta språkområden till filsystemet. Språken läses och sparas i `app/etc/config.php` -fil.
+För att generera statiskt innehåll måste du ha tillgång till teman och språkområden. Adobe Commerce lagrar teman i filsystemet, som är tillgängligt under byggfasen, men i Adobe Commerce lagras språkinställningarna i databasen. Databasen är _inte_ tillgänglig under byggfasen. För att kunna generera det statiska innehållet under byggfasen måste du använda kommandot `config:dump` i paketet `ece-tools` för att flytta språkområden till filsystemet. Det läser språkinställningarna och sparar dem i filen `app/etc/config.php`.
 
-**Så här konfigurerar du projektet för att generera SCD vid bygget**:
+**Så här konfigurerar du projektet för att generera SCD vid bygge**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 1. Använd SSH för att logga in i fjärrmiljön.
@@ -49,17 +49,17 @@ För att generera statiskt innehåll måste du ha tillgång till teman och språ
    magento-cloud ssh
    ```
 
-1. Flytta språkinställningar till filsystemet och uppdatera sedan [`config.php` fil](../development/commerce-version.md#create-a-configphp-file).
+1. Flytta språkinställningar till filsystemet och uppdatera sedan [`config.php`-filen ](../development/commerce-version.md#create-a-configphp-file).
 
-1. The `.magento.env.yaml` konfigurationsfilen ska innehålla följande värden:
+1. Konfigurationsfilen `.magento.env.yaml` ska innehålla följande värden:
 
    - [SKIP_HTML_MINIFICATION](../environment/variables-global.md#skip_html_minification) är `true`
-   - [SKIP_SCD](../environment/variables-build.md#skip_scd) på byggfasen är `false`
+   - [SKIP_SCD](../environment/variables-build.md#skip_scd) på byggscenen är `false`
    - [SCD_STRATEGY](../environment/variables-build.md#scd_strategy) är `compact`
 
-1. Verifiera konfigurationen av [Krok efter driftsättning](../application/hooks-property.md) i `.magento.app.yaml` -fil.
+1. Verifiera konfigurationen för [Post-deploy-kroken](../application/hooks-property.md) i `.magento.app.yaml`-filen.
 
-1. Verifiera inställningarna genom att köra [Smart guide för det idealiska läget](smart-wizards.md).
+1. Verifiera dina inställningar genom att köra den [smarta guiden för det idealiska läget](smart-wizards.md).
 
    ```bash
    php ./vendor/bin/ece-tools wizard:ideal-state
@@ -67,9 +67,9 @@ För att generera statiskt innehåll måste du ha tillgång till teman och språ
 
 ### Ställa in SCD på begäran
 
-Att generera SCD on demand är optimalt för ett utvecklingsarbetsflöde i integreringsmiljön. Det minskar driftsättningstiden så att du snabbt kan granska implementeringarna och köra integreringstester. Aktivera [SCD_ON_DEMAND](../environment/variables-global.md#scdondemand) miljövariabel i den globala scenen i `.magento.env.yaml` -fil. Variabeln SCD_ON_DEMAND åsidosätter alla andra konfigurationer som är relaterade till SCD och tar bort befintligt innehåll från `~/pub/static` katalog.
+Att generera SCD on demand är optimalt för ett utvecklingsarbetsflöde i integreringsmiljön. Det minskar driftsättningstiden så att du snabbt kan granska implementeringarna och köra integreringstester. Aktivera miljövariabeln [SCD_ON_DEMAND](../environment/variables-global.md#scdondemand) i den globala scenen i filen `.magento.env.yaml`. Variabeln SCD_ON_DEMAND åsidosätter alla andra konfigurationer som är relaterade till SCD och tar bort befintligt innehåll från katalogen `~/pub/static`.
 
-När du använder SCD on demand-strategin är det bra att läsa in cachen i förväg med sidor som du förväntar dig, till exempel hemsidan. Lägg till en lista med förväntade sidor i [WARM_UP_PAGES](../environment/variables-post-deploy.md#warmuppages) systemvariabel i post-deploy-fasen i `.magento.env.yaml` -fil.
+När du använder SCD on demand-strategin är det bra att läsa in cachen i förväg med sidor som du förväntar dig, till exempel hemsidan. Lägg till din lista över förväntade sidor i miljövariabeln [WARM_UP_PAGES](../environment/variables-post-deploy.md#warmuppages) i post-deploy-fasen av filen `.magento.env.yaml`.
 
 >[!WARNING]
 >
@@ -77,4 +77,4 @@ När du använder SCD on demand-strategin är det bra att läsa in cachen i för
 
 ### Hoppar över SCD
 
-Ibland kan du välja att inte generera statiskt innehåll helt. Du kan ange [SKIP_SCD](../environment/variables-build.md#skipscd) miljövariabel i den globala scenen för att ignorera andra konfigurationer relaterade till SCD. Detta påverkar inte befintligt innehåll i `~/pub/static` katalog.
+Ibland kan du välja att inte generera statiskt innehåll helt. Du kan ställa in miljövariabeln [SKIP_SCD](../environment/variables-build.md#skipscd) på den globala scenen så att andra konfigurationer som är relaterade till SCD ignoreras. Detta påverkar inte befintligt innehåll i katalogen `~/pub/static`.

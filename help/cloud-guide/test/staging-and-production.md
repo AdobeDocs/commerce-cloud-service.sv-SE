@@ -15,11 +15,11 @@ När du har migrerat kod, filer och data till mellanlagring eller produktion kan
 
 ## Loggfiler
 
-Om du får problem med distributionen eller andra problem när du testar bör du kontrollera loggfilerna. Loggfilerna finns under `var/log` katalog.
+Om du får problem med distributionen eller andra problem när du testar bör du kontrollera loggfilerna. Loggfiler finns under katalogen `var/log`.
 
-Distributionsloggen finns i `/var/log/platform/<prodject-ID>/deploy.log`. Värdet för `<project-ID>` beror på projekt-ID och om miljön är Förproduktion eller Produktion. Med till exempel ett projekt-ID på `yw1unoukjcawe`, mellanlagringsanvändaren är `yw1unoukjcawe_stg` och produktionsanvändaren är `yw1unoukjcawe`.
+Distributionsloggen finns i `/var/log/platform/<prodject-ID>/deploy.log`. Värdet för `<project-ID>` beror på projekt-ID:t och om miljön är Förproduktion eller Produktion. Med ett projekt-ID på `yw1unoukjcawe` är till exempel mellanlagringsanvändaren `yw1unoukjcawe_stg` och produktionsanvändaren `yw1unoukjcawe`.
 
-När du loggar in i produktions- eller mellanlagringsmiljöer använder du SSH för att logga in på var och en av de tre noderna för att hitta loggarna. Eller så kan du använda [New Relic logghantering](../monitor/log-management.md) för att visa och fråga efter aggregerade loggdata från alla noder. Se [Visa loggar](log-locations.md#application-logs).
+När du loggar in i produktions- eller mellanlagringsmiljöer använder du SSH för att logga in på var och en av de tre noderna för att hitta loggarna. Du kan också använda [New Relic logghantering](../monitor/log-management.md) för att visa och fråga efter aggregerade loggdata från alla noder. Se [Visa loggar](log-locations.md#application-logs).
 
 ## Kontrollera kodbasen
 
@@ -27,42 +27,42 @@ Verifiera att din kodbas är korrekt distribuerad till förproduktionsmiljöer. 
 
 ## Verifiera konfigurationsinställningar
 
-Kontrollera konfigurationsinställningarna via panelen Admin, bland annat bas-URL:en, grundläggande administratörs-URL:en och inställningarna för flera platser. Om du måste göra ytterligare ändringar slutför du redigeringarna i den lokala Git-grenen och går vidare till `master` gren i Integration, Staging och Production.
+Kontrollera konfigurationsinställningarna via panelen Admin, bland annat bas-URL:en, grundläggande administratörs-URL:en och inställningarna för flera platser. Om du måste göra ytterligare ändringar slutför du redigeringarna i den lokala Git-grenen och överför dem till `master`-grenen i Integrering, Förproduktion och Produktion.
 
 ## Kontrollera cachelagring snabbt
 
-[Konfigurera snabbt](../cdn/fastly-configuration.md) kräver stor noggrannhet: använd rätt autentiseringsuppgifter för snabb service-ID och snabb API-token, ladda upp den snabba VCL-koden, uppdatera DNS-konfigurationen och tillämpa SSL-/TLS-certifikaten i dina miljöer. När du har slutfört dessa konfigurationsuppgifter kan du verifiera snabb cachelagring i mellanlagrings- och produktionsmiljöer.
+[Om du konfigurerar Fast](../cdn/fastly-configuration.md) måste du vara noggrann med detaljerna: använda rätt autentiseringsuppgifter för Fast Service ID och Fast API-token, överföra Snabb VCL-kod, uppdatera DNS-konfigurationen och använda SSL-/TLS-certifikat i dina miljöer. När du har slutfört dessa konfigurationsuppgifter kan du verifiera snabb cachelagring i mellanlagrings- och produktionsmiljöer.
 
 **Så här verifierar du snabbtjänstkonfigurationen**:
 
-1. Logga in på Admin for Staging and Production med URL:en med `/admin`eller [uppdaterad administratörs-URL](../environment/variables-admin.md#admin-url).
+1. Logga in på Admin for Staging and Production med URL:en med `/admin` eller den [uppdaterade Admin URL:en](../environment/variables-admin.md#admin-url).
 
-1. Navigera till **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**. Rulla och klicka **Helsidescache**.
+1. Navigera till **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**. Bläddra och klicka på **Helsidescache**.
 
-1. Se till att **Cachelagra program** värdet är inställt på _Snabb CDN_ .
+1. Kontrollera att värdet **Caching application** är _Fast CDN_ .
 
 1. Testa inloggningsuppgifterna snabbt.
 
-   - Klicka **Snabb konfiguration**.
+   - Klicka på **Snabb konfiguration**.
 
-   - Kontrollera att värdena för autentiseringsuppgifterna för snabbservice-ID och snabbprogrammeringstoken är korrekta. Se [Få inloggningsuppgifter snabbt](/help/cloud-guide/cdn/fastly-configuration.md#get-fastly-credentials).
+   - Kontrollera att värdena för autentiseringsuppgifterna för snabbservice-ID och snabbprogrammeringstoken är korrekta. Se [Få snabbt inloggningsuppgifter](/help/cloud-guide/cdn/fastly-configuration.md#get-fastly-credentials).
 
-   - Klicka **Testa autentiseringsuppgifter**.
+   - Klicka på **Testa autentiseringsuppgifter**.
 
    >[!WARNING]
    >
    >Se till att du har angett rätt Service ID och API-token i dina mellanlagrings- och produktionsmiljöer. Autentiseringsuppgifter skapas och mappas snabbt per tjänstmiljö. Om du anger autentiseringsuppgifter för mellanlagring i produktionsmiljön kan du inte överföra dina VCL-kodfragment, cachelagring fungerar inte korrekt och cachelagringskonfigurationen pekar på fel server och arkiv.
 
-**Kontrollera cachelagring snabbt**:
+**Så här kontrollerar du cachelagring snabbt**:
 
-1. Kontrollera om det finns rubriker med `dig` kommandoradsverktyg för att få information om platskonfigurationen.
+1. Kontrollera om det finns rubriker med kommandoradsverktyget `dig` om du vill ha information om platskonfigurationen.
 
-   Du kan använda valfri URL med `dig` -kommando. I följande exempel används Pro-URL:er:
+   Du kan använda valfri URL med kommandot `dig`. I följande exempel används Pro-URL:er:
 
    - Mellanlagring: `dig https://mcstaging.<your-domain>.com`
    - Produktion: `dig https://mcprod.<your-domain>.com`
 
-   För ytterligare `dig` tester, se Fastlys [Testar innan DNS ändras](https://docs.fastly.com/en/guides/working-with-domains).
+   Ytterligare `dig`-tester finns i Fastly&#39;s [Testing before changing DNS](https://docs.fastly.com/en/guides/working-with-domains).
 
 1. Använd `cURL` för att verifiera svarsrubrikinformationen.
 
@@ -70,7 +70,7 @@ Kontrollera konfigurationsinställningarna via panelen Admin, bland annat bas-UR
    curl https://mcstaging.<your-domain>.com -H "host: mcstaging.<your-domain.com>" -k -vo /dev/null -H Fastly-Debug:1
    ```
 
-   Se [Kontrollera svarsrubriker](../cdn/fastly-troubleshooting.md#check-cache-hit-and-miss-response-headers) om du vill ha information om hur du verifierar rubrikerna.
+   Mer information om hur du verifierar rubrikerna finns i [Kontrollera svarsrubrikerna](../cdn/fastly-troubleshooting.md#check-cache-hit-and-miss-response-headers).
 
 1. När du är klar använder du `cURL` för att kontrollera din publicerade webbplats.
 
@@ -127,7 +127,7 @@ Om du råkar ut för problem kan du spara dina reproduktionssteg, felmeddelanden
 </td>
 </tr>
 <tr>
-<td>Orderhantering</td>
+<td>Order Management</td>
 <td>
 <ul>
 <li>Skapa en order för en kund</li>
@@ -198,20 +198,20 @@ Innan du startar är det bäst att utföra omfattande trafik- och prestandatestn
 
 Innan du börjar testa anger du en biljett med supportinformation om de miljöer du testar, vilka verktyg du använder och tidsramen. Uppdatera biljetten med resultat och information för att spåra prestanda. När du är klar med testningen lägger du till de uppdaterade resultaten och antecknar i biljetttestningen som slutförd med datum- och tidsstämpel.
 
-Granska [Performance Toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit) som en del av beredskapen inför lanseringen.
+Granska alternativen för [Performance Toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit) som en del av beredskapsprocessen före start.
 
 Använd följande verktyg för bästa resultat:
 
-- [Testning av programprestanda](../environment/variables-post-deploy.md#ttfb_tested_pages)—Testa programmets prestanda genom att konfigurera `TTFB_TESTED_PAGES` systemvariabel för att testa responstiden på plats.
-- [Siege](https://www.joedog.org/siege-home/)- Trafikformnings- och testprogram för att nå ut till butiken. Besök webbplatsen med ett konfigurerbart antal simulerade klienter. Siege har stöd för grundläggande autentisering, cookies, HTTP, HTTPS och FTP-protokoll.
-- [Jmeter](https://jmeter.apache.org)- Utmärkt laddningstestning som hjälper till att mäta prestanda för spikad trafik, t.ex. för blixtförsäljning. Skapa anpassade tester som körs mot din plats.
+- [Programprestandatest](../environment/variables-post-deploy.md#ttfb_tested_pages) - Testa programmets prestanda genom att konfigurera miljövariabeln `TTFB_TESTED_PAGES` för att testa platsens svarstid.
+- [Siege](https://www.joedog.org/siege-home/) - Trafikformnings- och testningsprogramvara som gör att din butik når gränsen. Besök webbplatsen med ett konfigurerbart antal simulerade klienter. Siege har stöd för grundläggande autentisering, cookies, HTTP, HTTPS och FTP-protokoll.
+- [Jmeter](https://jmeter.apache.org) - Utmärkt laddningstestning för att mäta prestanda för spikad trafik, som vid blixtförsäljning. Skapa anpassade tester som körs mot din plats.
 - [New Relic](../monitor/new-relic-service.md) (tillhandahålls) - Hjälper dig att hitta processer och områden på webbplatsen som ger långsam prestanda med spårad tid per åtgärd, som överföring av data, frågor, Redis med mera.
-- [WebPageTest](https://www.webpagetest.org) och [Prike](https://www.pingdom.com)—Realtidsanalys av webbplatsens sidor läses in med olika ursprungsplatser. Riket kan kräva en avgift. WebPageTest är ett kostnadsfritt verktyg.
+- [WebPageTest](https://www.webpagetest.org) och [Passning](https://www.pingdom.com) - Realtidsanalys av webbplatssidorna läses in med olika ursprungsplatser. Riket kan kräva en avgift. WebPageTest är ett kostnadsfritt verktyg.
 
 ## Funktionstestning
 
-Du kan använda Magento Functional Testing Framework (MFTF) för att slutföra funktionstestningen för Adobe Commerce från Cloud Docker-miljön. Se [Programtestning](https://developer.adobe.com/commerce/cloud-tools/docker/test/application-testing/) i _Handbok för Cloud Docker for Commerce_.
+Du kan använda Magento Functional Testing Framework (MFTF) för att slutföra funktionstestningen för Adobe Commerce från Cloud Docker-miljön. Se [Programtestning](https://developer.adobe.com/commerce/cloud-tools/docker/test/application-testing/) i guiden _Cloud Docker för Commerce_.
 
 ## Konfigurera verktyget för säkerhetsgenomsökning
 
-Det finns ett kostnadsfritt säkerhetssökningsverktyg för dina webbplatser. Information om hur du lägger till platser och kör verktyget finns i [Verktyg för säkerhetsgenomsökning](../launch/overview.md#set-up-the-security-scan-tool).
+Det finns ett kostnadsfritt säkerhetssökningsverktyg för dina webbplatser. Mer information om hur du lägger till dina webbplatser och kör verktyget finns i [Verktyget för säkerhetsgenomsökning](../launch/overview.md#set-up-the-security-scan-tool).

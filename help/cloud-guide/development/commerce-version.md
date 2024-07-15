@@ -1,5 +1,5 @@
 ---
-title: Uppgradera Commerce-version
+title: Uppgradera Commerce
 description: Lär dig hur du uppgraderar Adobe Commerce-versionen i molninfrastrukturprojektet.
 feature: Cloud, Upgrade
 exl-id: 87821007-4979-4a20-940b-aa3c82c192d8
@@ -10,17 +10,17 @@ ht-degree: 0%
 
 ---
 
-# Uppgradera Commerce-version
+# Uppgradera Commerce
 
-Du kan uppgradera Adobe Commerce kodbas till en nyare version. Innan du uppgraderar ditt projekt bör du granska [Systemkrav](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) i _Installation_ för de senaste versionskraven.
+Du kan uppgradera Adobe Commerce kodbas till en nyare version. Innan du uppgraderar ditt projekt bör du läsa [Systemkraven](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/system-requirements.html) i _installationshandboken_ för att få information om de senaste programvaruversionskraven.
 
 Beroende på din projektkonfiguration kan din uppgradering innehålla följande:
 
 - Uppdateringstjänster - som MariaDB (MySQL), OpenSearch, RabbitMQ och Redis - för kompatibilitet med nya Adobe Commerce-versioner.
 - Konvertera en äldre konfigurationshanteringsfil.
-- Uppdatera `.magento.app.yaml` fil med nya inställningar för krokar och miljövariabler.
+- Uppdatera filen `.magento.app.yaml` med nya inställningar för kopplingar och miljövariabler.
 - Uppgradera tillägg från tredje part till den senaste version som stöds.
-- Uppdatera `.gitignore` -fil.
+- Uppdatera filen `.gitignore`.
 
 {{upgrade-tip}}
 
@@ -28,14 +28,14 @@ Beroende på din projektkonfiguration kan din uppgradering innehålla följande:
 
 ## Uppgradera från äldre versioner
 
-Om du påbörjar en uppgradering från en Commerce-version som är äldre än 2.1 kan vissa begränsningar i Adobe Commerce kodbas påverka din förmåga att _uppdatera_ till en särskild ECE-verktygsrelease eller till _uppgradera_ till nästa version av Commerce som stöds. Använd följande tabell för att fastställa den bästa banan:
+Om du påbörjar en uppgradering från en version av Commerce som är äldre än 2.1 kan vissa begränsningar i Adobe Commerce kodbas påverka din möjlighet att _uppdatera_ till en specifik ECE-verktygsversion eller att _uppgradera_ till nästa version av Commerce som stöds. Använd följande tabell för att fastställa den bästa banan:
 
 | Aktuell version | Uppgraderingssökväg |
 | ----------------- | ------------ |
 | 2.1.3 och tidigare versioner | Uppgradera Adobe Commerce till version 2.1.4 eller senare innan du fortsätter. Utför sedan en [engångsuppgradering för att installera ECE-Tools](../dev-tools/install-package.md). |
-| 2.1.4 - 2.1.14 | [Uppdatera ECE-verktyg](../dev-tools/update-package.md) paket.<br>Se versionsinformation för [2002.0.9](../release-notes/cloud-release-archive.md#v200209) och senare versioner 2002.0.x. |
-| 2.1.15 - 2.1.16 | [Uppdatera ECE-verktyg](../dev-tools/update-package.md) paket.<br>Se versionsinformation för[2002.0.9](../release-notes/cloud-release-archive.md#v200209) och senare. |
-| 2.2.x och senare | [Uppdatera ECE-verktyg](../dev-tools/update-package.md) paket.<br>Se versionsinformation för[2002.0.8](../release-notes/cloud-release-archive.md#v200208) och senare. |
+| 2.1.4 - 2.1.14 | [Uppdatera ECE-verktygspaket](../dev-tools/update-package.md).<br>Se versionsinformation för [2002.0.9](../release-notes/cloud-release-archive.md#v200209) och senare versioner av 2002.0.x. |
+| 2.1.15 - 2.1.16 | [Uppdatera ECE-verktygspaket](../dev-tools/update-package.md).<br>Se versionsinformation för [2002.0.9](../release-notes/cloud-release-archive.md#v200209) och senare. |
+| 2.2.x och senare | [Uppdatera ECE-verktygspaket](../dev-tools/update-package.md).<br>Se versionsinformation för [2002.0.8](../release-notes/cloud-release-archive.md#v200208) och senare. |
 
 {style="table-layout:auto"}
 
@@ -43,15 +43,15 @@ Om du påbörjar en uppgradering från en Commerce-version som är äldre än 2.
 
 ## Konfigurationshantering
 
-Äldre versioner av Adobe Commerce, som 2.1.4 eller senare till 2.2.x eller senare, använde en `config.local.php` fil för Configuration Management. Adobe Commerce version 2.2.0 och senare använder `config.php` -filen, som fungerar exakt som `config.local.php` -filen, men den har olika konfigurationsinställningar som innehåller en lista över dina aktiverade moduler och ytterligare konfigurationsalternativ.
+Äldre versioner av Adobe Commerce, som 2.1.4 eller senare till 2.2.x eller senare, använde en `config.local.php`-fil för Configuration Management. I Adobe Commerce version 2.2.0 och senare används filen `config.php`, som fungerar exakt som filen `config.local.php` men som har olika konfigurationsinställningar som innehåller en lista över aktiverade moduler och ytterligare konfigurationsalternativ.
 
-När du uppgraderar från en äldre version måste du migrera `config.local.php` filen som ska användas i det nyare `config.php` -fil. Gör så här för att säkerhetskopiera konfigurationsfilen och skapa en.
+När du uppgraderar från en äldre version måste du migrera filen `config.local.php` för att kunna använda den nyare filen `config.php`. Gör så här för att säkerhetskopiera konfigurationsfilen och skapa en.
 
-**Skapa en tillfällig `config.php` fil**:
+**Så här skapar du en tillfällig `config.php` fil**:
 
-1. Skapa en kopia av `config.local.php` fil och namnge den `config.php`.
+1. Skapa en kopia av filen `config.local.php` och ge den namnet `config.php`.
 
-1. Lägg till den här filen i `app/etc` projektmapp.
+1. Lägg till den här filen i mappen `app/etc` i ditt projekt.
 
 1. Lägg till och implementera filen på din gren.
 
@@ -61,21 +61,21 @@ När du uppgraderar från en äldre version måste du migrera `config.local.php`
 
 >[!WARNING]
 >
->Efter uppgraderingen kan du ta bort `config.php` och generera en ny, fullständig fil. Du kan bara ta bort den här filen om du vill ersätta den här gången. När en ny, fullständig `config.php` kan du inte ta bort filen för att skapa en ny. Se [Konfigurationshantering och distribution av pipeline](../store/store-settings.md).
+>När du har uppgraderat kan du ta bort filen `config.php` och generera en ny, fullständig fil. Du kan bara ta bort den här filen om du vill ersätta den här gången. När du har genererat en ny, fullständig `config.php`-fil kan du inte ta bort filen för att skapa en ny. Se [Konfigurationshantering och distribution av pipeline](../store/store-settings.md).
 
 ### Verifiera Zend Framework Composer-beroenden
 
-Vid uppgradering till **2.3.x eller senare från 2.2.x**, verifiera att Zend Framework-beroenden har lagts till i `autoload` egenskapen för `composer.json` som stöder Laminas. Denna plugin stöder nya krav för Zend Framework, som har migrerat till Laminas-projektet. Se [Migrering av Zend Framework till Laminas Project](https://community.magento.com/t5/Magento-DevBlog/Migration-of-Zend-Framework-to-the-Laminas-Project/ba-p/443251) på _Magento DevBlog_.
+När du uppgraderar till **2.3.x eller senare från 2.2.x** kontrollerar du att Zend Framework-beroenden har lagts till i `autoload` -egenskapen för `composer.json`-filen som stöder Laminas. Denna plugin stöder nya krav för Zend Framework, som har migrerat till Laminas-projektet. Se [Migrering av Zend Framework till Laminas Project](https://community.magento.com/t5/Magento-DevBlog/Migration-of-Zend-Framework-to-the-Laminas-Project/ba-p/443251) på _Magento DevBlog_.
 
-**För att kontrollera `auto-load:psr-4` konfiguration**:
+**Så här kontrollerar du `auto-load:psr-4`-konfigurationen**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
 1. Ta en titt på er integreringsgren.
 
-1. Öppna `composer.json` i en textredigerare.
+1. Öppna filen `composer.json` i en textredigerare.
 
-1. Kontrollera `autoload:psr-4` för Zend plugin-hanterarimplementeringen för styrenheternas beroende.
+1. Kontrollera avsnittet `autoload:psr-4` för Zend plugin-hanterarimplementering för styrenheternas beroende.
 
    ```json
     "autoload": {
@@ -88,9 +88,9 @@ Vid uppgradering till **2.3.x eller senare från 2.2.x**, verifiera att Zend Fra
    }
    ```
 
-1. Om Zend-beroendet saknas uppdaterar du `composer.json` fil:
+1. Om Zend-beroendet saknas uppdaterar du filen `composer.json`:
 
-   - Lägg till följande rad i `autoload:psr-4` -avsnitt.
+   - Lägg till följande rad i avsnittet `autoload:psr-4`.
 
      ```json
      "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
@@ -120,17 +120,17 @@ Vid uppgradering till **2.3.x eller senare från 2.2.x**, verifiera att Zend Fra
 
 ## Konfigurationsfiler
 
-Innan du uppgraderar programmet måste du uppdatera dina projektkonfigurationsfiler så att de tar hänsyn till ändringar av standardkonfigurationsinställningarna för Adobe Commerce i molninfrastrukturen eller för programmet. De senaste standardinställningarna finns i [magento-cloud GitHub-databas](https://github.com/magento/magento-cloud).
+Innan du uppgraderar programmet måste du uppdatera dina projektkonfigurationsfiler så att de tar hänsyn till ändringar av standardkonfigurationsinställningarna för Adobe Commerce i molninfrastrukturen eller för programmet. De senaste standardvärdena finns i GitHub-databasen [magento-cloud](https://github.com/magento/magento-cloud).
 
 ### .magento.app.yaml
 
-Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.md) -filen för den installerade versionen eftersom den styr hur ditt program bygger och distribuerar till molninfrastrukturen. Följande exempel är för version 2.4.7 och använder Composer 2.7.2. The `build: flavor:` egenskapen används inte för Composer 2.x; se [Installera och använda Composer 2](../application/properties.md#installing-and-using-composer-2).
+Granska alltid värdena i filen [.magento.app.yaml](../application/configure-app-yaml.md) för den installerade versionen, eftersom den styr hur programmet bygger och distribuerar till molninfrastrukturen. Följande exempel är för version 2.4.7 och använder Composer 2.7.2. Egenskapen `build: flavor:` används inte för Composer 2.x; se [Installera och använda Composer 2](../application/properties.md#installing-and-using-composer-2).
 
-**Uppdatera `.magento.app.yaml` fil**:
+**Så här uppdaterar du `.magento.app.yaml`-filen**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
-1. Öppna och redigera `magento.app.yaml` -fil.
+1. Öppna och redigera filen `magento.app.yaml`.
 
 1. Uppdatera PHP-alternativen.
 
@@ -144,7 +144,7 @@ Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.
            composer/composer: '2.7.2'
    ```
 
-1. Ändra `hooks` property `build` och `deploy` kommandon.
+1. Ändra kommandona för `hooks`-egenskapen `build` och `deploy`.
 
    ```yaml
    hooks:
@@ -189,11 +189,11 @@ Granska alltid värdena i [.magento.app.yaml](../application/configure-app-yaml.
 
 ### composer.json
 
-Kontrollera alltid att beroendena i `composer.json` filen är kompatibel med Adobe Commerce.
+Kontrollera alltid att beroendena i filen `composer.json` är kompatibla med Adobe Commerce-versionen innan du uppgraderar.
 
-**Uppdatera `composer.json` för Adobe Commerce version 2.4.4 och senare**:
+**Så här uppdaterar du `composer.json`-filen för Adobe Commerce version 2.4.4 och senare**:
 
-1. Lägg till följande `allow-plugins` till `config` avsnitt:
+1. Lägg till följande `allow-plugins` i avsnittet `config`:
 
    ```json
    "config": {
@@ -205,7 +205,7 @@ Kontrollera alltid att beroendena i `composer.json` filen är kompatibel med Ado
    },
    ```
 
-1. Lägg till följande plugin-program i `require` avsnitt:
+1. Lägg till följande plugin-program i avsnittet `require`:
 
    ```json
    "require": {
@@ -213,7 +213,7 @@ Kontrollera alltid att beroendena i `composer.json` filen är kompatibel med Ado
    },
    ```
 
-1. Lägg till följande komponent i `extra:component_paths` avsnitt:
+1. Lägg till följande komponent i avsnittet `extra:component_paths`:
 
    ```json
    "extra": {
@@ -231,7 +231,7 @@ Kontrollera alltid att beroendena i `composer.json` filen är kompatibel med Ado
 
 Vi rekommenderar att du skapar en säkerhetskopia av ditt projekt före en uppgradering. Gör så här för att säkerhetskopiera integrerings-, mellanlagrings- och produktionsmiljöer.
 
-**Säkerhetskopiera databasen och koden för integreringsmiljön**:
+**Så här säkerhetskopierar du databasen och koden för integreringsmiljön**:
 
 1. Skapa en lokal säkerhetskopia av fjärrdatabasen.
 
@@ -241,7 +241,7 @@ Vi rekommenderar att du skapar en säkerhetskopia av ditt projekt före en uppgr
 
    >[!NOTE]
    >
-   >The `magento-cloud db:dump` kommandot kör [mysqldump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html) med kommandot `--single-transaction` -flagga som gör att du kan säkerhetskopiera databasen utan att låsa tabellerna.
+   >Kommandot `magento-cloud db:dump` kör kommandot [mysqldump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html) med flaggan `--single-transaction` som gör att du kan säkerhetskopiera databasen utan att låsa tabellerna.
 
 1. Säkerhetskopiera kod och media.
 
@@ -255,23 +255,23 @@ Vi rekommenderar att du skapar en säkerhetskopia av ditt projekt före en uppgr
 
 1. Använd SSH för att logga in i fjärrmiljön.
 
-1. Skapa en [databasdump](../storage/database-dump.md). Om du vill välja en målkatalog för databasdumpen använder du `--dump-directory` alternativ.
+1. Skapa en [databasdump](../storage/database-dump.md). Om du vill välja en målkatalog för DB-dumpen använder du alternativet `--dump-directory`.
 
    ```bash
    vendor/bin/ece-tools db-dump
    ```
 
-   Dumpningsåtgärden skapar en `dump-<timestamp>.sql.gz` arkivera filen i din fjärrprojektkatalog. Se [Säkerhetskopiera databas](../storage/database-dump.md).
+   Dumpningsåtgärden skapar en `dump-<timestamp>.sql.gz`-arkivfil i fjärrprojektkatalogen. Se [Säkerhetskopiera databas](../storage/database-dump.md).
 
 ## Programuppgradering
 
-Granska [tjänsteversioner](../services/services-yaml.md#service-versions) information om de senaste versionskraven innan du uppgraderar programmet.
+Granska informationen om [tjänstversionerna](../services/services-yaml.md#service-versions) för de senaste programversionskraven innan du uppgraderar ditt program.
 
 **Så här uppgraderar du programversionen**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
-1. Ange uppgraderingsversionen med [versionsbegränsningssyntax](overview.md#cloud-metapackage).
+1. Ange uppgraderingsversionen med syntaxen [för versionsbegränsning](overview.md#cloud-metapackage).
 
    ```bash
    composer require "magento/magento-cloud-metapackage":">=CURRENT_VERSION <NEXT_VERSION" --no-update
@@ -279,7 +279,7 @@ Granska [tjänsteversioner](../services/services-yaml.md#service-versions) infor
 
    >[!NOTE]
    >
-   >Du måste använda versionsbegränsningssyntaxen för att kunna uppdatera `ece-tools` paket. Versionsbegränsningen finns i `composer.json` -fil för versionen av [programmall](https://github.com/magento/magento-cloud/blob/master/composer.json) som du använder för uppgraderingen.
+   >Du måste använda syntaxen för versionsbegränsning för att kunna uppdatera paketet `ece-tools`. Du hittar versionsbegränsningen i filen `composer.json` för den version av [programmallen](https://github.com/magento/magento-cloud/blob/master/composer.json) som du använder för uppgraderingen.
 
 1. Uppdatera projektet.
 
@@ -301,7 +301,7 @@ Granska [tjänsteversioner](../services/services-yaml.md#service-versions) infor
    git push origin <branch-name>
    ```
 
-   `git add -A` måste lägga till alla ändrade filer i källkontrollen på grund av hur Composer konverterar baspaket. Båda `composer install` och `composer update` konvertera filer från baspaketet (`magento/magento2-base` och `magento/magento2-ee-base`) till paketroten.
+   `git add -A` krävs för att lägga till alla ändrade filer i källkontrollen på grund av hur Composer konverterar baspaket. Både `composer install` och `composer update` konverterar filer från baspaketet (`magento/magento2-base` och `magento/magento2-ee-base`) till paketroten.
 
    De filer som Composer konverterar tillhör den nya versionen av Adobe Commerce, som skriver över den gamla versionen av samma filer. För närvarande är konvertering inaktiverat i Adobe Commerce, så du måste lägga till de konverterade filerna i källkontrollen.
 
@@ -315,23 +315,23 @@ Granska [tjänsteversioner](../services/services-yaml.md#service-versions) infor
 
 ### Skapa filen config.php
 
-Som anges i [Konfigurationshantering](#configuration-management)måste du skapa en uppdaterad `config.php` -fil. Slutför eventuella ytterligare konfigurationsändringar via administratören i din integreringsmiljö.
+Som nämndes i [Konfigurationshantering](#configuration-management) måste du skapa en uppdaterad `config.php`-fil efter uppgraderingen. Slutför eventuella ytterligare konfigurationsändringar via administratören i din integreringsmiljö.
 
-**Skapa en systemspecifik konfigurationsfil**:
+**Så här skapar du en systemspecifik konfigurationsfil**:
 
-1. Använd ett SSH-kommando från terminalen för att generera `/app/etc/config.php` för miljön.
+1. Använd ett SSH-kommando från terminalen för att generera filen `/app/etc/config.php` för miljön.
 
    ```bash
    ssh <SSH-URL> "<Command>"
    ```
 
-   För Pro kör du `scd-dump` på `integration` gren:
+   Om du till exempel vill köra `scd-dump` på grenen `integration` i Pro:
 
    ```bash
    ssh <project-id-integration>@ssh.us.magentosite.cloud "php vendor/bin/ece-tools config:dump"
    ```
 
-1. Överför `config.php` till dina lokala arbetsstationer med `rsync` eller `scp`. Du kan bara lägga till den här filen lokalt i grenen.
+1. Överför filen `config.php` till dina lokala arbetsstationer med `rsync` eller `scp`. Du kan bara lägga till den här filen lokalt i grenen.
 
    ```bash
    rsync <SSH-URL>:app/etc/config.php ./app/etc/config.php
@@ -343,17 +343,17 @@ Som anges i [Konfigurationshantering](#configuration-management)måste du skapa 
    git add app/etc/config.php && git commit -m "Add system-specific configuration" && git push origin master
    ```
 
-   Detta genererar en uppdaterad `/app/etc/config.php` med en modullista och konfigurationsinställningar.
+   Detta genererar en uppdaterad `/app/etc/config.php`-fil med en modullista och konfigurationsinställningar.
 
 >[!WARNING]
 >
->För en uppgradering tar du bort `config.php` -fil. När den här filen har lagts till i koden bör du **not** ta bort den. Om du måste ta bort eller redigera inställningar redigerar du filen manuellt.
+>Om du vill uppgradera tar du bort filen `config.php`. När den här filen har lagts till i koden ska du **inte** ta bort den. Om du måste ta bort eller redigera inställningar redigerar du filen manuellt.
 
 ### Uppgradera tillägg
 
 Granska tillägg- och modulsidor från tredje part på Marketplace eller andra företagswebbplatser och verifiera stödet för Adobe Commerce och Adobe Commerce i molninfrastrukturen. Om du måste uppgradera tillägg och moduler från tredje part rekommenderar Adobe att du arbetar i en ny integreringsgren med dina tillägg inaktiverade.
 
-**Verifiera och uppgradera dina tillägg**:
+**Så här verifierar och uppgraderar du dina tillägg**:
 
 1. Skapa en gren på din lokala arbetsstation.
 
@@ -371,11 +371,11 @@ Granska tillägg- och modulsidor från tredje part på Marketplace eller andra f
 
 1. Kör till mellanlagringsmiljön för att testa i en förproduktionsmiljö.
 
-Adobe rekommenderar starkt att du uppgraderar din produktionsmiljö _före_ inkluderar de uppgraderade tilläggen i webbplatsens startprocess.
+Adobe rekommenderar starkt att du uppgraderar din produktionsmiljö _före_, inklusive de uppgraderade tilläggen i din webbplatsstartprocess.
 
 >[!NOTE]
 >
->När du uppgraderar din programversion uppdateras uppgraderingsprocessen till den senaste versionen av [Snabb CDN-modul](../cdn/fastly.md#fastly-cdn-module-for-magento-2) automatiskt.
+>När du uppgraderar din programversion uppdateras uppgraderingsprocessen automatiskt till den senaste versionen av modulen [Snabbt CDN](../cdn/fastly.md#fastly-cdn-module-for-magento-2) .
 
 ## Felsök uppgraderingen
 
@@ -387,7 +387,7 @@ Exception printing is disabled by default for security reasons.
   Error log record number: <error-number>
 ```
 
-**Lös felet**:
+**Så här löser du felet**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -397,9 +397,9 @@ Exception printing is disabled by default for security reasons.
    magento-cloud ssh
    ```
 
-1. Öppna `./app/var/report/<error number>` -fil.
+1. Öppna filen `./app/var/report/<error number>`.
 
-1. [Granska loggarna](../test/log-locations.md) och fastställa orsaken till problemet.
+1. [Granska loggarna](../test/log-locations.md) och ta reda på orsaken till problemet.
 
 1. Lägg till, implementera och push-ändra kod.
 

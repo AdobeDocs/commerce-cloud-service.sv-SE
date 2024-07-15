@@ -12,15 +12,15 @@ ht-degree: 0%
 
 # Bästa tillvägagångssätt för att uppgradera ditt projekt
 
-Följ vedertagna standarder för byggen och driftsättningen och använd [Uppgraderingar och patchar](../development/commerce-version.md) arbetsflöde för att uppgradera programmet. Använd följande riktlinjer för att planera uppgraderings- och efteruppgraderingsarbetet:
+Följ vedertagna standarder för byggen och distribution och använd arbetsflödet [Uppgraderingar och korrigeringar](../development/commerce-version.md) för att uppgradera programmet. Använd följande riktlinjer för att planera uppgraderings- och efteruppgraderingsarbetet:
 
-- **Säkerhetskopiera ditt projekt**-Innan du uppgraderar Adobe Commerce och eventuella tillägg från tredje part eller anpassade, bör du säkerhetskopiera databasen i integrerings-, mellanlagrings- och produktionsmiljöer. Se [Säkerhetskopiera databasen](../development/commerce-version.md#project-backup).
+- **Säkerhetskopiera ditt projekt** - Säkerhetskopiera databasen i integrerings-, mellanlagrings- och produktionsmiljöer innan du uppgraderar Adobe Commerce och eventuella tillägg från tredje part eller anpassade. Se [Säkerhetskopiera databasen](../development/commerce-version.md#project-backup).
 
 - **Kontrollera kompatibilitetsproblem**-
 
    - Kontrollera att alla anpassade teman är kompatibla med den nya Adobe Commerce-versionen
 
-   - När du har uppgraderat tillägg från tredje part och anpassade tillägg använder du `magento-cloud local:build` för att validera Composer-beroenden före distributionen.
+   - När du har uppgraderat tillägg från tredje part och anpassade tillägg använder du kommandot `magento-cloud local:build` för att validera Composer-beroenden innan du distribuerar.
 
    - Granska versionsinformationen och tilläggsdokumentationen för Adobe Commerce för att kontrollera att du har implementerat de tillfälliga lösningar eller konfigurationsändringar som krävs för att åtgärda kända funktionsproblem och fel som gäller den uppgraderade Adobe Commerce-versionen och tillägg.
 
@@ -32,27 +32,27 @@ Följ vedertagna standarder för byggen och driftsättningen och använd [Uppgra
 
    - Kontrollera att söktjänstversionen är kompatibel med PHP-klientversionen. Se [Konfigurera Elasticsearch](../services/elasticsearch.md) eller [Konfigurera OpenSearch](../services/opensearch.md).
 
-- **Kontrollera databaskopplingar och tillgängligt lagringsutrymme i fjärrmiljöer**-
+- **Kontrollera databasanslutningen och tillgängligt lagringsutrymme i fjärrmiljöer**-
 
-   - Använd SSH för att logga in på fjärrservern och verifiera anslutningen till MySQL-databasen. Se [Anslut till databasen](../services/mysql.md#connect-to-the-database).
+   - Använd SSH för att logga in på fjärrservern och verifiera anslutningen till MySQL-databasen. Se [Ansluta till databasen](../services/mysql.md#connect-to-the-database).
 
-   - Verifiera tillgängligt lagringsutrymme i fjärrmiljön-Använd `disk free` för att visa och hantera tillgängligt diskutrymme i dina molnmiljöer. Se [Hantera diskutrymme](../storage/manage-disk-space.md).
+   - Verifiera tillgängligt lagringsutrymme i fjärrmiljön-Använd kommandot `disk free` om du vill visa och hantera tillgängligt diskutrymme i dina molnmiljöer. Se [Hantera diskutrymme](../storage/manage-disk-space.md).
 
-      - Kontrollera storleken på den uppgraderade databasen och verifiera att `services.yaml` filen har tillräckligt med ledigt diskutrymme.
+      - Kontrollera storleken på den uppgraderade databasen och kontrollera att filen `services.yaml` har tillräckligt med ledigt diskutrymme.
 
-      - Frigör diskutrymme - Rensa cacheminnet och rensa `/log` och `/tmp` kataloger före distribution.
+      - Frigör diskutrymme-Rensa cacheminnet och rensa katalogerna `/log` och `/tmp` innan du distribuerar.
 
-- **Planera och utför en uppgradering på lokal miljö och i integreringsmiljöer innan den distribueras till mellanlagring**-Efter uppgraderingen testar du driftsättningen och löser eventuella problem.
+- **Planera och utför en uppgradering på lokala miljöer och integreringsmiljöer innan du distribuerar till mellanlagring** - Efter uppgraderingen testar du distributionen och löser eventuella problem.
 
-- **Koppla kod till mellanlagring och sedan till produktion**-Testa och åtgärda eventuella problem i mellanlagringsmiljön innan du gör några ändringar i produktionsmiljön.
+- **Koppla kod till mellanlagring och sedan till produktion**-Testa och lös eventuella problem i mellanlagringsmiljön innan du flyttar ändringarna till produktionsmiljön.
 
-- **Slutföra efteruppgraderingar**-
+- **Slutför uppgraderingsuppgifter för Post**-
 
    - Använd SSH för att logga in på fjärrservern och verifiera följande:
 
-      - Kontrollera indexerarens status och indexera om det behövs. Se [Hantera indexerare](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/manage-indexers.html) i _Konfigurationsguide_.
+      - Kontrollera indexerarens status och indexera om det behövs. Se [Hantera indexerare](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/manage-indexers.html) i _Konfigurationsguiden_.
 
-      - Kontrollera `cron` loggar och `cron_schedule` i Adobe Commerce-databasen för att verifiera kronistatus och köra kron-jobb igen efter behov.
-Se [Loggning](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/configure-cron-jobs.html#logging) i _Konfigurationshandbok_.
+      - Kontrollera `cron`-loggarna och `cron_schedule`-tabellen i Adobe Commerce-databasen för att verifiera kron-status och kör kron-jobb igen efter behov.
+Se [Loggning](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/configure-cron-jobs.html#logging) i _Konfigurationshandboken_.
 
    - Slutför UAT-testet (User Acceptance Testing UAT) efter uppgraderingen och åtgärda eventuella problem som rör uppgraderingar från tredje part och anpassade tillägg.

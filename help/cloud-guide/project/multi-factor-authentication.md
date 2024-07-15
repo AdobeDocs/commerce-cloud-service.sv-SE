@@ -19,40 +19,40 @@ När MFA är aktiverat i ett projekt kräver alla användarkonton med SSH-åtkom
 
 >[!NOTE]
 >
->MFA är inte aktiverat i molnprojekt som standard. Kontoägaren för Adobe Commerce i molninfrastrukturprojektet måste [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att aktivera den. När MFA är aktiverat måste alla användare ha tvåfaktorsautentisering (TFA) aktiverad på sina Adobe Commerce-konton för molninfrastruktur för SSH-åtkomst till projektmiljöerna.
+>MFA är inte aktiverat i molnprojekt som standard. Kontoägaren för Adobe Commerce i molninfrastrukturprojektet måste [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att kunna aktivera det. När MFA är aktiverat måste alla användare ha tvåfaktorsautentisering (TFA) aktiverad på sina Adobe Commerce-konton för molninfrastruktur för SSH-åtkomst till projektmiljöerna.
 
 ## Certifikat för SSH-åtkomst
 
 Med MFA kan användare utbyta en OAUTH-åtkomsttoken med ett kort SSH-certifikat som genererats av Adobe Cloud Certifier API. Om användaren har rollen Admin eller Contributor, en giltig SSH-nyckel och en giltig TFA-kod eller API-token, använder Adobe Commerce i molninfrastrukturen dessa autentiseringsuppgifter för att generera det tillfälliga SSH-certifikatet. Certifikatets förfallodatum är en timme, men det uppdateras automatiskt under den aktuella sessionen.
 
-När du har loggat in i ett projekt med MFA måste användarna använda `magento-cloud` CLI för att generera SSH-certifikatet:
+När du har loggat in i ett projekt med MFA måste användarna använda CLI-värdet `magento-cloud` för att generera SSH-certifikatet:
 
 ```bash
 magento-cloud ssh-cert:load
 ```
 
-The `ssh-cert:load` kommandot genererar SSH-certifikatet och installerar det i SSH-agenten för den lokala användaren.
+Kommandot `ssh-cert:load` genererar SSH-certifikatet och installerar det i SSH-agenten för den lokala användaren.
 
 ### Generera certifikat automatiskt vid inloggning
 
-Du kan konfigurera din lokala miljö så att SSH-certifikatet genereras automatiskt när du autentiserar till `magento-cloud` CLI.
+Du kan konfigurera din lokala miljö så att SSH-certifikatet genereras automatiskt när du autentiserar till CLI:n för `magento-cloud`.
 
-**Så här lägger du till automatisk generering av SSH-certifikat i `magento-cloud` CLI-konfiguration**:
+**Så här lägger du till automatisk generering av SSH-certifikat i din `magento-cloud` CLI-konfiguration**:
 
-1. Skapa en fil med namnet på din lokala arbetsstation `config.yaml` i `.magento-cloud` i din arbetskatalog om den inte finns.
+1. Skapa en fil med namnet `config.yaml` i mappen `.magento-cloud` i din arbetskatalog om den inte finns på din lokala arbetsstation.
 
    ```bash
    touch ~/.magento-cloud/config.yaml
    ```
 
-1. Lägg till följande konfiguration i `config.yaml` -fil.
+1. Lägg till följande konfiguration i filen `config.yaml`.
 
    ```yaml
    api:
       auto_load_ssh_cert: true
    ```
 
-1. Använd `magento-cloud` CLI för att autentisera igen:
+1. Använd CLI:n för `magento-cloud` för att autentisera igen:
 
    >Logga ut:
 
@@ -103,11 +103,11 @@ För projekt som har aktiverats med MFA-användning krävs följande behörighet
 
 >[!ENDSHADEBOX]
 
-**Ansluta med SSH med inloggningsuppgifter för TFA-användarkontot**:
+**Så här ansluter du med SSH med autentiseringsuppgifter för TFA-användarkontot**:
 
 1. Logga in på [ditt konto](https://console.adobecommerce.com).
 
-1. På din lokala arbetsstation använder du `magento-cloud` CLI för att generera SSH-certifikatet.
+1. Använd CLI `magento-cloud` på din lokala arbetsstation för att generera SSH-certifikatet.
 
    ```bash
    magento-cloud ssh-cert:load
@@ -151,7 +151,7 @@ För projekt som har aktiverats med MFA-användning krävs följande behörighet
 
 När du hanterar källkod för Adobe Commerce i molninfrastrukturprojekt använder du SSH för att autentisera till Git-databasen för projektet. Om ditt projekt har MFA-tillämpning aktiverad måste du generera ett SSH-certifikat innan du kan utföra kommandoradsåtgärder med Git-databasen.
 
-**Ansluta med SSH med inloggningsuppgifter för TFA-användarkontot**:
+**Så här ansluter du med SSH med autentiseringsuppgifter för TFA-användarkontot**:
 
 1. Logga in på [ditt konto](https://console.adobecommerce.com) och autentisera med TFA.
 
@@ -159,7 +159,7 @@ När du hanterar källkod för Adobe Commerce i molninfrastrukturprojekt använd
    >
    >Om du inte har aktiverat TFA på ditt konto måste du aktivera det. Se [Aktivera TFA på molnkonton](user-access.md#enable-tfa-for-cloud-accounts).
 
-1. På din lokala arbetsstation använder du `magento-cloud` CLI för att generera SSH-certifikatet.
+1. Använd CLI `magento-cloud` på din lokala arbetsstation för att generera SSH-certifikatet.
 
    ```bash
    magento-cloud ssh-cert:load
@@ -208,7 +208,7 @@ Autentisering med en API-token kräver fortfarande att ett SSH-certifikat skapas
 
 >[!ENDSHADEBOX]
 
-**Ansluta med SSH med API-tokenautentiseringsuppgifter**:
+**Så här ansluter du med SSH med en API-tokenautentiseringsuppgift**:
 
 1. Logga in på molnprojektet med API-nyckelautentisering.
 
@@ -232,7 +232,7 @@ Det finns två alternativ för att lagra API-token.
 
 >[!NOTE]
 >
->Om en API-token lagras, `magento-cloud` CLI autentiserar automatiskt och man behöver inte utföra `magento-cloud login` -kommando.
+>Om en API-token lagras autentiseras `magento-cloud` CLI automatiskt och du behöver inte utföra kommandot `magento-cloud login`.
 
 **Alternativ 1**: Skapa en miljövariabel för lagring av API-token
 
@@ -242,15 +242,15 @@ Skriv token till din bash_profile
 echo "export MAGENTO_CLOUD_CLI_TOKEN=<your api token>" >> ~/.bash_profile
 ```
 
-**Alternativ 2**: Lägg till token i `config.yaml` fil
+**Alternativ 2**: Lägg till token i filen `config.yaml`
 
-1. Skapa en fil med namnet på din lokala arbetsstation `config.yaml` i `.magento-cloud` i din arbetskatalog om den inte finns.
+1. Skapa en fil med namnet `config.yaml` i mappen `.magento-cloud` i din arbetskatalog om den inte finns på din lokala arbetsstation.
 
    ```bash
    touch ~/.magento-cloud/config.yaml
    ```
 
-1. Lägg till följande konfiguration i `config.yaml` -fil.
+1. Lägg till följande konfiguration i filen `config.yaml`.
 
    ```yaml
    api:
@@ -267,7 +267,7 @@ ssh abcdef7uyxabce-master-7rqtabc--mymagento@ssh.us-3.magento.cloud "tail -n 10 
 
 ## Felsökning
 
-Använd följande information för att lösa SSH-anslutningsbegäranden som misslyckats på grund av autentiseringsfel som `access requires MFA` eller `permission denied`.
+Använd följande information för att lösa problem med SSH-anslutningsbegäranden på grund av autentiseringsfel som `access requires MFA` eller `permission denied`.
 
 ### Din begäran innehåller inte något giltigt certifikat
 
@@ -284,23 +284,23 @@ Försök med följande felsökningsprocedurer för att lösa anslutningsprobleme
 - Verifiera kontots TFA-konfiguration
 - Autentisera igen och läs sedan in certifikatet igen
 
-**Verifiera konfiguration och autentisering av TFA**:
+**Så här verifierar du TFA-konfiguration och autentisering**:
 
 1. Logga in på [ditt konto](https://console.adobecommerce.com).
 
-1. Klicka på i den övre högra kontomenyn **[!UICONTROL My Profile]**.
+1. Klicka på **[!UICONTROL My Profile]** på den övre högra kontomenyn.
 
-1. På _Min profil_ klickar du på **[!UICONTROL Security]** -fliken.
+1. Klicka på fliken **[!UICONTROL Security]** på sidan _Min profil_.
 
    Om TFA är aktiverat innehåller avsnittet Säkerhet alternativ för att hantera TFA-konfigurationen.
 
-1. Om TFA inte är inställt klickar du på **[!UICONTROL Set up application]** och följ instruktionerna för att aktivera den. Se [Aktivera TFA](user-access.md#enable-tfa-for-cloud-accounts).
+1. Om TFA inte har konfigurerats klickar du på **[!UICONTROL Set up application]** och följer instruktionerna för att aktivera den. Se [Aktivera TFA](user-access.md#enable-tfa-for-cloud-accounts).
 
 1. Om TFA är konfigurerat försöker du autentisera igen.
 
-**Autentisera och läsa in SSH-certifikatet igen**:
+**Så här autentiserar och läser du in SSH-certifikatet igen**:
 
-1. Använd `magento-cloud` CLI för att autentisera igen:
+1. Använd CLI:n för `magento-cloud` för att autentisera igen:
 
    ```bash
    magento-cloud logout
@@ -318,7 +318,7 @@ Försök med följande felsökningsprocedurer för att lösa anslutningsprobleme
 
 ### Åtkomst nekad
 
-Om SSH-nyckeln saknas eller är ogiltig returnerar SSH-anslutningsbegäran en `Permission denied (publickey)` fel.
+Om SSH-nyckeln saknas eller är ogiltig returnerar SSH-anslutningsbegäran ett `Permission denied (publickey)`-fel.
 
 ```terminal
 Hello user-test (UUID: abaacca12-5cd1-4b123-9096-411add578998), you successfully authenticated, but could not connect to service oh2wi6klp5ytk-mc-35985-integration-nnulm4a--mymagento (reason: service doesn't exist or you do not have access to it)
@@ -341,17 +341,17 @@ Exempelsvar:
 abcdef7uyxabce-master-7rqtabc--mymagento@ssh.us-3.magento.cloud: Permission denied (publickey).
 ```
 
-Under genereringen av SSH-certifikatet `magento-cloud` CLI lägger till ytterligare en SSH-nyckel i din lokala miljö. Nyckeln används som standard om din lokala SSH-konfiguration inte innehåller SSH-nyckeln för projektåtkomst.
+Under SSH-certifikatgenereringen lägger CLI `magento-cloud` till ytterligare en SSH-nyckel till din lokala miljö. Nyckeln används som standard om din lokala SSH-konfiguration inte innehåller SSH-nyckeln för projektåtkomst.
 
-**Lägga till SSH-nyckeln i den lokala konfigurationen**:
+**Så här lägger du till SSH-nyckeln i den lokala konfigurationen**:
 
-1. Skapa `config` om filen inte finns.
+1. Skapa filen `config` om den inte finns.
 
    ```bash
    touch ~/.ssh/config
    ```
 
-1. Lägg till en `IdentityFile` konfiguration.
+1. Lägg till en `IdentityFile`-konfiguration.
 
    ```yaml
    Host *
@@ -360,4 +360,4 @@ Under genereringen av SSH-certifikatet `magento-cloud` CLI lägger till ytterlig
 
 >[!NOTE]
 >
->Du kan ange flera SSH-nycklar genom att lägga till flera `IdentityFile` till din konfiguration.
+>Du kan ange flera SSH-nycklar genom att lägga till flera `IdentityFile`-poster i konfigurationen.

@@ -1,6 +1,6 @@
 ---
 title: Blockera skräppost
-description: Blockera spam från webbplatsen med hjälp av Fastly Edge-ordlistan och ett anpassat VCL-kodfragment.
+description: Blockera spam från din webbplats med hjälp av Fastly Edge-ordlistan och ett anpassat VCL-kodfragment.
 feature: Cloud, Configuration, Security
 exl-id: 665bac93-75db-424f-be2c-531830d0e59a
 source-git-commit: 7a181af2149eef7bfaed4dd4d256b8fa19ae1dda
@@ -12,7 +12,7 @@ ht-degree: 0%
 
 # Blockera skräppost
 
-I följande exempel visas hur du konfigurerar [Ordlista för fast kant](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api) med ett anpassat VCL-kodfragment för att blockera spam från din Adobe Commerce-webbplats för molninfrastruktur.
+I följande exempel visas hur du konfigurerar [Snabb Edge-ordlista](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api) med ett anpassat VCL-fragment för att blockera spam från din Adobe Commerce på en molninfrastrukturwebbplats.
 
 >[!NOTE]
 >
@@ -26,43 +26,43 @@ I följande exempel visas hur du konfigurerar [Ordlista för fast kant](https://
 
 ## Skapa en hänvisare blockeringslista
 
-Med Edge Dictionaries skapas nyckelvärdepar som är tillgängliga för VCL-funktioner under VCL-fragmentbearbetning. I det här exemplet skapar du en kantordlista med en lista över referenswebbplatser som ska blockeras.
+Edge-ordlistor skapar nyckelvärdepar som är tillgängliga för VCL-funktioner under VCL-fragmentbearbetning. I det här exemplet skapar du en kantordlista med en lista över referenswebbplatser som ska blockeras.
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
 1. Expandera **Helsidescache** > **Snabb konfiguration** > **Edge-ordlistor**.
 
 1. Skapa ordlistebehållaren:
 
-   - Klicka **Lägg till behållare**.
+   - Klicka på **Lägg till behållare**.
 
-   - På *Behållare* sida, ange en **Ordlistenamn**—`referrer_blocklist`.
+   - På sidan *Behållare* anger du ett **lexikonnamn**—`referrer_blocklist`.
 
-   - Välj **Aktivera efter ändringen** för att driftsätta ändringarna i den version av snabbtjänstkonfigurationen som du redigerar.
+   - Välj **Aktivera efter ändringen** om du vill distribuera ändringarna till den version av snabbtjänstkonfigurationen som du redigerar.
 
-   - Klicka **Överför** för att koppla ordboken till din snabbtjänstkonfiguration.
+   - Klicka på **Överför** för att koppla ordlistan till din snabbtjänstkonfiguration.
 
-1. Lägg till listan med domännamn som ska blockeras i `referrer_blocklist` ordlista:
+1. Lägg till listan med domännamn som ska blockeras i `referrer_blocklist`-ordlistan:
 
-   - Klicka på inställningsikonen för `referrer_blocklist` ordbok.
+   - Klicka på inställningsikonen för `referrer_blocklist`-ordlistan.
 
-   - Lägg till och spara nyckelvärdepar i den nya ordlistan. I det här exemplet **Nyckel** är domännamnet för en referens-URL som ska blockeras och **Värde** är `true`.
+   - Lägg till och spara nyckelvärdepar i den nya ordlistan. I det här exemplet är varje **nyckel** domännamnet för en hänvisnings-URL som ska blockeras och **Värde** är `true`.
 
      ![Lägg till felaktiga referensordlisteobjekt](../../assets/cdn/fastly-referrer-blocklist-dictionary.png)
 
-   - Klicka **Avbryt** för att återgå till sidan för systemkonfiguration.
+   - Klicka på **Avbryt** för att återgå till systemkonfigurationssidan.
 
-1. Klicka **Spara konfiguration**.
+1. Klicka på **Spara konfiguration**.
 
 1. Uppdatera cacheminnet enligt meddelandet längst upp på sidan.
 
-Mer information om Edge-ordlistor finns i [Skapa och använda Edge-ordlistor](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api) och [anpassade VCL-fragment](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api#custom-vcl-examples) i Snabbas dokumentation.
+Mer information om Edge-ordlistor finns i [Skapa och använda Edge-ordlistor](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api) och [anpassade VCL-kodfragment](https://docs.fastly.com/guides/edge-dictionaries/working-with-dictionaries-using-the-api#custom-vcl-examples) i Snabbt-dokumentationen.
 
 ## Skapa ett anpassat VCL-fragment för att blockera spam från referensen
 
-I följande anpassade VCL-kodfragment (JSON-format) visas logiken för att kontrollera och blockera begäranden. VCL-fragmentet hämtar värddatorn för en referenswebbplats till ett sidhuvud och jämför sedan värdnamnet med listan med URL:er i `referrer_blocklist` ordbok. Om värdnamnet matchar blockeras begäran med en `403 Forbidden` fel.
+I följande anpassade VCL-kodfragment (JSON-format) visas logiken för att kontrollera och blockera begäranden. VCL-fragmentet samlar in värddatorn för en referenswebbplats i ett sidhuvud och jämför sedan värdnamnet med listan med URL:er i `referrer_blocklist`-ordlistan. Om värdnamnet matchar blockeras begäran med ett `403 Forbidden`-fel.
 
 ```json
 {
@@ -76,31 +76,31 @@ I följande anpassade VCL-kodfragment (JSON-format) visas logiken för att kontr
 
 Innan du skapar ett fragment baserat på det här exemplet ska du granska värdena för att avgöra om du behöver göra några ändringar:
 
-- `name` — Namnet på VCL-fragmentet. I det här exemplet använde vi `block_bad_referrer`.
+- `name` - VCL-fragmentets namn. I det här exemplet använde vi `block_bad_referrer`.
 
-- `dynamic` — Värdet 0 anger att [reguljärt fragment](https://docs.fastly.com/en/guides/using-regular-vcl-snippets) för att överföra till den versionshanterade videobandboken för snabbkonfigurationen.
+- `dynamic` - Värdet 0 anger att ett [vanligt fragment](https://docs.fastly.com/en/guides/using-regular-vcl-snippets) ska överföras till den versionshanterade VCL-listan för snabbkonfigurationen.
 
-- `priority` — Avgör när VCL-fragmentet körs. Prioriteten är `5` om du vill köra den här kodfragmentkoden före något av de förvalda VCL-kodfragmenten för Magento (`magentomodule_*`) fick prioritet 50. Ange prioriteten för varje anpassat fragment som är högre eller lägre än 50, beroende på när du vill att fragmentet ska köras. Fragment med lägre prioritetsnummer körs först.
+- `priority` - Avgör när VCL-fragmentet körs. Prioriteten är `5` för att köra den här kodfragmentkoden innan något av de Magento VCL-standardfragment (`magentomodule_*`) har tilldelats en prioritet på 50. Ange prioriteten för varje anpassat fragment som är högre eller lägre än 50, beroende på när du vill att fragmentet ska köras. Fragment med lägre prioritetsnummer körs först.
 
-- `type` — Anger en plats där fragmentet ska infogas i VCL-versionen. I det här exemplet är VCL-fragmentet en `recv` kodfragment. När fragmentet infogas i VCL-versionen läggs det till i `vcl_recv` subrutin, under standardkoden Fast VCL och ovanför eventuella objekt.
+- `type` - Anger en plats där fragmentet ska infogas i VCL-versionen. I det här exemplet är VCL-fragmentet ett `recv`-fragment. När fragmentet infogas i VCL-versionen läggs det till i underrutinen `vcl_recv`, nedanför den förvalda VCL-koden Fast och ovanför eventuella objekt.
 
-- `content` — Det VCL-kodfragment som ska köras på en rad, utan radbrytningar.
+- `content` - VCL-kodfragmentet som ska köras på en rad, utan radbrytningar.
 
 När du har granskat och uppdaterat koden för din miljö använder du någon av följande metoder för att lägga till det anpassade VCL-fragmentet i din snabbtjänstkonfiguration:
 
-- [Lägg till det anpassade VCL-fragmentet från administratören](#add-the-custom-vcl-snippet). Den här metoden rekommenderas om du har åtkomst till Admin. (Kräver [Snabbt version 1.2.58](fastly-configuration.md#upgrade) eller senare.)
+- [Lägg till det anpassade VCL-fragmentet från administratören](#add-the-custom-vcl-snippet). Den här metoden rekommenderas om du har åtkomst till Admin. (Kräver [snabbversion 1.2.58](fastly-configuration.md#upgrade) eller senare.)
 
-- Spara JSON-kodexemplet till en fil (till exempel `allowlist.json`) och [ladda upp det med API:t Fast](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api). Använd den här metoden om du inte kan komma åt administratören.
+- Spara JSON-kodexemplet till en fil (till exempel `allowlist.json`) och [överför det med snabbprogrammeringsgränssnittet](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api). Använd den här metoden om du inte kan komma åt administratören.
 
 ## Lägg till anpassat VCL-fragment
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
 
 1. Expandera **Helsidescache** > **Snabb konfiguration** > **Anpassade VCL-kodfragment**.
 
-1. Klicka **Skapa anpassat fragment**.
+1. Klicka på **Skapa anpassat fragment**.
 
 1. Lägg till VCL-fragmentvärden:
 
@@ -110,7 +110,7 @@ När du har granskat och uppdaterat koden för din miljö använder du någon av
 
    - **Prioritet** — `5`
 
-   - **VCL** textutdrag —
+   - **VCL**-fragmentinnehåll —
 
      ```conf
      set req.http.Referer-Host = regsub(req.http.Referer,
@@ -120,11 +120,11 @@ När du har granskat och uppdaterat koden för din miljö använder du någon av
      }
      ```
 
-1. Klicka **Skapa**.
+1. Klicka på **Skapa**.
 
    ![Skapa VCL-kodfragment för anpassat referensblock](/help/assets/cdn/fastly-create-referrer-block-snippet.png)
 
-1. När sidan har lästs in igen klickar du på **Ladda upp VCL snabbt** i *Snabb konfiguration* -avsnitt.
+1. När sidan har lästs in på nytt klickar du på **Överför VCL till Snabbt** i avsnittet *Snabbkonfiguration*.
 
 1. När överföringen är klar uppdaterar du cacheminnet enligt meddelandet längst upp på sidan.
 

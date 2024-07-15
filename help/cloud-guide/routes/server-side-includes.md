@@ -12,9 +12,9 @@ ht-degree: 0%
 
 # SSI (Server-side includes)
 
-[SSI (Server-side includes)](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) (SSI) är direktiv på HTML-sidor som utvärderas på servern medan sidorna återges. Med SSI kan du lägga till dynamiskt genererat innehåll på en befintlig HTML-sida utan att hela sidan behöver skickas.
+[SSI (Server-side includes](https://nginx.org/en/docs/http/ngx_http_ssi_module.html)) är direktiv på HTML-sidor som utvärderas på servern medan sidorna återges. Med SSI kan du lägga till dynamiskt genererat innehåll på en befintlig HTML-sida utan att hela sidan behöver skickas.
 
-Du kan aktivera eller inaktivera SSI per väg i `.magento/routes.yaml`; till exempel:
+Du kan aktivera eller inaktivera SSI per-väg i din `.magento/routes.yaml`, till exempel:
 
 ```yaml
     "http://{default}/":
@@ -31,11 +31,11 @@ Du kan aktivera eller inaktivera SSI per väg i `.magento/routes.yaml`; till exe
             enabled: true
 ```
 
-Med SSI kan du inkludera HTML i dina svarsdirektiv som gör att servern fyller i delar av HTML, med hänsyn tagen till eventuella befintliga [cachelagringskonfiguration](caching.md).
+Med SSI kan du inkludera HTML i dina svarsdirektiv som gör att servern fyller i delar av HTML, med hänsyn tagen till befintlig [cachelagringskonfiguration](caching.md).
 
 I följande exempel visas hur du infogar en dynamisk datumkontroll längst upp på en sida och en annan datumkontroll längst ned som uppdateras var 600:e sekund:
 
-Lägg till följande på alla sidor, till exempel `/index.php`:
+Lägg till följande på en sida, till exempel `/index.php`:
 
 ```php?start_inline=1
 echo date(DATE_RFC2822);

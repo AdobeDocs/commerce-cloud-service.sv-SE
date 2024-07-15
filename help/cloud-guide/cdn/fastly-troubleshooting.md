@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Använd följande information för att felsöka och hantera snabbuppdateringsmodulen för CDN för Magento 2 i dina Adobe Commerce i miljöer med molninfrastrukturprojekt. Du kan till exempel undersöka svarshuvudets värden och cachningsbeteendet för att lösa problem med snabb service och prestanda.
 
-I Pro Production- och Staging-miljöer kan du använda [New Relic loggar](../monitor/log-management.md) för att visa och analysera snabbt CDN- och WAF-loggdata för att felsöka fel och prestandaproblem.
+I Pro Production- och Staging-miljöer kan du använda [New Relic-loggar](../monitor/log-management.md) för att visa och analysera snabbt CDN- och WAF-loggdata för att felsöka fel och prestandaproblem.
 
 >[!NOTE]
 >
@@ -24,9 +24,9 @@ I Pro Production- och Staging-miljöer kan du använda [New Relic loggar](../mon
 
 Du behöver ett snabb service-ID för att konfigurera snabbt från administratören eller för att skicka in snabba API-begäranden för avancerad snabb konfiguration och felsökning.
 
-Om Snabbt är aktiverat i din projektmiljö kan du hämta service-ID:t från administratören. Se [Få inloggningsuppgifter snabbt](fastly-configuration.md#get-fastly-credentials).
+Om Snabbt är aktiverat i din projektmiljö kan du hämta service-ID:t från administratören. Se [Få snabbt inloggningsuppgifter](fastly-configuration.md#get-fastly-credentials).
 
-Utvecklare och avancerade VCL-användare kan använda anpassad VCL för att hämta service-ID:t med hjälp av variabeln Fast `req.service_id`. Du kan till exempel lägga till `req.service_id` till det anpassade loggningsdirektivet i ditt VCL för att hämta tjänstens ID-värde:
+Utvecklare och avancerade VCL-användare kan använda anpassad VCL för att hämta tjänst-ID:t med hjälp av snabbvariabeln `req.service_id`. Du kan till exempel lägga till `req.service_id` i det anpassade loggningsdirektivet i din VCL för att hämta service-ID-värdet:
 
 ```json
 log {"syslog"} req.service_id {" my_logging_endpoint_name :: "}
@@ -38,17 +38,17 @@ Du kan använda samma VCL för produktions- och mellanlagringsmiljöer. Se [Konf
 
 Använd följande lista för att identifiera och felsöka problem som rör Snabb tjänstkonfiguration för din Adobe Commerce i molninfrastrukturmiljö.
 
-- **Menyn Butik visas inte och fungerar inte**- Du kan använda en länk eller tillfällig länk direkt till den ursprungliga servern i stället för att använda den aktiva webbplatsens URL, eller så använde du `-H "host:URL"` i en [cURL, kommando](#check-live-site-through-fastly). Om du snabbt kringgår den ursprungliga servern fungerar inte huvudmenyn och felaktiga rubriker visas som tillåter cachelagring på webbläsarsidan.
+- **Butiksmenyn visas inte och fungerar inte**. Du kanske använder en länk eller en tillfällig länk direkt till den ursprungliga servern i stället för att använda den aktiva webbplatsens URL, eller så använde du `-H "host:URL"` i ett [cURL-kommando](#check-live-site-through-fastly). Om du snabbt kringgår den ursprungliga servern fungerar inte huvudmenyn och felaktiga rubriker visas som tillåter cachelagring på webbläsarsidan.
 
-- **Övre navigering fungerar inte**- Den översta navigeringen är beroende av ESI-bearbetning (Edge Side Includes) som aktiveras när du överför de vanliga VCL-kodfragmenten för Magento snabbt. Om navigeringen inte fungerar [ladda upp den snabba VCL-filen](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera om webbplatsen.
+- **Övre navigering fungerar inte**. Den översta navigeringen är beroende av ESI-bearbetning (Edge Side Includes), som aktiveras när du överför de förvalda VCL-kodfragmenten för Magento fast. Om navigeringen inte fungerar kan du [överföra snabbVCL](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera webbplatsen igen.
 
-- **Geo-location/GeoIP fungerar inte**— Standardvärdet för VCL-kodfragment för Magento snabbt lägger till landskoden i URL:en. Om landskoden inte fungerar [ladda upp den snabba VCL-filen](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera om webbplatsen.
+- **Geo-location/GeoIP fungerar inte**. Standardvärdet för VCL-kodfragment för Magento snabbt lägger till landskoden i URL:en. Om landskoden inte fungerar kan du [överföra snabbVCL](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera webbplatsen igen.
 
-- **Sidorna cachelagras inte**—Som standard cachelagras inte sidor med `Set-Cookies` header. Adobe Commerce ställer in cookies även på cachebara sidor (TTL > 0). Med standardinställningen Magento-VCL raderas dessa cookies på cacheable-sidor. Om sidorna inte cachelagras, [ladda upp den snabba VCL-filen](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera om webbplatsen.
+- **Sidor cachelagras inte**. Som standard cachelagras inte sidor med sidhuvudet `Set-Cookies`. Adobe Commerce ställer in cookies även på cachebara sidor (TTL > 0). Med standardinställningen Magento-VCL raderas dessa cookies på cacheable-sidor. Om sidorna inte cachelagras kan du [överföra snabbVCL](fastly-configuration.md#upload-vcl-to-fastly) och kontrollera webbplatsen igen.
 
-  Detta kan även inträffa om ett sidblock i en mall markeras som oåtkomligt. I så fall beror problemet troligen på att en modul från tredje part eller ett tillägg blockerar eller tar bort Adobe Commerce-huvuden. Information om hur du löser problemet finns i [X-Cache innehåller bara MISS, ingen HIT](#x-cache-contains-only-miss-no-hit).
+  Detta kan även inträffa om ett sidblock i en mall markeras som oåtkomligt. I så fall beror problemet troligen på att en modul från tredje part eller ett tillägg blockerar eller tar bort Adobe Commerce-huvuden. Information om hur du löser problemet finns i [X-Cache innehåller endast MISS, inget HIT](#x-cache-contains-only-miss-no-hit).
 
-- **Rensningsbegäranden misslyckas**—Följande fel returneras snabbt när du skickar en rensningsbegäran:
+- **Rensningsbegäranden misslyckas** - Följande fel returneras snabbt när du skickar en rensningsbegäran:
 
   ```text
   The purge request was not processed successfully.
@@ -67,7 +67,7 @@ Om du snabbt returnerar 503 timeout-fel kontrollerar du felloggarna och felsidan
 
 >[!NOTE]
 >
->Om timeout inträffar när gruppåtgärder körs kan du [förlänga tidsgränsen för Admin](fastly-custom-cache-configuration.md#extend-fastly-timeout).
+>Om tidsgränsen uppnås när gruppåtgärder körs kan du [förlänga den snabba tidsgränsen för administratören](fastly-custom-cache-configuration.md#extend-fastly-timeout).
 
 Om du får ett 503-fel bör du kontrollera felloggen för produktions- eller mellanlagringsmiljön och PHP-åtkomstloggen för att felsöka problemet.
 
@@ -79,7 +79,7 @@ Om du får ett 503-fel bör du kontrollera felloggen för produktions- eller mel
   /var/log/platform/<project-ID>/error.log
   ```
 
-  Den här loggen innehåller fel från programmet eller PHP-motorn, till exempel `memory_limit` eller `max_execution_time exceeded` fel. Om du inte hittar några snabbrelaterade fel kontrollerar du PHP-åtkomstloggen.
+  Den här loggen innehåller fel från programmet eller PHP-motorn, till exempel `memory_limit`- eller `max_execution_time exceeded`-fel. Om du inte hittar några snabbrelaterade fel kontrollerar du PHP-åtkomstloggen.
 
 - PHP-åtkomstlogg
 
@@ -87,7 +87,7 @@ Om du får ett 503-fel bör du kontrollera felloggen för produktions- eller mel
   /var/log/platform/<project-ID>/php.access.log
   ```
 
-  Sök i loggen efter HTTP 200-svar efter den URL som returnerade felet 503. Om du hittar 200-svaret innebär det att Adobe Commerce returnerade sidan utan fel. Detta anger att problemet kan ha inträffat efter det intervall som överskrider `first_byte_timeout` som anges i snabbtjänstkonfigurationen.
+  Sök i loggen efter HTTP 200-svar efter den URL som returnerade felet 503. Om du hittar 200-svaret innebär det att Adobe Commerce returnerade sidan utan fel. Det indikerar att problemet kan ha inträffat efter det intervall som överskrider det `first_byte_timeout`-värde som angetts i snabbtjänstkonfigurationen.
 
 När ett 503-fel inträffar returnerar Snabb orsaken på fel- och underhållssidan. Du kanske inte kan se orsaken om du har lagt till kod för en [anpassad svarssida](fastly-custom-response.md). Om du vill visa orsakskoden på standardfelsidan kan du ta bort HTML-koden för den anpassade felsidan.
 
@@ -95,21 +95,21 @@ När ett 503-fel inträffar returnerar Snabb orsaken på fel- och underhållssid
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
-1. Expandera i den högra rutan **Helsidescache**.
+1. Expandera **Helsidescache** i den högra rutan.
 
-1. I **Snabb konfiguration** sektion, expandera **Anpassade syntetiska sidor** som bilden nedan visar.
+1. Expandera **Anpassade syntetiska sidor** i avsnittet **Snabbt konfigurering** enligt bilden nedan.
 
    ![Anpassad felsida 503](../../assets/cdn/fastly-custom-synthetic-pages-edit-html.png)
 
-1. Klicka **Ange HTML**.
+1. Klicka på **Ange HTML**.
 
 1. Ta bort den anpassade koden. Du kan spara det i ett textprogram och lägga tillbaka det senare.
 
-1. Klicka **Överför** för att skicka uppdateringar till Fast.
+1. Klicka på **Överför** för att skicka dina uppdateringar snabbt.
 
-1. Klicka **Spara konfiguration** överst på sidan.
+1. Klicka på **Spara konfiguration** överst på sidan.
 
 1. Öppna URL:en som orsakade felet 503 igen. Returnerar snabbt en felsida med orsaken som visas i följande exempel.
 
@@ -121,7 +121,7 @@ Om API-domänen och underdomänerna för ditt Adobe Commerce i ett molninfrastru
 
 - Uppdatera API- och underdomänskonfigurationen på det befintliga snabbkontot. Se [Flera snabbkonton och tilldelade domäner](fastly.md#domain).
 
-- [Aktivera och konfigurera snabbt](fastly-configuration.md#enable-fastly-caching) och fylla i [DNS-konfiguration](../launch/checklist.md#update-dns-configuration-with-production-settings)
+- [Aktivera och konfigurera snabbt](fastly-configuration.md#enable-fastly-caching) och slutför [DNS-konfigurationen](../launch/checklist.md#update-dns-configuration-with-production-settings)
 
 ## Verifiera eller felsök snabbt tjänster
 
@@ -129,19 +129,19 @@ Du kan felsöka prestanda- eller cachelagringsproblem för en Adobe Commerce på
 
 ### Kontrollera publicerad webbplats snabbt
 
-Använd API:t Snabb för att kontrollera  `Fastly-Magento-VCL-Uploaded` och `X-Cache` svarsrubriker som returneras från din publicerade webbplats.
+Använd API:t Snabbt för att kontrollera de `Fastly-Magento-VCL-Uploaded`- och `X-Cache`-svarshuvuden som returneras från din aktiva webbplats.
 
-API-begäranden skickas snabbt via tillägget Fast för att få svar från era ursprungliga servrar. Om svaret returnerar felaktiga rubriker testar du [ursprungsservrar direkt](#bypass-fastly-cache-to-check-adobe-commerce-sites).
+API-begäranden skickas snabbt via tillägget Fast för att få svar från era ursprungliga servrar. Om svaret returnerar felaktiga huvuden testar du [origin-servrarna direkt](#bypass-fastly-cache-to-check-adobe-commerce-sites).
 
-**Kontrollera svarshuvuden**:
+**Så här kontrollerar du svarsrubrikerna**:
 
-1. Använd följande i en terminal: `curl` för att testa din webbplats-URL:
+1. Använd följande `curl`-kommando i en terminal för att testa din webbplats-URL:
 
    ```bash
    curl https://<live URL> -vo /dev/null -H Fastly-Debug:1
    ```
 
-   Använd kommandot `--resolve` som åsidosätter DNS-namnmatchning.
+   Om du inte har angett en statisk väg eller slutfört DNS-konfigurationen för domänerna på den publicerade webbplatsen använder du flaggan `--resolve`, som åsidosätter DNS-namnmatchningen.
 
    ```bash
    curl -svo /dev/null --resolve '<your_hostname>:443:<IP-address-of-cache-node>' <https-URL>
@@ -149,9 +149,9 @@ API-begäranden skickas snabbt via tillägget Fast för att få svar från era u
 
    >[!NOTE]
    >
-   >Om du vill använda kommandot med `--resolve` måste du ha TLS aktiverat med Snabbt via ett SSL/TLS-certifikat och hitta cachenodens IP-adress.
+   >Om du vill använda det här kommandot med alternativet `--resolve` måste du ha TLS aktiverat med Snabbt via ett SSL/TLS-certifikat och hitta cachenodens IP-adress.
 
-1. I svaret kontrollerar du att [rubriker](#check-cache-hit-and-miss-response-headers) för att säkerställa att Fastly fungerar. Du bör se följande unika rubriker i svaret:
+1. Verifiera [headers](#check-cache-hit-and-miss-response-headers) i svaret för att kontrollera att Fastly fungerar. Du bör se följande unika rubriker i svaret:
 
    ```http
    < Fastly-Magento-VCL-Uploaded: yes
@@ -174,15 +174,15 @@ När du har lagt till VCL-fragmentet använder du cURL-kommandon för att skicka
 
 Kontrollera att det returnerade svaret innehåller följande information:
 
-- Innehåller `X-Magento-Tags` header
+- Innehåller rubriken `X-Magento-Tags`
 
-- Värdet för `Fastly-Module-Enabled` header är antingen `Yes` eller versionsnumret för modulen Fastly for CDN Magento 2 som installerats i projektmiljön
+- Värdet för huvudet `Fastly-Module-Enabled` är antingen `Yes` eller versionsnumret för modulen Fastly for CDN Magento 2 som är installerad i projektmiljön
 
 - [Cache-Control: max-age](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) är större än 0
 
-- [Pragma](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.32) inställningen är `cache`
+- Inställningen [Pragma](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.32) är `cache`
 
-Följande utdrag från utdata för cURL-kommandot visar de korrekta värdena för `Pragma`, `X-Magento-Tags`och `Fastly-Module-Enabled` sidhuvuden:
+Följande utdrag från utdata från cURL-kommandot visar korrekta värden för rubrikerna `Pragma`, `X-Magento-Tags` och `Fastly-Module-Enabled`:
 
 ```terminal
 * STATE: INIT => CONNECT handle 0x600057800; line 1402 (connection #-5000)
@@ -221,7 +221,7 @@ Följande utdrag från utdata för cURL-kommandot visar de korrekta värdena fö
 
 >[!NOTE]
 >
->Mer information om träffar och missar finns i [Förstå headers för cache-HIT och MISS med skärmade tjänster](https://docs.fastly.com/guides/performance-tuning/understanding-cache-hit-and-miss-headers-with-shielded-services) i Snabbas dokumentation.
+>Detaljerad information om träffar och missar finns i [Förstå headers för HIT och MISS i cache med avskärmade tjänster](https://docs.fastly.com/guides/performance-tuning/understanding-cache-hit-and-miss-headers-with-shielded-services) i dokumentationen för snabbast.
 
 ### Åtgärda fel i svarshuvuden
 
@@ -229,7 +229,7 @@ I det här avsnittet ges förslag på hur du löser fel som returneras när du k
 
 #### Modulen Snabbt är inte aktiverad
 
-Om snabbmodulen inte är aktiverad (`Fastly-Module-Enabled: no`) eller om sidhuvudet saknas, [använda SSH för att logga in](../development/secure-connections.md#connect-to-a-remote-environment) till projektet. Kör sedan följande kommando för att kontrollera modulens status.
+Om snabbmodulen inte är aktiverad (`Fastly-Module-Enabled: no`) eller om rubriken saknas [använder du SSH för att logga in](../development/secure-connections.md#connect-to-a-remote-environment) i projektet. Kör sedan följande kommando för att kontrollera modulens status.
 
 ```bash
 php bin/magento module:status Fastly_Cdn
@@ -237,13 +237,13 @@ php bin/magento module:status Fastly_Cdn
 
 Baserat på den returnerade statusen kan du uppdatera snabbkonfigurationen med följande instruktioner.
 
-- `Module does not exist`—Om modulen inte finns [installera och konfigurera](https://github.com/fastly/fastly-magento2/blob/master/Documentation/INSTALLATION.md) Snabbt CDN-modul för Magento 2 i en integrationsgren. Aktivera och konfigurera modulen när installationen är klar. Se [Konfigurera snabbt](fastly-configuration.md).
+- `Module does not exist` - Om modulen inte finns [installerar och konfigurerar](https://github.com/fastly/fastly-magento2/blob/master/Documentation/INSTALLATION.md) den snabba CDN-modulen för Magento 2 i en integrationsgren. Aktivera och konfigurera modulen när installationen är klar. Se [Konfigurera snabbt](fastly-configuration.md).
 
-- `Module is disabled`—Om modulen Snabbt är inaktiverad uppdaterar du miljökonfigurationen på en `integration` i din lokala miljö för att aktivera den. Flytta sedan ändringarna till Förproduktion. Se [Hantera tillägg](../store/extensions.md#install-an-extension).
+- `Module is disabled` - Om snabbmodulen är inaktiverad kan du aktivera miljökonfigurationen på en `integration` -gren i den lokala miljön. Flytta sedan ändringarna till Förproduktion. Se [Hantera tillägg](../store/extensions.md#install-an-extension).
 
-  Om du [Konfigurationshantering](../store/store-settings.md#configure-store)kontrollerar du statusen för snabbast-CDN-modulen i dialogrutan `app/etc/config.php` konfigurationsfilen innan du skickar ändringarna till produktions- eller mellanlagringsmiljön.
+  Om du använder [Configuration Management](../store/store-settings.md#configure-store) bör du kontrollera Snabb CDN-modulens status i konfigurationsfilen `app/etc/config.php` innan du skickar ändringarna till produktions- eller mellanlagringsmiljön.
 
-  Om modulen inte är aktiverad (`Fastly_CDN => 0`) i `config.php` tar du bort filen och kör följande kommando för att uppdatera `config.php` med de senaste konfigurationsinställningarna.
+  Om modulen inte är aktiverad (`Fastly_CDN => 0`) i filen `config.php` tar du bort filen och kör följande kommando för att uppdatera `config.php` med de senaste konfigurationsinställningarna.
 
   ```bash
   bin/magento magento-cloud:scd-dump
@@ -251,41 +251,41 @@ Baserat på den returnerade statusen kan du uppdatera snabbkonfigurationen med f
 
 #### Snabb VCL har inte överförts
 
-Om Snabbt VCL inte har överförts (`Fastly-Magento-VCL-Uploaded`: `false`), använd *Överför VCL* i Admin för att överföra den. Se [Ladda upp VCL-fragment snabbt](fastly-configuration.md#upload-vcl-to-fastly).
+Om Snabbt VCL inte har överförts (`Fastly-Magento-VCL-Uploaded`: `false`) använder du alternativet *Överför VCL* i Admin för att överföra den. Se [Överför snabbt VCL-fragment](fastly-configuration.md#upload-vcl-to-fastly).
 
 #### X-Cache innehåller bara MISS, ingen HIT
 
-Om `X-Cache` header contains `HIT` (`HIT, HIT` eller `HIT, MISS`) visas att det cachelagrade innehållet returneras snabbt.
+Om rubriken `X-Cache` innehåller `HIT` (`HIT, HIT` eller `HIT, MISS`) anger det att det cachelagrade innehållet returneras snabbt.
 
-Om `X-Cache` header is `MISS, MISS` och innehåller inte `HIT`, kör `curl` igen för att kontrollera att sidan inte nyligen rensades från cachen.
+Om rubriken `X-Cache` är `MISS, MISS` och inte innehåller `HIT` kör du kommandot `curl` igen för att kontrollera att sidan inte nyligen har rensats från cachen.
 
-Om du får samma resultat använder du [`curl` kommandon](#check-live-site-through-fastly) och verifiera [svarsrubriker](#check-cache-hit-and-miss-response-headers):
+Om du får samma resultat kan du använda [`curl`-kommandona](#check-live-site-through-fastly) och verifiera [svarsrubrikerna](#check-cache-hit-and-miss-response-headers):
 
 - `Pragma` är `cache`
-- `X-Magento-Tags` exists
+- `X-Magento-Tags` finns
 - `Cache-Control: max-age` är större än 0
 
 Om problemet kvarstår är det troligt att ett annat tillägg återställer dessa rubriker. Upprepa följande procedur i mellanlagringsmiljön genom att inaktivera alla tillägg och aktivera om var och en för att avgöra vilket tillägg som återställer rubrikerna. När du har identifierat tillägget som orsakar problemet måste du inaktivera det i produktionsmiljön.
 
-**Så här identifierar du ett tillägg som återställer svarshuvuden:**
+**Identifiera tillägg som återställer svarshuvuden:**
 
 {{admin-login-step}}
 
-1. Navigera till **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **Avancerat**.
+1. Navigera till **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **Avancerat**.
 
-1. I *Inaktivera modulutdata* i den högra rutan, hitta alla dina tillägg och inaktivera dem.
+1. I avsnittet *Inaktivera modulutdata* i den högra rutan hittar du alla dina tillägg och inaktiverar dem.
 
-1. Klicka **Spara konfiguration**.
+1. Klicka på **Spara konfiguration**.
 
-1. Klicka **System** > **verktyg** > **Cachehantering**.
+1. Klicka på **System** > **Verktyg** > **Cachehantering**.
 
-1. Klicka **Rensa Magento-cache**.
+1. Klicka på **Rensa cachen i Magento**.
 
 1. Utför följande steg för varje tillägg som kan orsaka problem med snabbrubriker:
 
    - Aktivera ett tillägg i taget, spara konfigurationen och tömma Adobe Commerce-cachen.
 
-   - Kör [`curl` kommandon](#check-live-site-through-fastly) för att verifiera [svarsrubriker](#check-cache-hit-and-miss-response-headers).
+   - Kör [`curl`-kommandona ](#check-live-site-through-fastly) för att verifiera [svarsrubrikerna](#check-cache-hit-and-miss-response-headers).
 
    Upprepa den här processen för varje tillägg. Om rubrikerna för snabbsvar inte längre visas har du identifierat det tillägg som orsakar problem med Snabbt.
 
@@ -293,9 +293,9 @@ När du har identifierat det tillägg som återställer snabbrubriker kontaktar 
 
 ## Snabb återställning
 
-Om uppdateringar av anpassade VCL-kodfragment eller andra snabba konfigurationsändringar gör att fel bryts eller returneras på en Adobe Commerce på molninfrastrukturen använder du API:t Snabbt [activate](https://docs.fastly.com/api/config#version_0b79ae1ba6aee61d64cc4d43fed1e0d5) om du vill återställa till en tidigare VCL-version. Du kan inte återställa VCL-versionen från administratören.
+Om uppdateringar av anpassade VCL-kodfragment eller andra snabbkonfigurationsändringar gör att fel bryts eller returneras på en Adobe Commerce på en molninfrastrukturwebbplats, använder du kommandot [activate](https://docs.fastly.com/api/config#version_0b79ae1ba6aee61d64cc4d43fed1e0d5) i snabbprogrammeringsgränssnittet för att återställa till en tidigare VCL-version. Du kan inte återställa VCL-versionen från administratören.
 
-**Återställa VCL-versionen**:
+**Så här återställer du VCL-versionen**:
 
 1. Om du vill visa en lista över tillgängliga VCL-versioner för en tjänst kör du följande kommando
 
@@ -309,4 +309,4 @@ Om uppdateringar av anpassade VCL-kodfragment eller andra snabba konfigurations�
    curl -H "Fastly-Key: <FASTLY_API_TOKEN>" -H "Content-Type: application/x-www-form-urlencoded" -H "Accept: application/json" -X PUT https://api.fastly.com/service/<FASTLY_SERVICE_ID>/version/<VERSION_ID>/activate
    ```
 
-Mer information om hur du använder API:t Snabb för att granska och hantera VCL finns i [Hantera VCL med API](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api).
+Mer information om hur du använder API:t Snabbt för att granska och hantera VCL finns i [Hantera VCL med API:t](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api).

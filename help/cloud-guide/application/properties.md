@@ -1,6 +1,6 @@
 ---
 title: Egenskaper
-description: Använd egenskapslistan som referens när du konfigurerar [!DNL Commerce] applikation för att bygga och driftsätta i molninfrastrukturen.
+description: Använd egenskapslistan som referens när du konfigurerar programmet  [!DNL Commerce]  för att skapa och distribuera till molninfrastrukturen.
 feature: Cloud, Configuration, Build, Deploy, Roles/Permissions, Storage
 exl-id: 58a86136-a9f9-4519-af27-2f8fa4018038
 source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
@@ -12,7 +12,7 @@ ht-degree: 0%
 
 # Egenskaper för programkonfiguration
 
-The `.magento.app.yaml` filen använder egenskaper för att hantera miljöstöd för [!DNL Commerce] program.
+Filen `.magento.app.yaml` använder egenskaper för att hantera miljöstöd för programmet [!DNL Commerce].
 
 | Namn | Beskrivning | Standard | Obligatoriskt |
 | ------ | --------------------------------- | ------- | -------- |
@@ -25,9 +25,9 @@ The `.magento.app.yaml` filen använder egenskaper för att hantera miljöstöd 
 | [`mounts`](#mounts) | Ange banor | Banor:<ul><li>`"var": "shared:files/var"`</li><li>`"app/etc": "shared:files/etc"`</li><li>`"pub/media": "shared:files/media"`</li><li>`"pub/static": "shared:files/static"`</li></ul> | Nej |
 | [`name`](#name) | Definiera programnamnet | `mymagento` | Ja |
 | [`relationships`](#relationships) | Karttjänster | Tjänster:<ul><li>`database: "mysql:mysql"`</li><li>`redis: "redis:redis"`</li><li>`opensearch: "opensearch:opensearch"`</li></ul> | Nej |
-| [`runtime`](#runtime) | Egenskapen Runtime innehåller tillägg som krävs av [!DNL Commerce] program. | Tillägg:<ul><li>`xsl`</li><li>`newrelic`</li><li>`sodium`</li></ul> | Ja |
+| [`runtime`](#runtime) | Körningsegenskapen innehåller tillägg som krävs av programmet [!DNL Commerce]. | Tillägg:<ul><li>`xsl`</li><li>`newrelic`</li><li>`sodium`</li></ul> | Ja |
 | [`type`](#type-and-build) | Ange basbehållarbilden | `php:8.3` | Ja |
-| [`variables`](variables-property.md) | Använda en miljövariabel för en specifik handelsversion | — | Nej |
+| [`variables`](variables-property.md) | Använda en miljövariabel för en viss Commerce-version | — | Nej |
 | [`web`](web-property.md) | Hantera externa begäranden | — | Ja |
 | [`workers`](workers-property.md) | Hantera externa begäranden | — | Ja, om inte egenskapen web används |
 
@@ -35,7 +35,7 @@ The `.magento.app.yaml` filen använder egenskaper för att hantera miljöstöd 
 
 ## `name`
 
-The `name` egenskapen innehåller programnamnet som används i [`routes.yaml`](../routes/routes-yaml.md) fil för att definiera HTTP-uppströmningen (som standard, `mymagento:http`). Om till exempel värdet för `name` är `app`måste du använda `app:http` i det överordnade fältet.
+Egenskapen `name` innehåller det programnamn som används i filen [`routes.yaml`](../routes/routes-yaml.md) för att definiera HTTP-uppströmmen (som standard `mymagento:http`). Om värdet för `name` till exempel är `app` måste du använda `app:http` i det överordnade fältet.
 
 >[!WARNING]
 >
@@ -43,15 +43,15 @@ The `name` egenskapen innehåller programnamnet som används i [`routes.yaml`](.
 
 ## `type` och `build`
 
-The `type`  och `build` -egenskaperna innehåller information om basbehållaravbildningen för att skapa och köra projektet.
+Egenskaperna `type` och `build` innehåller information om basbehållaravbildningen för att skapa och köra projektet.
 
-De `type` språket är PHP. Ange PHP-versionen enligt följande:
+Det `type`-språk som stöds är PHP. Ange PHP-versionen enligt följande:
 
 ```yaml
 type: php:<version>
 ```
 
-The `build` egenskapen avgör vad som händer som standard när projektet skapas. The `flavor` anger en standarduppsättning med byggåtgärder som ska köras. I följande exempel visas standardkonfigurationen för `type` och `build` från `magento-cloud/.magento.app.yaml`:
+Egenskapen `build` avgör vad som händer som standard när projektet skapas. `flavor` anger en standarduppsättning med byggåtgärder som ska köras. I följande exempel visas standardkonfigurationen för `type` och `build` från `magento-cloud/.magento.app.yaml`:
 
 ```yaml
 # The toolstack used to build the application.
@@ -66,13 +66,13 @@ dependencies:
 
 ### Installera och använda Composer 2
 
-The `build: flavor:` -egenskapen används inte för Composer 2.x. Därför måste du installera Composer manuellt under byggfasen. Om du vill installera och använda Composer 2.x i dina Starter- och Pro-projekt måste du göra tre ändringar i `.magento.app.yaml` konfiguration:
+Egenskapen `build: flavor:` används inte för Composer 2.x och du måste därför installera Composer manuellt under byggfasen. Om du vill installera och använda Composer 2.x i dina Starter- och Pro-projekt måste du göra tre ändringar i din `.magento.app.yaml`-konfiguration:
 
-1. Ta bort `composer` som `build: flavor:` och lägga till `none`. Den här ändringen förhindrar att Creative Cloud använder standardversionen av Composer 1.x för att köra byggåtgärder.
-1. Lägg till `composer/composer: '^2.0'` som `php` beroende för installation av Composer 2.x.
-1. Lägg till `composer` bygga uppgifter till `build` som kör byggåtgärderna med Composer 2.x.
+1. Ta bort `composer` som `build: flavor:` och lägg till `none`. Den här ändringen förhindrar att Creative Cloud använder standardversionen av Composer 1.x för att köra byggåtgärder.
+1. Lägg till `composer/composer: '^2.0'` som ett `php`-beroende för installation av Composer 2.x.
+1. Lägg till byggaktiviteterna `composer` i en `build`-krok för att köra byggaktiviteterna med Composer 2.x.
 
-Använd följande konfigurationsfragment i din egen `.magento.app.yaml` konfiguration:
+Använd följande konfigurationsfragment i din egen `.magento.app.yaml`-konfiguration:
 
 ```yaml
 # 1. Change flavor to none.
@@ -91,7 +91,7 @@ hooks:
         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 ```
 
-Se [Obligatoriska paket](../development/overview.md#required-packages) för mer information om Composer.
+Mer information om Composer finns i [Obligatoriska paket](../development/overview.md#required-packages).
 
 ## `dependencies`
 
@@ -103,7 +103,7 @@ Adobe Commerce stöder beroenden av följande språk:
 - Ruby
 - Node.js
 
-Dessa beroenden är oberoende av programmets eventuella beroenden och är tillgängliga i `PATH`, under byggprocessen och i körningsmiljön för programmet.
+Dessa beroenden är oberoende av de eventuella beroendena för ditt program och är tillgängliga i `PATH`, under byggprocessen och i körningsmiljön för ditt program.
 
 Du kan ange dessa beroenden enligt följande:
 
@@ -126,7 +126,7 @@ runtime:
         - sodium
 ```
 
-Se [PHP-inställningar](php-settings.md) om du vill ha information om hur du aktiverar tillägg.
+Mer information om hur du aktiverar tillägg finns i [PHP-inställningar](php-settings.md).
 
 ## `disk`
 
@@ -136,17 +136,17 @@ Definierar programmets beständiga diskstorlek i MB.
 disk: 5120
 ```
 
-Den minsta rekommenderade diskstorleken är 256 MB. Om felet visas `UserError: Error building the project: Disk size may not be smaller than 128MB`, ökar storleken till 256 MB.
+Den minsta rekommenderade diskstorleken är 256 MB. Om felet `UserError: Error building the project: Disk size may not be smaller than 128MB` visas ökar du storleken till 256 MB.
 
 >[!NOTE]
 >
->För Pro Staging- och Production-miljöer måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att uppdatera `mounts` och `disk` konfiguration för programmet. När du skickar in biljetten anger du de konfigurationsändringar som krävs och inkluderar en uppdaterad version av din `.magento.app.yaml` -fil.
+>För Pro Staging- och Production-miljöer måste du [skicka in en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att uppdatera konfigurationen `mounts` och `disk` för ditt program. När du skickar biljetten anger du de konfigurationsändringar som krävs och inkluderar en uppdaterad version av din `.magento.app.yaml`-fil.
 
 ## `relationships`
 
 Definierar tjänstmappningen i programmet.
 
-Relationen `name` är tillgängligt för programmet i `MAGENTO_CLOUD_RELATIONSHIPS` miljövariabel. The `<service-name>:<endpoint-name>` relationer mappas till namn- och typvärdena som definieras i `.magento/services.yaml` -fil.
+Relationen `name` är tillgänglig för programmet i miljövariabeln `MAGENTO_CLOUD_RELATIONSHIPS`. Relationen `<service-name>:<endpoint-name>` mappas till de namn- och typvärden som definierats i filen `.magento/services.yaml`.
 
 ```yaml
 relationships:
@@ -163,11 +163,11 @@ relationships:
     rabbitmq: "rabbitmq:rabbitmq"
 ```
 
-Se [Tjänster](../services/services-yaml.md) om du vill ha en fullständig lista över de tjänstetyper och slutpunkter som stöds.
+En fullständig lista över de tjänstetyper och slutpunkter som stöds finns i [Tjänster](../services/services-yaml.md).
 
 ## `mounts`
 
-Ett objekt vars nycklar är sökvägar i förhållande till programmets rot. Monteringen är ett skrivbart område på disken för filer. Nedan följer en standardlista över de uppsättningar som har konfigurerats i `magento.app.yaml` filen med `volume_id[/subpath]` syntax:
+Ett objekt vars nycklar är sökvägar i förhållande till programmets rot. Monteringen är ett skrivbart område på disken för filer. Följande är en standardlista över mängder som har konfigurerats i filen `magento.app.yaml` med syntaxen `volume_id[/subpath]`:
 
 ```yaml
  # The mounts that will be performed when the package is deployed.
@@ -184,28 +184,28 @@ Formatet för att lägga till din montering i den här listan är följande:
 "/public/sites/default/files": "shared:files/files"
 ```
 
-- `shared`- Delar en volym mellan programmen i en miljö.
-- `disk`- Definierar storleken som är tillgänglig för den delade volymen.
+- `shared` - Delar en volym mellan program i en miljö.
+- `disk` - Definierar storleken som är tillgänglig för den delade volymen.
 
 >[!NOTE]
 >
->För Pro Staging- och Production-miljöer måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att uppdatera `mounts` och `disk` konfiguration för programmet. När du skickar in biljetten anger du de konfigurationsändringar som krävs och inkluderar en uppdaterad version av din `.magento.app.yaml` -fil.
+>För Pro Staging- och Production-miljöer måste du [skicka in en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att uppdatera konfigurationen `mounts` och `disk` för ditt program. När du skickar biljetten anger du de konfigurationsändringar som krävs och inkluderar en uppdaterad version av din `.magento.app.yaml`-fil.
 
-Du kan göra monteringen webbtillgänglig genom att lägga till den i [`web`](web-property.md) block med platser.
+Du kan göra monteringen webbtillgänglig genom att lägga till den i [`web`](web-property.md)-blocket med platser.
 
 >[!WARNING]
 >
->När din webbplats har data, ändra inte `subpath` del av monteringsnamnet. Det här värdet är den unika identifieraren för `files` område. Om du ändrar det här namnet förlorar du alla webbplatsdata som lagras på den gamla platsen.
+>När platsen har data ska du inte ändra `subpath`-delen av monteringsnamnet. Det här värdet är den unika identifieraren för området `files`. Om du ändrar det här namnet förlorar du alla webbplatsdata som lagras på den gamla platsen.
 
 ## `access`
 
-The `access` anger en lägsta användarrollnivå som tillåter SSH-åtkomst till miljöerna. De tillgängliga användarrollerna är:
+Egenskapen `access` anger en lägsta användarrollnivå som tillåter SSH-åtkomst till miljöerna. De tillgängliga användarrollerna är:
 
-- `admin`—Kan ändra inställningar och utföra åtgärder i miljön; har _medverkande_ och _visningsprogram_ rättigheter.
-- `contributor`—Kan överföra kod till den här miljön och grenar från miljön; har _visningsprogram_ rättigheter.
-- `viewer`—Kan endast visa miljön.
+- `admin` - Kan ändra inställningar och köra åtgärder i miljön. Har behörighet för _medverkande_ och _visningsprogram_.
+- `contributor` - Kan överföra kod till den här miljön och grenar från miljön. Har _visningsprogrambehörighet_.
+- `viewer` - Kan endast visa miljön.
 
-Standardanvändarrollen är `contributor`, vilket begränsar SSH-åtkomsten för användare med endast _visningsprogram_ rättigheter. Du kan ändra användarrollen till `viewer` för att tillåta SSH-åtkomst för användare med endast _visningsprogram_ rättigheter:
+Standardanvändarrollen är `contributor`, vilket begränsar SSH-åtkomsten från användare med endast _visningsprogrambehörighet_. Du kan ändra användarrollen till `viewer` för att tillåta SSH-åtkomst för användare med endast _visningsprogrambehörighet_:
 
 ```yaml
 access:

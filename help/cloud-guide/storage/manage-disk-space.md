@@ -12,7 +12,7 @@ ht-degree: 0%
 
 # Hantera diskutrymme
 
-Du kan hitta den totala lagringskapaciteten för ditt Cloud-projekt i ditt Adobe Commerce på molninfrastrukturkontrakt och på din [kontosida](https://accounts.magento.cloud/user). Varje projektkort i ditt konto visar antalet _miljöer_, _lagring_ kapaciteten i GB och antalet _användare_. Du kan också använda följande molnkommando:
+Du kan hitta den totala lagringskapaciteten för ditt Cloud-projekt i ditt Adobe Commerce-avtal för molninfrastruktur och på din [kontosida](https://accounts.magento.cloud/user). Varje projektkort i ditt konto visar antalet _miljöer_, kapaciteten för _lagring_ i GB och antalet _användare_. Du kan också använda följande molnkommando:
 
 ```bash
 magento-cloud subscription:info | grep storage
@@ -30,7 +30,7 @@ Exempelmeddelande:
 
 >[!BEGINSHADEBOX]
 
-_&quot;Vår övervakning har upptäckt att fillagringen i ditt kluster (projekt-id-miljö) börjar bli full. Diskanvändningen är för närvarande på en kritisk användningsnivå med mindre än 1 GiB kvar. Den delade lagringsvolymen håller på att uppgraderas från 60 GiB till 70 GiB för att hålla tjänsterna igång. Ta en titt på hur produktions- och mellanlagringsfilerna används för att se om du kan frigöra utrymme.&quot;_
+_&quot;Vår övervakning har upptäckt att fillagringen på ditt kluster (projekt-id-miljö) börjar bli full. Diskanvändningen är för närvarande på en kritisk användningsnivå med mindre än 1 GiB kvar. Den delade lagringsvolymen håller på att uppgraderas från 60 GiB till 70 GiB för att hålla tjänsterna igång. Ta en titt på hur produktions- och mellanlagringsfilerna används för att se om du kan frigöra utrymme.&quot;_
 
 >[!ENDSHADEBOX]
 
@@ -40,9 +40,9 @@ _&quot;Vår övervakning har upptäckt att fillagringen i ditt kluster (projekt-
 
 ## Kontrollera integreringsmiljön
 
-Du kan kontrollera hur mycket diskutrymme som används i integreringsmiljön med `magento-cloud` CLI.
+Du kan kontrollera hur mycket diskutrymme som används i integreringsmiljön med hjälp av CLI-programmet `magento-cloud`.
 
-**Kontrollera ungefärlig användning av diskutrymme**:
+**Så här kontrollerar du ungefärlig diskutrymmesanvändning**:
 
 ```bash
 magento-cloud db:size
@@ -60,9 +60,9 @@ Checking database service mysql...
 +----------------+-----------------+--------+
 ```
 
-Alla monteringar delar en skiva. Du kan kontrollera hur mycket diskutrymme som används för montering med `magento-cloud` CLI.
+Alla monteringar delar en skiva. Du kan kontrollera diskutrymmesanvändningen för monteringar med CLI:n för `magento-cloud`.
 
-**Kontrollera ungefärlig diskanvändning för mängder**:
+**Så här kontrollerar du ungefärlig diskutrymmesanvändning för mängder**:
 
 ```bash
 magento-cloud mount:size
@@ -85,15 +85,15 @@ Checking disk usage for all mounts on <project>-<environment>-mymagento@ssh.us.m
 
 ## Kontrollera dedikerade kluster
 
-För Pro Staging- och Production-miljöer kan du kontrollera hur mycket diskutrymme som används i varje miljö med `disk free` som anger hur mycket diskutrymme som används i filsystemet. Du måste använda SSH för att logga in i en fjärrmiljö.
+För Pro-miljöer för mellanlagring och produktion kan du kontrollera hur mycket diskutrymme som används i varje miljö med kommandot `disk free` som anger hur mycket diskutrymme som används i filsystemet. Du måste använda SSH för att logga in i en fjärrmiljö.
 
 ```bash
 df -h
 ```
 
-The `-h` visar rapporten i ett läsbart format (KB, MB eller GB).
+Alternativet `-h` visar rapporten i ett läsbart format (KB, MB eller GB).
 
-I följande exempelsvar `/mnt/shared` mängden visar diskutrymme för media och `/data/mysql/` mängd visar diskutrymme för databasen:
+I följande exempelsvar visar monteringen `/mnt/shared` diskutrymmet för media och monteringen `/data/mysql/` visar diskutrymme för databasen:
 
 ```terminal
 Filesystem                                    Size  Used Avail Use% Mounted on
@@ -128,21 +128,21 @@ Filesystem                                    Size  Used Avail Use% Mounted on
 
 ## Allokera diskutrymme
 
-Två [konfigurationsfiler](../environment/overview.md) styra allokeringen av diskutrymme i molnmiljöer: `.magento.app.yaml` -filen och `.magento/services.yaml` -fil. Varje fil innehåller `disk` som definierar diskstorleksvärdet i MB för respektive konfiguration. Du kan bara ändra diskutrymme för Pro-integrering och Starter-miljöer.
+Två [konfigurationsfiler](../environment/overview.md) styr tilldelningen av diskutrymme i molnmiljöer: filen `.magento.app.yaml` och filen `.magento/services.yaml`. Varje fil innehåller egenskapen `disk` som definierar värdet för diskstorleken i MB för respektive konfiguration. Du kan bara ändra diskutrymme för Pro-integrering och Starter-miljöer.
 
 >[!IMPORTANT]
 >
->För proffsproduktions- och mellanlagringsmiljöer måste du [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du vill ändra diskutrymme. En storleksökning av Pro Production- och Staging-miljöerna kan endast utföras med vissa intervall, så beroende på hur mycket diskutrymme du använder kan stödet rekommendera att du ökar diskutrymmet med minst 10 GB. Lagringsökningen för Pro-testning och -produktion kan inte återställas när den har tilldelats. Lagring kan inte omfördelas eller omfördelas mellan resurser. Minska diskutrymmet som tilldelats MySQL om du vill lägga till mer lagringsutrymme.
+>För Pro Production- och mellanlagringsmiljöer måste du [skicka in en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du vill ändra diskutrymme för allokering. En storleksökning av Pro Production- och Staging-miljöerna kan endast utföras med vissa intervall, så beroende på hur mycket diskutrymme du använder kan stödet rekommendera att du ökar diskutrymmet med minst 10 GB. Lagringsökningen för Pro-testning och -produktion kan inte återställas när den har tilldelats. Lagring kan inte omfördelas eller omfördelas mellan resurser. Minska diskutrymmet som tilldelats MySQL om du vill lägga till mer lagringsutrymme.
 
 ### Programdiskutrymme
 
-The `.magento.app.yaml` -filen styr [beständigt diskutrymme](../application/properties.md#disk) som är tillgängliga för programmet.
+Filen `.magento.app.yaml` styr det [beständiga diskutrymme](../application/properties.md#disk) som är tillgängligt för programmet.
 
-**Öka programmets diskutrymme**:
+**Så här ökar du diskutrymmet för programmet**:
 
-1. I den lokala utvecklingsmiljön öppnar du `.magento.app.yaml` konfigurationsfil.
+1. Öppna konfigurationsfilen `.magento.app.yaml` i den lokala utvecklingsmiljön.
 
-1. Ange ett nytt värde för `disk` (i MB).
+1. Ange ett nytt värde för egenskapen `disk` (i MB).
 
    ```yaml
    disk: <value-mb>
@@ -160,11 +160,11 @@ The `.magento.app.yaml` -filen styr [beständigt diskutrymme](../application/pro
 
 ### Tjänstdiskutrymme
 
-The `.magento/services.yaml` -filen kontrollerar vilket diskutrymme som är tillgängligt för varje tjänst, till exempel MySQL och Redis.
+Filen `.magento/services.yaml` styr vilket diskutrymme som är tillgängligt för varje tjänst, till exempel MySQL och Redis.
 
-**Öka diskutrymmet för en tjänst**:
+**Så här ökar du diskutrymmet för en tjänst**:
 
-1. I den lokala utvecklingsmiljön öppnar du `.magento/services.yaml` konfigurationsfil.
+1. Öppna konfigurationsfilen `.magento/services.yaml` i den lokala utvecklingsmiljön.
 
 1. Lägg till eller hitta en tjänst i filen. Se [mer om hur du konfigurerar tjänster](../services/services-yaml.md).
 
@@ -188,11 +188,11 @@ The `.magento/services.yaml` -filen kontrollerar vilket diskutrymme som är till
 
 ## Övervaka diskutrymme
 
-I Pro Production-miljöer kan du övervaka diskutrymme och andra prestandaindikatorer med hjälp av varningspolicyn för Adobe Commerce för New Relic. Mer information finns i [Övervaka prestanda med hanterade aviseringar](../monitor/investigate-performance.md#monitor-performance-with-managed-alerts). Mer information finns i [Bästa tillvägagångssätt för att lösa databasprestandaproblem](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/maintenance/resolve-database-performance-issues.html).
+I Pro Production-miljöer kan du övervaka diskutrymme och andra prestandaindikatorer med hjälp av varningspolicyn för Adobe Commerce för New Relic. Mer information finns i [Övervaka prestanda med hanterade aviseringar](../monitor/investigate-performance.md#monitor-performance-with-managed-alerts). Mer vägledning finns i [Bästa tillvägagångssätt för att lösa databasprestandaproblem](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/maintenance/resolve-database-performance-issues.html).
 
 ## Inget utrymme kvar
 
-Build-cachen kan växa med tiden. Om du får en varning om lägen `No space left on device`, försök rensa byggcachen och omdistribuera:
+Build-cachen kan växa med tiden. Om du får en varning om att tillstånden `No space left on device` kan du försöka rensa byggcachen och omdistribuera:
 
 ```bash
 magento-cloud project:clear-build-cache

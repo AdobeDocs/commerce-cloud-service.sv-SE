@@ -1,6 +1,6 @@
 ---
 title: Anpassad VCL för att tillåta begäranden
-description: Filtrera inkommande förfrågningar och tillåt åtkomst via IP-adress för Adobe Commerce-webbplatser genom att använda en lista med snabbkantsåtkomstlistor och anpassade VCL-fragment.
+description: Filtrera inkommande förfrågningar och tillåt åtkomst via IP-adress för Adobe Commerce-webbplatser genom att använda en lista med Edge ACL och anpassade VCL-fragment.
 feature: Cloud, Configuration, Security
 exl-id: a6ee958a-c3d3-47be-b2df-510707f551fc
 source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
@@ -12,15 +12,15 @@ ht-degree: 0%
 
 # Anpassad VCL för att tillåta begäranden
 
-Du kan använda en snabbkantslista (ACL) med ett anpassat VCL-kodfragment för att filtrera inkommande begäranden och tillåta åtkomst via IP-adress. ACL-listan anger vilka IP-adresser som tillåts.
+Du kan använda en lista med snabb Edge ACL med ett anpassat VCL-kodfragment för att filtrera inkommande begäranden och tillåta åtkomst via IP-adress. ACL-listan anger vilka IP-adresser som tillåts.
 
 Skapa en tillåtelselista för att begränsa åtkomsten till mellanlagringsmiljön så att endast begäranden från angivna IP-adresser för interna utvecklare och godkända externa tjänster tillåts. Du kan också skapa en tillåtelselista för säker åtkomst till Admin i mellanlagrings- och produktionsmiljöer.
 
-I följande exempel visas hur du använder ett anpassat VCL-fragment med en [ACL (Fast Access Control List)](https://docs.fastly.com/guides/access-control-lists/about-acls) för att säkra åtkomsten till Admin för Adobe Commerce i molninfrastrukturens projektmiljö. När du lägger till det anpassade VCL-fragmentet i molnmiljön tillåter snabbast endast begäranden från IP-adresser som ingår i åtkomstkontrollistan.
+I följande exempel visas hur du använder ett anpassat VCL-fragment med en [snabbåtkomstkontrollista (ACL)](https://docs.fastly.com/guides/access-control-lists/about-acls) för att skydda åtkomsten till Admin för en Adobe Commerce-projektmiljö i molnet. När du lägger till det anpassade VCL-fragmentet i molnmiljön tillåter snabbast endast begäranden från IP-adresser som ingår i åtkomstkontrollistan.
 
 >[!TIP]
 >
->I miljöer för mellanlagrings- och integreringsmiljöer som inte ska vara allmänt tillgängliga använder du alternativet för HTTP-åtkomstkontroll i [[!DNL Cloud Console]](../project/overview.md#access-the-project-web-interface) för att hantera åtkomst till hela webbplatsen via IP-adress.
+>För mellanlagrings- och integreringsmiljöer som inte ska vara allmänt tillgängliga använder du alternativet för HTTP-åtkomstkontroll i [[!DNL Cloud Console]](../project/overview.md#access-the-project-web-interface) för att hantera åtkomst till hela platsen via IP-adress.
 
 **Förutsättningar:**
 
@@ -35,29 +35,29 @@ Edge ACL:er skapar IP-adresslistor för att hantera åtkomst till din webbplats.
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
 
-1. Expandera **Helsidescache** > **Snabb konfiguration** > **Kant-ACL**.
+1. Expandera **Helsidescache** > **Snabb konfiguration** > **Edge ACL**.
 
 1. Skapa ACL-behållaren:
 
-   - Klicka **Lägg till ACL**.
+   - Klicka på **Lägg till ACL**.
 
-   - På *ACL-behållare* sida, ange en **ACL-namn**—`allowlist`.
+   - Ange ett **ACL-namn**—`allowlist` på sidan *ACL-behållare*.
 
-   - Välj **Aktivera efter ändringen** för att driftsätta ändringarna i den version av snabbtjänstkonfigurationen som du redigerar.
+   - Välj **Aktivera efter ändringen** om du vill distribuera ändringarna till den version av snabbtjänstkonfigurationen som du redigerar.
 
-   - Klicka **Överför** för att ansluta åtkomstkontrollistan till din snabbtjänstkonfiguration.
+   - Klicka på **Överför** för att ansluta åtkomstkontrollistan till din snabbtjänstkonfiguration.
 
 1. Lägg till listan över IP-adresser som kan få åtkomst till administratören:
 
    - Klicka på inställningsikonen för `allowlist` ACL.
 
-   - Lägg till och spara *IP-värde* för varje klient-IP-adress.
+   - Lägg till och spara *IP-värdet* för varje klient-IP-adress.
 
-   - Klicka **Avbryt** för att återgå till sidan för systemkonfiguration.
+   - Klicka på **Avbryt** för att återgå till systemkonfigurationssidan.
 
-1. Klicka **Spara konfiguration**.
+1. Klicka på **Spara konfiguration**.
 
 1. Uppdatera cacheminnet enligt meddelandet längst upp på sidan.
 
@@ -75,35 +75,35 @@ Följande anpassade VCL-kodfragment (JSON-format) visar logiken för att filtrer
 }
 ```
 
-Före [skapa ett anpassat fragment](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/cdn/custom-vcl-snippets/fastly-vcl-allowlist.html#add-the-custom-vcl-snippet) Granska värdena utifrån det här exemplet för att avgöra om du behöver göra några ändringar. Ange sedan varje värde i respektive fält, till exempel `type` till textfältet, `content` till fältet Innehåll.
+Innan du [skapar ett anpassat fragment](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/cdn/custom-vcl-snippets/fastly-vcl-allowlist.html#add-the-custom-vcl-snippet) från det här exemplet bör du kontrollera värdena för att avgöra om du behöver göra några ändringar. Ange sedan varje värde i respektive fält, till exempel `type`, i fältet Typ `content` i fältet Innehåll.
 
-- `name` — Namnet på VCL-fragmentet. I detta exempel `allowlist`.
+- `name` - VCL-fragmentets namn. I det här exemplet: `allowlist`.
 
-- `priority` — Avgör när VCL-fragmentet körs. Prioriteten är `5` för att omedelbart köra och kontrollera om en Admin-begäran kommer från en tillåten IP-adress. Utdraget körs före något av de förvalda VCL-kodfragmenten för Magento (`magentomodule_*`) fick prioritet 50. Ange prioriteten för varje anpassat fragment som är högre eller lägre än 50, beroende på när du vill att fragmentet ska köras. Fragment med lägre prioritetsnummer körs först.
+- `priority` - Avgör när VCL-fragmentet körs. Prioriteten är `5` för att omedelbart köra och kontrollera om en Admin-begäran kommer från en tillåten IP-adress. Utdraget körs före något av de Magento VCL-standardfragment (`magentomodule_*`) som tilldelats en prioritet på 50. Ange prioriteten för varje anpassat fragment som är högre eller lägre än 50, beroende på när du vill att fragmentet ska köras. Fragment med lägre prioritetsnummer körs först.
 
-- `type` — Anger en plats där fragmentet ska infogas i den versionshanterade VCL-koden. Denna VCL är en `recv` fragmenttyp som lägger till fragmentkoden i `vcl_recv` underrutinen under standardkoden Fast VCL och ovanför eventuella objekt.
+- `type` - Anger en plats där fragmentet ska infogas i den versionshanterade VCL-koden. Denna VCL är en `recv`-fragmenttyp som lägger till fragmentkoden i `vcl_recv`-underrutinen nedanför den förvalda snabbvariga VCL-koden och ovanför eventuella objekt.
 
-- `content` — Det VCL-kodfragment som ska köras. I det här exemplet filtrerar koden förfrågningar till administratören och ger åtkomst om klientens IP-adress matchar en adress i `allowlist` ACL. Om adressen inte matchar blockeras begäran med en `403 Forbidden` fel.
+- `content` - Det VCL-kodfragment som ska köras. I det här exemplet filtrerar koden förfrågningar till administratören och tillåter åtkomst om klientens IP-adress matchar en adress i `allowlist` ACL. Om adressen inte matchar blockeras begäran med ett `403 Forbidden`-fel.
 
-  Om URL:en för din administratör har ändrats ersätter du exempelvärdet `/admin` med URL:en för din miljö. Till exempel: `/company-admin`.
+  Om URL:en för din administratör har ändrats ska du ersätta exempelvärdet `/admin` med URL:en för din miljö. Exempel: `/company-admin`.
 
-I kodexemplet är villkoret `!req.http.Fastly-FF` är viktigt när du använder [Origo Shielding](fastly-custom-cache-configuration.md#configure-back-ends-and-origin-shielding). Ta inte bort eller redigera den här koden.
+I kodexemplet är villkoret `!req.http.Fastly-FF` viktigt när du använder [Origin Shielding](fastly-custom-cache-configuration.md#configure-back-ends-and-origin-shielding). Ta inte bort eller redigera den här koden.
 
 När du har granskat och uppdaterat koden för din miljö använder du någon av följande metoder för att lägga till det anpassade VCL-fragmentet i din snabbtjänstkonfiguration:
 
-- [Lägg till det anpassade VCL-fragmentet från administratören](#add-the-custom-vcl-snippet). Den här metoden rekommenderas om du har åtkomst till Admin. (Kräver [Snabb CDN-modul för Magento 2 version 1.2.58](fastly-configuration.md#upgrade) eller senare.)
+- [Lägg till det anpassade VCL-fragmentet från administratören](#add-the-custom-vcl-snippet). Den här metoden rekommenderas om du har åtkomst till Admin. (Kräver modulen [Snabbt CDN för Magento 2 version 1.2.58](fastly-configuration.md#upgrade) eller senare.)
 
-- Spara JSON-kodexemplet till en fil (till exempel `allowlist.json`) och [ladda upp det med API:t Fast](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api). Använd den här metoden om du inte kan komma åt administratören.
+- Spara JSON-kodexemplet till en fil (till exempel `allowlist.json`) och [överför det med snabbprogrammeringsgränssnittet](fastly-vcl-custom-snippets.md#manage-custom-vcl-snippets-using-the-api). Använd den här metoden om du inte kan komma åt administratören.
 
 ## Lägg till anpassat VCL-fragment
 
 {{admin-login-step}}
 
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System**.
 
 1. Expandera **Helsidescache** > **Snabb konfiguration** > **Anpassade VCL-kodfragment**.
 
-1. Klicka **Skapa anpassat fragment**.
+1. Klicka på **Skapa anpassat fragment**.
 
 1. Lägg till VCL-fragmentvärden:
 
@@ -113,15 +113,15 @@ När du har granskat och uppdaterat koden för din miljö använder du någon av
 
    - **Prioritet** — `5`
 
-   - Lägg till **VCL** textutdrag:
+   - Lägg till **VCL**-fragmentinnehållet:
 
      ```conf
      if ((req.url ~ "^/admin") && !(client.ip ~ allowlist) && !req.http.Fastly-FF) { error 403 "Forbidden";}
      ```
 
-1. Klicka **Skapa** för att generera VCL-fragmentfilen med namnmönstret `type_priority_name.vcl`, till exempel `recv_5_allowlist.vcl`
+1. Klicka på **Skapa** om du vill generera VCL-utdragsfilen med namnmönstret `type_priority_name.vcl`, till exempel `recv_5_allowlist.vcl`
 
-1. När sidan har lästs in igen klickar du på **Ladda upp VCL snabbt** i *Snabb konfiguration* för att lägga till filen i snabbtjänstkonfigurationen.
+1. När sidan har lästs in på nytt klickar du på **Överför VCL till Snabbt** i avsnittet *Snabbkonfiguration* för att lägga till filen i snabbtjänstkonfigurationen.
 
 1. När överföringen är klar uppdaterar du cacheminnet enligt meddelandet längst upp på sidan.
 

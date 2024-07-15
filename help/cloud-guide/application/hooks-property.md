@@ -1,6 +1,6 @@
 ---
 title: Hooks, egenskap
-description: Se exempel på hur du konfigurerar hooks-egenskapen i [!DNL Commerce] programkonfigurationsfil.
+description: Se exempel på hur du konfigurerar hooks-egenskapen i  [!DNL Commerce] programmets konfigurationsfil.
 feature: Cloud, Configuration, Build, Deploy
 exl-id: d9561f09-5129-4b72-978e-2e3873e8efae
 source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
@@ -12,15 +12,15 @@ ht-degree: 0%
 
 # Hooks, egenskap
 
-Använd `hooks` för att köra kommandon i kommandotolken under bygg-, distributions- och efterdriftfaserna:
+Använd avsnittet `hooks` om du vill köra kommandon för användargränssnitt under faserna för att skapa, distribuera och efterdistribuera:
 
-- **`build`**—Kör kommandon _före_ paketera programmet. Tjänster, som databasen eller Redis, är inte tillgängliga eftersom programmet ännu inte har distribuerats. Lägga till egna kommandon _före_ standardvärdet `php ./vendor/bin/ece-tools` så att anpassat innehåll fortsätter till distributionsfasen.
+- **`build`** - Kör kommandon _innan_ paketerar programmet. Tjänster, som databasen eller Redis, är inte tillgängliga eftersom programmet ännu inte har distribuerats. Lägg till anpassade kommandon _före_ som standard `php ./vendor/bin/ece-tools` så att anpassat innehåll fortsätter till distributionsfasen.
 
-- **`deploy`**—Kör kommandon _efter_ paketera och distribuera programmet. Du kan nu komma åt andra tjänster. Sedan standardinställningen `php ./vendor/bin/ece-tools` kommandot kopierar `app/etc` till rätt plats måste du lägga till egna kommandon _efter_ kommandot deploy för att förhindra att anpassade kommandon misslyckas.
+- **`deploy`** - Kör kommandon _efter_ att du paketerat och distribuerat programmet. Du kan nu komma åt andra tjänster. Eftersom standardkommandot `php ./vendor/bin/ece-tools` kopierar katalogen `app/etc` till rätt plats, måste du lägga till anpassade kommandon _efter_ kommandot för distribution för att förhindra att anpassade kommandon misslyckas.
 
-- **`post_deploy`**—Kör kommandon _efter_ driftsätta ditt program och _efter_ behållaren accepterar anslutningar. The `post_deploy` kroken rensar cachen och läser in cachen i förväg (varmar). Du kan anpassa sidlistan med `WARM_UP_PAGES` i [Steg efter driftsättning](../environment/variables-post-deploy.md). Även om det inte är nödvändigt fungerar detta tillsammans med `SCD_ON_DEMAND` miljövariabel.
+- **`post_deploy`** - Kör kommandon _efter_-distributionen av programmet och _efter_ börjar behållaren acceptera anslutningar. Koppeln `post_deploy` rensar cachen och läser in cachen i förväg (varmar). Du kan anpassa sidlistan med hjälp av variabeln `WARM_UP_PAGES` i [Post-distributionsfasen](../environment/variables-post-deploy.md). Även om det inte krävs fungerar detta tillsammans med miljövariabeln `SCD_ON_DEMAND`.
 
-I följande exempel visas standardkonfigurationen i `.magento.app.yaml` -fil. Lägg till CLI-kommandon under `build`, `deploy`, eller `post_deploy` avsnitt _före_ den `ece-tools` kommando:
+I följande exempel visas standardkonfigurationen i filen `.magento.app.yaml`. Lägg till CLI-kommandon under `build`, `deploy` eller `post_deploy` avsnitten _före_ kommandot `ece-tools`:
 
 ```yaml
 hooks:
@@ -38,7 +38,7 @@ hooks:
         php ./vendor/bin/ece-tools run scenario/post-deploy.xml
 ```
 
-Du kan också anpassa byggfasen ytterligare med `generate` och `transfer` -kommandon för att utföra ytterligare åtgärder när du specifikt skapar kod eller flyttar filer.
+Du kan också anpassa byggfasen ytterligare genom att använda kommandona `generate` och `transfer` för att utföra ytterligare åtgärder när du skapar kod eller flyttar filer.
 
 ```yaml
 hooks:
@@ -50,13 +50,13 @@ hooks:
         php ./vendor/bin/ece-tools build:transfer
 ```
 
-- `set -e`—gör att kopplingar misslyckas vid det första misslyckade kommandot i stället för det sista misslyckade kommandot.
-- `build:generate`—använder korrigeringsfiler, validerar konfiguration, genererar ID och genererar statiskt innehåll om SCD är aktiverat för byggfasen.
-- `build:transfer`—överför genererad kod och statiskt innehåll till slutmålet.
+- `set -e` - gör att krokar misslyckas vid det första misslyckade kommandot i stället för det sista misslyckade kommandot.
+- `build:generate` - tillämpar korrigeringar, validerar konfiguration, genererar ID och genererar statiskt innehåll om SCD är aktiverat för byggfasen.
+- `build:transfer` - överför genererad kod och statiskt innehåll till det slutliga målet.
 
-Kommandona körs från programmet (`/app`). Du kan använda `cd` om du vill ändra katalogen. Hakarna misslyckas om det sista kommandot i dem misslyckas. Lägg till `set -e` till början av kroken.
+Kommandona körs från programkatalogen (`/app`). Du kan använda kommandot `cd` för att ändra katalogen. Hakarna misslyckas om det sista kommandot i dem misslyckas. Lägg till `set -e` i början av kroken för att få dem att misslyckas med det första misslyckade kommandot.
 
-**Kompilera Sass-filer med grunt**:
+**Så här kompilerar du Sass-filer med Grund**:
 
 ```yaml
 dependencies:
@@ -74,6 +74,6 @@ hooks:
         php ./vendor/bin/ece-tools build
 ```
 
-Kompilera Sass-filer med `grunt` före statisk innehållsdistribution, som sker under bygget. Placera `grunt` före `build` -kommando.
+Kompilera Sass-filer med `grunt` före distributionen av statiskt innehåll, vilket sker under bygget. Placera kommandot `grunt` före kommandot `build`.
 
 {{scenarios}}

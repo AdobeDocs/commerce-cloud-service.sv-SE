@@ -13,29 +13,29 @@ ht-degree: 0%
 
 # Hantera grenar med CLI
 
-Installera `magento-cloud` CLI, se [CLI-referens för molnet](../dev-tools/cloud-cli-overview.md). När du har installerat `magento-cloud` CLI och konfigurera SSH-nycklar för fjärråtkomst till din molninfrastruktur kan du använda `magento-cloud` CLI-kommandon för att hantera projektmiljöer. Mer information om miljöarkitekturen finns i [Startarkitektur](../architecture/starter-architecture.md) eller [Pro-arkitektur](../architecture/pro-architecture.md).
+Mer information om hur du installerar CLI:n för `magento-cloud` finns i [Cloud CLI-referensen](../dev-tools/cloud-cli-overview.md). När du har installerat CLI:n för `magento-cloud` och konfigurerat SSH-nycklar för fjärråtkomst till din molninfrastruktur kan du använda CLI-kommandon för `magento-cloud` för att hantera miljöer för dina projekt. Mer information om miljöarkitekturen finns i [Starter-arkitekturen](../architecture/starter-architecture.md) eller [Pro-arkitekturen](../architecture/pro-architecture.md).
 
-Hantera grenar och miljöer med [!DNL Cloud Console], se [Hantera grenar med [!DNL Cloud Console]](../project/console-branches.md).
+Mer information om hur du hanterar grenar och miljöer med [!DNL Cloud Console] finns i [Hantera grenar med  [!DNL Cloud Console]](../project/console-branches.md).
 
 ## Använda CLI-kommandon
 
-The `magento-cloud` CLI-kommandon liknar Git-kommandon. Du kan använda dem för att ansluta till ditt projekt och hantera dina miljöer. Även om du kan köra kommandona från en katalog bör du köra dem från en projektkatalog. När du kör från en projektkatalog kan du utesluta `-p <project-ID>` parameter. Se [CLI-referens för molnet](../dev-tools/cloud-cli-overview.md).
+CLI-kommandona `magento-cloud` liknar Git-kommandon. Du kan använda dem för att ansluta till ditt projekt och hantera dina miljöer. Även om du kan köra kommandona från en katalog bör du köra dem från en projektkatalog. När du kör från en projektkatalog kan du utelämna parametern `-p <project-ID>`. Se [Cloud CLI-referens](../dev-tools/cloud-cli-overview.md).
 
 ## Klona projektet
 
-I följande instruktioner används en kombination av `magento-cloud` CLI-kommandon och Git-kommandon för att klona projektet till din lokala arbetsstation. Visa en fullständig lista över `magento-cloud` CLI-kommandon använder du `magento-cloud list` -kommando.
+I följande instruktioner används en kombination av `magento-cloud` CLI-kommandon och Git-kommandon för att klona projektet till din lokala arbetsstation. Använd kommandot `magento-cloud list` om du vill se en fullständig lista över `magento-cloud` CLI-kommandon.
 
 >[!IMPORTANT]
 >
->Vissa Git-kommandon kan inte slutföra en åtgärd i Adobe Commerce i ett molninfrastrukturprojekt. Du kan till exempel skapa en gren med ett Git-kommando, men du kan inte skapa och aktivera en ny miljö. Du måste skapa en miljö med `magento-cloud environment:branch <branch-name>` för att miljön ska bli _aktiv_. Du kan också använda [!DNL Cloud Console] för att skapa aktiva miljöer. Se [CLI-referens för molnet](../dev-tools/cloud-cli-overview.md#git-commands).
+>Vissa Git-kommandon kan inte slutföra en åtgärd i Adobe Commerce i ett molninfrastrukturprojekt. Du kan till exempel skapa en gren med ett Git-kommando, men du kan inte skapa och aktivera en ny miljö. Du måste skapa en miljö med kommandot `magento-cloud environment:branch <branch-name>` för att miljön ska bli _aktiv_. Du kan också använda [!DNL Cloud Console] för att skapa aktiva miljöer. Se [Cloud CLI-referens](../dev-tools/cloud-cli-overview.md#git-commands).
 
-**Klona ett projekt `master` miljö**:
+**Så här klonar du ett projekt `master` miljö**:
 
-1. Logga in på din lokala arbetsstation med en [ägare av filsystem](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html) konto.
+1. Logga in på din lokala arbetsstation med ett [ägarkonto](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html) för filsystemet.
 
-1. Byt till webbservern eller det virtuella värdsystemet _docroot_ katalog.
+1. Byt till webbservern eller den virtuella värdkatalogen _docroot_.
 
-1. Logga in med `magento-cloud` CLI.
+1. Logga in med CLI:n för `magento-cloud`.
 
    ```bash
    magento-cloud login
@@ -55,7 +55,7 @@ I följande instruktioner används en kombination av `magento-cloud` CLI-kommand
 
    Ange ett katalognamn när du uppmanas till detta.
 
-1. Ändra till `magento2` katalog.
+1. Byt till katalogen `magento2`.
 
 1. Visa tillgängliga miljöer för projektet.
 
@@ -65,7 +65,7 @@ I följande instruktioner används en kombination av `magento-cloud` CLI-kommand
 
    >[!IMPORTANT]
    >
-   >The `magento-cloud environment:list` -kommandot visar systemhierarkier, medan `git branch` kommandot gör inte det.
+   >Kommandot `magento-cloud environment:list` visar miljöhierarkier, men det gör inte kommandot `git branch`.
 
 1. Hämta fjärrgrenarna.
 
@@ -81,16 +81,16 @@ I följande instruktioner används en kombination av `magento-cloud` CLI-kommand
 
 >[!TIP]
 >
->Se [Integreringar](../integrations/overview.md) om du vill ha information om hur du använder Git-baserade värdtjänster med Adobe Commerce om molninfrastruktur.
+>Mer information om hur du använder Git-baserade värdtjänster med Adobe Commerce om molninfrastruktur finns i [Integreringar](../integrations/overview.md).
 
 ## Skapa en gren för utveckling
 
-När du har klonat projektet och uppdaterat Adobe Commerce administratörskonfiguration kan du skapa en gren för utvecklingen. Som tidigare nämnts måste du skapa en miljö med `magento-cloud environment:branch <branch-name>` kommandot eller [!DNL Cloud Console] för miljön _aktiv_.
+När du har klonat projektet och uppdaterat Adobe Commerce administratörskonfiguration kan du skapa en gren för utvecklingen. Som tidigare nämnts måste du skapa en miljö med kommandot `magento-cloud environment:branch <branch-name>` eller [!DNL Cloud Console] för att miljön ska bli _aktiv_.
 
-- För [Starter](../architecture/starter-develop-deploy-workflow.md#clone-and-branch)kan du skapa en gren för `staging`och sedan skapa en utvecklingsgren baserat på `staging` gren.
-- För [Pro](../architecture/pro-develop-deploy-workflow.md#development-workflow), skapa utvecklingsgrenar baserat på `Integration` gren.
+- För [Starter](../architecture/starter-develop-deploy-workflow.md#clone-and-branch) kan du skapa en gren för `staging` och sedan skapa en utvecklingsgren baserat på grenen `staging`.
+- För [Pro](../architecture/pro-develop-deploy-workflow.md#development-workflow) skapar du utvecklingsgrenar baserat på grenen `Integration`.
 
-**Skapa en utvecklingsgren**:
+**Så här skapar du en utvecklingsgren**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -134,7 +134,7 @@ Ta bara bort en miljö om du är säker på att du inte längre behöver den. Du
 
 >[!WARNING]
 >
->Du kan inte ta bort `master` del av ett projekt.
+>Du kan inte ta bort grenen `master` för något projekt.
 
 Du måste vara projektadministratör, miljöadministratör eller kontoägare för att kunna utföra den här åtgärden. Se [Hantera användaråtkomst till molnprojekt](../project/user-access.md).
 
@@ -169,7 +169,7 @@ När du tar bort en miljö ställs miljön in på _inaktiv_. Koden är fortfaran
    Are you sure you want to delete the environment <environment-ID>? [Y/n]
    ```
 
-   Om du tar bort miljön placeras den i en _inaktiv_ tillstånd.
+   Om du tar bort miljön placeras den i ett _inaktivt_-läge.
 
    ```terminal
    Delete the remote Git branch too? [Y/n]
@@ -192,8 +192,8 @@ När du tar bort en miljö ställs miljön in på _inaktiv_. Koden är fortfaran
 
 >[!TIP]
 >
->Använd `magento-cloud environment:activate` -kommando.
+>Om du vill aktivera en inaktiv miljö använder du kommandot `magento-cloud environment:activate`.
 
 ## Interagera med fjärrmiljöer
 
-Efter dig [konfigurera SSH-nycklar](../development/secure-connections.md)kan du [ansluta från din lokala arbetsyta till en fjärrmiljö](../development/secure-connections.md#connect-to-a-remote-environment) och interagera med projekttjänsterna och ändra inställningarna.
+När du har [konfigurerat SSH-nycklar](../development/secure-connections.md) kan du [ansluta från din lokala arbetsyta till en fjärrmiljö](../development/secure-connections.md#connect-to-a-remote-environment) och interagera med dina projekttjänster och ändra inställningarna.

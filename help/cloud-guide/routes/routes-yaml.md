@@ -12,9 +12,9 @@ ht-degree: 0%
 
 # Konfigurera flöden
 
-The `routes.yaml` i `.magento/routes.yaml` katalog anger vägar för din Adobe Commerce i molninfrastrukturerna Integration, Staging och Production. Rutorna avgör hur programmet hanterar inkommande HTTP- och HTTPS-begäranden.
+Filen `routes.yaml` i katalogen `.magento/routes.yaml` definierar vägar för din Adobe Commerce i molninfrastruktur för integrering, mellanlagring och produktion. Rutorna avgör hur programmet hanterar inkommande HTTP- och HTTPS-begäranden.
 
-Standardvärdet `routes.yaml` filen anger flödesmallar för bearbetning av HTTP-begäranden som HTTPS i projekt som har en enda standarddomän och i projekt som är konfigurerade för flera domäner:
+Standardfilen `routes.yaml` anger flödesmallarna för bearbetning av HTTP-begäranden som HTTPS i projekt som har en enda standarddomän och i projekt som har konfigurerats för flera domäner:
 
 ```yaml
 "http://{default}/":
@@ -25,7 +25,7 @@ Standardvärdet `routes.yaml` filen anger flödesmallar för bearbetning av HTTP
     upstream: "mymagento:http"
 ```
 
-Använd `magento-cloud` CLI för att visa en lista över konfigurerade vägar:
+Använd CLI:n för `magento-cloud` för att visa en lista över konfigurerade vägar:
 
 ```bash
 magento-cloud environment:routes
@@ -43,11 +43,11 @@ magento-cloud environment:routes
 
 ## Flödesmallar
 
-The `routes.yaml` filen är en lista över mallvägar och deras konfigurationer. Du kan använda följande platshållare i flödesmallar:
+Filen `routes.yaml` är en lista över mallvägar och deras konfigurationer. Du kan använda följande platshållare i flödesmallar:
 
-- The `{default}` platshållaren representerar det kvalificerade domännamnet som konfigurerats som standard för projektet.
+- Platshållaren `{default}` representerar det kvalificerade domännamnet som konfigurerats som standard för projektet.
 
-  Ett projekt med standarddomänen `example.com` och följande ruttmallar:
+  Ett projekt med standarddomänen `example.com` och följande flödesmallar:
 
   ```text
   https://www.{default}/
@@ -61,9 +61,9 @@ The `routes.yaml` filen är en lista över mallvägar och deras konfigurationer.
   https://example.com/blog
   ```
 
-- The `{all}` platshållaren representerar alla domännamn som konfigurerats för projektet.
+- Platshållaren `{all}` representerar alla domännamn som konfigurerats för projektet.
 
-  Ett projekt med `example.com` och `example1.com` domäner med följande vägmallar:
+  Ett projekt med till exempel `example.com` och `example1.com` domäner med följande vägmallar:
 
   ```text
   https://www.{all}/
@@ -83,17 +83,17 @@ The `routes.yaml` filen är en lista över mallvägar och deras konfigurationer.
   https://example1.com/blog
   ```
 
-  The `{all}` platshållare är användbart för projekt som konfigurerats för flera domäner. I en icke-produktionsgren `{all}` ersätts med projekt-ID och miljö-ID för varje domän.
+  Platshållaren `{all}` är användbar för projekt som konfigurerats för flera domäner. I en icke-produktionsgren ersätts `{all}` med projekt-ID och miljö-ID för varje domän.
 
-  Om ett projekt inte har några konfigurerade domäner, som är vanliga under utvecklingen, `{all}` platshållaren fungerar på samma sätt som `{default}` platshållare.
+  Om ett projekt inte har några konfigurerade domäner, som är vanliga under utvecklingen, fungerar platshållaren `{all}` på samma sätt som platshållaren `{default}`.
 
-Adobe Commerce genererar också vägar för alla aktiva integreringsmiljöer. För integreringsmiljöer `{default}` platshållaren ersätts med följande domännamn:
+Adobe Commerce genererar också vägar för alla aktiva integreringsmiljöer. För integreringsmiljöer ersätts platshållaren `{default}` med följande domännamn:
 
 ```text
 [branch]-[per-environment-random-string]-[project-id].[region].magentosite.cloud
 ```
 
-Till exempel `refactorcss` gren för `mswy7hzcuhcjw` projekt som finns på `us` klustret har följande domän:
+`refactorcss`-grenen för `mswy7hzcuhcjw`-projektet i `us`-klustret har till exempel följande domän:
 
 ```text
 https://refactorcss-oy3m2pq-mswy7hzcuhcjw.us.magentosite.cloud/
@@ -101,11 +101,11 @@ https://refactorcss-oy3m2pq-mswy7hzcuhcjw.us.magentosite.cloud/
 
 >[!NOTE]
 >
->Om ditt Cloud-projekt har stöd för flera butiker följer du instruktionerna för vägkonfiguration för [flera webbplatser eller butiker](../store/multiple-sites.md).
+>Om ditt molnprojekt har stöd för flera butiker följer du instruktionerna för vägkonfiguration för [flera webbplatser eller butiker](../store/multiple-sites.md).
 
 ### Snedstreck
 
-Flödesdefinitioner innehåller ett avslutande snedstreck som anger en mapp eller katalog, men samma innehåll kan hanteras med eller utan ett avslutande snedstreck. Följande URL:er matchar samma men kan tolkas som _två olika_ URL:er:
+Flödesdefinitioner innehåller ett avslutande snedstreck som anger en mapp eller katalog, men samma innehåll kan hanteras med eller utan ett avslutande snedstreck. Följande URL:er matchar, men kan tolkas som _två olika_ URL:er:
 
 ```text
 https://www.example.com/blog/
@@ -115,7 +115,7 @@ https://www.example.com/blog
 
 >[!TIP]
 >
->Du bör använda ett avslutande snedstreck för kataloger, men oavsett vilken metod du väljer är det viktigt att **vara konsekvent** för att undvika att generera två platser.
+>Det är bäst att använda ett avslutande snedstreck för kataloger, men oavsett vilken metod du väljer är det viktigt att **vara konsekvent** för att undvika att generera två platser.
 
 ## Cirkulationsprotokoll
 
@@ -123,7 +123,7 @@ Alla miljöer stöder både HTTP och HTTPS automatiskt.
 
 - Om konfigurationen bara anger HTTP-vägen skapas HTTPS-vägar automatiskt så att platsen kan hanteras från både HTTP och HTTPS utan att omdirigeringar krävs.
 
-  Ett projekt med standarddomänen `example.com` och följande ruttmall:
+  Ett projekt med standarddomänen `example.com` och följande flödesmall:
 
   ```text
   http://{default}/
@@ -139,7 +139,7 @@ Alla miljöer stöder både HTTP och HTTPS automatiskt.
 
 - Om konfigurationen bara anger HTTPS-vägen dirigeras alla HTTP-begäranden om till HTTPS.
 
-  Ett projekt med standarddomänen `example.com` med följande ruttmall:
+  Ett projekt med standarddomänen `example.com` med följande flödesmall:
 
   ```text
   https://{default}/
@@ -157,7 +157,7 @@ Alla miljöer stöder både HTTP och HTTPS automatiskt.
 
 Hantera alla sidor via TLS. För den här konfigurationen måste du konfigurera omdirigeringar för alla okrypterade begäranden till TLS-motsvarigheten med någon av följande metoder:
 
-- Ändra protokollet till HTTPS i dialogrutan `routes.yaml` -fil.
+- Ändra protokollet till HTTPS i filen `routes.yaml`.
 
   ```yaml
   "https://{default}/":
@@ -168,7 +168,7 @@ Hantera alla sidor via TLS. För den här konfigurationen måste du konfigurera 
       upstream: "mymagento:http"
   ```
 
-- För mellanlagrings- och produktionsmiljöer aktiverar du [Tvinga TLS snabbt](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/redirect-http-to-https-for-all-pages-on-cloud-force-tls.html) i administratörsgränssnittet. När du använder det här alternativet hanterar Snabbt omdirigeringen till HTTPS, så du behöver inte uppdatera `routes.yaml` konfiguration.
+- För mellanlagrings- och produktionsmiljöer aktiverar du alternativet [Tvinga TLS snabbt](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/redirect-http-to-https-for-all-pages-on-cloud-force-tls.html) i administratörsgränssnittet. När du använder det här alternativet hanterar omdirigeringen snabbt till HTTPS, så du behöver inte uppdatera konfigurationen för `routes.yaml`.
 
 ## Flödesalternativ
 
@@ -176,15 +176,15 @@ Konfigurera varje väg separat med följande egenskaper:
 
 | Egenskap | Beskrivning |
 | ---------------- | ----------- |
-| `type: upstream` | Serverar ett program. Dessutom har den en `upstream` egenskap som anger programmets namn (enligt definition i `.magento.app.yaml`) följt av `:http` slutpunkt. |
-| `type: redirect` | Omdirigerar till en annan väg. Den följs av `to` -egenskapen, som är en HTTP-omdirigering till en annan väg som identifieras av dess mall. |
-| `cache:` | Kontroller [cachelagring för flödet](caching.md). |
-| `redirects:` | Kontroller [omdirigeringsregler](redirects.md). |
-| `ssi:` | Kontroller som aktiverar [Serversidan innehåller](server-side-includes.md). |
+| `type: upstream` | Serverar ett program. Dessutom har den egenskapen `upstream` som anger programmets namn (enligt definition i `.magento.app.yaml`) följt av slutpunkten `:http`. |
+| `type: redirect` | Omdirigerar till en annan väg. Den följs av egenskapen `to`, som är en HTTP-omdirigering till en annan väg som identifieras av dess mall. |
+| `cache:` | Kontrollerar [cachelagring för vägen](caching.md). |
+| `redirects:` | Kontrollerar [omdirigeringsregler](redirects.md). |
+| `ssi:` | Kontroller som aktiverar [SSI](server-side-includes.md). |
 
 ## Enkla vägar
 
-I följande exempel dirigeras den överordnade domänen och `www` underdomän till `mymagento` program. Den här vägen dirigerar inte om HTTPS-begäranden.
+I följande exempel dirigerar vägkonfigurationen den överordnade domänen och `www`-underdomänen till `mymagento`-programmet. Den här vägen dirigerar inte om HTTPS-begäranden.
 
 **Exempel 1:**
 
@@ -249,7 +249,7 @@ Du kan dirigera till ett system som inte är mappat till en domän med hjälp av
 
 **Exempel:**
 
-Ett projekt med en `add-theme` grenvägar till följande URL:
+Ett projekt med en `add-theme`-gren dirigerar till följande URL:
 
 ```text
 http://add-theme-projectID.us.magento.com/
@@ -284,7 +284,7 @@ http://foo.add-theme-projectID.us.magentosite.cloud/
 http://bar.add-theme-projectID.us.magentosite.cloud/
 ```
 
-Du kan visa ruttmönstret för ej mappade domäner genom att upprätta en SSH-anslutning till miljön och använda kommandot `magento-cloud` CLI för att lista rutterna:
+Du kan visa ruttmönstret för icke-mappade domäner genom att upprätta en SSH-anslutning till miljön och använda CLI `magento-cloud` för att lista rutterna:
 
 ```terminal
 web@mymagento.0:~$ vendor/bin/ece-tools env:config:show routes
@@ -315,7 +315,7 @@ Magento Cloud Routes:
 
 ## Omdirigering och cachelagring
 
-Mer detaljerad information [Omdirigeringar](redirects.md)kan du hantera komplexa omdirigeringsregler, som _partiella omdirigeringar_ och ange regler för ruttbaserade [cachelagring](caching.md):
+Som beskrivs mer ingående i [Omdirigeringar](redirects.md) kan du hantera komplexa omdirigeringsregler, till exempel _partiella omdirigeringar_, och ange regler för flödesbaserad [cachning](caching.md):
 
 ```yaml
 https://www.{default}/:

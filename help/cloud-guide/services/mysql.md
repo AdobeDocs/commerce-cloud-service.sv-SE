@@ -12,9 +12,9 @@ ht-degree: 0%
 
 # Konfigurera tjänsten MySQL
 
-The `mysql` tillhandahåller beständig datalagring baserat på [MariaDB](https://mariadb.com/) version 10.2 till 10.4, med stöd för [XtraDB](https://docs.percona.com/percona-xtradb-cluster/8.0/index.html) lagringsmotor och omimplementerade funktioner från MySQL 5.6 och 5.7.
+Tjänsten `mysql` ger beständig datalagring baserat på [MariaDB](https://mariadb.com/), version 10.2 till 10.4, som stöder [ XtraDB](https://docs.percona.com/percona-xtradb-cluster/8.0/index.html) -lagringsmotorn och återimplementerade funktioner från MySQL 5.6 och 5.7.
 
-Omindexering av MariaDB 10.4 tar längre tid jämfört med andra versioner av MariaDB eller MySQL. Se [Indexerare](https://experienceleague.adobe.com/docs/commerce-operations/performance-best-practices/configuration.html#indexers) i _Bästa praxis för prestanda_ guide.
+Omindexering av MariaDB 10.4 tar längre tid jämfört med andra versioner av MariaDB eller MySQL. Se [Indexerare](https://experienceleague.adobe.com/docs/commerce-operations/performance-best-practices/configuration.html#indexers) i guiden _Bästa metoder för prestanda_.
 
 >[!WARNING]
 >
@@ -22,9 +22,9 @@ Omindexering av MariaDB 10.4 tar längre tid jämfört med andra versioner av Ma
 
 {{service-instruction}}
 
-**Aktivera MySQL**:
+**Så här aktiverar du MySQL**:
 
-1. Lägg till önskat namn, typ och diskvärde (i MB) i `.magento/services.yaml` -fil.
+1. Lägg till önskat namn, typ och diskvärde (i MB) i filen `.magento/services.yaml`.
 
    ```yaml
    mysql:
@@ -34,9 +34,9 @@ Omindexering av MariaDB 10.4 tar längre tid jämfört med andra versioner av Ma
 
    >[!TIP]
    >
-   >MySQL-fel, som `PDO Exception: MySQL server has gone away`, kan uppstå på grund av otillräckligt diskutrymme. Kontrollera att du har allokerat tillräckligt med diskutrymme till tjänsten i [`.magento/services.yaml`](services-yaml.md#disk) -fil.
+   >MySQL-fel, till exempel `PDO Exception: MySQL server has gone away`, kan inträffa på grund av otillräckligt diskutrymme. Kontrollera att du har allokerat tillräckligt med diskutrymme till tjänsten i filen [`.magento/services.yaml`](services-yaml.md#disk).
 
-1. Konfigurera relationerna i `.magento.app.yaml` -fil.
+1. Konfigurera relationerna i filen `.magento.app.yaml`.
 
    ```yaml
    relationships:
@@ -57,11 +57,11 @@ Omindexering av MariaDB 10.4 tar längre tid jämfört med andra versioner av Ma
 
 Du har följande alternativ när du konfigurerar MySQL-databasen:
 
-- **`schemas`**—Ett schema definierar en databas. Standardschemat är `main` databas.
-- **`endpoints`**—Varje slutpunkt representerar en autentiseringsuppgift med specifik behörighet. Standardslutpunkten är `mysql`som har `admin` åtkomst till `main` databas.
-- **`properties`**—Egenskaper används för att definiera ytterligare databaskonfigurationer.
+- **`schemas`** - Ett schema definierar en databas. Standardschemat är `main`-databasen.
+- **`endpoints`** - Varje slutpunkt representerar en autentiseringsuppgift med specifik behörighet. Standardslutpunkten är `mysql`, som har `admin` åtkomst till databasen `main`.
+- **`properties`** - Egenskaper används för att definiera ytterligare databaskonfigurationer.
 
-Följande är en grundläggande exempelkonfiguration i `.magento/services.yaml` fil:
+Följande är en grundläggande exempelkonfiguration i filen `.magento/services.yaml`:
 
 ```yaml
 mysql:
@@ -73,9 +73,9 @@ mysql:
             optimizer_use_condition_selectivity: 1
 ```
 
-The `properties` i exemplet ovan ändrar standardvärdet `optimizer` inställningar som [rekommenderas i guiden för bästa praxis för prestanda](https://experienceleague.adobe.com/docs/commerce-operations/performance-best-practices/configuration.html#indexers).
+`properties` i exemplet ovan ändrar standardinställningarna för `optimizer` enligt [rekommendationerna i guiden ](https://experienceleague.adobe.com/docs/commerce-operations/performance-best-practices/configuration.html#indexers) för bästa prestanda.
 
-**Konfigurationsalternativ för MariaDB**:
+**MariaDB-konfigurationsalternativ**:
 
 | Alternativ | Beskrivning | Standardvärde |
 | -------------------- | --------------------------------------------------- | ------------------ |
@@ -87,9 +87,9 @@ The `properties` i exemplet ovan ändrar standardvärdet `optimizer` inställnin
 
 ### Konfigurera flera databasanvändare
 
-Om du vill kan du konfigurera flera användare med olika behörigheter för att få åtkomst till `main` databas.
+Du kan också konfigurera flera användare med olika behörigheter för åtkomst till databasen `main`.
 
-Som standard finns det en slutpunkt med namnet `mysql` som har administratörsåtkomst till databasen. Om du vill konfigurera flera databasanvändare måste du definiera flera slutpunkter i `services.yaml` och deklarera relationerna i `.magento.app.yaml` -fil. För Pro Staging- och Production-miljöer [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära ytterligare användare.
+Som standard finns det en slutpunkt med namnet `mysql` som har administratörsåtkomst till databasen. Om du vill konfigurera flera databasanvändare måste du definiera flera slutpunkter i filen `services.yaml` och deklarera relationerna i filen `.magento.app.yaml`. För Pro Staging- och Production-miljöer [skickar du en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära ytterligare användare.
 
 Använd en kapslad array för att definiera slutpunkterna för specifik användaråtkomst. Varje slutpunkt kan ange åtkomst till ett eller flera scheman (databaser) och olika behörighetsnivåer för varje.
 
@@ -124,13 +124,13 @@ mysql:
             optimizer_use_condition_selectivity: 1
 ```
 
-I föregående exempel `admin` slutpunkten ger åtkomst på administratörsnivå till `main` databas, `reporter` slutpunkten ger skrivskyddad åtkomst och `importer` slutpunkten ger läs- och skrivåtkomst, vilket innebär:
+I föregående exempel ger slutpunkten `admin` administratörsnivååtkomst till databasen `main`, slutpunkten `reporter` skrivskyddad åtkomst och slutpunkten `importer` ger skrivskyddad åtkomst, vilket innebär:
 
-- The `admin` användaren har fullständig kontroll över databasen.
-- The `reporter` användaren har endast SELECT-behörighet.
-- The `importer` har behörigheterna SELECT, INSERT, UPDATE och DELETE.
+- Användaren `admin` har fullständig kontroll över databasen.
+- Användaren `reporter` har endast SELECT-behörighet.
+- Användaren `importer` har behörigheterna SELECT, INSERT, UPDATE och DELETE.
 
-Lägg till de slutpunkter som definieras i ovanstående exempel i `relationships` egenskapen för `.magento.app.yaml` -fil. Exempel:
+Lägg till de slutpunkter som definieras i exemplet ovan till egenskapen `relationships` för filen `.magento.app.yaml`. Exempel:
 
 ```yaml
 relationships:
@@ -141,7 +141,7 @@ relationships:
 
 >[!NOTE]
 >
->Om du konfigurerar en MySQL-användare kan du inte använda [`DEFINER`](https://dev.mysql.com/doc/refman/8.0/en/show-grants.html) åtkomstkontrollmekanism för lagrade procedurer och vyer.
+>Om du konfigurerar en MySQL-användare kan du inte använda åtkomstkontrollsfunktionen [`DEFINER`](https://dev.mysql.com/doc/refman/8.0/en/show-grants.html) för lagrade procedurer och vyer.
 
 ## Anslut till databasen
 
@@ -153,7 +153,7 @@ Om du vill komma åt MariaDB-databasen direkt måste du använda en SSH för att
    magento-cloud ssh
    ```
 
-1. Hämta inloggningsuppgifterna för MySQL från `database` och `type` egenskaper i [$MAGENTO_CLOUD_RELATIONSHIPS](../application/properties.md#relationships) variabel.
+1. Hämta inloggningsuppgifterna för MySQL från egenskaperna `database` och `type` i variabeln [$MAGENTO_CLOUD_RELATIONSHIPS](../application/properties.md#relationships).
 
    ```bash
    echo $MAGENTO_CLOUD_RELATIONSHIPS | base64 -d | json_pp
@@ -197,7 +197,7 @@ Om du vill komma åt MariaDB-databasen direkt måste du använda en SSH för att
      mysql -h database.internal -u <username>
      ```
 
-   - För Pro använder du följande kommando med värdnamn, portnummer, användarnamn och lösenord som hämtats från `$MAGENTO_CLOUD_RELATIONSHIPS` variabel.
+   - För Pro använder du följande kommando med värdnamn, portnummer, användarnamn och lösenord som hämtats från variabeln `$MAGENTO_CLOUD_RELATIONSHIPS`.
 
      ```bash
      mysql -h <hostname> -P <number> -u <username> -p'<password>'
@@ -205,7 +205,7 @@ Om du vill komma åt MariaDB-databasen direkt måste du använda en SSH för att
 
 >[!TIP]
 >
->Du kan använda `magento-cloud db:sql` för att ansluta till fjärrdatabasen och köra SQL-kommandon.
+>Du kan använda kommandot `magento-cloud db:sql` för att ansluta till fjärrdatabasen och köra SQL-kommandon.
 
 ## Anslut till sekundär databas
 
@@ -213,13 +213,13 @@ Om du vill komma åt MariaDB-databasen direkt måste du använda en SSH för att
 >
 >Den här funktionen är endast tillgänglig i Pro Production- och Staging-kluster.
 
-Ibland måste du ansluta till den sekundära databasen för att förbättra databasprestanda eller lösa problem med låsning av databaser. Om den här konfigurationen krävs kan du använda `"port" : 3304` för att upprätta anslutningen. Se [Bästa sättet att konfigurera MySQL-slavanslutningen](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/planning/mysql-configuration.html) ämne i _Bästa praxis för implementering_ guide.
+Ibland måste du ansluta till den sekundära databasen för att förbättra databasprestanda eller lösa problem med låsning av databaser. Om den här konfigurationen krävs använder du `"port" : 3304` för att upprätta anslutningen. Se [Bästa praxis för att konfigurera MySQL-slavanslutningen](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/planning/mysql-configuration.html) i guiden _Bästa praxis för implementering_.
 
 ## Felsökning
 
 Se följande Adobe Commerce supportartiklar för hjälp med felsökning av MySQL-problem:
 
-- [Kontrollera långsamma frågor och processer MySQL](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/database/checking-slow-queries-and-processes-mysql.html)
+- [Kontrollerar långsamma frågor och processer MySQL](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/database/checking-slow-queries-and-processes-mysql.html)
 - [Skapa databasdump i molnet](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/how-to/create-database-dump-on-cloud.html)
-- [Felsökning av datamigreringsverktyget](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/data-migration-tool-troubleshooting.html)
-- [Adobe Commerce uppgradering: kompakt till dynamiska tabeller 2.2.x, 2.3.x till 2.4.x](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/maintenance/commerce-235-upgrade-prerequisites-mariadb.html)
+- [Felsökning för datamigreringsverktyget](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/data-migration-tool-troubleshooting.html)
+- [Uppgradering av Adobe Commerce: kompakt till dynamiska tabeller 2.2.x, 2.3.x till 2.4.x](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/maintenance/commerce-235-upgrade-prerequisites-mariadb.html)

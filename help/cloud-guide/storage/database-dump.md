@@ -12,14 +12,14 @@ ht-degree: 0%
 
 # Säkerhetskopiera databasen
 
-Du kan skapa en kopia av databasen med `ece-tools db-dump` utan att hämta in alla miljödata från tjänster och berg. Som standard skapar det här kommandot säkerhetskopior i `/app/var/dump-main` katalog för alla databasanslutningar som anges i systemkonfigurationen. Databasdumpåtgärden växlar programmet till underhållsläge, stoppar konsumentköprocesser och inaktiverar cron-jobb innan dumpningen börjar.
+Du kan skapa en kopia av databasen med kommandot `ece-tools db-dump` utan att hämta alla miljödata från tjänster och berg. Som standard skapar det här kommandot säkerhetskopior i katalogen `/app/var/dump-main` för alla databasanslutningar som anges i miljökonfigurationen. Databasdumpåtgärden växlar programmet till underhållsläge, stoppar konsumentköprocesser och inaktiverar cron-jobb innan dumpningen börjar.
 
 Titta på följande riktlinjer för DB-dump:
 
 - För produktionsmiljöer rekommenderar Adobe att du slutför databasdumpoperationer under tider med låg belastning för att minimera driftstörningar som inträffar när platsen är i underhållsläge.
-- Om ett fel inträffar under dumpåtgärden tar kommandot bort dumpfilen för att spara diskutrymme. Mer information finns i loggarna (`var/log/cloud.log`).
-- I Pro Production-miljöer dumpas det här kommandot endast från _en_ av de tre noderna med hög tillgänglighet, så produktionsdata som skrivs till en annan nod under dumpen kanske inte kopieras. Kommandot genererar en `var/dbdump.lock` för att förhindra att kommandot körs på mer än en nod.
-- Adobe rekommenderar att du skapar en [säkerhetskopia](snapshots.md).
+- Om ett fel inträffar under dumpåtgärden tar kommandot bort dumpfilen för att spara diskutrymme. Granska loggarna för mer information (`var/log/cloud.log`).
+- I Pro Production-miljöer dumpas det här kommandot endast från _en_ av de tre noderna med hög tillgänglighet, vilket innebär att produktionsdata som skrivs till en annan nod under dumpningen kanske inte kopieras. Kommandot genererar en `var/dbdump.lock`-fil för att förhindra att kommandot körs på mer än en nod.
+- Adobe rekommenderar att du skapar en [säkerhetskopia](snapshots.md) om du vill säkerhetskopiera alla miljötjänster.
 
 Du kan välja att säkerhetskopiera flera databaser genom att lägga till databasnamnen till kommandot. I följande exempel säkerhetskopieras två databaser: `main` och `sales`:
 
@@ -27,10 +27,10 @@ Du kan välja att säkerhetskopiera flera databaser genom att lägga till databa
 php vendor/bin/ece-tools db-dump main sales
 ```
 
-Använd `php vendor/bin/ece-tools db-dump --help` om du vill ha fler alternativ:
+Använd kommandot `php vendor/bin/ece-tools db-dump --help` om du vill ha fler alternativ:
 
-- `--dump-directory=<dir>`—Välj en målkatalog för databasdumpen
-- `--remove-definers`—Ta bort DEFINER-satser från databasdumpen
+- `--dump-directory=<dir>` - Välj en målkatalog för databasdumpen
+- `--remove-definers` - Ta bort DEFINER-satser från databasdumpen
 
 **Så här skapar du en databasdump i förproduktionsmiljön eller produktionsmiljön**:
 
@@ -48,7 +48,7 @@ Använd `php vendor/bin/ece-tools db-dump --help` om du vill ha fler alternativ:
    php -r 'print_r(json_decode(base64_decode($_ENV["MAGENTO_CLOUD_RELATIONSHIPS"]))->database);'
    ```
 
-1. Skapa en säkerhetskopia av databasen. Om du vill välja en målkatalog för databasdumpen använder du `--dump-directory` alternativ.
+1. Skapa en säkerhetskopia av databasen. Om du vill välja en målkatalog för DB-dumpen använder du alternativet `--dump-directory`.
 
    ```bash
    php vendor/bin/ece-tools db-dump -- main
@@ -71,8 +71,8 @@ Använd `php vendor/bin/ece-tools db-dump --help` om du vill ha fler alternativ:
    [2020-01-28 16:38:11] NOTICE: Maintenance mode is disabled.
    ```
 
-1. The `db-dump` skapar ett `dump-<timestamp>.sql.gz` arkivera filen i fjärrprojektkatalogen.
+1. Kommandot `db-dump` skapar en `dump-<timestamp>.sql.gz`-arkivfil i fjärrprojektkatalogen.
 
 >[!TIP]
 >
->Om du vill överföra dessa data till en viss miljö, se [Migrera data och statiska filer](../deploy/staging-production.md#migrate-static-files).
+>Om du vill överföra dessa data till en viss miljö läser du [Migrera data och statiska filer](../deploy/staging-production.md#migrate-static-files).

@@ -12,19 +12,19 @@ ht-degree: 0%
 
 # Cloud CLI
 
-The `magento-cloud` Med CLI-verktyget kan utvecklare och systemadministratörer hantera molnprojekt och miljöer, utföra rutiner och utföra automatiseringsuppgifter. The `magento-cloud` CLI utökar funktionerna i [[!DNL Cloud Console]](../../get-started/cloud-console.md). När du har installerat `magento-cloud` CLI på din lokala arbetsstation kan du använda det för att hantera din Adobe Commerce i molninfrastrukturen Starter- och Pro-integreringsmiljöer.
+Med CLI-verktyget `magento-cloud` kan utvecklare och systemadministratörer hantera molnprojekt och miljöer, utföra rutiner och köra automatiseringsåtgärder. CLI:n `magento-cloud` utökar funktionerna i [[!DNL Cloud Console]](../../get-started/cloud-console.md). När du har installerat CLI:n för `magento-cloud` på din lokala arbetsstation kan du använda den för att hantera din Adobe Commerce i integreringsmiljöer för Starter och Pro i molnet.
 
-**Installera `magento-cloud` CLI**:
+**Så här installerar du `magento-cloud` CLI**:
 
-1. På din lokala arbetsstation byter du till den katalog där du vill klona Cloud-projektet och där [ägare av filsystem](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html) har _skriva_ åtkomst.
+1. På din lokala arbetsstation ändrar du till den katalog där du vill klona Cloud-projektet och där [filsystemägaren](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html) har _write_ -åtkomst.
 
-1. Installera `magento-cloud` CLI.
+1. Installera CLI:n för `magento-cloud`.
 
    ```bash
    curl -sS https://accounts.magento.cloud/cli/installer | php
    ```
 
-1. Lägg till `magento-cloud` CLI till basprofilen.
+1. Lägg till `magento-cloud` CLI i basprofilen.
 
    ```bash
    export PATH=$PATH:$HOME/.magento-cloud/bin
@@ -36,7 +36,7 @@ The `magento-cloud` Med CLI-verktyget kan utvecklare och systemadministratörer 
    . ~/.bash_profile
    ```
 
-1. Om du vill starta CLI ringer du `magento-cloud` och ange autentiseringsuppgifter för ditt molnkonto när du uppmanas till detta.
+1. Om du vill initiera CLI ringer du `magento-cloud` och anger autentiseringsuppgifterna för ditt molnkonto när du uppmanas till det.
 
    ```bash
    magento-cloud
@@ -48,7 +48,7 @@ The `magento-cloud` Med CLI-verktyget kan utvecklare och systemadministratörer 
    Your email address or username:
    ```
 
-1. Verifiera `magento-cloud` kommandot finns i din bana. I följande exempel visas de tillgängliga kommandona.
+1. Kontrollera att kommandot `magento-cloud` finns i sökvägen. I följande exempel visas de tillgängliga kommandona.
 
    ```bash
    magento-cloud list
@@ -56,9 +56,9 @@ The `magento-cloud` Med CLI-verktyget kan utvecklare och systemadministratörer 
 
 ## Gemensamma kommandon
 
-Adobe har utformat de här kommandona för att hantera molnintegreringsmiljöer och rekommenderar att du kör `magento-cloud` CLI från en projektkatalog så att du kan utelämna `-p <project-ID>` parameter.
+Adobe har utformat de här kommandona för att hantera molnintegreringsmiljöer och rekommenderar att du kör CLI:n för `magento-cloud` från en projektkatalog så att du kan utelämna parametern `-p <project-ID>`.
 
-Följande lista över vanliga `magento-cloud` CLI-kommandon innehåller endast obligatoriska alternativ. Du kan använda `--help` med valfritt kommando för att se mer information.
+Följande lista med vanliga `magento-cloud` CLI-kommandon innehåller endast obligatoriska alternativ. Du kan använda alternativet `--help` tillsammans med valfritt kommando för att visa mer information.
 
 | Kommando | Beskrivning |
 | ------------------------------------ | -------------------------------------------------- |
@@ -74,11 +74,11 @@ Följande lista över vanliga `magento-cloud` CLI-kommandon innehåller endast o
 
 ## Miljökommandon
 
-Miljön _name_ skiljer sig från miljön _ID_ bara om du använder blanksteg eller versaler i miljönamnet. Ett miljö-ID består av alla gemener, siffror och tillåtna symboler. Versaler i ett miljönamn konverteras till gemener i ID:t. Blanksteg i ett miljönamn konverteras till streck.
+Miljön _name_ skiljer sig bara från miljön _ID_ om du använder blanksteg eller versaler i miljönamnet. Ett miljö-ID består av alla gemener, siffror och tillåtna symboler. Versaler i ett miljönamn konverteras till gemener i ID:t. Blanksteg i ett miljönamn konverteras till streck.
 
-Ett miljönamn _inte_ innehåller tecken som är reserverade för ditt Linux-skal eller för reguljära uttryck. Otillåtna tecken innehåller klammerparenteser (`{ }`), parenteser, asterisk (`*`), vinkelparenteser (`< >`), et-tecken (`&`), procent (`%`) och andra tecken.
+Miljönamnet _får inte_ innehålla tecken som är reserverade för ditt Linux-skal eller för reguljära uttryck. Otillåtna tecken är klammerparenteser (`{ }`), parenteser, asterisk (`*`), vinkelparenteser (`< >`), et-tecken (`&`), procent (`%`) och andra tecken.
 
-The `magento-cloud environment:list` -kommandot visar systemhierarkier, medan `git branch` inte. Om du har kapslade miljöer använder du följande:
+Kommandot `magento-cloud environment:list` visar miljöhierarkier, men det gör inte `git branch`. Om du har kapslade miljöer använder du följande:
 
 ```bash
 magento-cloud environment:list
@@ -102,9 +102,9 @@ Are you sure you want to redeploy the environment <environment-name>? [Y/n]
 
 ## Git-kommandon
 
-Vissa av dessa kommandon liknar Git-kommandona. The `magento-cloud` -kommandon ansluter direkt till det Git-baserade Cloud-projektet med ytterligare funktioner. Om du skapar en gren utan att använda `magento-cloud` CLI är det inte&quot;aktiverat&quot; och byggs inte automatiskt när du gör ändringar i fjärrmiljön. The `magento-cloud` CLI-kommandot innefattar aktivering.
+Vissa av dessa kommandon liknar Git-kommandona. `magento-cloud`-kommandona ansluter direkt till det Git-baserade Cloud-projektet med ytterligare funktioner. Om du skapar en gren utan att använda CLI:n för `magento-cloud`,&quot;aktiveras&quot; den inte och byggs inte automatiskt när du gör ändringar i fjärrmiljön. CLI-kommandot `magento-cloud` innehåller aktivering.
 
-Använd `magento-cloud` så att förgreningen aktiveras.
+Om du vill skapa en gren använder du kommandot `magento-cloud` så att grenen aktiveras.
 
 ```bash
 magento-cloud environment:branch <new-name> <parent-branch>
@@ -112,8 +112,8 @@ magento-cloud environment:branch <new-name> <parent-branch>
 
 För filialstatus:
 
-- Använd `magento-cloud env` om du vill visa en lista över miljögrenarna och deras status: aktiv eller inaktiv.
-- Använd `magento-cloud environment:activate` för att aktivera en miljögren.
+- Använd kommandot `magento-cloud env` för att visa en lista över miljögrenarna och deras status: aktiv eller inaktiv.
+- Använd kommandot `magento-cloud environment:activate` för att aktivera en miljögren.
 
 Tryck på en tom Git-implementering för att utlösa en distribution. Exempel:
 
@@ -129,7 +129,7 @@ Följande steg visar hur du använder kommandona CLI och Git för att hantera di
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
-1. Växla till [ägare av filsystem](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html).
+1. Växla till [filsystemets ägare](https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/prerequisites/file-system/configure-permissions.html).
 
 1. Logga in på ditt projekt.
 
@@ -151,7 +151,7 @@ Följande steg visar hur du använder kommandona CLI och Git för att hantera di
 
    >[!NOTE]
    >
-   >Det är viktigt att du använder `magento-cloud environment:list` eftersom den visar systemhierarkier, medan `git branch` kommandot gör inte det.
+   >Det är viktigt att använda kommandot `magento-cloud environment:list` eftersom det visar systemhierarkier, vilket kommandot `git branch` inte gör.
 
 1. Hämta ursprungliga grenar för att få den senaste koden.
 
@@ -165,11 +165,11 @@ Följande steg visar hur du använder kommandona CLI och Git för att hantera di
    magento-cloud environment:checkout <environment-ID>
    ```
 
-   Git-kommandon checkar bara ut Git-grenen. The `magento-cloud checkout` kommandot checkar ut grenen och växlar till den aktiva miljön.
+   Git-kommandon checkar bara ut Git-grenen. Kommandot `magento-cloud checkout` checkar ut grenen och växlar till den aktiva miljön.
 
    >[!TIP]
    >
-   >Du kan skapa en miljögren med `magento-cloud environment:branch <environment-name> <parent-environment-ID>` kommandosyntax. Det kan ta ytterligare tid att skapa och aktivera en miljögren.
+   >Du kan skapa en miljögren med kommandosyntaxen `magento-cloud environment:branch <environment-name> <parent-environment-ID>`. Det kan ta ytterligare tid att skapa och aktivera en miljögren.
 
 1. Använd miljö-ID:t för att hämta uppdaterad kod till din lokala dator. Detta är inte nödvändigt om miljögrenen är ny.
 
@@ -177,7 +177,7 @@ Följande steg visar hur du använder kommandona CLI och Git för att hantera di
    git pull origin <environment-ID>
    ```
 
-1. (_Valfritt_) Skapa en [ögonblicksbild](../storage/snapshots.md) av miljön som backup.
+1. (_Valfritt_) Skapa en [ögonblicksbild](../storage/snapshots.md) av miljön som en säkerhetskopia.
 
    ```bash
    magento-cloud snapshot:create -e <environment-ID>
@@ -185,9 +185,9 @@ Följande steg visar hur du använder kommandona CLI och Git för att hantera di
 
 ## Uppdatera CLI
 
-The `magento-cloud` CLI söker efter tillgängliga uppdateringar när du loggar in, men du kan söka efter uppdateringar med `self:update` -kommando. Om det finns en uppdatering följer du instruktionerna för att uppdatera CLI.
+CLI:n `magento-cloud` söker efter tillgängliga uppdateringar när du loggar in, men du kan söka efter uppdateringar med kommandot `self:update`. Om det finns en uppdatering följer du instruktionerna för att uppdatera CLI.
 
-Om `magento-cloud` CLI är aktuellt, du ser följande svar:
+Om ditt `magento-cloud` CLI är uppdaterat ser du följande svar:
 
 ```bash
 magento-cloud update

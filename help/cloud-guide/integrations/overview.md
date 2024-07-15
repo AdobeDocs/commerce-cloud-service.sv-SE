@@ -16,13 +16,13 @@ ht-degree: 0%
 
 Integreringar är användbara när du använder externa tjänster, som Git-värdtjänster eller Slack-bots, och för att underhålla aktuella utvecklingsprocesser, som att använda funktionen pull-begäran för kodgranskning i GitHub. Du kan lägga till följande integreringar i ditt Adobe Commerce i molninfrastrukturprojekt:
 
-![Integreringar](/help/assets/integrations.png)
+![Integrationer](/help/assets/integrations.png)
 
 >[!BEGINTABS]
 
 >[!TAB CLI]
 
-**Lägga till en integrering med hjälp av CLI för molnet**:
+**Så här lägger du till en integrering med Cloud CLI**:
 
 Följande kommando startar interaktiva uppmaningar för att välja typ och alternativ för den nya integreringen.
 
@@ -30,7 +30,7 @@ Följande kommando startar interaktiva uppmaningar för att välja typ och alter
 magento-cloud integration:add
 ```
 
-**Visa en lista över konfigurerade integreringar för ditt projekt**:
+**Så här listar du de konfigurerade integreringarna för ditt projekt**:
 
 ```bash
 magento-cloud integration:list
@@ -52,11 +52,11 @@ Exempelsvar:
 
 >[!TAB Konsol]
 
-**Lägga till en integrering med[!DNL Cloud Console]**:
+**Så här lägger du till en integrering med[!DNL Cloud Console]**:
 
-1. I _Projektinställningar_, klicka **[!UICONTROL Integrations]**.
+1. Klicka på **[!UICONTROL Integrations]** i _Projektinställningar_.
 
-1. Klicka på en integreringstyp eller klicka **[!UICONTROL Add integration]**.
+1. Klicka på en integrationstyp eller klicka på **[!UICONTROL Add integration]**.
 
 1. Gå igenom valet av integrationstyp och konfigurationssteg.
 
@@ -66,24 +66,24 @@ Exempelsvar:
 
 ## Commerce webhooks
 
-Du kan konfigurera Commerce-webbhooks i ditt Cloud-projekt med [ENABLE_WEBHOOKS global variabel](../environment/variables-global.md#enable_webhooks). Commerce webhooks skickar begäranden till en extern server som svar på händelser som genererats av Commerce. The [_Webhooks Guide_](https://developer.adobe.com/commerce/extensibility/webhooks) beskriver den här funktionen i detalj.
+Du kan konfigurera Commerce-webbböcker i ditt molnprojekt med den globala variabeln [ENABLE_WEBHOOKS](../environment/variables-global.md#enable_webhooks). Commerce webbhooks skickar begäranden till en extern server som svar på händelser som genererats av Commerce. [_Webhooks-guiden_](https://developer.adobe.com/commerce/extensibility/webhooks) beskriver den här funktionen i detalj.
 
 ## Allmänna webhooks
 
-Du kan samla in och rapportera molnbaserade infrastruktur- och databashändelser med hjälp av en anpassad webbkrokintegrering för att `POST` JSON-meddelanden till en _webkrok_ URL.
+Du kan samla in och rapportera molninfrastruktur- och databashändelser med hjälp av en anpassad webkrok-integrering till `POST` JSON-meddelanden till en _webkroks_ -URL.
 
-**Använd följande syntax för att lägga till en webkroks-URL**:
+**Använd följande syntax** om du vill lägga till en webkroks-URL:
 
 ```bash
 magento-cloud integration:add --type=webhook --url=https://hook-url.example.com
 ```
 
-- `type`—Ange `webhook` integrationstyp.
-- `url`- Ange webkroks-URL som kan ta emot JSON-meddelanden.
+- `type` - Ange integrationstypen `webhook`.
+- `url` - Ange webbkroks-URL som kan ta emot JSON-meddelanden.
 
 I exempelsvaret visas en serie uppmaningar som ger möjlighet att anpassa integreringen. Om du använder standardsvaret (tomt) skickas meddelanden om alla händelser i alla miljöer i ett projekt.
 
-Du kan anpassa integreringen för att rapportera specifika [händelser](#events-to-report), som att skicka kod till en gren. Du kan till exempel ange `environment.push` händelse som skickar ett meddelande när en användare skickar kod till en gren:
+Du kan anpassa integreringen för att rapportera specifika [händelser](#events-to-report), som att skicka kod till en gren. Du kan till exempel ange händelsen `environment.push` för att skicka ett meddelande när en användare skickar kod till en gren:
 
 ```terminal
 Events to report (--events)
@@ -93,7 +93,7 @@ Enter comma-separated values (or leave this blank)
 >
 ```
 
-Du kan välja att rapportera händelser i en `pending`, `in_progress`, eller `complete` läge:
+Du kan välja att rapportera händelser i ett `pending`-, `in_progress`- eller `complete`-läge:
 
 ```terminal
 States to report (--states)
@@ -103,7 +103,7 @@ Enter comma-separated values (or leave this blank)
 >
 ```
 
-Och du kan _include_ eller _exclude_ meddelanden för specifika miljöer:
+Du kan även _ta med_ eller _exkludera_ meddelanden för specifika miljöer:
 
 ```terminal
 Included environments (--environments)
@@ -171,14 +171,14 @@ Integration integration-ID (webhook) updated
 | `environment.branch` | En gren har skapats med hanteringskonsolen |
 | `environment.deactivate` | En gren har inaktiverats. Koden finns fortfarande kvar, men miljön har förstörts |
 | `environment.delete` | En gren har tagits bort |
-| `environment.initialize` | The `master` gren av projektet som initierats med en första implementering |
+| `environment.initialize` | Projektets `master`-gren initierades med en första implementering |
 | `environment.merge` | En aktiv gren har sammanfogats med hanteringskonsolen eller API |
 | `environment.push` | En användare skickade kod till en gren |
 | `environment.restore` | En användare återställde en ögonblicksbild |
 | `environment.route.create` | En väg har skapats med hanteringskonsolen |
 | `environment.route.delete` | En väg har tagits bort med hanteringskonsolen |
 | `environment.route.update` | En väg har ändrats med hanteringskonsolen |
-| `environment.subscription.update` | The `master` -miljön har ändrat storlek eftersom prenumerationen har ändrats, men det finns inga innehållsändringar |
+| `environment.subscription.update` | Miljön `master` har ändrat storlek eftersom prenumerationen har ändrats, men det finns inga innehållsändringar |
 | `environment.synchronize` | Data eller kod har återställts från den överordnade miljön i en miljö |
 | `environment.update.http_access` | HTTP-åtkomstreglerna för en miljö har ändrats |
 | `environment.update.restrict_robots` | Funktionen för att blockera alla robotar har aktiverats eller inaktiverats |

@@ -18,7 +18,7 @@ Du kan aktivera cachelagring i din projektmiljö för molninfrastruktur. Om du i
 
 ## Konfigurera cachelagring
 
-Aktivera cachelagring för programmet genom att konfigurera cacheregler i `.magento/routes.yaml` på följande sätt:
+Aktivera cachelagring för programmet genom att konfigurera cacheregler i filen `.magento/routes.yaml` enligt följande:
 
 ```yaml
 http://{default}/:
@@ -61,24 +61,24 @@ Exemplet ovan cachelagrar följande vägar:
 - `http://{default}/path/more/`
 - `http://{default}/path/more/etc/`
 
-Och följande vägar är **not** cachelagrad:
+Och följande vägar är **inte** cachelagrade:
 
 - `http://{default}/path/`
 - `http://{default}/path/etc/`
 
 >[!NOTE]
 >
->Reguljära uttryck i flöden är **not** stöds.
+>Reguljära uttryck i vägar stöds **inte**.
 
 ## Cachevaraktighet
 
-Cachevaraktigheten bestäms av `Cache-Control` svarshuvud. Om nej `Cache-Control` -huvudet finns i svaret, `default_ttl` används.
+Cachevaraktigheten bestäms av svarshuvudets värde `Cache-Control`. Om inget `Cache-Control`-huvud finns i svaret används `default_ttl`-nyckeln.
 
 ## Cachenyckel
 
-För att bestämma hur ett svar ska cachelagras, skapar Adobe Commerce en cachenyckel som är beroende av flera faktorer och lagrar det svar som är associerat med den här nyckeln. När en begäran levereras med samma cachenyckel återanvänds svaret. Dess syfte liknar HTTP [`Vary` header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.44).
+För att bestämma hur ett svar ska cachelagras, skapar Adobe Commerce en cachenyckel som är beroende av flera faktorer och lagrar det svar som är associerat med den här nyckeln. När en begäran levereras med samma cachenyckel återanvänds svaret. Dess syfte liknar HTTP [`Vary`-huvudet ](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.44).
 
-Parametrarna `headers` och `cookies` kan du ändra den här cachenyckeln.
+Med parametrarna `headers` och `cookies` kan du ändra den här cachenyckeln.
 
 Standardvärdet för de här tangenterna är följande:
 
@@ -93,13 +93,13 @@ cache:
 
 ### `enabled`
 
-När inställt på `true`, aktivera cacheminnet för den här vägen. När inställt på `false`, inaktiverar du cacheminnet för den här vägen.
+Aktivera cache för den här vägen när värdet är `true`. Inaktivera cache för den här vägen när värdet är `false`.
 
 ### `headers`
 
 Definierar vilka värden cachenyckeln måste vara beroende av.
 
-Om `headers` är följande:
+Om till exempel nyckeln `headers` är följande:
 
 ```yaml
 cache:
@@ -107,11 +107,11 @@ cache:
     headers: ["Accept"]
 ```
 
-Sedan cachelagrar Adobe Commerce olika svar för varje värde i `Accept` HTTP-huvud.
+Adobe Commerce cachelagrar sedan olika svar för varje värde i HTTP-huvudet `Accept`.
 
 ### `cookies`
 
-The `cookies` -tangenten definierar vilka värden cachenyckeln måste vara beroende av.
+Nyckeln `cookies` definierar vilka värden cachenyckeln måste vara beroende av.
 
 Exempel:
 
@@ -121,19 +121,19 @@ cache:
     cookies: ["value"]
 ```
 
-Cachenyckeln beror på värdet på `value` cookie i begäran.
+Cachenyckeln beror på värdet för cookien `value` i begäran.
 
-Det finns ett specialfall om `cookies` har nyckeln `["*"]` värde. Detta värde innebär att alla förfrågningar med en cookie-fil kringgår cacheminnet. Det här är standardvärdet.
+Det finns ett specialfall om nyckeln `cookies` har värdet `["*"]`. Detta värde innebär att alla förfrågningar med en cookie-fil kringgår cacheminnet. Det här är standardvärdet.
 
 >[!NOTE]
 >
->Du kan inte använda jokertecken i cookie-namnet. Använd ett exakt cookie-namn eller matcha alla cookies med en asterisk (`*`). Till exempel: `SESS*` eller `~SESS` är för närvarande **not** giltiga värden.
+>Du kan inte använda jokertecken i cookie-namnet. Använd ett exakt cookie-namn eller matcha alla cookies med en asterisk (`*`). `SESS*` eller `~SESS` är till exempel för närvarande **inte** giltiga värden.
 
 Cookies har följande begränsningar:
 
-- Du kan ange maximalt **50 kakor** i systemet. I annat fall genereras ett `Unable to send the cookie. Maximum number of cookies would be exceeded` undantag.
-- Den maximala cookie-storleken är **4 096 byte**. I annat fall genereras ett `Unable to send the cookie. Size of '%name' is %size bytes` undantag.
+- Du kan ange maximalt **50 cookies** i systemet. Annars genereras ett `Unable to send the cookie. Maximum number of cookies would be exceeded`-undantag.
+- En maximal cookie-storlek är **4096 byte**. Annars genereras ett `Unable to send the cookie. Size of '%name' is %size bytes`-undantag.
 
 ### `default_ttl`
 
-Om svaret inte har en `Cache-Control` sidhuvud, `default_ttl` -tangenten används för att definiera cachevaraktigheten i sekunder. Standardvärdet är `0`, vilket betyder att inget cachelagras.
+Om svaret inte har något `Cache-Control`-huvud används `default_ttl`-tangenten för att definiera cachevaraktigheten, i sekunder. Standardvärdet är `0`, vilket betyder att inget cachelagras.

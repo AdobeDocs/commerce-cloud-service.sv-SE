@@ -12,18 +12,18 @@ ht-degree: 0%
 
 # Scenariobaserad driftsättning
 
-Med `ece-tools` 2002.1.0 och senare versioner kan du använda den scenariobaserade distributionsfunktionen för att anpassa standarddistributionsbeteendet.
+Med `ece-tools` 2002.1.0 och senare kan du använda den scenariobaserade distributionsfunktionen för att anpassa standarddistributionsbeteendet.
 Den här funktionen använder **scenarier** och **steg** i konfigurationen:
 
-- **Scenariokonfiguration**-Varje distributionkrok är en *scenario*, som är en XML-konfigurationsfil som beskriver sekvens- och konfigurationsparametrarna för att slutföra distributionsåtgärder. Du konfigurerar scenarierna i `hooks` i `.magento.app.yaml` -fil.
+- **Scenariokonfiguration**-Varje distributionskrok är ett *scenario* som är en XML-konfigurationsfil som beskriver sekvens- och konfigurationsparametrarna för att slutföra distributionsåtgärder. Du konfigurerar scenarierna i avsnittet `hooks` i filen `.magento.app.yaml`.
 
 - **Stegkonfiguration**-Varje scenario använder en sekvens av *steg* som programmässigt beskriver de åtgärder som krävs för att slutföra distributionsåtgärder. Du konfigurerar stegen i en XML-baserad scenariokonfigurationsfil.
 
-Adobe Commerce i molninfrastrukturen innehåller en uppsättning [standardscenarier](https://github.com/magento/ece-tools/tree/2002.1/scenario) och [standardsteg](https://github.com/magento/ece-tools/tree/2002.1/src/Step) i `ece-tools` paket. Du kan anpassa distributionsbeteendet genom att skapa anpassade XML-konfigurationsfiler som åsidosätter eller anpassar standardkonfigurationen. Du kan också använda scenarier och steg för att köra kod från anpassade moduler.
+Adobe Commerce i molninfrastrukturen innehåller en uppsättning [standardscenarier](https://github.com/magento/ece-tools/tree/2002.1/scenario) och [standardsteg](https://github.com/magento/ece-tools/tree/2002.1/src/Step) i `ece-tools`-paketet. Du kan anpassa distributionsbeteendet genom att skapa anpassade XML-konfigurationsfiler som åsidosätter eller anpassar standardkonfigurationen. Du kan också använda scenarier och steg för att köra kod från anpassade moduler.
 
 ## Lägga till scenarier med hjälp av bygg- och driftsättningskopplingar
 
-Du lägger till scenarierna för att skapa och distribuera Adobe Commerce i `hooks` i `.magento.app.yaml` -fil. Varje krok anger vilka scenarier som ska köras under varje fas. I följande exempel visas standardscenariokonfigurationen.
+Du lägger till scenarierna för att skapa och distribuera Adobe Commerce i `hooks`-avsnittet i filen `.magento.app.yaml`. Varje krok anger vilka scenarier som ska köras under varje fas. I följande exempel visas standardscenariokonfigurationen.
 
 > `magento.app.yaml` krokar
 
@@ -41,11 +41,11 @@ hooks:
 
 >[!NOTE]
 >
->I och med releasen av `ece-tools` 2002.1.x, det finns en ny [konfiguration av kopplingar](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/app/properties/hooks-property.html) format. Det äldre formatet från `ece-tools` 2002.0.x-versioner stöds fortfarande. Du måste dock uppdatera till det nya formatet för att kunna använda den scenariobaserade distributionsfunktionen.
+>I och med versionen av `ece-tools` 2002.1.x finns det ett nytt [hooks-konfigurationsformat](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/app/properties/hooks-property.html). Det gamla formatet från `ece-tools` 2002.0.x stöds fortfarande. Du måste dock uppdatera till det nya formatet för att kunna använda den scenariobaserade distributionsfunktionen.
 
 ## Granska scenariesteg
 
-I krokkonfigurationen är varje scenario en XML-fil som innehåller steg för att köra åtgärder för att skapa, distribuera eller efterdistribuera. Till exempel `scenario/transfer` filen innehåller tre steg: `compress-static-content`, `clear-init-directory`och `backup-data`
+I krokkonfigurationen är varje scenario en XML-fil som innehåller steg för att köra åtgärder för att skapa, distribuera eller efterdistribuera. Filen `scenario/transfer` innehåller till exempel tre steg: `compress-static-content`, `clear-init-directory` och `backup-data`
 
 > `scenario/transfer.xml`
 
@@ -84,15 +84,15 @@ Under distributionen sammanfogas de anpassade scenarierna med standardscenariot 
 
    1. `vendor/vendor-name/module-name/deploy2.xml`
    1. `vendor/vendor-name/module-name/deploy.xml`
-   1. `scenario/deploy.xml` (standard eller basscenario)
+   1. `scenario/deploy.xml` (standard- eller baslinjescenario)
 
 - Stegen i det högsta prioriterade scenariot åsidosätter steg med samma namn i de andra scenarierna. Nya steg läggs till i konfigurationen. Samma regler gäller för mer än två scenarier där varje scenario prioriteras från höger till vänster, till exempel (C → B → A).
 
 ### Ta bort standardsteg
 
-Du tar bort steg från standardscenarier med `skip` parameter.
+Du tar bort steg från standardscenarier med parametern `skip`.
 
-Om du till exempel vill hoppa över `enable-maintenance-mode` och `set-production-mode` steg i standardscenariot för distribution skapar du en konfigurationsfil som innehåller följande konfiguration.
+Om du till exempel vill hoppa över stegen `enable-maintenance-mode` och `set-production-mode` i standarddistributionsscenariot skapar du en konfigurationsfil som innehåller följande konfiguration.
 
 > `vendor/vendor-name/module-name/deploy-custom-mode-config.xml`
 
@@ -104,7 +104,7 @@ Om du till exempel vill hoppa över `enable-maintenance-mode` och `set-productio
 </scenario>
 ```
 
-Om du vill använda den anpassade konfigurationsfilen uppdaterar du standardinställningen `.magento.app.yaml` -fil.
+Om du vill använda den anpassade konfigurationsfilen uppdaterar du standardfilen `.magento.app.yaml`.
 
 > `.magento.app.yaml` med anpassat distributionsscenario
 
@@ -124,13 +124,13 @@ hooks:
 
 Anpassade scenarier kan ersätta standardsteg för anpassad implementering. Om du vill göra det använder du standardstegnamnet som namn för det anpassade steget.
 
-I [standarddistributionsscenario] den `enable-maintenance-mode` steg körs som standard [EnableMaintenanceMode PHP-skript].
+I [standarddistributionsscenariot] kör till exempel `enable-maintenance-mode` standardsteget standardskriptet [EnableMaintenanceMode PHP].
 
 ```xml
 <step name="enable-maintenance-mode" type="Magento\MagentoCloud\Step\EnableMaintenanceMode" priority="300"/>
 ```
 
-Om du vill åsidosätta det här steget skapar du en anpassad scenariokonfigurationsfil som kör ett annat skript när `enable-maintenance-mode` kör steg.
+Om du vill åsidosätta det här steget skapar du en anpassad scenariokonfigurationsfil som kör ett annat skript när steget `enable-maintenance-mode` körs.
 
 ```xml
 <?xml version="1.0"?>
@@ -142,7 +142,7 @@ Om du vill åsidosätta det här steget skapar du en anpassad scenariokonfigurat
 
 ### Ändra stegprioritet
 
-Anpassade scenarier kan ändra prioriteten för standardsteg. Följande steg ändrar prioriteten för `enable-maintenance-mode` steg från `300` till `10` så att steget körs tidigare i distributionsscenariot.
+Anpassade scenarier kan ändra prioriteten för standardsteg. Följande steg ändrar prioriteten för steget `enable-maintenance-mode` från `300` till `10` så att steget körs tidigare i distributionsscenariot.
 
 ```xml
 <?xml version="1.0"?>
@@ -152,16 +152,16 @@ Anpassade scenarier kan ändra prioriteten för standardsteg. Följande steg än
 </scenario>
 ```
 
-I det här exemplet `enable-maintenance-mode` flyttas steget till början av scenariot eftersom det har lägre prioritet än alla andra steg i standardscenariot för distribution.
+I det här exemplet flyttas steget `enable-maintenance-mode` till början av scenariot eftersom det har lägre prioritet än alla andra steg i standardscenariot för distribution.
 
 ### Exempel: Utöka scenariot för distribution
 
-Följande exempel anpassar [standarddistributionsscenario] med följande ändringar:
+I följande exempel anpassas [standarddistributionsscenariot] med följande ändringar:
 
-- Ersätter `remove-deploy-failed-flag` steg med ett anpassat steg
-- Hoppar över `clean-redis-cache` i steget före driftsättningen
-- Hoppar över `unlock-cron-jobs` steg
-- Hoppar över `validate-config` steg för att inaktivera kritiska validerare
+- Ersätter steget `remove-deploy-failed-flag` med ett anpassat steg
+- Hoppar över understeget `clean-redis-cache` i steget före distribution
+- Hoppar över steget `unlock-cron-jobs`
+- Hoppar över steget `validate-config` för att inaktivera kritiska validerare
 - Lägger till ett nytt fördistributionssteg
 
 > `vendor/vendor-name/module-name/deploy-extended.xml`
@@ -203,7 +203,7 @@ Följande exempel anpassar [standarddistributionsscenario] med följande ändrin
 </scenario>
 ```
 
-Om du vill använda skriptet i ditt projekt lägger du till följande konfiguration i `.magento.app.yaml` fil för ditt Adobe Commerce i molninfrastrukturprojekt:
+Om du vill använda det här skriptet i ditt projekt lägger du till följande konfiguration i filen `.magento.app.yaml` för ditt Adobe Commerce i molninfrastrukturprojekt:
 
 ```yaml
 hooks:
@@ -219,23 +219,23 @@ hooks:
 
 >[!TIP]
 >
->Du kan granska [standardscenarier](https://github.com/magento/ece-tools/tree/2002.1/scenario) och [standardstegskonfiguration](https://github.com/magento/ece-tools/tree/2002.1/src/Step) i `ece-tools` GitHub-databas för att avgöra vilka scenarier och steg som ska anpassas för dina projektbygge, driftsättningar och uppgifter efter driftsättning.
+>Du kan granska [standardscenarierna](https://github.com/magento/ece-tools/tree/2002.1/scenario) och [standardstegskonfigurationen](https://github.com/magento/ece-tools/tree/2002.1/src/Step) i GitHub-databasen `ece-tools` för att avgöra vilka scenarier och steg som ska anpassas för dina projektbygge, distributioner och efterdistribuerade uppgifter.
 
-## Lägg till en anpassad modul att utöka `ece-tools`
+## Lägg till en anpassad modul för att utöka `ece-tools`
 
-The `ece-tools` paket innehåller standardgränssnitt för API som följer semantiska versionsstandarder. Alla API-gränssnitt har markerats med **@api** anteckning. Du kan ersätta standard-API-implementeringen med din egen genom att skapa en anpassad modul och ändra standardkoden efter behov.
+Paketet `ece-tools` innehåller standardgränssnitt för API som följer semantiska versionsstandarder. Alla API-gränssnitt har markerats med **@api**-anteckning. Du kan ersätta standard-API-implementeringen med din egen genom att skapa en anpassad modul och ändra standardkoden efter behov.
 
-Om du vill använda den anpassade modulen med Adobe Commerce i molninfrastrukturen måste du registrera modulen i tilläggslistan för `ece-tools` paket. Registreringsprocessen liknar den som du använder för att registrera moduler i Adobe Commerce.
+Om du vill använda den anpassade modulen med Adobe Commerce i molninfrastrukturen måste du registrera modulen i tilläggslistan för `ece-tools`-paketet. Registreringsprocessen liknar den som du använder för att registrera moduler i Adobe Commerce.
 
-**Registrera en modul med `ece-tools` package**:
+**Så här registrerar du en modul med `ece-tools` package**:
 
-1. Skapa eller utöka `registration.php` i modulens rot.
+1. Skapa eller utöka filen `registration.php` i modulens rot.
 
    ```php?start_inline=1
    \Magento\MagentoCloud\ExtensionRegistrar::register('module-name', __DIR__);
    ```
 
-1. Uppdatera `autoload` för modulkonfigurationsfilen som innehåller `registration.php` fil att läsa in modulfiler automatiskt i `composer.json`.
+1. Uppdatera avsnittet `autoload` för modulkonfigurationsfilen så att den innehåller filen `registration.php` för automatisk inläsning av modulfiler i `composer.json`.
 
    ```json
    {
@@ -253,7 +253,7 @@ Om du vill använda den anpassade modulen med Adobe Commerce i molninfrastruktur
    }
    ```
 
-1. Lägg till `config/services.xml` till modulen. Den här konfigurationen sammanfogas över `config/services.xml` från `ece-tools` paket.
+1. Lägg till filen `config/services.xml` i modulen. Den här konfigurationen sammanfogas över `config/services.xml` från `ece-tools`-paketet.
 
    ```xml
    <?xml version="1.0" encoding="UTF-8" ?>
@@ -271,7 +271,7 @@ Om du vill använda den anpassade modulen med Adobe Commerce i molninfrastruktur
    </container>
    ```
 
-Mer information om beroendeinjektion finns i [Symfonisk beroendeinjicering](https://symfony.com/doc/current/components/dependency_injection.html).
+Mer information om beroendeinjektion finns i [Symfony Dependency Injection](https://symfony.com/doc/current/components/dependency_injection.html).
 
 <!-- link definitions -->
 

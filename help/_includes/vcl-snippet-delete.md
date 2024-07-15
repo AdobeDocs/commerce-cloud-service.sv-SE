@@ -9,18 +9,18 @@ ht-degree: 0%
 
 ## Ta bort det anpassade VCL-fragmentet
 
-1. [Logga in](/help/get-started/onboarding.md#access-your-admin-panel) till administratören.
+1. [Logga in](/help/get-started/onboarding.md#access-your-admin-panel) i administratören.
 
-1. Klicka **Lager** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
+1. Klicka på **Lagrar** > **Inställningar** > **Konfiguration** > **Avancerat** > **System**.
 
 1. Expandera **Helsidescache** > **Snabb konfiguration** > **Anpassade VCL-kodfragment**.
 
    ![Hantera anpassade VCL-fragment](/help/assets/cdn/fastly-manage-snippets.png)
 
-1. I _Åtgärd_ klickar du på papperskorgsikonen bredvid fragmentet som ska tas bort.
+1. I kolumnen _Åtgärd_ klickar du på papperskorgsikonen bredvid fragmentet som ska tas bort.
 
-1. I nästa modala fönster klickar du på **DELETE** och aktivera en ny version.
+1. Klicka på **DELETE** i nästa modala fönster och aktivera en ny version.
 
 >[!WARNING]
 >
->The _Anpassade VCL-fragment_ I gränssnittsalternativet visas endast de fragment som har lagts till via Adobe Commerce Admin. Om du lägger till fragment med API:t Snabb använder du API:t för att [hantera dem](/help/cloud-guide/cdn/fastly-vcl-custom-snippets.md#manage-vcl-using-the-api).
+>Gränssnittsalternativet _Anpassade VCL-fragment_ visar bara de fragment som lagts till via Adobe Commerce Admin. Om du lägger till fragment med API:t Snabb använder du API:t för att [hantera dem](/help/cloud-guide/cdn/fastly-vcl-custom-snippets.md#manage-vcl-using-the-api).

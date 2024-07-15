@@ -21,9 +21,9 @@ ht-degree: 0%
 
 Adobe Commerce i molninfrastruktur använder Composer för att hantera PHP-paket.
 
-The `composer.json` filen deklarerar paketlistan, medan `composer.lock` fil lagrar en fullständig lista över de paket (en fullständig version av varje paket och dess beroenden) som används för att skapa en installation av Adobe Commerce.
+Filen `composer.json` deklarerar paketlistan medan filen `composer.lock` lagrar en fullständig lista över de paket (en fullständig version av varje paket och dess beroenden) som används för att skapa en installation av Adobe Commerce.
 
-Följande referensdokumentation genereras från `composer.lock` och täcker de paket som ingår i Adobe Commerce om molninfrastruktur 2.4.7.
+Följande referensdokumentation genereras från filen `composer.lock` och omfattar nödvändiga paket som ingår i Adobe Commerce i molninfrastrukturen 2.4.7.
 
 ## Beroenden
 
@@ -79,7 +79,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   <tbody>
   <tr>
     <td>
-      <a href="https://github.com/adobe/stock-api-libphp.git">astock stock-api-libphp</a>
+      <a href="https://github.com/adobe/stock-api-libphp.git">astock/stock-api-libphp</a>
     </td>
     <td>bibliotek</td>
     <td>Adobe Stock API-bibliotek</td>
@@ -163,7 +163,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   <tbody>
   <tr>
     <td>
-      <a href="https://github.com/colinmollenhour/Cm_Cache_Backend_File.git">colinblöenhour/cache-backend-file</a>
+      <a href="https://github.com/colinmollenhour/Cm_Cache_Backend_File.git">colinMovie/cache-backend-file</a>
     </td>
     <td>magento-module</td>
     <td>Zend_Cache_Backend_File-serverdelen har mycket dålig prestanda för att rensa med taggar, vilket gör den oanvändbar när antalet cachelagrade objekt ökar. Den här serverdelen gör många ändringar, vilket ger en rejäl prestandaökning, särskilt för tagghantering.</td>
@@ -177,7 +177,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/fastly/fastly-magento2.git">fast/magento2</a>
+      <a href="https://github.com/fastly/fastly-magento2.git">fastly/magento2</a>
     </td>
     <td>magento2-module</td>
     <td>Snabb CDN-modul för Magento 2.4.x</td>
@@ -247,7 +247,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/laminas/laminas-eventmanager.git">laminas/laminas-eventmanager</a>
+      <a href="https://github.com/laminas/laminas-eventmanager.git">laminas/laminas-eventManager</a>
     </td>
     <td>bibliotek</td>
     <td>Utlös och lyssna på händelser i ett PHP-program</td>
@@ -436,7 +436,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/tedious/JShrink.git">tedivm/jcrink</a>
+      <a href="https://github.com/tedious/JShrink.git">tedivm/jkrink</a>
     </td>
     <td>bibliotek</td>
     <td>Javascript-minifier inbyggd i PHP</td>
@@ -464,7 +464,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   <tbody>
   <tr>
     <td>
-      <a href="https://github.com/colinmollenhour/Cm_Cache_Backend_Redis.git">colinblöenhour/cache-backend-redis</a>
+      <a href="https://github.com/colinmollenhour/Cm_Cache_Backend_Redis.git">colinkvart/hour/cache-backend-redis</a>
     </td>
     <td>magento-module</td>
     <td>Zend_Cache backend använder Redis med fullständigt stöd för taggar.</td>
@@ -485,7 +485,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   <tbody>
   <tr>
     <td>
-      <a href="https://github.com/paragonie/sodium_compat.git">paragonien/natrium_compat</a>
+      <a href="https://github.com/paragonie/sodium_compat.git">paragonie/natrium_compat</a>
     </td>
     <td>bibliotek</td>
     <td>Ren PHP-implementering av libnatrium; använder PHP-tillägget om det finns</td>
@@ -541,21 +541,21 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/brick/math.git">tegel/matte</a>
+      <a href="https://github.com/brick/math.git">brick/math</a>
     </td>
     <td>bibliotek</td>
     <td>Arbitrary-precision aritmetic library</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/brick/varexporter.git">tegelsten/variexportör</a>
+      <a href="https://github.com/brick/varexporter.git">brick/varexporter</a>
     </td>
     <td>bibliotek</td>
     <td>Ett kraftfullt alternativ till var_export(), som kan exportera stängningar och objekt utan __set_state()</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/CarbonPHP/carbon-doctrine-types.git">karbonfp/koldoctrintyper</a>
+      <a href="https://github.com/CarbonPHP/carbon-doctrine-types.git">karbonphp/kol-doctrin-types</a>
     </td>
     <td>bibliotek</td>
     <td>Typer av kol i doktrin</td>
@@ -590,7 +590,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/composer/composer.git">disposition</a>
+      <a href="https://github.com/composer/composer.git">disposition/disposition</a>
     </td>
     <td>bibliotek</td>
     <td>Composer hjälper dig att deklarera, hantera och installera beroenden av PHP-projekt. Det ser till att du har rätt hög överallt.</td>
@@ -618,14 +618,14 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/composer/spdx-licenses.git">disposition/spdx-licenses</a>
+      <a href="https://github.com/composer/spdx-licenses.git">Composer/spdx-licenses</a>
     </td>
     <td>bibliotek</td>
     <td>SPDX-licenslista och valideringsbibliotek.</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/composer/xdebug-handler.git">disposition/xdebug-handler</a>
+      <a href="https://github.com/composer/xdebug-handler.git">dispositör/xdebug-handler</a>
     </td>
     <td>bibliotek</td>
     <td>Startar om en process utan Xdebug.</td>
@@ -653,7 +653,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/FriendsOfPHP/proxy-manager-lts.git">friendly/php/proxy-manager-lts</a>
+      <a href="https://github.com/FriendsOfPHP/proxy-manager-lts.git">friendlyFphp/proxy-manager-lts</a>
     </td>
     <td>bibliotek</td>
     <td>Stöd för fler PHP-versioner i ocramius/proxy-manager</td>
@@ -688,7 +688,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/illuminate/collections.git">belys/samlingar</a>
+      <a href="https://github.com/illuminate/collections.git">belysning/samlingar</a>
     </td>
     <td>bibliotek</td>
     <td>Paketet för Illuminate-samlingar.</td>
@@ -702,14 +702,14 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/illuminate/contracts.git">belysa/kontraktera</a>
+      <a href="https://github.com/illuminate/contracts.git">belys/kontrakt</a>
     </td>
     <td>bibliotek</td>
     <td>Paketet med Illuminate-kontrakt.</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/illuminate/macroable.git">belys/makrobart</a>
+      <a href="https://github.com/illuminate/macroable.git">belys/makrokan</a>
     </td>
     <td>bibliotek</td>
     <td>The Illuminate Macroable package.</td>
@@ -723,7 +723,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/thephpleague/flysystem.git">guru/flygsystem</a>
+      <a href="https://github.com/thephpleague/flysystem.git">Lag/flygsystem</a>
     </td>
     <td>bibliotek</td>
     <td>Filarkiveringssammanfattning för PHP</td>
@@ -737,7 +737,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/thephpleague/mime-type-detection.git">Detektering av ligans/mime-typ</a>
+      <a href="https://github.com/thephpleague/mime-type-detection.git">Identifiering av ligg/mime-typ</a>
     </td>
     <td>bibliotek</td>
     <td>Mime-type detection for Flysystem</td>
@@ -758,7 +758,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/briannesbitt/Carbon.git">nebot/kol</a>
+      <a href="https://github.com/briannesbitt/Carbon.git">nebot/carbon</a>
     </td>
     <td>bibliotek</td>
     <td>Ett API-tillägg för DateTime som stöder 281 olika språk.</td>
@@ -779,7 +779,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/MyIntervals/emogrifier.git">pelago/reliefer</a>
+      <a href="https://github.com/MyIntervals/emogrifier.git">pelago/emogrifier</a>
     </td>
     <td>bibliotek</td>
     <td>Konverterar CSS-format till textbundna formatattribut i HTML-koden</td>
@@ -828,7 +828,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/php-fig/clock.git">psr/klocka</a>
+      <a href="https://github.com/php-fig/clock.git">psr/clock</a>
     </td>
     <td>bibliotek</td>
     <td>Gemensamt gränssnitt för att läsa klockan.</td>
@@ -905,7 +905,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/reactphp/promise.git">reagera/lova</a>
+      <a href="https://github.com/reactphp/promise.git">reagerar/utlovar</a>
     </td>
     <td>bibliotek</td>
     <td>En lätt implementering av CommonJS Promises/A för PHP</td>
@@ -968,7 +968,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/console.git">symfony/console</a>
+      <a href="https://github.com/symfony/console.git">symbol/konsol</a>
     </td>
     <td>bibliotek</td>
     <td>Förenklar skapandet av snygga och testbara kommandoradsgränssnitt</td>
@@ -982,14 +982,14 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/dependency-injection.git">symfoni/beroendeinjicering</a>
+      <a href="https://github.com/symfony/dependency-injection.git">symbol/beroendeinjicering</a>
     </td>
     <td>bibliotek</td>
     <td>Används för att standardisera och centralisera det sätt på vilket objekt skapas i programmet</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/deprecation-contracts.git">symfoni/utfasningsavtal</a>
+      <a href="https://github.com/symfony/deprecation-contracts.git">symfony/deprecation-agreements</a>
     </td>
     <td>bibliotek</td>
     <td>En allmän funktion och konvention som utlöser meddelanden om borttagning</td>
@@ -1010,14 +1010,14 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/event-dispatcher-contracts.git">symbol/event-dispatcher-kontrakt</a>
+      <a href="https://github.com/symfony/event-dispatcher-contracts.git">symfony/event-dispatcher-agreements</a>
     </td>
     <td>bibliotek</td>
     <td>Allmänna abstraktioner relaterade till skicka-händelse</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/filesystem.git">symbol/filsystem</a>
+      <a href="https://github.com/symfony/filesystem.git">symfony/filesystem</a>
     </td>
     <td>bibliotek</td>
     <td>Tillhandahåller grundläggande verktyg för filsystemet</td>
@@ -1059,7 +1059,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/intl.git">symbol/intl</a>
+      <a href="https://github.com/symfony/intl.git">symfony/intl</a>
     </td>
     <td>bibliotek</td>
     <td>Ger åtkomst till ICU-bibliotekets lokaliseringsdata</td>
@@ -1080,7 +1080,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-intl-idn.git">symfony/polyfill-intl-id</a>
+      <a href="https://github.com/symfony/polyfill-intl-idn.git">symfony/polyfill-intl-idn</a>
     </td>
     <td>bibliotek</td>
     <td>Symfony polyfill for intl's id_to_ascii and id_to_utf8 functions</td>
@@ -1101,42 +1101,42 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-php72.git">symbol/polyfill-php72</a>
+      <a href="https://github.com/symfony/polyfill-php72.git">symfony/polyfill-php72</a>
     </td>
     <td>bibliotek</td>
     <td>Symfonisk polyfill backporting vissa PHP 7.2+-funktioner ger lägre PHP-versioner</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-php73.git">symbol/polyfill-php73</a>
+      <a href="https://github.com/symfony/polyfill-php73.git">symfony/polyfill-php73</a>
     </td>
     <td>bibliotek</td>
     <td>Symfonisk polyfill backporting vissa PHP 7.3+-funktioner ger lägre PHP-versioner</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-php80.git">symbol/polyfill-php80</a>
+      <a href="https://github.com/symfony/polyfill-php80.git">symfony/polyfill-php80</a>
     </td>
     <td>bibliotek</td>
     <td>Symfonisk polyfill backporting vissa PHP 8.0+-funktioner till lägre PHP-versioner</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-php81.git">symbol/polyfill-php81</a>
+      <a href="https://github.com/symfony/polyfill-php81.git">symfony/polyfill-php81</a>
     </td>
     <td>bibliotek</td>
     <td>Symfonisk polyfill backporterar vissa PHP 8.1+-funktioner till lägre PHP-versioner</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/polyfill-php83.git">symbol/polyfill-php83</a>
+      <a href="https://github.com/symfony/polyfill-php83.git">symfony/polyfill-php83</a>
     </td>
     <td>bibliotek</td>
     <td>Symfonisk polyfill backporterar vissa PHP 8.3+-funktioner till lägre PHP-versioner</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/process.git">symfoni/process</a>
+      <a href="https://github.com/symfony/process.git">symfony/process</a>
     </td>
     <td>bibliotek</td>
     <td>Kör kommandon i underprocesser</td>
@@ -1157,14 +1157,14 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/service-contracts.git">symfoni/serviceavtal</a>
+      <a href="https://github.com/symfony/service-contracts.git">symfony/service-contract</a>
     </td>
     <td>bibliotek</td>
     <td>Allmänna abstraktioner relaterade till skrivande tjänster</td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/string.git">symfony/string</a>
+      <a href="https://github.com/symfony/string.git">symbol/sträng</a>
     </td>
     <td>bibliotek</td>
     <td>Ger ett objektorienterat API för strängar och hanterar byte, UTF-8-kodpunkter och grafemkluster på ett enhetligt sätt</td>
@@ -1178,7 +1178,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/translation-contracts.git">symfony/translation-contract</a>
+      <a href="https://github.com/symfony/translation-contracts.git">symfony/translation-agreements</a>
     </td>
     <td>bibliotek</td>
     <td>Allmänna abstraktioner relaterade till översättning</td>
@@ -1192,7 +1192,7 @@ magento/product-enterprise-edition: >=2.4.7 <2.4.8
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/symfony/var-exporter.git">symfony/var-exporter</a>
+      <a href="https://github.com/symfony/var-exporter.git">symfony/var-exporting</a>
     </td>
     <td>bibliotek</td>
     <td>Tillåter export av serialiserbara PHP-datastrukturer till vanlig PHP-kod</td>

@@ -12,9 +12,9 @@ ht-degree: 0%
 
 # Dirigera om begäranden till en CMS-serverdel
 
-Omdirigera inkommande begäranden från en Adobe Commerce-butik till en separat WordPress-webbplats med hjälp av modulen Snabbkant _Annan CMS/backend-integrering_ med en Edge Dictionary. Du kan följa en liknande process för att dirigera om begäranden till andra CMS-backends.
+Omdirigera inkommande begäranden från en Adobe Commerce-butik till en separat WordPress-webbplats med Snabb Edge-modul _Annan CMS/backend-integrering_ med en Edge-ordlista. Du kan följa en liknande process för att dirigera om begäranden till andra CMS-backends.
 
-Använd Fastt Edge-moduler för att skapa och överföra anpassad VCL-kod från administratören i stället för att manuellt skriva VCL-koden och överföra den med API:t Snabb.
+Använd Edge-moduler snabbt för att skapa och överföra anpassad VCL-kod från administratören i stället för att skriva VCL-koden manuellt och överföra den med API:t Snabb.
 
 >[!NOTE]
 >
@@ -26,13 +26,13 @@ Använd Fastt Edge-moduler för att skapa och överföra anpassad VCL-kod från 
 
 **Så här dirigerar du om begäranden från Adobe Commerce till WordPress**:
 
-1. Aktivera moduler med fast kant i miljö för staging och produktion.
+1. Aktivera snabbt Edge-moduler i mellanlagrings- eller produktionsmiljön.
 
    - Logga in på Admin.
 
-   - Navigera till **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **System** > **Helsidescache** > **Snabb konfiguration** > **Avancerad konfiguration**.
+   - Navigera till **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **System** > **Fullsidescache** > **Snabbt konfigurering** > **Avancerad konfiguration**.
 
-   - Ange värdet för **Moduler med fast kant** till **Ja**.
+   - Ange värdet för **Edge-moduler** snabbt till **Ja**.
 
    - Spara konfigurationen.
 
@@ -40,12 +40,12 @@ Använd Fastt Edge-moduler för att skapa och överföra anpassad VCL-kod från 
 
 1. Utför följande uppgifter för att konfigurera tjänsten Snabbt och skapa den anpassade VCL-koden för omdirigering av begäranden till WordPress-backend.
 
-   - Skapa en Edge Dictionary som anger de banor som ska dirigeras om från Adobe Commerce Store till backend-objektet.
+   - Skapa en Edge-ordlista som anger sökvägarna som ska dirigeras om från Adobe Commerce Store till serverdelen.
 
    - Lägg till backend-objektet för WordPress i snabbtjänstkonfigurationen och bifoga villkoret för begäran om URL-omskrivning.
 
-   - Konfigurera _Annan CMS/backend-integrering_ Edge Module för att hantera URL-omskrivningar från Adobe Commerce till WordPress-backend.
+   - Konfigurera Edge-modulen _Annan CMS/backend-integrering_ för att hantera URL-omskrivningar från Adobe Commerce till WordPress-backend.
 
-     Detaljerade anvisningar finns i [Moduler med fast kant - annan integrering med CMS/backend](https://github.com/fastly/fastly-magento2/blob/master/Documentation/Guides/Edge-Modules/EDGE-MODULE-OTHER-CMS-INTEGRATION.md) i _Snabb CDN-modul för Magento 2_ dokumentation.
+     Mer information finns i [Snabbt Edge-moduler - Annan CMS/Backend-integrering](https://github.com/fastly/fastly-magento2/blob/master/Documentation/Guides/Edge-Modules/EDGE-MODULE-OTHER-CMS-INTEGRATION.md) i _Snabbt CDN-modulen för Magento 2_ -dokumentationen.
 
 1. När du har uppdaterat konfigurationen för tjänsten Snabb testar du Adobe Commerce Store för att kontrollera att de angivna URL-förfrågningarna för WordPress dirigeras om korrekt.

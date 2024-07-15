@@ -1,6 +1,6 @@
 ---
 user-guide-title: Kom igång med Commerce
-user-guide-description: Börja med att konfigurera [!DNL Commerce] i molninfrastrukturen.
+user-guide-description: Börja din första konfiguration av  [!DNL Commerce] programmet i molninfrastrukturen.
 feature: Cloud
 product: magento
 recommendations: noDisplay, noCatalog
@@ -15,9 +15,9 @@ ht-degree: 0%
 # Kom igång med Commerce {#start}
 
 + [Kom igång med Commerce](overview.md)
-+ [Etablera handel i molnet](new-project.md)
++ [Etablera Commerce i molnet](new-project.md)
 + [Onboarding](onboarding.md)
-+ [Logga in på [!DNL Cloud Console]](cloud-console.md)
++ [Logga in på  [!DNL Cloud Console]](cloud-console.md)
 + [Åtkomstbutik](access-storefront.md)
 + [Förbered för utveckling](prepare-workspace.md)
 + [Återgå till Cloud Infrastructure Guide](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/overview.html)

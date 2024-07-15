@@ -14,21 +14,21 @@ ht-degree: 0%
 
 Projektvariabler gäller för alla miljöer i projektet. Miljövariabler gäller för en viss miljö eller gren. En miljö _ärver_ variabeldefinitioner från den överordnade miljön.
 
-Du kan åsidosätta ett ärvt värde genom att definiera variabeln specifikt för miljön. Om du till exempel vill ange variabler för utveckling definierar du variabelvärdena i `.magento.env.yaml` i integreringsmiljön. Alla miljöer som härstammar från integreringsmiljön ärver dessa värden. Se [Distributionskonfiguration](configure-env-yaml.md) om du vill ha mer information om hur du konfigurerar miljön med `.magento.env.yaml` -fil.
+Du kan åsidosätta ett ärvt värde genom att definiera variabeln specifikt för miljön. Om du till exempel vill ange variabler för utveckling definierar du variabelvärdena i filen `.magento.env.yaml` i integreringsmiljön. Alla miljöer som härstammar från integreringsmiljön ärver dessa värden. Mer information om hur du konfigurerar miljön med hjälp av filen `.magento.env.yaml` finns i [Distributionskonfiguration](configure-env-yaml.md).
 
 >[!BEGINTABS]
 
 >[!TAB CLI]
 
-**Ställa in variabler med hjälp av CLI i molnet**:
+**Så här anger du variabler med Cloud CLI**:
 
-- **Projektspecifika variabler**—Att ange samma värde för _alla_ miljöer i ditt projekt. Dessa variabler är tillgängliga vid bygge och körning i alla miljöer.
+- **Projektspecifika variabler** - Om du vill ange samma värde för _alla_ -miljöer i ditt projekt. Dessa variabler är tillgängliga vid bygge och körning i alla miljöer.
 
   ```bash
   magento-cloud variable:create --level project --name <variable-name> --value <variable-value>
   ```
 
-- **Miljöspecifika variabler**—Att ange ett unikt värde för _specifik_ miljö. Dessa variabler är tillgängliga vid körning och ärvs av underordnade miljöer. Ange miljön i kommandot med `-e` alternativ.
+- **Miljöspecifika variabler** - Om du vill ange ett unikt värde för en _specifik_-miljö. Dessa variabler är tillgängliga vid körning och ärvs av underordnade miljöer. Ange miljön i kommandot med alternativet `-e`.
 
   ```bash
   magento-cloud variable:create --level environment --name <variable-name> --value <variable-value>
@@ -38,19 +38,19 @@ När du har angett projektspecifika variabler måste du distribuera om fjärrmil
 
 >[!TAB Konsol]
 
-**Ange variabler med[!DNL Cloud Console]**:
+**Så här anger du variabler med[!DNL Cloud Console]**:
 
-1. I _[!DNL Cloud Console]_klickar du på konfigurationsikonen till höger om projektnavigeringen.
+1. Klicka på konfigurationsikonen till höger om projektnavigeringen i _[!DNL Cloud Console]_.
 
    ![Konfigurera projekt](../../assets/icon-configure.png){width="36"}
 
-1. Så här anger du en variabel på projektnivå under _Projektinställningar_ klicka **Variabel**.
+1. Om du vill ange en variabel på projektnivå går du till _Projektinställningar_ och klickar på **Variabler**.
 
    ![Projektvariabler](../../assets/ui-project-variables.png)
 
-1. Om du vill ange en variabel på miljönivå går du till _Miljö_ väljer du en miljö och klickar på **[!UICONTROL Variables]** -fliken.
+1. Om du vill ange en variabel på miljönivå väljer du en miljö i listan _Miljö_ och klickar på fliken **[!UICONTROL Variables]** .
 
-   ![Fliken Miljövariabler](../../assets/ui-environment-variables.png)
+   ![fliken Miljövariabler](../../assets/ui-environment-variables.png)
 
 1. Klicka på **[!UICONTROL Create variable]**.
 
@@ -66,18 +66,18 @@ När du har angett projektspecifika variabler måste du distribuera om fjärrmil
 
 >[!CAUTION]
 >
->Ange miljöspecifika variabler i [!DNL Cloud Console] distribuerar automatiskt om miljön.
+>Miljön omdistribueras automatiskt när miljöspecifika variabler anges i [!DNL Cloud Console].
 
 >[!ENDTABS]
 
 ## Synlighet
 
-Du kan begränsa synligheten för en variabel under byggandet eller körningen med `--visible-<build|runtime>` -kommando. Det finns även alternativ för att ange arv och känslighet.
+Du kan begränsa synligheten för en variabel under generering eller körning med kommandot `--visible-<build|runtime>`. Det finns även alternativ för att ange arv och känslighet.
 
 Använd följande alternativ för att förhindra att en variabel visas eller ärvs:
 
-- `--inheritable false`—inaktiverar arv för underordnade miljöer. Detta är användbart när du vill ange värden som bara är för produktion på `master` och tillåter att alla andra miljöer använder en projektnivåvariabel med samma namn.
-- `--sensitive true`—gör variabeln som _ej läsbar_ i [!DNL Cloud Console]. Du kan inte visa variabeln i användargränssnittet, men du kan visa variabeln från programbehållaren, precis som andra variabler.
+- `--inheritable false` - inaktiverar arv för underordnade miljöer. Detta är användbart för att ange värden som bara är för produktion i grenen `master` och för att tillåta att alla andra miljöer använder en projektnivåvariabel med samma namn.
+- `--sensitive true` - markerar variabeln som _oläsbar_ i [!DNL Cloud Console]. Du kan inte visa variabeln i användargränssnittet, men du kan visa variabeln från programbehållaren, precis som andra variabler.
 
 I följande exempel visas ett specifikt fall som förhindrar att en variabel visas eller ärvs. Du kan bara ange dessa alternativ i CLI. Det här fallet gäller inte alla tillgängliga miljövariabler.
 

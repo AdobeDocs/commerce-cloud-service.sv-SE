@@ -11,7 +11,7 @@ ht-degree: 0%
 
 # Öppna checklista
 
-Innan du distribuerar till produktionsmiljön ska du hämta [Öppna checklista](../../assets/adobe-commerce-cloud-prelaunch-checklist.pdf)och använd den tillsammans med dessa instruktioner för att bekräfta att du har slutfört all konfiguration och testning som krävs. Se en översikt över hela distributionsprocessen för Starter och Pro på [Distribuera din butik](../deploy/staging-production.md).
+Innan du distribuerar till produktionsmiljön hämtar du [startchecklistan](../../assets/adobe-commerce-cloud-prelaunch-checklist.pdf) och använder den med dessa instruktioner för att bekräfta att du har slutfört all konfiguration och testning som krävs. Se en översikt över den fullständiga distributionsprocessen för Starter och Pro på [Distribuera din butik](../deploy/staging-production.md).
 
 ## Fullständigt test i produktion
 
@@ -21,7 +21,7 @@ Se [Testa distributionen](../test/staging-and-production.md) för att testa alla
 
 Adobe tillhandahåller ett SSL-/TLS-certifikat för kryptering för varje miljö. Det här certifikatet krävs för att snabbt kunna leverera säker trafik via HTTPS.
 
-Om du vill använda det här certifikatet måste du uppdatera din DNS-konfiguration så att Adobe kan slutföra domänvalidering och tillämpa certifikatet i din miljö. Varje miljö har ett unikt certifikat som omfattar domänerna för Adobe Commerce på molninfrastrukturplatser som distribueras i den miljön. Vi rekommenderar att du slutför och konfigurerar uppdateringarna under [Konfigurera processen snabbt](../cdn/fastly-configuration.md).
+Om du vill använda det här certifikatet måste du uppdatera din DNS-konfiguration så att Adobe kan slutföra domänvalidering och tillämpa certifikatet i din miljö. Varje miljö har ett unikt certifikat som omfattar domänerna för Adobe Commerce på molninfrastrukturplatser som distribueras i den miljön. Vi rekommenderar att du slutför och konfigurerar uppdateringarna under [Snabbt konfigureringsprocessen](../cdn/fastly-configuration.md).
 
 ## Uppdatera DNS-konfiguration med produktionsinställningar
 
@@ -33,7 +33,7 @@ När du är redo att starta webbplatsen måste du uppdatera DNS-konfigurationen 
 
 - Konfigurationen av produktionsmiljön har uppdaterats med alla nödvändiga domäner
 
-  Vanligtvis samarbetar du med din kundtekniska rådgivare för att lägga till alla toppnivådomäner och underdomäner som krävs för dina butiker. Om du vill lägga till eller ändra domänerna för produktionsmiljön [Skicka in en Adobe Commerce-supportanmälan](https://support.magento.com/hc/en-us/articles/360019088251). Vänta på bekräftelse på att projektkonfigurationen har uppdaterats.
+  Vanligtvis samarbetar du med din kundtekniska rådgivare för att lägga till alla toppnivådomäner och underdomäner som krävs för dina butiker. [Skicka en Adobe Commerce-supportanmälan](https://support.magento.com/hc/en-us/articles/360019088251) om du vill lägga till eller ändra domänerna för din produktionsmiljö. Vänta på bekräftelse på att projektkonfigurationen har uppdaterats.
 
   I Starter-projekt måste du lägga till domänerna i projektet. Se [Hantera domäner](../cdn/fastly-custom-cache-configuration.md#manage-domains).
 
@@ -54,7 +54,7 @@ När du är redo att starta webbplatsen måste du uppdatera DNS-konfigurationen 
      Vi rekommenderar ett betydligt lägre TTL-värde när vi byter DNS-post. Detta värde anger för DNS hur länge DNS-posten ska cachelagras. När den är förkortad uppdateras DNS snabbare. Du kan till exempel ändra TTL-värdet från tre dagar till 10 minuter när du uppdaterar platsen. Observera att om TTL-värdet förkortas ökar belastningen på DNS-infrastrukturen. Återställ det tidigare, högre värdet efter att webbplatsen startats.
 
 
-1. Lägg till CNAME-poster för att peka ut underdomänerna för produktionsmiljön till tjänsten Snabbt `prod.magentocloud.map.fastly.net`, till exempel:
+1. Lägg till CNAME-poster för att peka underdomänerna för din produktionsmiljö mot snabbtjänsten `prod.magentocloud.map.fastly.net`, till exempel:
 
    | Domän eller underdomän | CNAME |
    | ----------------------- | -------------------------------- |
@@ -72,10 +72,10 @@ När du är redo att starta webbplatsen måste du uppdatera DNS-konfigurationen 
 
 >[!IMPORTANT]
 >
->DNS-instruktionerna i [RFC1034](https://www.rfc-editor.org/rfc/rfc1912) (**avsnitt 2.4**) att
+>DNS-instruktionerna i [RFC1034](https://www.rfc-editor.org/rfc/rfc1912) (**section 2.4**) anger att:
 >_En CNAME-post får inte finnas parallellt med andra data. Om suzy.podunk.xx är ett alias för use.podunk.xx kan du alltså inte ha en MX-post för suzy.podunk.edu, en A-post eller till och med en TXT-post._
 >
->Därför bör DNS-poster vara av typen `CNAME` för underdomäner och typ `A` för apex-domäner (rotdomäner). Om du ignorerar den här regeln kan det leda till avbrott i e-posttjänsten eller DNS-spridningen eftersom du inte längre kan lägga till andra poster, som MX eller NS. Vissa DNS-leverantörer kan kringgå detta genom att använda interna anpassningar, men om du följer standarden säkerställs stabilitet och flexibilitet (till exempel byte av DNS-providern).
+>Därför bör DNS-poster vara av typen `CNAME` för underdomäner och typen `A` för API-domäner (rotdomäner). Om du ignorerar den här regeln kan det leda till avbrott i e-posttjänsten eller DNS-spridningen eftersom du inte längre kan lägga till andra poster, som MX eller NS. Vissa DNS-leverantörer kan kringgå detta genom att använda interna anpassningar, men om du följer standarden säkerställs stabilitet och flexibilitet (till exempel byte av DNS-providern).
 
 1. Uppdatera bas-URL:en.
 
@@ -91,7 +91,7 @@ När du är redo att starta webbplatsen måste du uppdatera DNS-konfigurationen 
      php bin/magento setup:store-config:set --base-url="https://www.<domain-name>.com/"
      ```
 
-   **ANMÄRKNING**: Du kan också uppdatera bas-URL:en från administratören. Se [Lagra URL:er](https://experienceleague.adobe.com/docs/commerce-admin/stores-sales/site-store/store-urls.html) i _Adobe Commerce Stores and Purchase Experience Guide_.
+   **OBS!**: Du kan även uppdatera bas-URL:en från administratören. Se [Lagra URL:er](https://experienceleague.adobe.com/docs/commerce-admin/stores-sales/site-store/store-urls.html) i _Adobe Commerce Store och Köp Experience Guide_.
 
 1. Vänta några minuter tills webbplatsen har uppdaterats.
 
@@ -109,29 +109,29 @@ Följande är rekommenderade ändringar och kontroller:
 
 - [Optimera alla bilder för webben](../cdn/fastly-image-optimization.md)
 
-- [Kontrollera minifieringsinställningar för HTML, JavaScript och CSS](../deploy/static-content.md)
+- [Kontrollera miniinställningar för HTML, JavaScript och CSS](../deploy/static-content.md)
 
 ## Verifiera snabb cachelagring
 
-- Testa och verifiera att cachelagring av fast cachning fungerar korrekt på produktionsplatsen. Detaljerade tester och kontroller finns på [Testa snabbt](../test/staging-and-production.md#check-fastly-caching).
+- Testa och verifiera att cachelagring av fast cachning fungerar korrekt på produktionsplatsen. Detaljerade tester och kontroller finns i [Snabba tester](../test/staging-and-production.md#check-fastly-caching).
 
-- [Kontrollera att den senaste versionen av Snabbt CDN-modulen för handel är installerad i din produktionsmiljö](../cdn/fastly-configuration.md#upgrade-the-fastly-module)
+- [Kontrollera att den senaste versionen av Snabbt CDN Module för Commerce är installerad i din produktionsmiljö](../cdn/fastly-configuration.md#upgrade-the-fastly-module)
 
 - [Kontrollera att den senaste versionen av den snabbaste VCL-koden har överförts](../cdn/fastly-configuration.md#upload-vcl-to-fastly)
 
 ## Prestandatestning
 
-Vi rekommenderar att du granskar [Performance Toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit) som en del av beredskapen inför lanseringen.
+Vi rekommenderar att du granskar alternativen för [Performance Toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit) som en del av beredskapen inför starten.
 
 Du kan också testa med följande alternativ från tredje part:
 
-- [Siege](https://www.joedog.org/siege-home/): Trafikformnings- och testningsprogram som når butiken ända ut till gränserna. Besök webbplatsen med ett konfigurerbart antal simulerade klienter. Siege har stöd för grundläggande autentisering, cookies, HTTP, HTTPS och FTP-protokoll.
+- [Belägring](https://www.joedog.org/siege-home/): Trafikformnings- och testningsprogramvara som gör att din butik når gränsen. Besök webbplatsen med ett konfigurerbart antal simulerade klienter. Siege har stöd för grundläggande autentisering, cookies, HTTP, HTTPS och FTP-protokoll.
 
-- [Jmeter](https://jmeter.apache.org/): Utmärkt laddningstestning för att mäta prestanda för spikad trafik, som vid blixtförsäljning. Skapa anpassade tester som körs mot din plats.
+- [Jmeter](https://jmeter.apache.org/): Utmärkt inläsningstestning som hjälper till att mäta prestanda för spikad trafik, till exempel för blixtförsäljning. Skapa anpassade tester som körs mot din plats.
 
 - [New Relic](https://support.newrelic.com/s/) (tillhandahålls): Hjälper dig att hitta processer och områden på webbplatsen som ger långsam prestanda med spårad tid per åtgärd, som överföring av data, frågor, Redis med mera.
 
-- [WebPageTest](https://www.webpagetest.org/) och [Prike](https://www.pingdom.com/): Realtidsanalys av webbplatsens sidor laddar tid med olika ursprungsplatser. Riket kan kosta en avgift. WebPageTest är ett kostnadsfritt verktyg.
+- [WebPageTest](https://www.webpagetest.org/) och [Passning](https://www.pingdom.com/): Realtidsanalys av webbplatssidorna läses in med olika ursprungsplatser. Riket kan kosta en avgift. WebPageTest är ett kostnadsfritt verktyg.
 
 ## Säkerhetskonfiguration
 
@@ -147,7 +147,7 @@ Du kan också testa med följande alternativ från tredje part:
 
 ## Prestandaövervakning
 
-Du kan använda New Relic tjänster för prestandaövervakning i Pro- och Starter-miljöer. På Pro-plankonton tillhandahåller vi hanterade aviseringar för Adobe Commerce aviseringspolicy för att övervaka program- och infrastrukturprestanda med New Relic APM och infrastrukturagenter. Mer information om hur du använder dessa tjänster finns i [Övervaka prestanda med hanterade aviseringar](../monitor/investigate-performance.md#monitor-performance-with-managed-alerts).
+Du kan använda New Relic tjänster för prestandaövervakning i Pro- och Starter-miljöer. På Pro-plankonton tillhandahåller vi hanterade aviseringar för Adobe Commerce aviseringspolicy för att övervaka program- och infrastrukturprestanda med New Relic APM och infrastrukturagenter. Mer information om hur du använder de här tjänsterna finns i [Övervaka prestanda med hanterade aviseringar](../monitor/investigate-performance.md#monitor-performance-with-managed-alerts).
 
 ### Nästa steg
 

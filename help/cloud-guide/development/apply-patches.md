@@ -12,34 +12,34 @@ ht-degree: 0%
 
 # Tillämpa patchar
 
-[Cloud Patches for Commerce](https://github.com/magento/magento-cloud-patches) och [Verktyget Kvalitetspatchar](https://github.com/magento/quality-patches) levererar patchar till dina installerade Adobe Commerce-program.
+[Molnkorrigeringar för Commerce](https://github.com/magento/magento-cloud-patches) och [kvalitetskorrigeringsverktyget](https://github.com/magento/quality-patches) levererar korrigeringsfiler till det installerade Adobe Commerce-programmet.
 
 - Cloud Patches for Commerce-paketet innehåller nödvändiga korrigeringar med viktiga korrigeringar
-- Quality Patches deliver optional, low-impact quality fixes as as [enskilda korrigeringsfiler](https://experienceleague.adobe.com/docs/commerce-operations/release/planning/versioning-policy.html#individual-patch) som inte innehåller inkompatibla ändringar bakåt
+- Kvalitetskorrigeringar ger valfria kvalitetskorrigeringar med låg påverkan som [enskilda korrigeringar](https://experienceleague.adobe.com/docs/commerce-operations/release/planning/versioning-policy.html#individual-patch) som inte innehåller inkompatibla ändringar bakåt
 
-Se [Tillgängliga korrigeringar](https://experienceleague.adobe.com/tools/commerce-quality-patches/index.html) i _Handbok för Commerce Operations Tools_ för att se en fullständig lista över de släppta plåstren.
+Se [Tillgängliga korrigeringar](https://experienceleague.adobe.com/tools/commerce-quality-patches/index.html) i _Commerce Operations Tools Guide_ om du vill visa en fullständig lista över släppta korrigeringsfiler.
 
-Båda paketen förbättrar integreringen av alla Adobe Commerce-versioner med molnmiljöer och stöder snabb leverans av viktiga, valfria och anpassade korrigeringar. Du kan använda de här paketen för att tillämpa, återställa och visa allmän information om alla enskilda korrigeringsfiler som är tillgängliga för Commerce.
+Båda paketen förbättrar integreringen av alla Adobe Commerce-versioner med molnmiljöer och stöder snabb leverans av viktiga, valfria och anpassade korrigeringar. Du kan använda dessa paket för att tillämpa, återställa och visa allmän information om alla enskilda korrigeringsfiler som är tillgängliga för Commerce.
 
 >[!TIP]
 >
->Du kan använda [Verktyget Kvalitetspatchar](https://experienceleague.adobe.com/tools/commerce-quality-patches/index.html) och Cloud Patches for Commerce as stand-alone packages for Magento Open Source and Adobe Commerce projects. Vi rekommenderar att du använder verktyget Kvalitetskorrigeringar för icke-molnprojekt.
+>Du kan använda [kvalitetskorrigeringsverktyget](https://experienceleague.adobe.com/tools/commerce-quality-patches/index.html) och molnkorrigeringar för Commerce som fristående paket för Magento Open Source- och Adobe Commerce-projekt. Vi rekommenderar att du använder verktyget Kvalitetskorrigeringar för icke-molnprojekt.
 
-När du distribuerar ändringar i fjärrmiljön `ece-tools` paket använder `magento/magento-cloud-patches` och `magento/quality-patches` för att söka efter väntande korrigeringar och tillämpa dem automatiskt i följande ordning:
+När du distribuerar ändringar i fjärrmiljön använder `ece-tools`-paketet `magento/magento-cloud-patches` och `magento/quality-patches` för att söka efter väntande korrigeringar och tillämpar dem automatiskt i följande ordning:
 
-1. Använd alla nödvändiga Commerce-korrigeringar som ingår i molnkorrigeringarna för Commerce-paketet.
-1. Använd valda valfria Commerce-korrigeringar som ingår i verktyget Kvalitetspatchar.
-1. Använda anpassade patchar i `/m2-hotfixes` i alfabetisk ordning efter korrigeringens namn.
+1. Tillämpa alla nödvändiga Commerce-korrigeringsfiler som ingår i Creative Cloud Patches for Commerce-paketet.
+1. Använd de valfria Commerce-korrigeringsfilerna som finns i kvalitetskorrigeringsverktyget.
+1. Använd anpassade korrigeringsfiler i katalogen `/m2-hotfixes` i alfabetisk ordning efter korrigeringsnamn.
 
 >[!NOTE]
 >
->När du uppdaterar `ece-tools` paket eller Cloud Patches for Commerce-paketet, de senaste nödvändiga korrigeringarna tillämpas nästa gång du distribuerar projektet, eller så kan du distribuera dem direkt med `ece-patches apply` CLI-kommando och omdistribution av din molnmiljö. Du kan inte hoppa över [nödvändiga korrigeringar](https://github.com/magento/magento-cloud-patches/tree/develop/patches) under distributionsprocessen.
+>När du uppdaterar `ece-tools`-paketet eller Cloud Patches for Commerce-paketet tillämpas de senaste nödvändiga korrigeringsfilerna nästa gång du distribuerar ditt projekt, eller så kan du distribuera dem direkt med `ece-patches apply` CLI-kommandot och omdistribuera din molnmiljö. Du kan inte hoppa över [nödvändiga korrigeringar](https://github.com/magento/magento-cloud-patches/tree/develop/patches) under distributionsprocessen.
 
 ## Förutsättningar
 
 {{upgrade-tip}}
 
-Verktyget Kvalitetskorrigeringar är beroende av molnkorrigeringar för Commerce och `ece-tools` paket. Om du vill använda de senaste korrigeringarna måste du ha [den senaste versionen av ECE-Tools](../dev-tools/update-package.md) installerade. Minimiversionen av ECE-Tools är 2002.1.2.
+Verktyget för kvalitetsuppdateringar är beroende av molnkorrigeringar för Commerce och paketet `ece-tools`. Om du vill använda de senaste korrigeringarna måste du ha [den senaste versionen av ECE-Tools](../dev-tools/update-package.md) installerad. Minimiversionen av ECE-Tools är 2002.1.2.
 
 ## Visa tillgängliga korrigeringar och status
 
@@ -92,28 +92,28 @@ Magento 2 Enterprise Edition, version 2.3.5.0
 Statustabellen innehåller följande typer av information:
 
 - **Typ**:
-   - `Optional`—Alla korrigeringsfiler från kvalitetsuppdateringsverktyget och Cloud Patches-paketet är valfria för Adobe Commerce- och Magento Open Source-installationer. För Adobe Commerce i molninfrastruktur är alla korrigeringsfiler valfria.
-   - `Required`—Alla korrigeringsfiler från paketet Cloud Patches for Commerce krävs för molnkunder.
-   - `Deprecated`- Den enskilda korrigeringen är markerad som inaktuell och vi rekommenderar att du återställer den om du har använt den. När du har återställt en borttagen korrigering visas den inte längre i statustabellen.
-   - `Custom`—Alla korrigeringar från katalogen m2-hotfixes.
+   - `Optional` - Alla korrigeringsfiler från kvalitetsverktyget och Cloud Patches-paketet är valfria för Adobe Commerce- och Magento Open Source-installationer. För Adobe Commerce i molninfrastruktur är alla korrigeringsfiler valfria.
+   - `Required` - Alla korrigeringsfiler från Cloud Patches for Commerce-paketet krävs för molnkunder.
+   - `Deprecated` - Den enskilda korrigeringen är markerad som inaktuell och vi rekommenderar att du återställer den om du har använt den. När du har återställt en borttagen korrigering visas den inte längre i statustabellen.
+   - `Custom` - Alla korrigeringar från katalogen m2-hotfixes.
 
 - **Status**:
-   - `Applied`- Korrigeringen har installerats.
-   - `Not applied`- Korrigeringen har inte tillämpats.
-   - `N/A`—Det går inte att definiera status för korrigeringen på grund av konflikter.
+   - `Applied` - Korrigeringen har tillämpats.
+   - `Not applied` - Korrigeringen har inte tillämpats.
+   - `N/A` - Det går inte att definiera status för korrigeringen på grund av konflikter.
 
 - **Information**:
-   - `Affected components`- Listan med berörda moduler.
-   - `Required patches`—Listan över nödvändiga korrigeringar (beroenden).
-   - `Recommended replacement`- Den korrigering som rekommenderas som ersättning för en borttagen korrigering.
+   - `Affected components` - Listan med berörda moduler.
+   - `Required patches` - Listan över nödvändiga korrigeringar (beroenden).
+   - `Recommended replacement` - Den korrigering som rekommenderas som ersättning för en borttagen korrigering.
 
 ## Tillämpa en korrigering i en lokal miljö
 
 Du kan tillämpa korrigeringsfiler manuellt i en lokal miljö och testa dem innan du distribuerar dem.
 
-**Använda enskilda korrigeringsfiler i en lokal utvecklingsmiljö**:
+**Så här använder du enskilda korrigeringsfiler i en lokal utvecklingsmiljö**:
 
-1. Lägg till variabeln QUALITY_PATCH i `.magento.env.yaml` och visa de korrigeringar som behövs under.
+1. Lägg till variabeln QUALITY_PATCH i filen `.magento.env.yaml` och visa de nödvändiga korrigeringarna under.
 
    ```yaml
    stage:
@@ -129,10 +129,10 @@ Du kan tillämpa korrigeringsfiler manuellt i en lokal miljö och testa dem inna
    php ./vendor/bin/ece-patches apply
    ```
 
-   The `ece-patches apply` kommandot använder korrigeringar i följande ordning:
+   Kommandot `ece-patches apply` använder korrigeringar i följande ordning:
    - Nödvändiga patchar
    - Valfria enskilda korrigeringsfiler
-   - Egna patchar från `/m2-hotfixes` katalog
+   - Anpassade korrigeringar från katalogen `/m2-hotfixes`
 
 1. Rensa cachen.
 
@@ -148,9 +148,9 @@ Du kan tillämpa korrigeringsfiler manuellt i en lokal miljö och testa dem inna
 >
 >Vi rekommenderar att du testar alla korrigeringsfiler i en integrations- eller mellanlagringsmiljö innan du distribuerar dem till produktionsmiljön.
 
-**Använda korrigeringsfiler i en fjärrmiljö**:
+**Så här använder du korrigeringsfiler i en fjärrmiljö**:
 
-1. Lägg till `QUALITY_PATCHES` variabeln till `.magento.env.yaml` och visa de korrigeringar som behövs under.
+1. Lägg till variabeln `QUALITY_PATCHES` i filen `.magento.env.yaml` och visa de nödvändiga korrigeringarna under.
 
    ```yaml
    stage:
@@ -164,7 +164,7 @@ Du kan tillämpa korrigeringsfiler manuellt i en lokal miljö och testa dem inna
    >
    >När du har uppgraderat till en ny version av Adobe Commerce måste du tillämpa korrigeringarna igen om de inte ingår i den nya versionen.
 
-1. Lägg till, implementera och push-överföra den uppdaterade `.magento.env.yaml` -fil.
+1. Lägg till, bekräfta och skicka den uppdaterade `.magento.env.yaml`-filen.
 
    ```bash
    git add .magento.env.yaml
@@ -180,21 +180,21 @@ Du kan tillämpa korrigeringsfiler manuellt i en lokal miljö och testa dem inna
 
 ## Tillämpa en anpassad korrigering
 
-När du distribuerar programmet använder ECE-Tools alla Adobe-patchar och alla anpassade patchar som du lägger till i `/m2-hotfixes` i projektets rot.
+När du distribuerar använder ECE-Tools alla Adobe-korrigeringar och eventuella anpassade korrigeringar som du lägger till i katalogen `/m2-hotfixes` i projektroten.
 
 >[!NOTE]
 >
->Alla korrigeringsfilnamn måste sluta med `.patch` tillägg.
+>Alla namn på korrigeringsfiler måste avslutas med tillägget `.patch`.
 
-**Använda och testa en anpassad korrigering i en molnmiljö**:
+**Så här använder och testar du en anpassad korrigering i en molnmiljö**:
 
-1. Skapa en katalog med namnet i projektets rot `m2-hotfixes` om den inte finns
+1. Skapa en katalog med namnet `m2-hotfixes` om den inte finns i projektroten
 
    ```bash
    mkdir m2-hotfixes
    ```
 
-1. Kopiera korrigeringsfilen till `/m2-hotfixes` katalog.
+1. Kopiera korrigeringsfilen till katalogen `/m2-hotfixes`.
 
 1. Lägg till, implementera och push-ändra kod.
 
@@ -212,13 +212,13 @@ När du distribuerar programmet använder ECE-Tools alla Adobe-patchar och alla 
 
    >[!NOTE]
    >
-   >Testa alla korrigeringsfiler i en förproduktionsmiljö. För Adobe Commerce i molninfrastruktur kan du skapa grenar med `magento-cloud environment:branch <branch-name>` CLI-kommando.
+   >Testa alla korrigeringsfiler i en förproduktionsmiljö. För Adobe Commerce i molninfrastruktur kan du skapa grenar med CLI-kommandot `magento-cloud environment:branch <branch-name>`.
 
 ## Återställa en anpassad korrigering
 
 Så här återställer eller avinstallerar du en tidigare tillämpad anpassad korrigering:
 
-1. Ta bort korrigeringsfilen från `/m2-hotfixes` katalog.
+1. Ta bort korrigeringsfilen från katalogen `/m2-hotfixes`.
 
 1. Lägg till, implementera och push-ändra kod.
 
@@ -236,15 +236,15 @@ Så här återställer eller avinstallerar du en tidigare tillämpad anpassad ko
 
    >[!NOTE]
    >
-   >Testa i förproduktionsmiljö. För Adobe Commerce i molninfrastruktur kan du skapa grenar med `magento-cloud environment:branch <branch-name>` CLI-kommando.
+   >Testa i förproduktionsmiljö. För Adobe Commerce i molninfrastruktur kan du skapa grenar med CLI-kommandot `magento-cloud environment:branch <branch-name>`.
 
 ## Tillämpa korrigeringar på ett icke-molnprojekt
 
-Använd [Verktyget Kvalitetspatchar](https://github.com/magento/quality-patches) för projekt i Magento Open Source och Adobe Commerce.
+Använd [kvalitetsverktyget ](https://github.com/magento/quality-patches) för projekt i Magento Open Source och Adobe Commerce.
 
 ## Återställa en korrigering i en lokal miljö
 
-Du kan återställa alla tidigare tillämpade korrigeringsfiler i en lokal utvecklingsmiljö med hjälp av `ece-patches` CLI.
+Du kan återställa alla tidigare tillämpade korrigeringsfiler i en lokal utvecklingsmiljö med hjälp av CLI:n för `ece-patches`.
 
 Så här återställer du alla tillämpade patchar:
 
@@ -260,4 +260,4 @@ Med det här kommandot återställs alla patchar i följande ordning:
 
 ## Loggning
 
-Verktyget Kvalitetspatchar loggar alla åtgärder till `<Project_root>/var/log/patch.log` -fil.
+Verktyget Kvalitetsuppdateringar loggar alla åtgärder till filen `<Project_root>/var/log/patch.log`.

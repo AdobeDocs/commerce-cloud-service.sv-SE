@@ -14,27 +14,27 @@ ht-degree: 0%
 
 [Redis](https://redis.io) är en valfri serverdelscachelösning som ersätter Zend Framework Zend_Cache_Backend_File, som Adobe Commerce använder som standard.
 
-Se [Konfigurera Redis](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/redis/config-redis.html) i _Konfigurationsguide_.
+Se [Konfigurera Redis](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/redis/config-redis.html) i _Konfigurationsguiden_.
 
 {{service-instruction}}
 
-**Aktivera Redis**:
+**Så här aktiverar du Redis**:
 
-1. Lägg till önskat namn och typ i `.magento/services.yaml` -fil.
+1. Lägg till önskat namn och typ i filen `.magento/services.yaml`.
 
    ```yaml
    myredis:
        type: redis:<version>
    ```
 
-   Om du vill ha en egen Redis-konfiguration lägger du till `core_config` i `.magento/services.yaml` fil:
+   Om du vill ha en egen Redis-konfiguration lägger du till en `core_config`-nyckel i `.magento/services.yaml`-filen:
 
    ```yaml
    cache:
        type: redis:<version>
    ```
 
-1. Konfigurera relationerna i `.magento.app.yaml` -fil.
+1. Konfigurera relationerna i filen `.magento.app.yaml`.
 
    ```yaml
    runtime:
@@ -57,7 +57,7 @@ Se [Konfigurera Redis](https://experienceleague.adobe.com/docs/commerce-operatio
 
 ## Använda Redis CLI
 
-Anta att din Redis-relation är namngiven `redis`kan du komma åt den via `redis-cli` verktyg.
+Om du antar att din Redis-relation har namnet `redis` kan du komma åt den med verktyget `redis-cli`.
 
 1. Använd SSH för att ansluta till integreringsmiljön med Redis installerat och konfigurerat.
 
@@ -84,7 +84,7 @@ gcc_version:8.3.0
 
 ### Redis on Pro staging and production
 
-Om du vill få Redis-versionen installerad i en förproduktionsmiljö eller produktionsmiljö använder du `redis-server` kommando:
+Använd kommandot `redis-server` om du vill få Redis-versionen installerad i en mellanlagrings- eller produktionsmiljö:
 
 ```bash
 redis-server -v
@@ -129,9 +129,9 @@ Exempelsvar:
 
 Se följande Adobe Commerce supportartiklar för hjälp med felsökning av Redis-problem:
 
-- [Återaktivera fördröjning av problem Administratörsinloggning eller utcheckning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/redis-issue-delay-magento-admin-login-or-checkout.html)
-- [Utökad Redis-cacheimplementering Adobe Commerce 2.3.5+](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/planning/redis-service-configuration.html)
+- [Återvisa fördröjning av problem Administratörsinloggning eller utcheckning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/redis-issue-delay-magento-admin-login-or-checkout.html)
+- [Implementering av utökat Redis-cache, Adobe Commerce 2.3.5+](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/best-practices/planning/redis-service-configuration.html)
 - [MDVA-30102: Redis-cachen börjar bli full](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/support-tools/patches/v1-0-6/mdva-30102-magento-patch-redis-cache-getting-full.html)
-- [Hanterade varningar på Adobe Commerce: Redis Memory Warning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/support-tools/managed-alerts/managed-alerts-on-magento-commerce-redis-memory-warning-alert.html)
-- [Hanterade varningar på Adobe Commerce: Redis-minneskritisk varning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/support-tools/managed-alerts/managed-alerts-on-magento-commerce-redis-memory-critical-alert.html)
-- [Redis felsökare](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/redis-troubleshooter.html)
+- [Hanterade aviseringar på Adobe Commerce: Redis Memory-varning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/support-tools/managed-alerts/managed-alerts-on-magento-commerce-redis-memory-warning-alert.html)
+- [Hanterade aviseringar på Adobe Commerce: Redis memory critical alert](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/support-tools/managed-alerts/managed-alerts-on-magento-commerce-redis-memory-critical-alert.html)
+- [Redis-felsökning](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/miscellaneous/redis-troubleshooter.html)

@@ -12,56 +12,56 @@ ht-degree: 0%
 
 # Lägg till webbplatskarta och sökrobotar
 
-Ett försök att generera och skriva `sitemap.xml` till rotkatalogen resulterar i följande fel:
+Ett försök att generera och skriva filen `sitemap.xml` till rotkatalogen resulterar i följande fel:
 
 ```terminal
 Please make sure that "/" is writable by the web-server.
 ```
 
-Med Adobe Commerce i molninfrastrukturen kan du bara skriva till specifika kataloger, som `var`, `pub/media`, `pub/static`, eller `app/etc`. När du genererar `sitemap.xml` med hjälp av administrationspanelen måste du ange `/media/` bana.
+Med Adobe Commerce i molninfrastruktur kan du bara skriva till specifika kataloger, som `var`, `pub/media`, `pub/static` eller `app/etc`. När du genererar filen `sitemap.xml` med hjälp av administratörspanelen måste du ange sökvägen `/media/`.
 
-Du behöver inte generera en `robots.txt` eftersom den genererar `robots.txt` on demand-innehåll och lagrar det i databasen. Du kan visa innehållet i webbläsaren med `<domain.your.project>/robots.txt` eller `<domain.your.project>/robots` länk.
+Du behöver inte generera en `robots.txt`-fil eftersom den genererar `robots.txt`-innehållet på begäran och lagrar det i databasen. Du kan visa innehållet i webbläsaren med länken `<domain.your.project>/robots.txt` eller `<domain.your.project>/robots`.
 
-Detta kräver ECE-Tools version 2002.0.12 och senare med en uppdaterad `.magento.app.yaml` -fil. Se ett exempel på de här reglerna i [magento-cloud-databas](https://github.com/magento/magento-cloud/blob/master/.magento.app.yaml#L43-L49).
+För detta krävs ECE-Tools version 2002.0.12 och senare med en uppdaterad `.magento.app.yaml`-fil. Se ett exempel på dessa regler i [magento-cloud-databasen](https://github.com/magento/magento-cloud/blob/master/.magento.app.yaml#L43-L49).
 
-**Generera en `sitemap.xml` i version 2.2 och senare**:
+**Så här skapar du en `sitemap.xml`-fil i version 2.2 och senare**:
 
 1. Gå till Admin.
-1. På _Marknadsföring_ meny, klicka **Webbplatskarta** i _SEO &amp; Search_ -avsnitt.
-1. I _Webbplatskarta_ visa, klicka **Lägg till platskarta**.
-1. I _Ny webbplatskarta_ ange följande värden:
+1. På menyn _Marknadsföring_ klickar du på **Webbplatskarta** i avsnittet _SEO &amp; Search_ .
+1. Klicka på **Lägg till platskarta** i vyn _Platskarta_.
+1. I vyn _Ny platskarta_ anger du följande värden:
 
    - **Filnamn**:`sitemap.xml`
-   - **Bana**:`/media/`
+   - **Sökväg**:`/media/`
 
-1. Klicka **Spara och generera**. Den nya webbplatskartan blir tillgänglig på _Webbplatskarta_ rutnät.
-1. Klicka på banan i _Link for Google_ kolumn.
+1. Klicka på **Spara och generera**. Den nya webbplatskartan blir tillgänglig i rutnätet _Platskarta_.
+1. Klicka på sökvägen i kolumnen _Länk för Google_.
 
-**Lägga till innehåll i `robots.txt` fil**:
+**Så här lägger du till innehåll i `robots.txt`-filen**:
 
 1. Gå till Admin.
-1. På _Innehåll_ meny, klicka **Konfiguration** i _Design_ -avsnitt.
-1. I _Designkonfiguration_ visa, klicka **Redigera** för webbplatsen i _Åtgärd_ kolumn.
-1. I _Huvudwebbplats_ visa, klicka **Sökmotorrobotar**.
-1. Uppdatera **Redigera anpassad instruktion för robots.txt** fält.
-1. Klicka **Spara konfiguration**.
-1. Verifiera `<domain.your.project>/robots.txt` fil eller `<domain.your.project>/robots` URL i webbläsaren.
+1. Klicka på **Konfiguration** i avsnittet _Design_ på menyn _Innehåll_.
+1. I vyn _Designkonfiguration_ klickar du på **Redigera** för webbplatsen i kolumnen _Åtgärd_ .
+1. Klicka på **Sökmotorrobotar** i vyn _Huvudwebbplats_.
+1. Uppdatera **Redigera anpassad instruktion för robots.txt**-fältet.
+1. Klicka på **Spara konfiguration**.
+1. Verifiera `<domain.your.project>/robots.txt`-filen eller `<domain.your.project>/robots`-URL:en i webbläsaren.
 
 >[!NOTE]
 >
->Om `<domain.your.project>/robots.txt` filen genererar en `404 error`, [Skicka in en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att ta bort omdirigeringen från `/robots.txt` till `/media/robots.txt`.
+>Om filen `<domain.your.project>/robots.txt` genererar en `404 error`, [skickar du en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att ta bort omdirigeringen från `/robots.txt` till `/media/robots.txt`.
 
 ## Skriv om med snabbVCL-kodfragment
 
-Om du har olika domäner och behöver separata webbplatskartor kan du skapa en VCL för att dirigera till rätt platskarta. Generera `sitemap.xml` på administrationspanelen enligt beskrivningen ovan och skapa sedan ett anpassat Fast VCL-kodfragment för att hantera omdirigeringen. Se [Anpassade VCL-fragment snabbt](../cdn/fastly-vcl-custom-snippets.md).
+Om du har olika domäner och behöver separata webbplatskartor kan du skapa en VCL för att dirigera till rätt platskarta. Generera filen `sitemap.xml` på Admin-panelen enligt beskrivningen ovan och skapa sedan ett anpassat Fast VCL-fragment för att hantera omdirigeringen. Se [Anpassade snabbt VCL-fragment](../cdn/fastly-vcl-custom-snippets.md).
 
 >[!NOTE]
 >
-> Du kan överföra anpassade VCL-kodfragment från administratörsgränssnittet eller med hjälp av API:t Snabb. Se [Exempel och självstudiekurser för anpassade VCL-kodfragment](../cdn/fastly-vcl-custom-snippets.md#example-vcl-snippet-code).
+> Du kan överföra anpassade VCL-kodfragment från administratörsgränssnittet eller med hjälp av API:t Snabb. Se [Exempel på anpassade VCL-kodfragment och självstudiekurser](../cdn/fastly-vcl-custom-snippets.md#example-vcl-snippet-code).
 
 ### Använd ett fast VCL-fragment för omdirigering
 
-Skapa ett anpassat VCL-fragment som skriver om sökvägen för `sitemap.xml` till `/media/sitemap.xml` med `type` och `content` nyckelvärdepar.
+Skapa ett anpassat VCL-fragment för att skriva om sökvägen för `sitemap.xml` till `/media/sitemap.xml` med nyckelvärdepar för `type` och `content`.
 
 ```json
 {
@@ -87,7 +87,7 @@ I följande exempel visas hur du skriver om sökvägen för `robots.txt` och `si
 
 **Så här använder du ett fast VCL-fragment för en viss domänomdirigering**:
 
-Skapa en `pub/media/domain_robots.txt` fil, där domänen är `domain.com`och använder nästa VCL-kodfragment:
+Skapa en `pub/media/domain_robots.txt`-fil, där domänen är `domain.com`, och använd nästa VCL-fragment:
 
 ```json
 {
@@ -99,9 +99,9 @@ Skapa en `pub/media/domain_robots.txt` fil, där domänen är `domain.com`och an
 }
 ```
 
-VCL-utdragsvägar `http://domain.com/robots.txt` och presenterar `pub/media/domain_robots.txt` -fil.
+VCL-fragmentet dirigerar `http://domain.com/robots.txt` och visar `pub/media/domain_robots.txt`-filen.
 
-Konfigurera en omdirigering för `robots.txt` och `sitemap.xml` i ett enskilt fragment, skapa `pub/media/domain_robots.txt` och `pub/media/domain_sitemap.xml` filer, där domänen är `domain.com` och använda nästa VCL-kodfragment:
+Om du vill konfigurera en omdirigering för `robots.txt` och `sitemap.xml` i ett enskilt fragment skapar du `pub/media/domain_robots.txt` - och `pub/media/domain_sitemap.xml` -filer, där domänen är `domain.com`, och använder nästa VCL-fragment:
 
 ```json
 {
@@ -113,14 +113,14 @@ Konfigurera en omdirigering för `robots.txt` och `sitemap.xml` i ett enskilt fr
 }
 ```
 
-I `sitemap` admin config, du måste ange filens plats med `pub/media/` i stället för `/`.
+I administratörskonfigurationen för `sitemap` måste du ange filens plats med `pub/media/` i stället för `/`.
 
 ### Konfigurera indexering med sökmotor
 
-Aktivera `robots.txt` anpassning måste du aktivera **Indexering med sökmotorer är aktiverat för`<environment-name>`** i projektinställningarna.
+Om du vill aktivera `robots.txt` anpassningar måste du aktivera alternativet **Indexering av sökmotorer är aktiverat för`<environment-name>`** i projektinställningarna.
 
 ![Använd [!DNL Cloud Console] för att hantera miljöer](../../assets/robots-indexing-by-search-engine.png)
 
 >[!NOTE]
 >
->Om du använder PWA Studio och inte kan komma åt din konfigurerade `robots.txt` fil, lägga till `robots.txt` till [Namn på framsida, Tillåtelselista](https://github.com/magento/magento2-upward-connector#front-name-allowlist) på **Lager** > Konfiguration > **Allmänt** > **Webb** > Konfiguration av UPWARD PWA.
+>Om du använder PWA Studio och inte kan komma åt den konfigurerade `robots.txt`-filen lägger du till `robots.txt` i Tillåtelselista [Front Name](https://github.com/magento/magento2-upward-connector#front-name-allowlist) på **Stores** > Configuration > **General** > **Web** > UPWARD PWA Configuration.

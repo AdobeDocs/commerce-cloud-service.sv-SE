@@ -11,23 +11,23 @@ ht-degree: 0%
 
 # Konfigurera Xdebug
 
-[!DNL Xdebug] är ett tillägg till felsökning av PHP. Även om du kan använda en annan utvecklingsmiljö förklarar följande hur du konfigurerar [!DNL Xdebug] och [!DNL PhpStorm] för att felsöka i din lokala miljö.
+[!DNL Xdebug] är ett tillägg till felsökning av PHP. Även om du kan använda en integrerad utvecklingsmiljö som du väljer beskrivs hur du konfigurerar [!DNL Xdebug] och [!DNL PhpStorm] för felsökning i den lokala miljön.
 
 >[!NOTE]
 >
->Du kan konfigurera [!DNL Xdebug] för att köras i Cloud Docker-miljön för lokal felsökning utan att ändra din projektkonfiguration för Adobe Commerce för molninfrastruktur. Se [Konfigurera Xdebug för Docker](https://developer.adobe.com/commerce/cloud-tools/docker/test/configure-xdebug/).
+>Du kan konfigurera [!DNL Xdebug] så att den körs i Cloud Docker-miljön för lokal felsökning utan att ändra din projektkonfiguration för Adobe Commerce för molninfrastruktur. Se [Konfigurera Xdebug för Docker](https://developer.adobe.com/commerce/cloud-tools/docker/test/configure-xdebug/).
 
-Aktivera [!DNL Xdebug]måste du konfigurera en fil i Git-databasen, konfigurera din IDE och konfigurera portvidarebefordran. Du kan konfigurera vissa inställningar i `magento.app.yaml` -fil. Efter redigering kan du föra Git-ändringarna över alla Starter-miljöer och Pro-integreringsmiljöer för att aktivera [!DNL Xdebug]. [!DNL Xdebug] finns redan i Pro Staging &amp; Production-miljöer.
+Om du vill aktivera [!DNL Xdebug] måste du konfigurera en fil i Git-databasen, konfigurera IDE och konfigurera portvidarebefordran. Du kan konfigurera vissa inställningar i filen `magento.app.yaml`. Efter redigering kan du aktivera [!DNL Xdebug] genom att överföra Git-ändringarna i alla Starter-miljöer och Pro-integreringsmiljöer. [!DNL Xdebug] är redan tillgängligt i Pro Staging &amp; Production-miljöer.
 
-När konfigurationen är klar kan du felsöka CLI-kommandon, webbförfrågningar och kod. Kom ihåg att alla molninfrastrukturmiljöer är skrivskyddade. Klona koden i den lokala utvecklingsmiljön för att utföra felsökningen. Proffsens miljö för mellanlagring och produktion finns på [ytterligare instruktioner](#debug-for-pro-staging-and-production) for [!DNL Xdebug].
+När konfigurationen är klar kan du felsöka CLI-kommandon, webbförfrågningar och kod. Kom ihåg att alla molninfrastrukturmiljöer är skrivskyddade. Klona koden i den lokala utvecklingsmiljön för att utföra felsökningen. För Pro-miljöer för mellanlagring och produktion, se [ytterligare instruktioner](#debug-for-pro-staging-and-production) för [!DNL Xdebug].
 
 ## Krav
 
-Köra och använda [!DNL Xdebug]behöver du SSH-URL:en för miljön. Du kan hitta informationen via [[!DNL Cloud Console]](../project/overview.md) eller [!DNL Cloud Onboarding UI].
+Om du vill köra och använda [!DNL Xdebug] behöver du SSH-URL:en för miljön. Du kan hitta informationen via [[!DNL Cloud Console]](../project/overview.md) eller [!DNL Cloud Onboarding UI].
 
 ## Konfigurera Xdebug
 
-Konfigurera [!DNL Xdebug]gör du så här:
+Så här konfigurerar du [!DNL Xdebug]:
 
 - [Arbeta i en gren för att överföra filuppdateringar](#get-started-with-a-branch)
 - [Aktivera [!DNL Xdebug] för miljöer](#enable-xdebug-in-your-environment)
@@ -36,19 +36,19 @@ Konfigurera [!DNL Xdebug]gör du så här:
 
 ### Kom igång med en gren
 
-Lägg till [!DNL Xdebug]rekommenderar Adobe att arbeta i [en utvecklingsgren](../dev-tools/cloud-cli-overview.md#create-an-environment-branch).
+Om du vill lägga till [!DNL Xdebug] rekommenderar Adobe att du arbetar i [en utvecklingsgren](../dev-tools/cloud-cli-overview.md#create-an-environment-branch).
 
 ### Aktivera Xdebug i miljön
 
-Du kan aktivera [!DNL Xdebug] direkt till alla Starter-miljöer och Pro-integreringsmiljöer. Det här konfigurationssteget krävs inte för Pro Production &amp; Staging-miljöer. Se [Debug for Pro Staging and Production](#debug-for-pro-staging-and-production).
+Du kan aktivera [!DNL Xdebug] direkt i alla Starter-miljöer och Pro-integreringsmiljöer. Det här konfigurationssteget krävs inte för Pro Production &amp; Staging-miljöer. Se [Felsök för Pro Staging and Production](#debug-for-pro-staging-and-production).
 
-Aktivera [!DNL Xdebug] för ditt projekt, lägg till `xdebug` till `runtime:extensions` i `.magento.app.yaml` -fil.
+Om du vill aktivera [!DNL Xdebug] för ditt projekt lägger du till `xdebug` i avsnittet `runtime:extensions` i filen `.magento.app.yaml`.
 
-**Aktivera Xdebug**:
+**Så här aktiverar du Xdebug**:
 
-1. Öppna `.magento.app.yaml` i en textredigerare.
+1. Öppna filen `.magento.app.yaml` i en textredigerare i din lokala terminal.
 
-1. I `runtime` avsnitt, under `extensions`, lägga till `xdebug`. Exempel:
+1. Lägg till `xdebug` under `extensions` i avsnittet `runtime`. Exempel:
 
    ```yaml
    runtime:
@@ -60,7 +60,7 @@ Aktivera [!DNL Xdebug] för ditt projekt, lägg till `xdebug` till `runtime:exte
            - xdebug
    ```
 
-1. Spara ändringarna i `.magento.app.yaml` och avsluta textredigeraren.
+1. Spara ändringarna i filen `.magento.app.yaml` och avsluta textredigeraren.
 
 1. Lägg till, implementera och kör ändringarna för att omdistribuera miljön.
 
@@ -76,54 +76,54 @@ Aktivera [!DNL Xdebug] för ditt projekt, lägg till `xdebug` till `runtime:exte
    git push origin <environment-ID>
    ```
 
-Vid driftsättning i Starter-miljöer och i Pro-integreringsmiljöer [!DNL Xdebug] är nu tillgängligt. Fortsätt konfigurera IDE. Information om PhpStorm finns på [Konfigurera PhpStorm](#configure-phpstorm).
+[!DNL Xdebug] är nu tillgängligt när den distribueras till Starter-miljöer och Pro-integreringsmiljöer. Fortsätt konfigurera IDE. Information om PhpStorm finns i [Konfigurera PhpStorm](#configure-phpstorm).
 
 ### Konfigurera PhpStorm
 
-The [PhpStorm](https://www.jetbrains.com/phpstorm/) IDE måste konfigureras för att fungera korrekt med [!DNL Xdebug].
+IDE:n [PhpStorm](https://www.jetbrains.com/phpstorm/) måste vara konfigurerad för att fungera korrekt med [!DNL Xdebug].
 
-**Så här konfigurerar du PhpStorm att arbeta med Xdebug**:
+**Så här konfigurerar du PhpStorm så att det fungerar med Xdebug**:
 
-1. I PhpStorm-projektet öppnar du **Inställningar** -panelen.
+1. Öppna panelen **Inställningar** i ditt PhpStorm-projekt.
 
-   - _macOS_—Select **PhpStorm** > **Inställningar**.
-   - _Windows/Linux_—Select **Fil** > **Inställningar**.
+   - _macOS_ - Välj **PhpStorm** > **Inställningar**.
+   - _Windows/Linux_ - Välj **Arkiv** > **Inställningar**.
 
-1. I _Inställningar_ panel, expandera och leta upp **Språk och ramar** > **PHP** > **Servrar** -avsnitt.
+1. Expandera och leta upp avsnittet **Språk och ramar** > **PHP** > **Servrar** i panelen _Inställningar_.
 
 1. Klicka på **+** för att lägga till en serverkonfiguration. Projektnamnet är grått högst upp.
 
-1. [Valfritt] Konfigurera följande inställningar för den nya serverkonfigurationen. Se [Ingen felsökningsserver har konfigurerats](https://www.jetbrains.com/help/phpstorm/troubleshooting-php-debugging.html#no-debug-server-is-configured) i _PHPStorm_ dokumentation.
+1. [Valfritt] Konfigurera följande inställningar för den nya serverkonfigurationen. Se [Ingen felsökningsserver har konfigurerats](https://www.jetbrains.com/help/phpstorm/troubleshooting-php-debugging.html#no-debug-server-is-configured) i _PHPStorm_ -dokumentationen.
 
-   - **Namn**—Ange samma som värdnamnet. Detta värde måste matcha värdet för `PHP_IDE_CONFIG` variabel i [Felsöka CLI-kommandon](#debug-cli-commands) för att använda CLI för felsökning.
-   - **Värd**—Ange värdnamnet.
-   - **Port**—Enter `443`.
-   - **Felsökning**—Select `Xdebug`.
+   - **Namn** - Ange samma som värdnamn. Det här värdet måste matcha värdet för variabeln `PHP_IDE_CONFIG` i [Felsök CLI-kommandon](#debug-cli-commands) för att kunna använda CLI för felsökning.
+   - **Värd** - Ange värdnamnet.
+   - **Port** - Ange `443`.
+   - **Felsökning** - Välj `Xdebug`.
 
-1. Välj **Använda banmappningar**. I _Fil/katalog_ -rutan, roten för projektet för `serverName` visas.
+1. Välj **Använd banavbildningar**. I rutan _Fil/katalog_ visas roten för projektet för `serverName`.
 
-1. I **Absolut sökväg på servern** klickar du på **Redigera** och lägga till en inställning baserad på miljön.
+1. Klicka på ikonen **Redigera** i kolumnen **Absolut sökväg på servern** och lägg till en inställning baserad på miljön.
 
-   - För alla Starter-miljöer och Pro-integreringsmiljöer är fjärrsökvägen `/app`.
+   - Fjärrsökvägen är `/app` för alla Starter-miljöer och Pro-integreringsmiljöer.
    - För Pro Staging- och Production-miljöer:
 
       - Produktion: `/app/<project_code>/`
-      - Mellanlagring:  `/app/<project_code>_stg/`
+      - Mellanlagring: `/app/<project_code>_stg/`
 
-1. Ändra [!DNL Xdebug] port till 9000 i **Språk och ramar** > **PHP** > **Felsök** > **Xdebug** > **Felsökningsport** -panelen.
+1. Ändra porten [!DNL Xdebug] till 9000 i panelen **Språk och ramverk** > **PHP** > **Felsök** > **Xdebug** > **Felsök port**.
 
-1. Klicka **Använd**.
+1. Klicka på **Använd**.
 
 ### Konfigurera portvidarebefordran
 
-Mappa `XDEBUG` anslutning från servern till ditt lokala system. För att kunna utföra alla typer av felsökning måste du vidarebefordra port 9000 från din Adobe Commerce på molninfrastrukturservern till din lokala dator. Se något av följande avsnitt:
+Mappa `XDEBUG`-anslutningen från servern till det lokala systemet. För att kunna utföra alla typer av felsökning måste du vidarebefordra port 9000 från din Adobe Commerce på molninfrastrukturservern till din lokala dator. Se något av följande avsnitt:
 
 - [Portvidarebefordran på Mac eller UNIX](#port-forwarding-on-mac-or-unix)
 - [Portvidarebefordran i Windows](#port-forwarding-on-windows)
 
 #### Portvidarebefordran på Mac eller UNIX®
 
-**Konfigurera portvidarebefordran på en Mac eller i en UNIX®-miljö**:
+**Så här konfigurerar du portvidarebefordran på en Mac eller i en UNIX®-miljö**:
 
 1. Öppna en terminal.
 
@@ -133,11 +133,11 @@ Mappa `XDEBUG` anslutning från servern till ditt lokala system. För att kunna 
    ssh -R 9000:localhost:9000 <ssh url>
    ```
 
-   Använd `-v` (utförligt) så att när en socket är ansluten till porten som vidarebefordras visas den i terminalen.
+   Använd alternativet `-v` (utförligt) så att när en socket är ansluten till porten som vidarebefordras visas den i terminalen.
 
    Om ett fel av typen&quot;Det gick inte att ansluta&quot; eller&quot;det gick inte att lyssna på porten på fjärrservern&quot; visas, kan det finnas en annan aktiv SSH-session som är beständig på servern och som upptar port 9000. Om den anslutningen inte används kan du avsluta den.
 
-**Felsöka anslutningen**:
+**Så här felsöker du anslutningen**:
 
 1. Använd SSH för att logga in på fjärrintegrerings-, mellanlagrings- eller produktionsmiljön.
 
@@ -145,11 +145,11 @@ Mappa `XDEBUG` anslutning från servern till ditt lokala system. För att kunna 
 
 1. Visa befintliga SSH-sessioner per användare. Var noga med att inte påverka andra användare än dig själv!
 
-   - integration: användarnamn liknar `dd2q5ct7mhgus`
+   - integrering: användarnamn liknar `dd2q5ct7mhgus`
    - Mellanlagring: användarnamn liknar `dd2q5ct7mhgus_stg`
    - Produktion: användarnamn liknar `dd2q5ct7mhgus`
 
-1. För en användarsession som är äldre än din finns pseudoterminalvärdet (PTS), som `pts/0`.
+1. För en användarsession som är äldre än din bör du hitta pseudoterminalvärdet (PTS), till exempel `pts/0`.
 
 1. Avsluta process-ID (PID) som motsvarar PTS-värdet.
 
@@ -172,44 +172,44 @@ Mappa `XDEBUG` anslutning från servern till ditt lokala system. För att kunna 
 
 #### Portvidarebefordran i Windows
 
-Om du vill konfigurera portvidarebefordran (SSH-tunnling) på Windows måste du konfigurera Windows-terminalprogrammet. I det här exemplet beskrivs hur du skapar en SSH-tunnel med [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Du kan använda andra program som Cygwin. Mer information om andra program finns i leverantörsdokumentationen som medföljer dessa program.
+Om du vill konfigurera portvidarebefordran (SSH-tunnling) på Windows måste du konfigurera Windows-terminalprogrammet. I det här exemplet skapas en SSH-tunnel med [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Du kan använda andra program som Cygwin. Mer information om andra program finns i leverantörsdokumentationen som medföljer dessa program.
 
-**Konfigurera en SSH-tunnel i Windows med Putty**:
+**Så här konfigurerar du en SSH-tunnel i Windows med Putty**:
 
-1. Hämta om du inte redan har gjort det [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+1. Hämta [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) om du inte redan har gjort det.
 
 1. Starta Putty.
 
-1. Klicka på i kategorirutan **Session**.
+1. Klicka på **Session** i kategorirutan.
 
 1. Ange följande information:
 
-   - **Värdnamn (eller IP-adress)** fält: Ange [SSH-URL](../development/secure-connections.md#connect-to-a-remote-environment) för din molnserver
-   - **Port** fält: Retur `22`
+   - Fältet **Värdnamn (eller IP-adress)**: Ange [SSH-URL](../development/secure-connections.md#connect-to-a-remote-environment) för molnservern
+   - **Port**-fält: Retur `22`
 
    ![Konfigurera Putty](../../assets/xdebug/putty-session.png)
 
-1. I _Kategori_ ruta, klicka **Anslutning** > **SSH** > **Tunnlar**.
+1. Klicka på **Anslutning** > **SSH** > **Tunnlar** i rutan _Kategori_.
 
 1. Ange följande information:
 
-   - **Källport** fält: Retur `9000`
-   - **Mål** fält: Retur `127.0.0.1:9000`
-   - Klicka **Fjärr**
+   - **Source-portfält**: Ange `9000`
+   - **Målfält**: Ange `127.0.0.1:9000`
+   - Klicka på **Fjärr**
 
-1. Klicka **Lägg till**.
+1. Klicka på **Lägg till**.
 
    ![Skapa en SSH-tunnel i Putty](../../assets/xdebug/putty-tunnels.png)
 
-1. I _Kategori_ ruta, klicka **Session**.
+1. Klicka på **Session** i rutan _Kategori_.
 
-1. I **Sparade sessioner** anger du ett namn för den här SSH-tunneln.
+1. Ange ett namn för den här SSH-tunneln i fältet **Sparade sessioner**.
 
-1. Klicka **Spara**.
+1. Klicka på **Spara**.
 
    ![Spara SSH-tunneln](../../assets/xdebug/putty-session-save.png)
 
-1. Om du vill testa SSH-tunneln klickar du på **Läs in** och sedan klicka **Öppna**.
+1. Om du vill testa SSH-tunneln klickar du på **Läs in** och sedan på **Öppna**.
 
    Om ett &quot;Det går inte att ansluta&quot;-fel visas kontrollerar du följande:
 
@@ -218,15 +218,15 @@ Om du vill konfigurera portvidarebefordran (SSH-tunnling) på Windows måste du 
 
 ## SSH-åtkomst till Xdebug-miljöer
 
-För att starta felsökning, utföra inställningar med mera behöver du SSH-kommandona för att komma åt miljöerna. Du kan hämta den här informationen via [[!DNL Cloud Console]](../development/secure-connections.md#use-an-ssh-command) och ditt projektkalkylblad.
+För att starta felsökning, utföra inställningar med mera behöver du SSH-kommandona för att komma åt miljöerna. Du kan hämta den här informationen genom [[!DNL Cloud Console]](../development/secure-connections.md#use-an-ssh-command) och ditt projektkalkylblad.
 
-För Starter-miljöer och Pro-integreringsmiljöer kan du använda följande `magento-cloud` CLI-kommando för SSH i dessa miljöer:
+I Starter-miljöer och i Pro-integreringsmiljöer kan du använda följande `magento-cloud` CLI-kommando för SSH i dessa miljöer:
 
 ```bash
 magento-cloud environment:ssh --pipe -e <environment-ID>
 ```
 
-Används [!DNL Xdebug], SSH till miljön enligt följande:
+Om du vill använda [!DNL Xdebug], SSH till miljön enligt följande:
 
 ```bash
 ssh -R <xdebug listen port>:<host>:<xdebug listen port> <SSH-URL>
@@ -242,22 +242,22 @@ ssh -R 9000:localhost:9000 pwga8A0bhuk7o-mybranch@ssh.us.magentosite.cloud
 
 >[!NOTE]
 >
->I Pro Staging &amp; Production-miljöer [!DNL Xdebug] är alltid tillgängligt eftersom dessa miljöer har särskilda inställningar för [!DNL Xdebug]. Alla vanliga webbförfrågningar dirigeras till en dedikerad PHP-process som inte har [!DNL Xdebug]. Därför behandlas dessa begäranden normalt och påverkas inte av prestandaförsämringar när [!DNL Xdebug] har lästs in. När en webbförfrågan skickas har den [!DNL Xdebug] den dirigeras till en separat PHP-process som har [!DNL Xdebug] inläst.
+>I Pro Staging &amp; Production-miljöer är [!DNL Xdebug] alltid tillgängligt eftersom dessa miljöer har en särskild konfiguration för [!DNL Xdebug]. Alla normala webbbegäranden dirigeras till en dedikerad PHP-process som inte har [!DNL Xdebug]. Därför behandlas dessa begäranden normalt och påverkas inte av prestandaförsämringen när [!DNL Xdebug] läses in. När en webbförfrågan skickas som har nyckeln [!DNL Xdebug] dirigeras den till en separat PHP-process som har [!DNL Xdebug] inläst.
 
-Används [!DNL Xdebug] i Pro-planens miljö för mellanlagring och produktion skapar du en separat SSH-tunnel och webbsession som bara du har tillgång till. Den här användningen skiljer sig från den vanliga åtkomsten, som bara ger dig åtkomst och inte till alla användare.
+Om du vill använda [!DNL Xdebug] specifikt i Pro-planens miljö för mellanlagring och produktion skapar du en separat SSH-tunnel och webbsession som du bara har tillgång till. Den här användningen skiljer sig från den vanliga åtkomsten, som bara ger dig åtkomst och inte till alla användare.
 
 Du behöver följande:
 
-- SSH-kommandon för åtkomst till miljöer. Du kan hämta den här informationen via [[!DNL Cloud Console]](../project/overview.md) eller [!DNL Cloud Onboarding UI].
-- The `xdebug_key` värdet anges när du konfigurerar miljöer av typen Förproduktion och Pro.
+- SSH-kommandon för åtkomst till miljöer. Du kan hämta den här informationen genom [[!DNL Cloud Console]](../project/overview.md) eller [!DNL Cloud Onboarding UI].
+- Värdet `xdebug_key` som anges när du konfigurerar mellanlagrings- och Pro-miljöerna.
 
-  The `xdebug_key` kan hittas genom att använda SSH för att logga in på den primära noden och köra:
+  `xdebug_key` kan hittas genom att använda SSH för att logga in på den primära noden och köra:
 
   ```bash
   cat /etc/platform/*/nginx.conf | grep xdebug.sock | head -n1
   ```
 
-**Konfigurera en SSH-tunnel till en mellanlagrings- eller produktionsmiljö**:
+**Så här konfigurerar du en SSH-tunnel till en mellanlagrings- eller produktionsmiljö**:
 
 1. Öppna en terminal.
 
@@ -275,7 +275,7 @@ Du behöver följande:
 
 **Så här startar du felsökningen med URL:en för miljön**:
 
-1. Aktivera fjärrfelsökning. Gå till webbplatsen i webbläsaren och lägg till följande till den URL där `KEY` är värde för `xdebug_key`.
+1. Aktivera fjärrfelsökning. Gå till webbplatsen i webbläsaren och lägg till följande till URL:en där `KEY` är värde för `xdebug_key`.
 
    ```http
    ?XDEBUG_SESSION_START=KEY
@@ -293,7 +293,7 @@ Du behöver följande:
 
    >[!NOTE]
    >
-   >The `XDEBUG_SESSION_START` passerad av `POST` begäranden stöds inte.
+   >`XDEBUG_SESSION_START` som skickades av `POST`-begäranden stöds inte.
 
 ## Felsöka CLI-kommandon
 
@@ -324,7 +324,7 @@ Du kan lägga till körningsalternativ, till exempel:
    php -d xdebug.profiler_enable=On -d xdebug.max_nesting_level=9999 bin/magento cache:clean
    ```
 
-   I Pro Staging- och Production-miljöer måste du ange sökvägen till [!DNL Xdebug] PHP-konfigurationsfil vid felsökning av CLI-kommandon, till exempel:
+   I Pro Staging- och Production-miljöer måste du ange sökvägen till PHP-konfigurationsfilen [!DNL Xdebug] när du felsöker CLI-kommandon, till exempel:
 
    ```bash
    php -c /etc/platform/USERNAME/php.xdebug.ini bin/magento cache:clean
@@ -334,39 +334,39 @@ Du kan lägga till körningsalternativ, till exempel:
 
 Följande steg hjälper dig att felsöka webbförfrågningar.
 
-1. På _Tillägg_ meny, klicka **Felsök** för att aktivera.
+1. Klicka på **Felsök** på menyn _Tillägg_ för att aktivera.
 
 1. Högerklicka, välj alternativmenyn och ställ in IDE-tangenten på **PHPSTORM**.
 
-1. Installera [!DNL Xdebug] i webbläsaren. Konfigurera och aktivera den.
+1. Installera klienten [!DNL Xdebug] i webbläsaren. Konfigurera och aktivera den.
 
-### Exempel: Chrome-inställning
+### Exempel: Chrome-konfiguration
 
-I det här avsnittet beskrivs hur du använder [!DNL Xdebug] i Chrome med [!DNL Xdebug] Hjälptillägg. Mer information om [!DNL Xdebug] för andra webbläsare, se webbläsardokumentationen.
+I det här avsnittet beskrivs hur du använder [!DNL Xdebug] i Chrome med hjälp av tillägget [!DNL Xdebug] Helper. Information om [!DNL Xdebug]-verktyg för andra webbläsare finns i webbläsardokumentationen.
 
-**Använda Xdebug Helper med Chrome**:
+**Så här använder du Xdebug Helper med Chrome**:
 
 1. Skapa en [SSH-tunnel](#ssh-access-to-xdebug-environments) till molnservern.
 
-1. Installera [Hjälptillägg för Xdebug](https://chromewebstore.google.com/detail/eadndfjplgieldjbigjakmdgkmoaaaoc) från Chrome Store.
+1. Installera [hjälptillägget för Xdebug](https://chromewebstore.google.com/detail/eadndfjplgieldjbigjakmdgkmoaaaoc) från Chrome Store.
 
-1. Aktivera tillägget i Chrome enligt följande bild.
+1. Aktivera tillägget i Chrome enligt bilden nedan.
 
-   ![Aktivera tillägget Xdebug i Chrome](../../assets/xdebug/enable-chrome-ext.png)
+   ![Aktivera Xdebug-tillägget i Chrome](../../assets/xdebug/enable-chrome-ext.png)
 
-1. I Chrome högerklickar du på den gröna hjälpikonen i verktygsfältet i Chrome.
+1. Högerklicka på den gröna hjälpikonen i Chrome verktygsfält i Chrome.
 
-1. På popup-menyn klickar du på **Alternativ**.
+1. Klicka på **Alternativ** på snabbmenyn.
 
-1. Från _IDE-nyckel_ lista, klicka på **PhpStorm**.
+1. Klicka på **PhpStorm** i listan _IDE-nyckel_.
 
-1. Klicka **Spara**.
+1. Klicka på **Spara**.
 
    ![Hjälpalternativ för Xdebug](../../assets/xdebug/helper-options.png)
 
 1. Öppna ditt PhpStorm-projekt.
 
-1. I det övre navigeringsfältet klickar du på **Börja lyssna** -ikon.
+1. Klicka på ikonen **Börja lyssna** i det övre navigeringsfältet.
 
    Om navigeringsfältet inte visas klickar du på **Visa** > **Navigeringsfält**.
 
@@ -382,15 +382,15 @@ Det är upp till dig att välja metod. Du har följande alternativ:
 
   Den här metoden fungerar om inte `composer.json` refererar till paket i privata databaser som du inte har åtkomst till. Den här metoden leder till att hela Adobe Commerce-kodbasen hämtas.
 
-- Kopiera `vendor`, `app`, `pub`, `lib`och `setup` kataloger
+- Kopiera katalogerna `vendor`, `app`, `pub`, `lib` och `setup`
 
   Den här metoden gör att du får all kod som du kan testa. Beroende på hur många statiska resurser du har kan det resultera i en lång överföring med en stor mängd filer.
 
-- Kopiera `vendor` endast katalog
+- Kopiera endast katalogen `vendor`
 
-  Eftersom större delen av koden finns i `vendor` den här metoden kommer troligen att resultera i bra testning, men testar inte hela kodbasen.
+  Eftersom större delen av koden finns i katalogen `vendor` resulterar den här metoden troligen i bra testning, men testar inte hela kodbasen.
 
-**Komprimera filer och kopiera dem till din lokala dator**:
+**Så här komprimerar du filer och kopierar dem till den lokala datorn**:
 
 1. Använd SSH för att logga in i fjärrmiljön.
 
@@ -400,7 +400,7 @@ Det är upp till dig att välja metod. Du har följande alternativ:
    tar -czf /tmp/<file-name>.tgz <directory list>
    ```
 
-   Om du till exempel vill komprimera `vendor` endast katalog:
+   Om du till exempel bara vill komprimera katalogen `vendor`:
 
    ```bash
    tar -czf /tmp/vendor.tgz vendor

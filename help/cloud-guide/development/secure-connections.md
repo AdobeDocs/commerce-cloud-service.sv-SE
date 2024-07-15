@@ -18,10 +18,10 @@ Secure Shell (SSH) är ett vanligt protokoll som används för att logga in på 
 
 ## Generera ett SSH-nyckelpar
 
-Skapa ett SSH-nyckelpar på alla datorer och arbetsytor som kräver åtkomst till projektets källkod och miljöer. Med SSH-nyckeln kan du ansluta till GitHub för att hantera källkod och ansluta till molnservrar utan att kontinuerligt behöva ange ditt användarnamn och lösenord. Se [Ansluter till GitHub med SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) om du vill ha mer information om hur du skapar ett SSH-nyckelpar.
+Skapa ett SSH-nyckelpar på alla datorer och arbetsytor som kräver åtkomst till projektets källkod och miljöer. Med SSH-nyckeln kan du ansluta till GitHub för att hantera källkod och ansluta till molnservrar utan att kontinuerligt behöva ange ditt användarnamn och lösenord. Mer information om hur du skapar ett SSH-nyckelpar finns i [Ansluta till GitHub med SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
-- The _publik nyckel_ är säkert att tillhandahålla för åtkomst till en plats, SSH och sFTP.
-- The _privat nyckel_ förblir privat på arbetsstationen.
+- Den _publika nyckeln_ är säker att ge åtkomst till en plats, SSH och sFTP.
+- Den _privata nyckeln_ förblir privat på arbetsstationen.
 
 >[!CAUTION]
 >
@@ -55,43 +55,43 @@ Du kan lägga till SSH-nycklar till ditt konto på något av följande sätt: Cl
 
 >[!TIP]
 >
->Du kan visa och ta bort SSH-nycklar med CLI-kommandona i molnet `ssh-key:list` och `ssh-key:delete`.
+>Du kan visa och ta bort SSH-nycklar med kommandona `ssh-key:list` och `ssh-key:delete` i molnet.
 
 >[!TAB Konsol]
 
 ### Lägg till din SSH-nyckel med [!DNL Cloud Console]
 
-**Lägga till en SSH-nyckel i ett nytt projekt**:
+**Så här lägger du till en SSH-nyckel i ett nytt projekt**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 
 1. Klicka på **[!UICONTROL No SSH key]**. Den här ikonen finns till höger om kommandofältet och är synlig när projektet inte innehåller någon SSH-nyckel.
 
-1. Kopiera och klistra in innehållet i den offentliga SSH-nyckeln i **Offentlig nyckel** fält.
+1. Kopiera och klistra in innehållet i den offentliga SSH-nyckeln i fältet **Offentlig nyckel**.
 
 1. Följ återstående instruktioner.
 
-**Lägga till en SSH-nyckel i din molnprofil**:
+**Så här lägger du till en SSH-nyckel i din molnprofil**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 
-1. Klicka på i den övre högra kontomenyn **Min profil**.
+1. Klicka på **Min profil** på den övre högra kontomenyn.
 
-1. I _SSH-nycklar_ visa, klicka **Lägg till offentlig nyckel**.
+1. Klicka på **Lägg till offentlig nyckel** i vyn _SSH-nycklar_.
 
-1. I _Lägg till en SSH-nyckel_ formulär, ge din nyckel en **Titel** och klistra in den offentliga SSH-nyckeln i **Nyckel** fält.
+1. I formuläret _Lägg till en SSH-nyckel_ ger du nyckeln namnet **Titel** och klistrar in den offentliga SSH-nyckeln i fältet **Nyckel**.
 
-1. Klicka **Spara**.
+1. Klicka på **Spara**.
 
 >[!ENDTABS]
 
 ## Ansluta till en fjärrmiljö
 
-Du kan ansluta till en fjärrmiljö med `magento-cloud` CLI eller ett SSH-kommando. The `magento-cloud` CLI-kommandon kan bara användas i integreringsmiljöer för Starter och Pro.
+Du kan ansluta till en fjärrmiljö med `magento-cloud` CLI eller SSH-kommandot. CLI-kommandona `magento-cloud` kan bara användas i integreringsmiljöer för Starter och Pro.
 
 ### Använda CLI i molnet
 
-**Logga in i en fjärrintegreringsmiljö**:
+**Så här loggar du in i en fjärrintegreringsmiljö**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -109,19 +109,19 @@ Du kan ansluta till en fjärrmiljö med `magento-cloud` CLI eller ett SSH-komman
 
 ### Använda ett SSH-kommando
 
-The [!DNL Cloud Console] innehåller en lista med kommandon för webb- och SSH-åtkomst för varje miljö.
+[!DNL Cloud Console] innehåller en lista med kommandon för webb- och SSH-åtkomst för varje miljö.
 
-**Kopiera SSH-kommandot**:
+**Så här kopierar du SSH-kommandot**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 
-1. Välj ett projekt i _Alla projekt_ lista.
+1. Välj ett projekt i listan _Alla projekt_.
 
 1. Välj en miljö.
 
 1. Klicka på **[!UICONTROL SSH]**.
 
-1. I _SSH_ klickar du på kopieringsknappen för att kopiera det fullständiga SSH-kommandot till Urklipp.
+1. Klicka på knappen Kopiera på fliken _SSH_ för att kopiera det fullständiga SSH-kommandot till Urklipp.
 
 1. Öppna en terminal och klistra in SSH-kommandot för att skapa en anslutning.
 
@@ -139,30 +139,30 @@ The [!DNL Cloud Console] innehåller en lista med kommandon för webb- och SSH-�
 
 ## sFTP
 
-Adobe Commerce i molninfrastrukturen har stöd för åtkomst till dina miljöer med sFTP (säker FTP) med SSH-autentisering. Använd en klient som har stöd för SSH-nyckelautentisering för sFTP och använd den offentliga SSH-nyckeln. Den offentliga SSH-nyckeln måste läggas till i målmiljön. För Starter-miljöer och Pro-integreringsmiljöer kan du [lägga till det via [!DNL Cloud Console]](#add-your-ssh-key-using-the-project-web-interface).
+Adobe Commerce i molninfrastrukturen har stöd för åtkomst till dina miljöer med sFTP (säker FTP) med SSH-autentisering. Använd en klient som har stöd för SSH-nyckelautentisering för sFTP och använd den offentliga SSH-nyckeln. Den offentliga SSH-nyckeln måste läggas till i målmiljön. För Starter-miljöer och Pro-integreringsmiljöer kan du [lägga till den via  [!DNL Cloud Console]](#add-your-ssh-key-using-the-project-web-interface).
 
-Skrivskyddade sFTP-anslutningar är _not_ stöds; sFTP-åtkomst tillhandahålls med _skriva_ behörighet som standard.
+Skrivskyddade sFTP-anslutningar stöds _inte_; sFTP-åtkomst tillhandahålls med behörigheten _write_ som standard.
 
 När du konfigurerar sFTP använder du informationen från SSH-åtkomstmiljökommandot: `<project-id>-<environment-id>--<app-name>@ssh<cloud-host>`
 
-- **Användarnamn**: Allt innehåll före `@` i SSH-åtkomstmålet.
+- **Användarnamn**: Allt innehåll före `@` i ditt SSH-åtkomstmål.
 - **Lösenord**: Du behöver inget lösenord för sFTP. sFTP-åtkomst använder SSH-nyckelautentisering.
-- **Värd**: Allt innehåll efter `@` i SSH-åtkomsten.
-- **Port**: 22, vilket är standardporten för SSH.
-- **SSH** Privat nyckel: Ange vid behov platsen för din privata nyckel till sFTP-klienten. Som standard lagras privata nycklar i `~/.ssh` katalog.
+- **Värd**: Allt innehåll efter `@` i din SSH-åtkomst.
+- **Port**: 22, som är standardport för SSH.
+- **Privat nyckel för SSH**: Ange platsen för din privata nyckel till sFTP-klienten om det behövs. Som standard lagras privata nycklar i katalogen `~/.ssh`.
 
 Beroende på klienten kan ytterligare alternativ behövas för att slutföra SSH-autentiseringen för sFTP. Granska dokumentationen för den valda klienten.
 
-För **Starter-miljöer och Pro-integreringsmiljöer** kanske du också vill överväga [lägga till en `mount`](../application/properties.md#mounts) för åtkomst till en viss katalog. Du skulle lägga till monteringen i `.magento.app.yaml` -fil. En lista över skrivbara kataloger finns på [Projektstruktur](../project/file-structure.md). Den här monteringspunkten fungerar bara i dessa miljöer.
+För **startmiljöer och Pro-integreringsmiljöer** kan du också överväga att [lägga till en `mount`](../application/properties.md#mounts) för åtkomst till en viss katalog. Du skulle lägga till monteringen i din `.magento.app.yaml`-fil. En lista över skrivbara kataloger finns i [Projektstruktur](../project/file-structure.md). Den här monteringspunkten fungerar bara i dessa miljöer.
 
-För **Proffsmiljöer för staging och produktion** Om du inte har SSH-åtkomst till miljön måste du [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) begära sFTP-åtkomst och en monteringspunkt för åtkomst till den specifika mappen, t.ex. `pub/media`.
+Om du inte har SSH-åtkomst till miljön i **Pro-miljöer för mellanlagrings- och produktionsmiljöer** måste du [skicka en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att begära sFTP-åtkomst och en monteringspunkt för åtkomst till den specifika mappen, t.ex. `pub/media`.
 
 >[!NOTE]
->För Pro Staging and Production, om sFTP-anslutningen är för en _generisk_ användare som **not** måste vara [som lagts till i molnprojektet](../project/user-access.md)måste du [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) med **public** bifogad nyckel. **Ange aldrig din privata SSH-nyckel.**
+>Om sFTP-anslutningen för Pro Staging and Production är avsedd för en _generisk_-användare som **inte** behöver läggas till [i Cloud-projektet](../project/user-access.md) måste du [skicka en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) med den bifogade **publika**-nyckeln. **Ange aldrig din privata SSH-nyckel.**
 
 ## SSH-tunnel
 
-Du kan använda SSH-tunnel för att ansluta till en tjänst från den lokala utvecklingsmiljön som om tjänsten var lokal. Konfigurera [SSH](#add-an-ssh-public-key-to-your-account).
+Du kan använda SSH-tunnel för att ansluta till en tjänst från den lokala utvecklingsmiljön som om tjänsten var lokal. Konfigurera din [SSH](#add-an-ssh-public-key-to-your-account) innan du tunnlar.
 
 Använd ett terminalprogram för att logga in och skicka ut kommandon.
 
@@ -176,7 +176,7 @@ Kontrollera om några tunnlar är öppna med.
 magento-cloud tunnel:list
 ```
 
-Om du vill bygga en tunnel måste du känna till [programnamn](../application/properties.md#name). Du kan kontrollera programnamnet med CLI:
+Om du vill skapa en tunnel måste du känna till [programnamnet](../application/properties.md#name). Du kan kontrollera programnamnet med CLI:
 
 ```bash
 magento-cloud apps
@@ -188,7 +188,7 @@ magento-cloud apps
 magento-cloud tunnel:open -e <environment-ID> --app <app-name>
 ```
 
-Om du till exempel vill öppna en tunnel till `sprint5` gren i ett projekt med en app som heter `mymagento`, ange
+Om du till exempel vill öppna en tunnel till grenen `sprint5` i ett projekt med en app med namnet `mymagento` anger du
 
 ```bash
 magento-cloud tunnel:open -e sprint5 --app mymagento
@@ -206,7 +206,7 @@ View tunnel details with: magento-cloud tunnel:info
 Close tunnels with: magento-cloud tunnel:close
 ```
 
-**Visa information om tunneln**:
+**Så här visar du information om tunneln**:
 
 ```bash
 magento-cloud tunnel:info -e <environment-ID>

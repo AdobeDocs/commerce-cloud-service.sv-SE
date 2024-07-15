@@ -14,11 +14,11 @@ ht-degree: 0%
 
 I det här exemplet visas hur du använder konfigurationshantering för att se till att lagringsinställningarna är konsekventa i alla miljöer.
 
-I exemplet används följande procedur som definieras i [Lagringsinställningar](store-settings.md):
+I exemplet används följande procedur som definierats i [Store-inställningarna](store-settings.md):
 
 1. Ange dina konfigurationer i din lagringsadministratör för integreringsmiljön.
-1. Skapa en `config.php` och överföra den till din lokala arbetsstation.
-1. Push `config.php` till fjärrintegreringsmiljön.
+1. Skapa en `config.php`-fil och överför den till din lokala arbetsstation.
+1. Skjut `config.php` till fjärrintegreringsmiljön.
 1. Kontrollera att inställningarna inte kan redigeras i Admin.
 1. Gör nödvändiga ändringar:
 
@@ -29,43 +29,43 @@ I exemplet används följande procedur som definieras i [Lagringsinställningar]
 
 Du kan till exempel ange följande inställningar:
 
-* Inaktivera [locale](https://glossary.magento.com/locale) och statiska inställningar för filoptimering i din integreringsmiljö
+* Inaktivera [språkområde](https://glossary.magento.com/locale) och statiska filjoptimeringsinställningar i integreringsmiljön
 * Möjliggör statisk filoptimering i miljö för förproduktion och produktion
 * Konfigurera snabbt i mellanlagring och produktion med specifika autentiseringsuppgifter för varje
 
-_Optimering av statiska filer_ innebär att sammanfoga och miniatyrbilder av JavaScript och CSS (Cascading Style Sheets) samt att miniatyrbilder av HTML-mallar används. Se [Strategier för distribution av statiskt innehåll](../deploy/static-content.md).
+_Optimering av statiska filer_ innebär att du måste sammanfoga och miniatyrisera JavaScript- och CSS-mallar samt miniatyrmallar för HTML. Se [Statiska strategier för innehållsdistribution](../deploy/static-content.md).
 
 ## Förutsättningar
 
 För att kunna utföra dessa konfigurationshanteringsåtgärder behöver du följande:
 
-* Projektläsarroll med [environment &quot;admin&quot;](../project/user-access.md) behörigheter
+* Projektläsarroll med behörighet för [miljö,&quot;admin&quot;](../project/user-access.md)
 * Admin-URL och autentiseringsuppgifter för integrering, mellanlagring och produktion
 
-## Konfigurera handelsadministratören
+## Konfigurera Commerce Admin
 
 I integreringsmiljön kan du logga in på Admin för att ändra systemkonfigurationsinställningar för butiker, webbplatser, moduler eller tillägg, statisk filoptimering och systemvärden för statisk innehållsdistribution. Se [Konfigurationsdata](store-settings.md#scd-performance).
 
-**Ändra inställningar för språkområde och statisk filoptimering**:
+**Så här ändrar du inställningar för språkområde och statisk filoptimering**:
 
-1. Logga in på administratören för integreringsmiljön. Du kommer åt den här URL:en via [[!DNL Cloud Console]](../project/overview.md).
-1. Navigera till **Lager** > Inställningar > **Konfiguration** > Allmänt > **Allmänt**.
-1. Expandera i sidnavigeringen **Nationella inställningar**.
-1. Från **Språk** ändra språkinställningen. Du kan ändra tillbaka den senare.
+1. Logga in på administratören för integreringsmiljön. Du kan komma åt den här URL:en via [[!DNL Cloud Console]](../project/overview.md).
+1. Navigera till **Lagrar** > Inställningar > **Konfiguration** > Allmänt > **Allmänt**.
+1. Expandera **Språkalternativ** i sidnavigeringen.
+1. Ändra språkinställningen i listan **Språk**. Du kan ändra tillbaka den senare.
 
-   ![Ändra språkområde](../../assets/locale-options.png)
+   ![Ändra språkinställning](../../assets/locale-options.png)
 
-1. Klicka **Spara konfiguration**.
-1. Om du uppmanas att göra det [tömma cachen](https://docs.magento.com/user-guide/system/cache-management.html).
+1. Klicka på **Spara konfiguration**.
+1. Om du uppmanas till det tömmer [cachen](https://docs.magento.com/user-guide/system/cache-management.html).
 1. Logga ut från administratören.
 
 ## Exportera värden och överför config.php till ditt lokala system
 
-Det här steget skapar och överför `config.php` konfigurationsfilen i integreringsmiljön med ett kommando som du kör på den lokala datorn.
+I det här steget skapas och överförs konfigurationsfilen `config.php` i integreringsmiljön med ett kommando som du kör på den lokala datorn.
 
-Denna procedur motsvarar steg 2 i [rekommenderad procedur](store-settings.md). När du har skapat `config.php`, överför det till ditt lokala system så att du kan lägga till det i Git.
+Den här proceduren motsvarar steg 2 i den [rekommenderade proceduren](store-settings.md). När du har skapat `config.php` överför du den till ditt lokala system så att du kan lägga till den i Git.
 
-**Skapa och överföra`config.php`**:
+**Så här skapar och överför du`config.php`**:
 
 1. Byt till din projektkatalog på din lokala arbetsstation.
 
@@ -81,7 +81,7 @@ Denna procedur motsvarar steg 2 i [rekommenderad procedur](store-settings.md). N
    magento-cloud db:dump
    ```
 
-Följande utdrag från `config.php` visar ett exempel på hur du ändrar standardspråkområdet till `en_GB` och ändra inställningarna för statisk filoptimering:
+I följande utdrag från `config.php` visas ett exempel på hur du ändrar standardspråkinställningen till `en_GB` och ändrar inställningarna för statisk filoptimering:
 
 ```php?start_inline=1
 'general' => [
@@ -112,28 +112,28 @@ Följande utdrag från `config.php` visar ett exempel på hur du ändrar standar
 
 ## Tryck och distribuera config.php till miljöer
 
-Nu när du har skapat `config.php` och överförde det till ditt lokala system, implementera det på Git och skicka det till dina miljöer. Detta förfarande motsvarar steg 3 och 4 i [rekommenderad procedur](store-settings.md).
+Nu när du har skapat `config.php` och överfört den till ditt lokala system, bekräftar du den till Git och överför den till dina miljöer. Den här proceduren motsvarar steg 3 och 4 i den [rekommenderade proceduren](store-settings.md).
 
-Följande kommando lägger till, implementerar och push-ar i `master` gren:
+Följande kommando lägger till, implementerar och push-ar i grenen `master`:
 
 ```bash
 git add app/etc/config.php && git commit -m "Add system-specific configuration" && git push origin master
 ```
 
-Komplett koddistribution till Förproduktion och staging. För Starter går du vidare till `staging` och `master` grenar. Mer information om distributionskommandon finns i [Distribuera din butik](../deploy/staging-production.md).
+Komplett koddistribution till Förproduktion och staging. För Starter skickar du till grenarna `staging` och `master`. Mer information om distributionskommandon finns i [Distribuera din butik](../deploy/staging-production.md).
 
 Vänta tills distributionen är klar i alla miljöer.
 
 ## Verifiera konfigurationsändringarna
 
-När du har tryckt `config.php` i dina miljöer ska de värden du ändrar vara skrivskyddade i Admin. I det här exemplet bör de ändrade inställningarna för standardinställningar för språkområde och statisk filoptimering inte kunna redigeras i Admin. Dessa konfigurationsinställningar anges i `config.php`.
+När du har överfört `config.php` till dina miljöer bör alla ändrade värden vara skrivskyddade i Admin. I det här exemplet bör de ändrade inställningarna för standardinställningar för språkområde och statisk filoptimering inte kunna redigeras i Admin. Dessa konfigurationsinställningar anges i `config.php`.
 
 Så här verifierar du konfigurationsändringarna:
 
 1. Logga ut från administratören i någon av miljöerna.
 1. Logga in igen i Admin.
-1. Klicka **Lager** > Inställningar > **Konfiguration** > Allmänt > **Allmänt**.
-1. Expandera i den högra rutan **Nationella inställningar**.
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > Allmänt > **Allmänt**.
+1. Expandera **Språkalternativ** i den högra rutan.
 
    Observera att flera fält inte kan redigeras, vilket visas i följande exempel. Dessa konfigurationsinställningar hanteras av `config.php`.
 
@@ -143,11 +143,11 @@ Så här verifierar du konfigurationsändringarna:
 
 ## Ändra och uppdatera systemspecifika konfigurationsinställningar
 
-Om du behöver ändra någon av dessa inställningar ändrar du `config.php` filen manuellt med en textredigerare. När du är klar med redigeringar eller borttagningar kan du implementera och överföra den till fjärrmiljön enligt föregående steg.
+Om du behöver ändra någon av dessa inställningar ändrar du filen `config.php` manuellt med en textredigerare. När du är klar med redigeringar eller borttagningar kan du implementera och överföra den till fjärrmiljön enligt föregående steg.
 
 Om du vill lägga till konfigurationer ändrar du integreringsmiljön och kör kommandot igen för att generera filen. Alla nya konfigurationer läggs till i koden i filen. Skicka det till Git enligt föregående steg.
 
-I det här exemplet ändrar du inställningarna för optimering av statiska filer och lägger till en ny inställning för JavaScript.
+I det här exemplet ändrar du inställningarna för statisk filoptimering och lägger till en ny inställning för JavaScript.
 
 ### Lägg till konfigurationer i integrering
 
@@ -155,11 +155,11 @@ Så här lägger du till konfigurationsvärden i integreringsmiljöns administra
 
 1. Logga ut från integreringsadministratören.
 1. Logga in på integreringsadministratören igen.
-1. Klicka **Lager** > Inställningar > **Konfiguration** > **Avancerat** > **Utvecklare**.
-1. Expandera i den högra rutan **JavaScript-inställningar**.
-1. Från **Sammanfoga JavaScript-filer** lista, klicka på **Ja**.
-1. Klicka **Spara konfiguration**.
-1. Om du uppmanas att göra det [tömma cachen](https://docs.magento.com/user-guide/system/cache-management.html).
+1. Klicka på **Lagrar** > Inställningar > **Konfiguration** > **Avancerat** > **Utvecklare**.
+1. Expandera **JavaScript-inställningar** i den högra rutan.
+1. Klicka på **Ja** i listan **Sammanfoga JavaScript-filer**.
+1. Klicka på **Spara konfiguration**.
+1. Om du uppmanas till det tömmer [cachen](https://docs.magento.com/user-guide/system/cache-management.html).
 1. Logga ut från administratören.
 
 Genom att köra dumpkommandot igen läggs den nya konfigurationen till i filen.
@@ -170,7 +170,7 @@ magento-cloud db:dump
 
 ### Redigera config.php med nya inställningar
 
-Använd en textredigerare för att redigera den uppdaterade `app/etc/config.php` -fil. Redigera de här inställningarna för att aktivera miniatyrbilder för JavaScript-, HTML och CSS-filer.
+Använd en textredigerare på din lokala dator för att redigera den uppdaterade `app/etc/config.php`-filen. Redigera de här inställningarna för att aktivera miniatyr för JavaScript-, HTML och CSS-filer.
 
 ```php?start_inline=1
  'dev' => [
@@ -192,7 +192,7 @@ Använd en textredigerare för att redigera den uppdaterade `app/etc/config.php`
      ],
 ```
 
-Om du vill ändra inställningarna så att miniatyrbilder tillåts redigerar du `'0'` till `'1'` for `'minify_html'` och `'minify_files'` alternativ:
+Om du vill ändra inställningarna så att miniatyrbilder tillåts redigerar du `'0'` till `'1'` för `'minify_html'` och varje `'minify_files'` alternativ:
 
 ```php?start_inline=1
  'dev' => [

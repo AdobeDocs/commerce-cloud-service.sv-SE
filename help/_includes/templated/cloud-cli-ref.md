@@ -10,12 +10,12 @@ ht-degree: 0%
 <!-- The template to render with above values -->
 **Version**: 1.46.1
 
-Den här referensen innehåller 119 kommandon som är tillgängliga via `magento-cloud` kommandoradsverktyg.
-Den inledande listan genereras automatiskt med `magento-cloud list` på Adobe Commerce om molninfrastruktur.
+Referensen innehåller 119 kommandon som är tillgängliga via kommandoradsverktyget `magento-cloud`.
+Den inledande listan genereras automatiskt med kommandot `magento-cloud list` på Adobe Commerce i molninfrastrukturen.
 
 >[!NOTE]
 >
->Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i [kodbas](https://github.com/magento/magento-cloud-cli) arkivera och skicka in dina ändringar för granskning. Ett annat sätt är att _Ge oss feedback_ (hitta länken i det övre högra hörnet). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
+>Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i databasen [codebase](https://github.com/magento/magento-cloud-cli) och skicka ändringarna för granskning. Ett annat sätt är att _ge oss feedback_ (hitta länken uppe till höger). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
 
 ## `clear-cache`
 
@@ -5138,7 +5138,7 @@ De miljö-ID:n som ska uteslutas
 
 ### `--from-address`
 
-[Valfritt] Anpassad avsändaradress för varningsmeddelanden
+[Valfritt] Anpassad från-adress för varningsmeddelanden
 
 - Kräver ett värde
 
@@ -5717,7 +5717,7 @@ De miljö-ID:n som ska uteslutas
 
 ### `--from-address`
 
-[Valfritt] Anpassad avsändaradress för varningsmeddelanden
+[Valfritt] Anpassad från-adress för varningsmeddelanden
 
 - Kräver ett värde
 
@@ -6138,7 +6138,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `metrics:all`
 
-BETA Visa mått för processor, disk och minne för en miljö
+BETA Show CPU, disk and memory metrics for an environment
 
 ```bash
 magento-cloud metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
@@ -7136,7 +7136,7 @@ Ställ inga interaktiva frågor. Acceptera standardvärdena. Motsvarar användni
 
 ## `operation:list`
 
-BETA Visa körtidsåtgärder i en miljö
+Körningsåtgärder för Beta List i en miljö
 
 ```bash
 magento-cloud ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
@@ -9417,7 +9417,7 @@ Tvinga certifikatet att uppdateras
 
 ### `--new-key`
 
-[Föråldrat] Använd —new i stället
+[Inaktuell] Använd —ny i stället
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -10811,7 +10811,7 @@ Händelse-ID. Använd &quot;.&quot; för att välja projektets standardmiljö.
 
 ### `--pipe`
 
-[Inaktuellt alternativ] Utdata endast för variabelvärdet
+[Föråldrat alternativ] Skriv ut endast variabelvärdet
 
 - Standard: `false`
 - Accepterar inte ett värde
