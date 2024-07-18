@@ -3,7 +3,7 @@ title: Hantera diskutrymme
 description: Lär dig hur du hanterar diskutrymme med hjälp av kommandoradsgränssnittet.
 feature: Cloud, Storage
 exl-id: 480cb33b-ac83-441d-946e-5b4de09ad84e
-source-git-commit: 8b40397796ee865aefbf8a7948cc9a3aceb1d35c
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '714'
 ht-degree: 0%
@@ -20,7 +20,7 @@ magento-cloud subscription:info | grep storage
 
 Exempelsvar:
 
-```terminal
+```
 | storage              | 51200
 ```
 
@@ -50,7 +50,7 @@ magento-cloud db:size
 
 Exempelsvar:
 
-```terminal
+```
 Checking database service mysql...
 
 +----------------+-----------------+--------+
@@ -70,7 +70,7 @@ magento-cloud mount:size
 
 Exempelsvar:
 
-```terminal
+```
 Checking disk usage for all mounts on <project>-<environment>-mymagento@ssh.us.magento.cloud...
 
 +------------+-----------+---------+-----------+-----------+--------+
@@ -95,7 +95,7 @@ Alternativet `-h` visar rapporten i ett läsbart format (KB, MB eller GB).
 
 I följande exempelsvar visar monteringen `/mnt/shared` diskutrymmet för media och monteringen `/data/mysql/` visar diskutrymme för databasen:
 
-```terminal
+```
 Filesystem                                    Size  Used Avail Use% Mounted on
 udev                                           16G     0   16G   0% /dev
 tmpfs                                         3.2G  9.1M  3.2G   1% /run
@@ -121,7 +121,7 @@ df -h var/
 
 Exempelsvar:
 
-```terminal
+```
 Filesystem                                    Size  Used Avail Use% Mounted on
 192.168.5.5:/shared/project/var         9.8G  591M  9.3G   6% /app/project/var
 ```

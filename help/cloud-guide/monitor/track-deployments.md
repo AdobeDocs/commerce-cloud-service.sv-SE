@@ -5,7 +5,7 @@ feature: Cloud, Deploy, Observability
 topic: Performance
 last-substantial-update: 2023-10-12T00:00:00Z
 exl-id: 3d477a4b-ae5a-4c82-b71b-33ff24827b93
-source-git-commit: cd9b541bd5b2fa342b76c992ab85a5115368313b
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '283'
 ht-degree: 0%
@@ -99,7 +99,7 @@ Spåra dina Commerce-projektdistributionshändelser i New Relic genom att skapa 
 
    Exempelsvar:
 
-   ```terminal
+   ```
    Created integration 767u4hathojjw (type: script)
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    | Property              | Value                                                                                                                                   |
@@ -187,7 +187,7 @@ Spåra dina Commerce-projektdistributionshändelser i New Relic genom att skapa 
 
 1. Anteckna integrerings-ID:t för senare bruk. I det här exemplet är ID:
 
-   ```terminal
+   ```
    Created integration 767u4hathojjw (type: script)
    ```
 
@@ -207,7 +207,7 @@ Spåra dina Commerce-projektdistributionshändelser i New Relic genom att skapa 
 
    Svar:
 
-   ```terminal
+   ```
    Integration ID: 767u4hathojjw
    Activity ID: poxqidsfajkmg
    Type: integration.script

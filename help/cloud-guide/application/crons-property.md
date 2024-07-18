@@ -3,7 +3,7 @@ title: Egenskapen Crons
 description: Se exempel på hur du konfigurerar egenskapen "crons" i  [!DNL Commerce] programkonfigurationsfilen.
 feature: Cloud, Configuration
 exl-id: 67d592c1-2933-4cdf-b4f6-d73cd44b9f59
-source-git-commit: 1c0e05c3d8461bea473bcf6ec35162d65ef2774f
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '1069'
 ht-degree: 0%
@@ -60,7 +60,7 @@ Adobe Commerce har lagt till ett konfigurationsalternativ för automatiska krone
 
 I följande exempel visas `crontab`-utdata för en miljö som bara har standardkonfigurationen `crons`:
 
-```terminal
+```
 username@hostname:~$ crontab -l
 # Crontab is managed by the system, attempts to edit it directly will fail.
 SHELL=/etc/platform/6fck2obu3244c/cron-run

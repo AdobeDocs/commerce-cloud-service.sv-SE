@@ -3,7 +3,7 @@ title: Konfigurera flöden
 description: Lär dig hur du definierar vägar för inkommande HTTPS-begäranden för Adobe Commerce i molninfrastrukturer.
 feature: Cloud, Configuration, Routes
 exl-id: a33797e5-14cc-45eb-a048-96180b872a4a
-source-git-commit: 1253d8357fd2554050d1775fefbc420a2097db5f
+source-git-commit: c39332d352f6dcb6f92c312a6ef1b74319d37aa3
 workflow-type: tm+mt
 source-wordcount: '886'
 ht-degree: 0%
@@ -286,8 +286,8 @@ http://bar.add-theme-projectID.us.magentosite.cloud/
 
 Du kan visa ruttmönstret för icke-mappade domäner genom att upprätta en SSH-anslutning till miljön och använda CLI `magento-cloud` för att lista rutterna:
 
-```terminal
-web@mymagento.0:~$ vendor/bin/ece-tools env:config:show routes
+```bash
+vendor/bin/ece-tools env:config:show routes
 
 Magento Cloud Routes:
 +------------------------------------------+--------------------------------------------------------------+

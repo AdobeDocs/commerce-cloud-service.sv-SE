@@ -3,7 +3,7 @@ title: Uppgradera projekt till ECE-Tools
 description: Lär dig hur du uppgraderar din Adobe Commerce i molninfrastrukturprojekt så att du kan använda ECE-verktygspaketet och dra nytta av de senaste fixarna och funktionerna.
 feature: Cloud, Install
 exl-id: 820cca84-2817-4881-829f-ebb78400d8c7
-source-git-commit: bcdb59f0d2a17e55e8b0479ee69fac06c710638f
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '365'
 ht-degree: 0%
@@ -33,7 +33,7 @@ Innan du utför en uppgradering för att använda paketet `ece-tools` bör du ko
 
 För varje Adobe Commerce-version krävs en annan begränsning som bygger på följande:
 
-```terminal
+```
 >=current_version <next_version
 ```
 
@@ -105,7 +105,7 @@ Om du vill uppgradera ditt projekt till att använda paketet `ece-tools` måste 
 
 1. Lägg till och verkställ kodändringarna. I det här exemplet uppdaterades följande filer:
 
-   ```terminal
+   ```
    .magento.app.yaml
    composer.json
    composer.lock

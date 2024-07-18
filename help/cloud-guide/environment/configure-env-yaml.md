@@ -4,7 +4,7 @@ description: Lär dig hur du konfigurerar bygg- och distributionsåtgärder i al
 feature: Cloud, Build, Configuration, Deploy, SCD
 role: Developer
 exl-id: 66e257e2-1eca-4af5-9b56-01348341400b
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '697'
 ht-degree: 0%
@@ -42,7 +42,7 @@ Följande avsnitt innehåller detaljerade definitioner, till exempel om ett stan
 - [Global](variables-global.md) - variabelkontrollåtgärder i varje fas: skapa, distribuera och efterdistribuera
 - [Build](variables-build.md) - variabelkontrollbyggåtgärder
 - [Distribuera](variables-deploy.md) - variabelstyrningsdistributionsåtgärder
-- [Post-deploy](variables-post-deploy.md) - variabelkontrollåtgärder efter distribution
+- [Efter distribution](variables-post-deploy.md) - variabelkontrollåtgärder efter distribution
 
 ### Skapa konfigurationsfil från CLI
 
@@ -103,7 +103,7 @@ php ./vendor/bin/ece-tools cloud:config:validate
 
 Följande exempelsvar innehåller en lista med objekt som ska korrigeras:
 
-```terminal
+```
 Environment configuration is not valid. Correct the following items in your .magento.env.yaml file:
 The SCD_THREADS variable contains an invalid value of type string. Use the following type: integer.
 The SCD_STRATEGY variable contains an invalid value fast. Use one of the available value options: compact, quick, standard.
@@ -136,7 +136,7 @@ stage:
 
 När ett fel inträffar på grund av ett oväntat värde i konfigurationsfilen `.magento.env.yaml` får du ett felmeddelande. I följande felmeddelande visas en lista med föreslagna ändringar av varje objekt med ett oväntat värde, som ibland innehåller giltiga alternativ:
 
-```terminal
+```
 - Environment configuration is not valid. Please correct .magento.env.yaml file with next suggestions:
   Item CRON_CONSUMERS_RUNNER is not supposed to be in stage build. Please move it to one of possible stages: global, deploy
   Item SKIP_SCD has unexpected type string. Please use one of next types: boolean

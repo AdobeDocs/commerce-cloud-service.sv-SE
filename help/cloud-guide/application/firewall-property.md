@@ -3,7 +3,7 @@ title: Brandväggsegenskap
 description: Se exempel på hur du konfigurerar brandväggsegenskapen i Commerce-programmets konfigurationsfil.
 feature: Cloud, Configuration, Security
 exl-id: f169c008-c62a-41b7-a98d-cccd81c7291a
-source-git-commit: 74d88560db3b65294673a1e1827f9cea098d707a
+source-git-commit: a8ecebc87bfae5deaf0fc7ff3e7dd3b255fe3f24
 workflow-type: tm+mt
 source-wordcount: '844'
 ht-degree: 0%
@@ -32,7 +32,7 @@ magento-cloud p:curl --project PROJECT_ID /settings | grep -i outbound
 
 Om du inte har begärt `deny` för din princip ska kommandot visa din princip som `allow`:
 
-```terminal
+```json
 "outbound_restrictions_default_policy": "allow"
 ```
 
@@ -157,7 +157,7 @@ Alternativet `ips` tillåter en lista med IP-adresser i CIDR-notationen. Du kan 
 
 Om du vill ange en enda IP-adress lägger du till CIDR-prefixet `/32` i slutet av IP-adressen:
 
-```terminal
+```
 172.217.11.174/32  # google.com
 ```
 
@@ -189,7 +189,7 @@ awk '($5 ~/query/)' /var/log/dns.log | awk '{print $6}' | sort | uniq -c | sort 
 
 Det här kommandot visar även DNS-begäranden som har gjorts men blockerats av reglerna för filtrering av urkunder. Utdata visar inte vilka domäner som blockerades, bara de som begärdes. Utdata visar inte begäranden som gjorts med en IP-adress.
 
-```terminal
+```
 Example output:
 
 97 magento.com

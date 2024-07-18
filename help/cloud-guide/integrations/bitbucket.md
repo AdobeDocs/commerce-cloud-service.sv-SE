@@ -3,7 +3,7 @@ title: Bitbucket-integrering
 description: Lär dig hur du integrerar ditt Adobe Commerce i molninfrastrukturprojekt med Bitbucket.
 feature: Cloud, Integration
 exl-id: cd3cffbe-268f-429b-a2ea-0306159f4a6b
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '1020'
 ht-degree: 0%
@@ -62,7 +62,7 @@ Klona ditt Adobe Commerce i molninfrastrukturprojekt från en befintlig miljö o
 
    Förväntat svar:
 
-   ```terminal
+   ```
    origin git@bitbucket.org:<user-name>/<repo-name>.git (fetch)
    origin git@bitbucket.org:<user-name>/<repo-name>.git (push)
    ```
@@ -146,7 +146,7 @@ Bitbucket-integreringen kräver en [OAuth-konsument](https://support.atlassian.c
    magento-cloud integrations -p <project-ID>
    ```
 
-   ```terminal
+   ```
    +----------+-----------+--------------------------------------------------------------------------------+
    | ID       | Type      | Summary                                                                        |
    +----------+-----------+--------------------------------------------------------------------------------+
@@ -220,7 +220,7 @@ Bitbucket-integreringen kan inte aktivera nya miljöer i ditt Adobe Commerce i m
    magento-cloud environment:push from-bitbucket
    ```
 
-   ```terminal
+   ```
    Pushing from-bitbucket to the new environment from-bitbucket
    Activate from-bitbucket after pushing? [Y/n] y
    Parent environment [master]: integration
@@ -233,7 +233,7 @@ Bitbucket-integreringen kan inte aktivera nya miljöer i ditt Adobe Commerce i m
    magento-cloud environment:list
    ```
 
-   ```terminal
+   ```
    Your environments are:
    +---------------------+----------------+--------+
    | ID                  | Name           | Status |

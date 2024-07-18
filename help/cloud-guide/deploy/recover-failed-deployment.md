@@ -3,7 +3,7 @@ title: Återställning efter komponentfel
 description: Lär dig hur du kan återställa en komponent som inte kan distribueras korrekt i Adobe Commerce i molninfrastrukturen.
 feature: Cloud, Deploy
 exl-id: 4855be0c-6883-4ab1-a364-316d10e97250
-source-git-commit: b44d97f82ef09288807c648010202422c9ac04eb
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '220'
 ht-degree: 0%
@@ -59,7 +59,7 @@ Om du vill rensa upp från den tidigare distributionen identifierar du komponent
 
    Om följande meddelande visas behöver du inte göra något mer:
 
-   ```terminal
+   ```
    Package "<name>:<version>" listed for update is not installed. Ignoring.
    ```
 

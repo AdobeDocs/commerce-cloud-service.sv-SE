@@ -3,7 +3,7 @@ title: Visa och hantera loggar
 description: Förstå vilka typer av loggfiler som finns i molninfrastrukturen och var de finns.
 last-substantial-update: 2023-05-23T00:00:00Z
 exl-id: d7f63dab-23bf-4b95-b58c-3ef9b46979d4
-source-git-commit: 86af69eed16e8fe464de93bd0f33cfbfd4ed8f49
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '1056'
 ht-degree: 0%
@@ -44,7 +44,7 @@ magento-cloud ssh -p <project-ID> -e <environment-ID> --all
 
 Exempelsvar:
 
-```terminal
+```
 1.ent-project-environment-id@ssh.region.magento.cloud
 2.ent-project-environment-id@ssh.region.magento.cloud
 3.ent-project-environment-id@ssh.region.magento.cloud
@@ -84,7 +84,7 @@ När du har gjort ändringar i din miljö kan du granska loggningen från varje 
 
 Kontrollera tidsstämplarna för loggposterna, verifiera och hitta loggarna för en specifik distribution. Följande är ett komprimerat exempel på loggutdata som du kan använda för felsökning:
 
-```terminal
+```
 Re-deploying environment project-integration-ID
   Executing post deploy hook for service `mymagento`
     [2019-01-03 19:44:11] NOTICE: Starting post-deploy.
@@ -129,7 +129,7 @@ magento-cloud log -e <environment-ID> deploy
 
 Exempelsvar:
 
-```terminal
+```
 Reading log file projectID-branchname-ID--mymagento@ssh.zone.magento.cloud:/var/log/'deploy.log'
 
 [2023-04-24 18:58:03.080678] Launching command 'b'php ./vendor/bin/ece-tools run scenario/deploy.xml\n''.
@@ -153,7 +153,7 @@ magento-cloud ssh -e <environment-ID> "./vendor/bin/ece-tools error:show"
 
 Exempelsvar:
 
-```terminal
+```
 errorCode: 1001
 stage: build
 step: validate-config
@@ -187,7 +187,7 @@ På samma sätt som för distributionsloggar är programloggar unika för varje 
 | Loggfil | Integrering med Starter och Pro | Beskrivning |
 | ------------------- | --------------------------- | ------------------------------------------------- |
 | **Distribuera logg** | `/var/log/deploy.log` | Aktivitet från [distributionskroken](../application/hooks-property.md). |
-| **Post-distributionslogg** | `/var/log/post_deploy.log` | Aktivitet från [funktionen för efterdistribution](../application/hooks-property.md). |
+| **Logg efter distribution** | `/var/log/post_deploy.log` | Aktivitet från [funktionen för efterdistribution](../application/hooks-property.md). |
 | **Kronlogg** | `/var/log/cron.log` | Utdata från cron-jobb. |
 | **Nginx-åtkomstlogg** | `/var/log/access.log` | Vid Nginx-start, HTTP-fel för saknade kataloger och uteslutna filtyper. |
 | **Inledande fellogg** | `/var/log/error.log` | Startmeddelanden är användbara vid felsökning av konfigurationsfel som är kopplade till Nginx. |
@@ -199,7 +199,7 @@ I Pro Staging- och Production-miljöer är loggarna Deploy, Post-deploy och Cron
 | Loggfil | Pro Staging | Pro Production |
 | ------------------- | --------------------------------------------------- | ----------------------------------------------- |
 | **Distribuera logg** | Endast den första noden:<br>`/var/log/platform/<project-ID>_stg/deploy.log` | Endast den första noden:<br>`/var/log/platform/<project-ID>/deploy.log` |
-| **Post-distributionslogg** | Endast den första noden:<br>`/var/log/platform/<project-ID>_stg/post_deploy.log` | Endast den första noden:<br>`/var/log/platform/<project-ID>/post_deploy.log` |
+| **Logg efter distribution** | Endast den första noden:<br>`/var/log/platform/<project-ID>_stg/post_deploy.log` | Endast den första noden:<br>`/var/log/platform/<project-ID>/post_deploy.log` |
 | **Kronlogg** | Endast den första noden:<br>`/var/log/platform/<project-ID>_stg/cron.log` | Endast den första noden:<br>`/var/log/platform/<project-ID>/cron.log` |
 | **Nginx-åtkomstlogg** | `/var/log/platform/<project-ID>_stg/access.log` | `/var/log/platform/<project-ID>/access.log` |
 | **Inledande fellogg** | `/var/log/platform/<project-ID>_stg/error.log` | `/var/log/platform/<project-ID>/error.log` |
@@ -210,7 +210,7 @@ I Pro Staging- och Production-miljöer är loggarna Deploy, Post-deploy och Cron
 
 Programloggarna komprimeras och arkiveras en gång om dagen och sparas i ett år. De komprimerade loggarna namnges med ett unikt ID som motsvarar `Number of Days Ago + 1`. I Pro-produktionsmiljöer har till exempel en PHP-åtkomstlogg för 21 dagar tidigare lagrats och fått följande namn:
 
-```terminal
+```
 /var/log/platform/<project-ID>/php.access.log.22.gz
 ```
 
@@ -218,7 +218,7 @@ De arkiverade loggfilerna sparas alltid i den katalog där originalfilen fanns f
 
 >[!NOTE]
 >
->**Distribuera**- och **Post-distribuera**-loggfiler roteras inte och arkiveras. Hela distributionshistoriken skrivs i dessa loggfiler.
+>**Distribuera**- och **Efterdistribuera**-loggfiler roteras inte och arkiveras. Hela distributionshistoriken skrivs i dessa loggfiler.
 
 ## Tjänstloggar
 

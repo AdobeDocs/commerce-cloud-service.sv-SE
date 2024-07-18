@@ -1,18 +1,18 @@
 ---
-title: Post-driftsättningsvariabler
+title: Variabler efter distribution
 description: Se en lista med miljövariabler som styr åtgärder i Adobe Commerce för efterdriftsättning av molninfrastruktur.
 feature: Cloud, Configuration, Cache
 recommendations: noDisplay, catalog
 role: Developer
 exl-id: e460335f-cd2b-4c98-b1ff-32504599b33d
-source-git-commit: 8b02757591c4e8f607e936de4eda74d76953d9b7
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '511'
 ht-degree: 0%
 
 ---
 
-# Post-driftsättningsvariabler
+# Variabler efter distribution
 
 Följande _post-deploy_-variabler kontrollerar åtgärder i efterdistribueringsfasen och kan ärva och åsidosätta värden från [Globala variabler](variables-global.md). Infoga de här variablerna i `post-deploy`-steget i filen `.magento.env.yaml`:
 
@@ -45,7 +45,7 @@ stage:
 
 När du har angett vilka sidor som ska testas och verkställas, körs testet _Tid till första byte_ under fasen efter distributionen och resultat skickas för varje sökväg till molnloggen:
 
-```terminal
+```
 [2019-06-20 20:42:22] INFO: TTFB test result: 0.313s {"url":"https://staging-tkyicst-xkmwgjkwmwfuk.us-4.magentosite.cloud/customer/account/create","status":200}
 [2019-06-20 20:42:22] INFO: TTFB test result: 0.408s {"url":"https://staging-tkyicst-xkmwgjkwmwfuk.us-4.magentosite.cloud/checkout/cart","status":200}
 ```
@@ -93,7 +93,7 @@ Anpassa listan med sidor som används för att förhandsladda cachen på scenen 
 
 - **flera sidor** - Använd följande format för att cachelagra flera sidor enligt ett visst mönster för reguljära uttryck:
 
-  ```terminal
+  ```
   <entity_type>:<pattern|url|product_sku>:<store_id|store_code>
   ```
 

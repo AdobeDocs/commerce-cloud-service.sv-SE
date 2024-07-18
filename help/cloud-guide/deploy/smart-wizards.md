@@ -3,7 +3,7 @@ title: Smarta guider
 description: Lär dig hur du använder smarta guider för att utvärdera om ditt Adobe Commerce-projekt för molninfrastruktur följer bästa praxis för driftsättning.
 feature: Cloud, Build, Deploy, SCD
 exl-id: eb79431c-8835-4ae4-b453-9c4932c5d5ac
-source-git-commit: 225fba1acfd8b3ce4d7ce989c7851e7b0b218680
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '322'
 ht-degree: 0%
@@ -36,13 +36,13 @@ Du kan till exempel kontrollera att konfigurationen aktiverar funktionen för on
 
 En lyckad konfiguration returnerar:
 
-```terminal
+```
 SCD on-demand is enabled
 ```
 
 En misslyckad konfiguration returnerar:
 
-```terminal
+```
 SCD on-demand is disabled
 ```
 
@@ -50,7 +50,7 @@ SCD on-demand is disabled
 
 Konfigurationen _idealisk_ för ditt Cloud-projekt hjälper till att minimera driftsättningsdriftavbrott genom att värma cachen och generera statiskt innehåll när användaren begär det. Den här guiden körs automatiskt under distributionsprocessen. Om ditt moln inte är konfigurerat för det här _idealiska läget_ får du ett meddelande som liknar följande:
 
-```terminal
+```
 - SCD on build is not configured
 - Post-deploy hook is not configured
 - Skip HTML minification is disabled
@@ -81,6 +81,6 @@ Beroende på utdata måste du göra följande korrigeringar i konfigurationen:
 
 1. Skjut upp kodändringarna och kör testet igen. När konfigurationen är _idealisk_ får du följande meddelande.
 
-   ```terminal
+   ```
    Ideal state is configured
    ```

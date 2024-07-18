@@ -3,7 +3,7 @@ title: Hantera butikskonfiguration
 description: Lär dig hur du hanterar och synkroniserar lagringskonfigurationsinställningar för alla Adobe Commerce i molninfrastrukturmiljöer.
 feature: Cloud, Configuration, SCD
 exl-id: f2dd876d-24ee-4d47-b9ac-44fcf77b61b5
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
 workflow-type: tm+mt
 source-wordcount: '1439'
 ht-degree: 0%
@@ -162,7 +162,7 @@ När du ändrar miljön via Admin och kör kommandot igen läggs nya konfigurati
 
 Kopior av de ursprungliga `app/etc/env.php`- och `app/etc/config.php`-filerna skapades under distributionsprocessen och lagras i samma mapp. Följande visar BAK (säkerhetskopieringsfiler) och PHP (originalfiler) i samma `app/etc`-mapp:
 
-```terminal
+```
 ...
 config.php.bak
 di.xml
@@ -192,7 +192,7 @@ env.php
 
    Exempelsvar:
 
-   ```terminal
+   ```
    The list of backup files:
    app/etc/env.php
    app/etc/config.php
