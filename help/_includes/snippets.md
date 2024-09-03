@@ -1,7 +1,7 @@
 ---
-source-git-commit: b08443d937dfc18120daa0d6a1277b9c7bca67aa
+source-git-commit: 762ce3cb6268401b0f5fae5b2280a870aa9c83a5
 workflow-type: tm+mt
-source-wordcount: '829'
+source-wordcount: '857'
 ht-degree: 0%
 
 ---
@@ -47,7 +47,7 @@ Ställ in alternativet `_merge` på något av följande:
 >
 >Ange vilka tjänständringar som krävs, inkludera dina uppdaterade `.magento.app.yaml`- och `services.yaml`-filer och ange PHP-versionen i biljetten. Om du vill göra ändringar i PHP-version, tillägg eller miljöinställningar för självbetjäning läser du [PHP-inställningar](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/app/php-settings.html) i _Programkonfiguration_.
 >
->Om du vill ändra en _live_-produktionsmiljö (**endast för Pro**) måste du ange minst 48 timmars varsel för att molninfrastrukturteamet ska få tillräckligt med tid för att dela resurser och genomföra en säker uppgradering.
+>Om du vill ändra en _live_-produktionsmiljö (**endast för Pro**) måste du ange minst 48 timmars varsel för att molninfrastrukturteamet ska få tillräckligt med tid för att dela resurser och genomföra en säker uppgradering. Meddelandeperioden omfattar inte helger. Om du t.ex. vill att dina serviceuppgraderingar ska göras en måndag måste du skicka in förfrågan senast på onsdagen.
 
 ## Pro-säkerhetskopiering {#pro-backups}
 
