@@ -4,7 +4,7 @@ description: Lär dig hur du förbereder en teknisk rådgivare från Adobe för 
 recommendations: noDisplay, catalog
 role: Admin
 exl-id: cfb354b0-c255-4b6e-94aa-c5a6bf7230d6
-source-git-commit: 374cbe4a119b43ab446905fd6b9e51840094ce61
+source-git-commit: da1dec76b9389244f9d5a65428e09f1bc897fa5f
 workflow-type: tm+mt
 source-wordcount: '756'
 ht-degree: 0%
@@ -32,7 +32,7 @@ Exempel för produktions- och mellanlagringsdomäner:
 
 Se [Konfigurera flera webbplatser eller butiker](../cloud-guide/store/multiple-sites.md) i guiden _Commerce om molninfrastruktur_ för mer information om flera eller unika domäner.
 
-Se [Flera snabbkonton och tilldelade domäner](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/cdn/fastly#multiple-fastly-accounts-and-assigned-domains) om du har ett befintligt Fast-konto som länkar samma index och underdomäner som används på din Adobe Commerce-webbplats.
+Se [Flera snabbkonton och tilldelade domäner](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/cdn/fastly#multiple-fastly-accounts-and-assigned-domains){target="_blank"} om du har ett befintligt Fast-konto som länkar samma index och underdomäner som används på din Adobe Commerce-webbplats.
 
 ## Domän för transaktionell e-post
 
