@@ -4,9 +4,9 @@ description: Lär dig hur du får tillgång till ditt New Relic-konto och hanter
 feature: Cloud, Observability
 role: Admin
 exl-id: ee639e2e-4074-4384-8f68-152bc3bac93b
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 1fc488d7e13952ad70d4c864327899f38ea48af1
 workflow-type: tm+mt
-source-wordcount: '833'
+source-wordcount: '660'
 ht-degree: 0%
 
 ---
@@ -17,20 +17,9 @@ När Adobe tillhandahåller ditt molninfrastrukturprojekt får licensägaren ett
 
 ## Hantera användaråtkomst
 
-Ett New Relic-konto kan bara ha en person tilldelad rollen Ägare. Om du måste ändra kontoägaren tilldelar du den aktuella ägaren administratörsrollen och tilldelar sedan rollen Ägare till en annan användare. Mer information finns i [Uppdatera kontoägaren](https://docs.newrelic.com/docs/accounts/original-accounts-billing/original-users-roles/users-roles-original-user-model/) i _New Relic-dokumentationen_.
-
-Riktlinjer för hantering av åtkomst till New Relic:
-
-- Projektägare och administratörer kan lägga till och ta bort användare från New Relic-kontot.
-- Skapa inte fler än fem fullständiga **användare**.
-- Ge endast fullständig åtkomst till användare som strikt kräver åtkomst till hela funktionsuppsättningen.
-- Det finns ingen specifik vägledning om **begränsade** användare utan kostnad.
-
->[!TIP]
+>[!NOTE]
 >
->Innan du tilldelar ägarrollen till en användare kontrollerar du att användaren finns på New Relic-kontot för Adobe Commerce i molninfrastrukturen. Om du måste lägga till användaren i det kontot och en befintlig kontoägare eller administratör inte kan hjälpa till, kan alla användare som har åtkomst till [Adobe Partner Owner Account](https://account.newrelic.com/accounts/1311131/users) för New Relic lägga till användare för kundens räkning.
-
-Lägg till minst en **Admin**-användare i ditt New Relic-konto som kan hantera all åtkomst, alla integreringar och verktygsanvändning.
+>Ge endast fullständig åtkomst till användare som strikt kräver åtkomst till hela funktionsuppsättningen.
 
 **Så här får du åtkomst till användarhantering i New Relic**:
 
