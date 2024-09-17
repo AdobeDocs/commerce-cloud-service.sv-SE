@@ -4,9 +4,9 @@ description: Lär dig hur du integrerar ditt Adobe Commerce i ett molninfrastruk
 feature: Cloud, Integration
 last-substantial-update: 2023-05-25T00:00:00Z
 exl-id: 5305452f-4c8d-438c-ac78-e2e1ec2f8cd9
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: b162faadf114423a7da23ecf94c96eccbcaeb72b
 workflow-type: tm+mt
-source-wordcount: '924'
+source-wordcount: '949'
 ht-degree: 0%
 
 ---
@@ -108,7 +108,7 @@ Du kan välja att stega igenom CLI-prompterna med `magento-cloud integration:add
 
 | Alternativ | Obligatoriskt? | Beskrivning |
 | ----------------------- | --------- | --------------------------------- |
-| `--base-url` | Ja | Bas-URL:en för serverinstallationen, som kan vara `https://github.com/` eller en anpassad. Utelämna det här alternativet om din databas ligger hos Github. |
+| `--base-url` | Ja | Bas-URL:en för serverinstallationen, som kan vara `https://github.com/` eller en anpassad. Utelämna det här alternativet om din databas ligger hos Github eller om din databas inte ligger på privata servrar. Utelämna det här alternativet om din databas-URL liknar `https://github.com/{account}/{repository-name}`. Detta kan orsaka fel som `Unable to connect to GitHub: repository not found`. |
 | `--token` | Ja | Den personliga åtkomsttoken som du genererade för GitHub |
 | `--repository` | Ja | Databasnamnet: `owner-or-organisation/repository` |
 | `--build-pull-requests` | Valfritt | Instruerar Adobe Commerce på molninfrastruktur att distribueras efter att du har sammanfogat en pull-begäran (`true` som standard) |
