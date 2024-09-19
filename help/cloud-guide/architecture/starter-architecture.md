@@ -3,9 +3,9 @@ title: Startarkitektur
 description: Läs mer om de miljöer som stöds av Starter-arkitekturen.
 feature: Cloud, Paas
 exl-id: 03365d32-4eb4-42d4-82a7-771df5e7b3da
-source-git-commit: c61d711b1041ecf76ec6468cd225a34fd77c24b1
+source-git-commit: e5cb79cab4e22d1c787859ab98e6bab6cd2dc2eb
 workflow-type: tm+mt
-source-wordcount: '903'
+source-wordcount: '942'
 ht-degree: 0%
 
 ---
@@ -64,7 +64,9 @@ Integrationsmiljöer är utformade för begränsad testning och utveckling. Du k
 
 För bästa prestanda i integreringsmiljön bör du följa dessa standarder:
 
-- Begränsa katalogstorlek
+- Begränsa katalogstorleken - Som referens innehåller exempeldata cirka 2 048 produkter. Minska katalogstorleken till cirka 4 000-5 000 produkter.
+
+- Minska antalet kundgrupper - För många kundgrupper kan påverka indexeringens prestanda och övergripande prestanda.
 
 - Begränsa användningen till en eller två samtidiga användare
 
