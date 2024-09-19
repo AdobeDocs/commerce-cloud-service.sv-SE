@@ -3,9 +3,9 @@ title: Konfigurera programdistribution
 description: Lär dig hur du konfigurerar egenskaperna i programkonfigurationsfilen som styr hur programmet  [!DNL Commerce] skapar och distribuerar till molnmiljön.
 feature: Cloud, Configuration, Build, Deploy
 exl-id: 900da20d-98d2-4c9f-97ec-578aee775b55
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: c9339137d957840a9ae33ed45950c613eea93660
 workflow-type: tm+mt
-source-wordcount: '142'
+source-wordcount: '184'
 ht-degree: 0%
 
 ---
@@ -22,3 +22,7 @@ Använd filen `.magento.app.yaml` för att definiera följande konfigurationsvä
 - [Variabler, egenskap](variables-property.md) - Granska miljövariabler som krävs för programversionen [!DNL Commerce].
 - [PHP-inställningar](php-settings.md) - Konfigurera PHP-alternativ för körning.
 - [Ange cache för statiska filer](set-cache.md) - Ange cache-TTL för dina media och statiska filer.
+
+>[!NOTE]
+>
+>Filen `.magento.app.yaml` hanteras lokalt eller i Git-databasen. Konfigurationen läses bara för syfte att distribuera och skapa och tas bort när distributionen har slutförts, så du kommer inte att hitta den på servern.
