@@ -3,7 +3,7 @@ title: Hantera diskutrymme
 description: Lär dig hur du hanterar diskutrymme med hjälp av kommandoradsgränssnittet.
 feature: Cloud, Storage
 exl-id: 480cb33b-ac83-441d-946e-5b4de09ad84e
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 0cc0b8e49e2cccf4266ecf84ef935f24fde1c7a4
 workflow-type: tm+mt
 source-wordcount: '714'
 ht-degree: 0%
@@ -93,7 +93,7 @@ df -h
 
 Alternativet `-h` visar rapporten i ett läsbart format (KB, MB eller GB).
 
-I följande exempelsvar visar monteringen `/mnt/shared` diskutrymmet för media och monteringen `/data/mysql/` visar diskutrymme för databasen:
+I följande exempelsvar visar monteringen `/data/exports` diskutrymmet för media och monteringen `/data/mysql/` visar diskutrymme för databasen:
 
 ```
 Filesystem                                    Size  Used Avail Use% Mounted on
