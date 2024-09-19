@@ -4,16 +4,16 @@ description: Lär dig hur du avinstallerar Adobe Commerce-programmet från ett m
 role: Developer
 topic: Development
 exl-id: b76bd6c3-986e-4adc-abd0-5b27db0d8a3b
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 9e4e58d2470b73b221168c182c7d563ce6f6502f
 workflow-type: tm+mt
-source-wordcount: '480'
+source-wordcount: '493'
 ht-degree: 0%
 
 ---
 
 # Återställa en miljö
 
-Om du stöter på problem i integreringsmiljön och inte har någon [giltig säkerhetskopia](../storage/snapshots.md) kan du försöka återställa miljön på något av följande sätt:
+Om du stöter på problem i integreringsmiljön och inte har en [giltig säkerhetskopia](../storage/snapshots.md), eller vill återställa miljön till en tom plats, kan du återställa miljön på något av följande sätt:
 
 - Återställ eller återställa koden i Git-grenen
 - Avinstallera programmet [!DNL Commerce]
