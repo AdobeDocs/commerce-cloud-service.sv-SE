@@ -4,9 +4,9 @@ description: Läs om de miljöer som stöds av Pro-arkitekturen.
 feature: Cloud, Auto Scaling, Iaas, Paas, Storage
 topic: Architecture
 exl-id: d10d5760-44da-4ffe-b4b7-093406d8b702
-source-git-commit: 95b033ba430cb5dc74fa654b9d519dfcd5b6d319
+source-git-commit: eccf69d792f5f8bbd32fb24ac731fffa1eeb91ba
 workflow-type: tm+mt
-source-wordcount: '1472'
+source-wordcount: '1511'
 ht-degree: 0%
 
 ---
@@ -66,7 +66,9 @@ Integrationsmiljöer är utformade för begränsad testning och utveckling innan
 
 För bästa prestanda i integreringsmiljön bör du följa dessa standarder:
 
-- Begränsa katalogstorlek
+- Begränsa katalogstorleken - Som referens innehåller exempeldata cirka 2 048 produkter. Minska katalogstorleken till cirka 4 000-5 000 produkter.
+
+- Minska antalet kundgrupper - För många kundgrupper kan påverka indexeringens prestanda och övergripande prestanda.
 
 - Begränsa användningen till en eller två samtidiga användare
 
