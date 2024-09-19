@@ -6,9 +6,9 @@ feature: Cloud, Roles/Permissions
 last-substantial-update: 2023-06-27T00:00:00Z
 topic: Security
 exl-id: 3357a3ea-bf86-4a65-95d1-6b24f1152248
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 5e4be034a392716ea55e2878d336cb9ecac1e052
 workflow-type: tm+mt
-source-wordcount: '1454'
+source-wordcount: '1459'
 ht-degree: 0%
 
 ---
@@ -17,7 +17,7 @@ ht-degree: 0%
 
 Adobe Commerce-projekt om molninfrastruktur använder rollbaserad åtkomst. Det finns två tillgängliga roller på projektnivå:
 
-- **Projektadministratör** - Skriv åtkomst till alla projektmiljöer och hantera användare, push-kod och uppdatera projektinställningar.
+- **Projektadministratör** - Skriv åtkomst till alla projektmiljöer och hantera användare, push-kod och uppdatera projektinställningar. (Tidigare känd som **Superadministratör**)
 - **Project Viewer** - Åtkomst endast till alla projektmiljöer.
 
 Projektvisningsprogram kan inte utföra åtgärder i någon miljö, men du kan ge projektvisningsprogram skrivåtkomst till en viss miljötyp.
