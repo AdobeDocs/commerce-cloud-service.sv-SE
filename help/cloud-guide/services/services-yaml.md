@@ -3,16 +3,21 @@ title: Konfigurera tjänster
 description: Lär dig hur du konfigurerar tjänster som används av Adobe Commerce i molninfrastruktur.
 feature: Cloud, Configuration, Services
 exl-id: 48091c10-c53f-4aad-afbe-b4516653bda1
-source-git-commit: c39332d352f6dcb6f92c312a6ef1b74319d37aa3
+source-git-commit: 0262fca6e94d9815e8af0fb0c026e36fecc1f939
 workflow-type: tm+mt
-source-wordcount: '1007'
+source-wordcount: '1046'
 ht-degree: 0%
 
 ---
 
 # Konfigurera tjänster
 
-Filen `services.yaml` definierar de tjänster som stöds och används av Adobe Commerce i molninfrastrukturen, till exempel MySQL, Redis och Elasticsearch eller OpenSearch. Du behöver inte prenumerera på externa tjänsteleverantörer. Den här filen finns i katalogen `.magento` för ditt projekt.
+Filen `services.yaml` definierar de tjänster som stöds och används av Adobe Commerce i molninfrastrukturen, till exempel MySQL, Redis och Elasticsearch eller OpenSearch. Du behöver inte prenumerera på externa tjänsteleverantörer.
+
+>[!NOTE]
+>
+>Filen `.magento/services.yaml` hanteras lokalt i katalogen `.magento` i ditt projekt. Konfigurationen nås under byggprocessen för att endast definiera de tjänstversioner som krävs i integreringsmiljön och tas bort när distributionen har slutförts, så du kommer inte att hitta dem på servern.
+
 
 Distributionsskriptet använder konfigurationsfilerna i katalogen `.magento` för att etablera miljön med de konfigurerade tjänsterna. En tjänst blir tillgänglig för ditt program om den ingår i egenskapen [`relationships`](../application/properties.md#relationships) för filen `.magento.app.yaml`. Filen `services.yaml` innehåller värdena _type_ och _disk_. Tjänsttypen definierar tjänsten _name_ och _version_.
 
