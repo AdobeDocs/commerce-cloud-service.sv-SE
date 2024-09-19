@@ -3,9 +3,9 @@ title: Egenskaper
 description: Använd egenskapslistan som referens när du konfigurerar programmet  [!DNL Commerce]  för att skapa och distribuera till molninfrastrukturen.
 feature: Cloud, Configuration, Build, Deploy, Roles/Permissions, Storage
 exl-id: 58a86136-a9f9-4519-af27-2f8fa4018038
-source-git-commit: 99272d08a11f850a79e8e24857b7072d1946f374
+source-git-commit: 1d671d7d2b9ef8742f50b23aa56020d82c701fa4
 workflow-type: tm+mt
-source-wordcount: '797'
+source-wordcount: '816'
 ht-degree: 0%
 
 ---
@@ -141,6 +141,8 @@ Den minsta rekommenderade diskstorleken är 256 MB. Om felet `UserError: Error b
 >[!NOTE]
 >
 >För Pro Staging- och Production-miljöer måste du [skicka in en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att uppdatera konfigurationen `mounts` och `disk` för ditt program. När du skickar biljetten anger du de konfigurationsändringar som krävs och inkluderar en uppdaterad version av din `.magento.app.yaml`-fil.
+>
+>Det går inte att tillfälligt öka diskutrymmet i Förproduktion eller Produktion. Den här processen går inte att ångra.
 
 ## `relationships`
 
