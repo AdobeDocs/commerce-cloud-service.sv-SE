@@ -3,7 +3,7 @@ title: Snabbt felsökning
 description: Lär dig hur du felsöker och hanterar snabbuppdateringsmodulen och tjänsterna för Adobe Commerce.
 feature: Cloud, Configuration, Cache, Services
 exl-id: e4c47035-cbad-4838-8d44-fa5eaaac42d1
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: e066e9c7e1a6010c9d316f66f1632e28a0c40652
 workflow-type: tm+mt
 source-wordcount: '1834'
 ht-degree: 0%
@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Använd följande information för att felsöka och hantera snabbuppdateringsmodulen för CDN för Magento 2 i dina Adobe Commerce i miljöer med molninfrastrukturprojekt. Du kan till exempel undersöka svarshuvudets värden och cachningsbeteendet för att lösa problem med snabb service och prestanda.
 
-I Pro Production- och Staging-miljöer kan du använda [New Relic-loggar](../monitor/log-management.md) för att visa och analysera snabbt CDN- och WAF-loggdata för att felsöka fel och prestandaproblem.
+I Pro Production- och Staging-miljöer kan du använda [New Relic-loggar](../monitor/log-management.md) för att visa och analysera snabbdata för CDN och WAF-loggdata för att felsöka fel och prestandaproblem.
 
 >[!NOTE]
 >
@@ -119,7 +119,7 @@ När ett 503-fel inträffar returnerar Snabb orsaken på fel- och underhållssid
 
 Om API-domänen och underdomänerna för ditt Adobe Commerce i ett molninfrastrukturprojekt redan är kopplade till ett befintligt Fast-konto med ett tilldelat tjänst-ID, kan du inte starta förrän du uppdaterar din snabbkonfiguration:
 
-- Uppdatera API- och underdomänskonfigurationen på det befintliga snabbkontot. Se [Flera snabbkonton och tilldelade domäner](fastly.md#domain).
+- Uppdatera API- och underdomänskonfigurationen på det befintliga snabbkontot. Se [Flera snabbkonton och tilldelade domäner](fastly.md#multiple-fastly-accounts-and-assigned-domains).
 
 - [Aktivera och konfigurera snabbt](fastly-configuration.md#enable-fastly-caching) och slutför [DNS-konfigurationen](../launch/checklist.md#update-dns-configuration-with-production-settings)
 
