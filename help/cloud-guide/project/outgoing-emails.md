@@ -2,20 +2,20 @@
 title: Konfigurera utgående e-post
 description: Lär dig hur du aktiverar utgående e-post för Adobe Commerce i molninfrastruktur.
 exl-id: 814fe2a9-15bf-4bcb-a8de-ae288fd7f284
-source-git-commit: 59f82d891bb7b1953c1e19b4c1d0a272defb89c1
+source-git-commit: ec9192caa5daa1cd25a3eec6095c2c3cf8fbefb4
 workflow-type: tm+mt
-source-wordcount: '363'
+source-wordcount: '373'
 ht-degree: 0%
 
 ---
 
 # Konfigurera utgående e-post
 
-Du kan aktivera och inaktivera utgående e-post för varje miljö från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-post för integrering och staging-miljöer för att skicka tvåfaktorsautentisering eller återställa lösenordsmeddelanden för användare av Cloud-projekt.
+Du kan aktivera och inaktivera utgående e-post för varje miljö från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-postmeddelanden för integreringsmiljöer (och mellanlagring endast för Starter) för att skicka tvåfaktorsautentisering eller återställa lösenordsmeddelanden för användare av Cloud-projekt.
 
-Som standard är utgående e-post aktiverat i produktions- och mellanlagringsmiljöer. [!UICONTROL Enable outgoing emails] kan dock visas som inaktiverat i miljöinställningarna tills du ställer in egenskapen `enable_smtp` via [kommandoraden](#enable-emails-in-the-cli) eller [molnkonsolen](outgoing-emails.md#enable-emails-in-the-cloud-console).
+Som standard är utgående e-post aktiverat i produktions- och mellanlagringsmiljöer (endast Pro). Inställningen **[!UICONTROL Enable outgoing emails]** kan dock visas som inaktiverad i miljöinställningarna, oavsett status, tills du ställer in egenskapen `enable_smtp` via [kommandoraden](#enable-emails-in-the-cli) eller [molnkonsolen](outgoing-emails.md#enable-emails-in-the-cloud-console).
 
-Om du uppdaterar egenskapsvärdet [!UICONTROL enable_smtp] med [kommandorad](#enable-emails-in-the-cli) ändras även inställningsvärdet [!UICONTROL Enable outgoing emails] för den här miljön på molnkonsolen.
+Om du uppdaterar egenskapsvärdet `enable_smtp` med [kommandorad](#enable-emails-in-the-cli) ändras även inställningsvärdet [!UICONTROL Enable outgoing emails] för den här miljön på molnkonsolen.
 
 {{redeploy-warning}}
 
