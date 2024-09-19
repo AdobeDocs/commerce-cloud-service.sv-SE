@@ -4,9 +4,9 @@ description: Läs om de miljöer som stöds av Pro-arkitekturen.
 feature: Cloud, Auto Scaling, Iaas, Paas, Storage
 topic: Architecture
 exl-id: d10d5760-44da-4ffe-b4b7-093406d8b702
-source-git-commit: eccf69d792f5f8bbd32fb24ac731fffa1eeb91ba
+source-git-commit: 66b1f86c8c674d0de4e2895e328a5a850eadf903
 workflow-type: tm+mt
-source-wordcount: '1511'
+source-wordcount: '1559'
 ht-degree: 0%
 
 ---
@@ -167,6 +167,10 @@ På grund av den unika, redundanta maskinvaran kan Adobe tillhandahålla tre gat
 Adobe Commerce i molninfrastruktur använder en arkitektur med hög tillgänglighet som replikerar varje Pro-projekt på tre separata AWS- eller Azure-tillgänglighetszoner, där varje zon har ett separat datacenter. Förutom den här redundansen får Pro-testnings- och produktionsmiljöer regelbundna, livesäkerhetskopieringar som är utformade för att användas vid _katastrofala fel_.
 
 **Automatiska säkerhetskopieringar** innehåller beständiga data från alla tjänster som körs, till exempel MySQL-databasen och filer som lagras på de monterade volymerna. Säkerhetskopiorna sparas i krypterad Elastic Block Storage (EBS) i samma region som produktionsmiljön. De automatiska säkerhetskopiorna är inte tillgängliga för allmänheten eftersom de lagras i ett separat system.
+
+>[!NOTE]
+>
+>De monterade volymerna innehåller/refererar endast till [skrivbara monteringar](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/configure/app/properties/properties#mounts) och kommer inte att innehålla hela din `app/`-katalog. Liksom för de andra filerna skapas/genereras de av [bygg- och distributionsprocessen](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/architecture/pro-develop-deploy-workflow#deployment-workflow), och du måste också kontrollera din Git-databas för att se om det finns återstående filer.
 
 {{pro-backups}}
 
