@@ -2,9 +2,9 @@
 title: SkickaGrid-e-posttjänst
 description: Lär dig mer om e-posttjänsten SendGrid för Adobe Commerce i molninfrastrukturen och hur du kan testa din DNS-konfiguration.
 exl-id: 30d3c780-603d-4cde-ab65-44f73c04f34d
-source-git-commit: 34d1895592c83fa27b52d0f2e0f38445294b3782
+source-git-commit: b5c8dc062a940e9e202d9bd4cca6901b07109e07
 workflow-type: tm+mt
-source-wordcount: '1136'
+source-wordcount: '1273'
 ht-degree: 0%
 
 ---
@@ -137,3 +137,13 @@ Det finns inga strikta gränser för hur många e-postmeddelanden som kan skicka
 ### E-postavsändarens rykte
 
 Ett e-postrykte är en poäng som tilldelats av en Internet-leverantör (ISP) till ett företag som skickar e-postmeddelanden. Ju högre poäng, desto troligare är det att en Internet-leverantör levererar meddelanden till en mottagares inkorg. Om poängen ligger under en viss nivå kan Internet-leverantören dirigera meddelanden till mottagarnas skräppostmapp eller till och med avvisa meddelanden helt. Anseendepoängen bestäms av flera faktorer, som ett 30-dagars genomsnitt av dina IP-adresser, jämfört med andra IP-adresser och andelen skräppost. Se [8 olika sätt att kontrollera din e-postutskicksframställning](https://sendgrid.com/en-us/blog/5-ways-check-sending-reputation).
+
+### Lista över e-postinaktiveringar
+
+En lista över e-postinaktiveringar är en lista över mottagare som e-postmeddelanden inte ska skickas till om det skulle skada ditt anseende och din leveransfrekvens. Det krävs enligt CAN-SPAM Act för att säkerställa att e-postavsändare har en metod för att avanmäla mottagare som avbeställt eller markerat e-post som skräppost. Supprestionslistan samlar även in e-postmeddelanden som studsar, blockeras eller är ogiltiga.
+
+Om du inte vill att e-postmeddelanden ska skickas till skräppostmappen överhuvudtaget, ska du följa Sendgrid artikel best practices, [Why Are My Email Going to Spam?](https://sendgrid.com/en-us/blog/10-tips-to-keep-email-out-of-the-spam-folder).
+
+Om vissa mottagare inte får dina e-postmeddelanden kan du [skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide#submit-ticket) för att begära en granskning av listorna och ta bort mottagarna om det behövs.
+
+Mer information finns i [Vad är en undertryckningslista?](https://sendgrid.com/en-us/blog/what-is-a-suppression-list)
