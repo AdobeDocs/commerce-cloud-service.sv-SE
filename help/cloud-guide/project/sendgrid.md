@@ -2,9 +2,9 @@
 title: SkickaGrid-e-posttjänst
 description: Lär dig mer om e-posttjänsten SendGrid för Adobe Commerce i molninfrastrukturen och hur du kan testa din DNS-konfiguration.
 exl-id: 30d3c780-603d-4cde-ab65-44f73c04f34d
-source-git-commit: 1226be333deb1b1da402b4c0d2e141f9be1eb93b
+source-git-commit: 34d1895592c83fa27b52d0f2e0f38445294b3782
 workflow-type: tm+mt
-source-wordcount: '1128'
+source-wordcount: '1136'
 ht-degree: 0%
 
 ---
@@ -55,7 +55,7 @@ DKIM är en teknik för e-postautentisering som gör det möjligt för internetl
 
 >[!WARNING]
 >
->Stöd för SendGrid DKIM-signaturer och domänautentisering är bara tillgängligt för Pro-projekt och inte för Starter-projekt. Därför är det troligt att utgående transaktionsmejl flaggas av skräppostfilter. Om du använder DKIM förbättras leveransfrekvensen som en autentiserad e-postavsändare. Om du vill förbättra leveransfrekvensen för meddelanden kan du uppgradera från Starter till Pro eller använda en egen SMTP-server eller e-postleverantör. Se [Konfigurera e-postanslutningar](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/communications/email-communications) i handboken _Administratörssystem_.
+>Stöd för SendGrid DKIM-signaturer och domänautentisering är endast tillgängligt i produktions- och mellanlagringsmiljöerna för Pro-projekt, men inte för alla Starter-miljöer. Därför är det troligt att utgående transaktionsmejl flaggas av skräppostfilter. Om du använder DKIM förbättras leveransfrekvensen som en autentiserad e-postavsändare. Om du vill förbättra leveransfrekvensen för meddelanden kan du uppgradera från Starter till Pro eller använda en egen SMTP-server eller e-postleverantör. Se [Konfigurera e-postanslutningar](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/communications/email-communications) i handboken _Administratörssystem_.
 
 ### Avsändare och domänautentisering
 
