@@ -3,7 +3,7 @@ title: PHP-inställningar
 description: Läs om de optimala PHP-inställningarna för Commerce-programkonfiguration i molninfrastrukturen.
 feature: Cloud, Configuration, Extensions
 exl-id: b4180265-f7a1-48e4-8c23-27835253e171
-source-git-commit: 94c1e16a07567471d446478e3bd2a33977247ef3
+source-git-commit: 9d20cd11e541d343af158eb3eadcf641fb2751bd
 workflow-type: tm+mt
 source-wordcount: '536'
 ht-degree: 0%
@@ -118,6 +118,7 @@ PHP-modulkraven är knutna till Adobe Commerce-versionen. Se [PHP-krav](https://
 
 För Pro-projekt krävs ytterligare stöd för följande tillägg:
 
+- `ioncube`
 - `sourceguardian`
 
 Om du till exempel vill konfigurera PHP så att bara SourceGuardian-skyddade skript körs i alla miljöer, måste följande alternativ anges i filen `php.ini`:
