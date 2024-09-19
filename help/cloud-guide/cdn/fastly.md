@@ -3,9 +3,9 @@ title: Snabb översikt över tjänster
 description: Se hur de snabbaste tjänsterna som ingår i Adobe Commerce i molninfrastrukturen hjälper er att optimera och säkra leveransåtgärder för era Adobe Commerce-sajter.
 feature: Cloud, Configuration, Iaas, Paas, Cache, Security, Services
 exl-id: dc4500bf-f037-47f0-b7ec-5cd1291f73a1
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: dc331df378074af8a8776a33784b73082a39cf10
 workflow-type: tm+mt
-source-wordcount: '1392'
+source-wordcount: '1426'
 ht-degree: 0%
 
 ---
@@ -34,7 +34,7 @@ Tillhandahåller snabbt följande tjänster för att optimera och skydda innehå
 
 - **Säkerhet** - När du har aktiverat snabbtjänster för Adobe Commerce-webbplatser finns ytterligare säkerhetsfunktioner tillgängliga för att skydda dina webbplatser och ditt nätverk:
 
-   - [Brandvägg för webbaserade program](fastly-waf-service.md) (WAF) - Brandvägg för hanterade webbprogram som tillhandahåller PCI-kompatibelt skydd för att blockera skadlig trafik innan den kan skada din produktion av Adobe Commerce på webbplatser och nätverk i molnet. Tjänsten WAF är endast tillgänglig i Pro- och Starter Production-miljöer.
+   - [Brandvägg för webbaserade program](fastly-waf-service.md) (WAF) - Brandvägg för hanterade webbprogram som tillhandahåller PCI-kompatibelt skydd för att blockera skadlig trafik innan den kan skada din produktion Adobe Commerce på webbplatser och nätverk i molnet. Tjänsten WAF finns endast i Pro- och Starter Production-miljöer.
 
    - [DoS-skydd (Distributed Denial of Service)](#ddos-protection) - Inbyggt DDoS-skydd mot vanliga attacker som Ping of Kill, Smurf-attacker och andra ICMP-baserade översvämningsattacker.
 
@@ -42,13 +42,13 @@ Tillhandahåller snabbt följande tjänster för att optimera och skydda innehå
 
      Adobe Commerce tillhandahåller ett domänvaliderat Låt oss kryptera SSL-/TLS-certifikat för varje mellanlagrings- och produktionsmiljö. Adobe Commerce slutför domänvalidering och certifikatetablering under processen för snabb installation.
 
-- **Insvepning av ursprung** - Förhindrar att trafik kringgår Fast WAF och döljer IP-adresserna för dina ursprungliga servrar för att skydda dem mot direkt åtkomst och DDoS-attacker.
+- **Insvepning av ursprung** - Förhindrar att trafik kringgår Fastly WAF och döljer IP-adresserna för dina ursprungliga servrar för att skydda dem mot direkt åtkomst och DDoS-attacker.
 
   Insvepning av ursprung är aktiverat som standard på Adobe Commerce i projekt för molninfrastruktur och Pro Production. Om du vill aktivera ursprungsinsvepning på Adobe Commerce i startproduktionsprojekt för molninfrastruktur skickar du en [Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket). Om du har trafik som inte kräver cachelagring kan du anpassa snabbtjänstkonfigurationen så att begäranden kan [kringgå snabbcachen](fastly-vcl-bypass-to-origin.md).
 
 - **[Bildoptimering](fastly-image-optimization.md)** - Avlastar bildbearbetning och storleksändring från tjänsten Snabbt så att servrar kan bearbeta beställningar och konverteringar mer effektivt.
 
-- **[Snabbt CDN- och WAF-loggar](../monitor/new-relic-service.md#new-relic-log-management)** - För Adobe Commerce i molninfrastrukturprojekt kan du använda tjänsten New Relic Logs för att granska och analysera Fast CDN- och WAF-loggdata.
+- **[Snabbt CDN- och WAF-loggar](../monitor/new-relic-service.md#new-relic-log-management)** - För Adobe Commerce i molninfrastrukturprojekt kan du använda New Relic Logs-tjänsten för att granska och analysera Fast CDN- och WAF-loggdata.
 
 ## Snabb CDN-modul för Magento 2
 
@@ -58,7 +58,9 @@ Vid första etableringen eller uppgraderingen av ditt Adobe Commerce-projekt ins
 
 ## Snabb service av konto och autentiseringsuppgifter
 
-Adobe Commerces i molninfrastrukturprojekt kräver inte ett dedikerat konto eller kontoägare. I stället har varje mellanlagrings- och produktionsmiljö unika snabbinloggningsuppgifter (API-token och tjänst-ID) för att konfigurera och hantera snabbtjänster från administratören. Du behöver också autentiseringsuppgifterna för att skicka API-begäranden snabbt och enkelt.
+Adobe Commerce i molninfrastrukturprojekt har inget dedikerat Fast-konto. Snabbtjänsten hanteras i ett centralt konto som är registrerat för Adobe och kontrollpanelen är bara tillgänglig för molnsupportteamet.
+
+I stället har varje mellanlagrings- och produktionsmiljö unika snabbinloggningsuppgifter (API-token och tjänst-ID) för att konfigurera och hantera snabbtjänster från Commerce Admin. API:t Fast finns för avancerad hantering av tjänsten Fast, som kräver att autentiseringsuppgifterna används för att skicka dessa begäranden.
 
 Under etableringen av ett projekt lägger Adobe till ditt projekt på snabbtjänstkontot för Adobe Commerce i molninfrastrukturen och lägger till snabbinloggningsuppgifterna i konfigurationen för mellanlagrings- och produktionsmiljöerna. Se [Få snabbt inloggningsuppgifter](fastly-configuration.md#get-fastly-credentials).
 
