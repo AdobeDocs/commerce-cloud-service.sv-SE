@@ -3,9 +3,9 @@ title: Anpassad VCL för blockeringsbegäranden
 description: Blockera inkommande begäranden via IP-adresser med hjälp av en ACL-lista (Edge Access Control List) med ett anpassat VCL-fragment.
 feature: Cloud, Configuration, Security
 exl-id: 1f637612-3858-49d0-91f7-9b8823933cc9
-source-git-commit: 0e9ace747cc56808108781e42b97c86756089818
+source-git-commit: 16c34b6c693c4d4d5c67b21c79e0cd5d198e047b
 workflow-type: tm+mt
-source-wordcount: '961'
+source-wordcount: '996'
 ht-degree: 0%
 
 ---
@@ -109,7 +109,15 @@ I följande exempel visas hur du blockerar begäranden med hjälp av infogade vi
 
 >[!WARNING]
 >
->I de här exemplen formateras VCL-koden som en JSON-nyttolast som kan sparas i en fil och skickas i en Fast API-begäran. Du kan skicka [VCL-fragmentet från Admin](#add-the-custom-vcl-snippet) eller som en JSON-sträng med API:t Snabb. För att förhindra validering när du använder API:t Fastly med en JSON-sträng måste du använda ett omvänt snedstreck för att undvika specialtecken.
+>I de här exemplen formateras VCL-koden som en JSON-nyttolast som kan sparas i en fil och skickas i en Fast API-begäran. Du kan skicka [VCL-fragmentet från Admin](#add-the-custom-vcl-snippet) eller som en JSON-sträng med API:t Snabb. För att förhindra valideringsfel när du använder API:t Fastly med en JSON-sträng måste du använda ett omvänt snedstreck för att undvika specialtecken.
+
+>[!NOTE]
+>Om du skickar VCL-kodfragmentet från administratören extraherar du de enskilda värdena från VCL-exempelkoden och anger dem i motsvarande fält. Exempel:
+>- Namn: `<name of the VCL>`
+>- Dynamisk: `<0/1>`
+>- Typ: `<type>`
+>- Prioritet: `<priority>`
+>- Innehåll: `<content>`
 
 Se [Använda dynamiska VCL-kodfragment](https://docs.fastly.com/vcl/vcl-snippets/) i dokumentationen för Snabbt VCL.
 
