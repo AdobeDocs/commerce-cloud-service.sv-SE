@@ -3,9 +3,9 @@ title: Cloud-komponenter för Commerce
 description: Se en lista med de senaste förbättringarna av Cloud Components-paketet.
 recommendations: noDisplay, catalog
 exl-id: b4e2508a-3558-4fa8-bae0-3eb76c7b2775
-source-git-commit: c02dfd2709cdc63ac1630edaa8c89cad5f737ea1
+source-git-commit: 30eafa856aaa57bb2fd2ce26e3be2a69aee726e2
 workflow-type: tm+mt
-source-wordcount: '560'
+source-wordcount: '590'
 ht-degree: 0%
 
 ---
@@ -23,7 +23,14 @@ Versionsinformationen innehåller:
 
 <!--Add release notes below-->
 
-## v1.0.14 {#latest}
+## v1.1.0 {#latest}
+
+Releasedatum: 7 oktober 2024
+
+- ![korrigeringsikon](../../assets/fix.svg) **Refererad kod** - Stödet för äldre PHP-versioner 7.4, 7.3, 7.2 och relaterade bibliotek har tagits bort.<!-- MCLOUD-9278 - -->
+- ![korrigeringsikon](../../assets/fix.svg) **Uppgraderad Monolog-version** - Stöd för monolog 3.6 har lagts till.<!-- MCLOUD-12855 - -->
+
+## v1.0.14
 
 Releasedatum: 8 april 2024
 
@@ -121,4 +128,4 @@ Releasedatum: 12 juni 2019
 
 Detta är den första versionen av paketet [`magento/magento-cloud-components`](https://github.com/magento/magento-cloud-components), som är ett nytt beroende för paketversionen `ece-tools` 2002.0.20 och senare.
 
-- ![ny ikon](../../assets/new.svg) lade till möjligheten att använda regex-mönster för att konfigurera miljövariabeln **WARM_UP_PAGES** så att den cachelagrar enstaka sidor, flera domäner och flera sidor. Se [Post-distribuerade variabler](../environment/variables-post-deploy.md#warm_up_pages).<!--MAGECLOUD-3258-->
+- ![ny ikon](../../assets/new.svg) lade till möjligheten att använda regex-mönster för att konfigurera miljövariabeln **WARM_UP_PAGES** så att den cachelagrar enstaka sidor, flera domäner och flera sidor. Se [Variabler efter distribution](../environment/variables-post-deploy.md#warm_up_pages).<!--MAGECLOUD-3258-->

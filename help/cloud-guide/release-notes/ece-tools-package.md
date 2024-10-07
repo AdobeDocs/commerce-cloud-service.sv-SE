@@ -2,11 +2,11 @@
 title: Versionsinformation för ECE-verktyg
 description: Se en lista över de senaste förbättringarna av ECE-verktygspaketet.
 recommendations: noDisplay, catalog
-last-substantial-update: 2024-05-21T00:00:00Z
+last-substantial-update: 2024-10-07T00:00:00Z
 exl-id: a464b940-c56e-4a7c-9948-559539e25361
-source-git-commit: 923e2114270df22e134e0676ac97f84d770bb226
+source-git-commit: 30eafa856aaa57bb2fd2ce26e3be2a69aee726e2
 workflow-type: tm+mt
-source-wordcount: '2929'
+source-wordcount: '2990'
 ht-degree: 0%
 
 ---
@@ -28,7 +28,16 @@ Versionsinformationen innehåller:
 
 <!--Add release notes below-->
 
-## v2002.1.19 {#latest}
+## v2002.2.0 {#latest}
+
+Releasedatum: 7 oktober 2024
+
+- ![ny ikon](../../assets/new.svg) **MariaDB 11.4** - Stöd för MariaDB 11.4 har lagts till.
+- ![korrigeringsikon](../../assets/fix.svg) **Refererad kod**-Borttaget stöd för äldre PHP-versioner 7.4, 7.3, 7.2 och relaterade bibliotek.<!-- MCLOUD-9278 -->
+- ![korrigeringsikon](../../assets/fix.svg) **Uppgraderad Monolog-version** - Tillagt stöd för monolog 3.6.<!-- MCLOUD-12855 -->
+- ![korrigeringsikon](../../assets/fix.svg) **Validerare för RabbitMQ, MariaDB och PHP**-Korrigerade valideraren som gav upphov till ett missvisande meddelande om fel tjänstversion.
+
+## v2002.1.19
 
 Releasedatum: 21 maj 2024
 
@@ -40,7 +49,7 @@ Releasedatum: 21 maj 2024
 Releasedatum: 8 april 2024
 
 - ![ny ikon](../../assets/new.svg) **PHP** - Stöd för PHP 8.3 har lagts till.
-- ![korrigeringsikon](../../assets/fix.svg) Validerare - Uppdaterad EOL-validerare.
+- ![korrigeringsikon](../../assets/fix.svg) **Validator** - Uppdaterad EOL-validerare.
 
 ## v2002.1.17
 
