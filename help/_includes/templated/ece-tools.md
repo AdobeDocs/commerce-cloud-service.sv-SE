@@ -1,232 +1,179 @@
 ---
-source-git-commit: f2bf3f597aafa19fc4af0974523a8307a1f37b8e
+source-git-commit: 63c86bab0f3feb5a3a641a7a785ea625338045f4
 workflow-type: tm+mt
-source-wordcount: '4030'
+source-wordcount: '921'
 ht-degree: 0%
 
 ---
 # ece-tools
 
-<!-- The template to render with above values -->
 **Version**: 2002.2.0
 
 Referensen innehåller 34 kommandon som är tillgängliga via kommandoradsverktyget `ece-tools`.
 Den inledande listan genereras automatiskt med kommandot `ece-tools list` på Adobe Commerce i molninfrastrukturen.
 
->[!NOTE]
->
->Den här referensen genereras från programmets kodbas. Om du vill ändra innehållet kan du uppdatera källkoden för motsvarande kommandoimplementering i databasen [codebase](https://github.com/magento/magento-cloud-cli) och skicka ändringarna för granskning. Ett annat sätt är att _ge oss feedback_ (hitta länken uppe till höger). Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
+## Allmänt
+
+Den här referensen genereras från programmets kodbas. _Ge oss feedback_ (hitta länken i det övre högra hörnet) om du vill ändra innehållet. Information om riktlinjer för bidrag finns i [Kodavgifter](https://developer.adobe.com/commerce/contributor/guides/code-contributions/).
+
+### Globala alternativ
+
+#### `--help`, `-h`
+
+Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+#### `--quiet`, `-q`
+
+Skriv inget meddelande
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+#### `--verbose`, `-v|-vv|-vvv`
+
+Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+#### `--version`, `-V`
+
+Visa den här programversionen
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+#### `--ansi`
+
+Tvinga (eller inaktivera) ANSI-utdata
+
+- Accepterar inte ett värde
+
+#### `--no-ansi`
+
+Ignorera alternativet &quot;—ansi&quot;
+
+- Standard: `false`
+- Accepterar inte ett värde
+
+#### `--no-interaction`, `-n`
+
+Ställ inga interaktiva frågor
+
+- Standard: `false`
+- Accepterar inte ett värde
+
 
 ## `_complete`
-
-Internt kommando för att ge förslag på komplettering av skalet
 
 ```bash
 ece-tools _complete [-s|--shell SHELL] [-i|--input INPUT] [-c|--current CURRENT] [-a|--api-version API-VERSION] [-S|--symfony SYMFONY]
 ```
 
-### `--shell`, `-s`
+Internt kommando för att ge förslag på komplettering av skalet
+
+### Alternativ
+
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--shell`, `-s`
 
 Skaltypen (&quot;bash&quot;, &quot;fish&quot;, &quot;zsh&quot;)
 
 - Kräver ett värde
 
-### `--input`, `-i`
+#### `--input`, `-i`
 
 En array med indatatoken (t.ex. COMP_WORDS eller argv)
 
 - Standard: `[]`
 - Kräver ett värde
 
-### `--current`, `-c`
+#### `--current`, `-c`
 
 Indexvärdet för den inmatningsarray där markören finns (t.ex. COMP_CWORD)
 
 - Kräver ett värde
 
-### `--api-version`, `-a`
+#### `--api-version`, `-a`
 
 API-versionen av det slutförda skriptet
 
 - Kräver ett värde
 
-### `--symfony`, `-S`
+#### `--symfony`, `-S`
 
 inaktuell
 
 - Kräver ett värde
 
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
-
 
 ## `build`
-
-Skapar program.
 
 ```bash
 ece-tools build
 ```
 
-### `--help`, `-h`
+Skapar program.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `completion`
-
-Dumpa skriptet för gränssnittets slutförande
 
 ```bash
 ece-tools completion [--debug] [--] [<shell>]
 ```
 
+Dumpa skriptet för gränssnittets slutförande
 
-### `shell`
+```
+The completion command dumps the shell completion script required
+to use shell autocompletion (currently, bash, fish, zsh completion are supported).
+
+Static installation
+-------------------
+
+Dump the script to a global completion file and restart your shell:
+
+    bin/ece-tools completion  | sudo tee /etc/bash_completion.d/ece-tools
+
+Or dump the script to a local file and source it:
+
+    bin/ece-tools completion  > completion.sh
+
+    # source the file whenever you use the project
+    source completion.sh
+
+    # or add this line at the end of your "~/.bashrc" file:
+    source /path/to/completion.sh
+
+Dynamic installation
+--------------------
+
+Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
+
+    eval "$(/var/jenkins/workspace/gendocs-ece-tools-cli/bin/ece-tools completion )"
+```
+
+### Argument
+
+#### `shell`
 
 Gränssnittstypen (t.ex. &quot;bash&quot;), värdet för &quot;$SHELL&quot; env var, används om detta inte anges
 
+### Alternativ
 
-### `--debug`
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--debug`
 
 Avsluta felsökningsloggen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -234,214 +181,94 @@ Ställ inga interaktiva frågor
 
 ## `db-dump`
 
-Skapar säkerhetskopiering av databaser.
-
 ```bash
 ece-tools db-dump [-d|--remove-definers] [-a|--dump-directory DUMP-DIRECTORY] [--] [<databases>...]
 ```
 
+Skapar säkerhetskopiering av databaser.
 
-### `databases`
+### Argument
+
+#### `databases`
 
 Databaser för säkerhetskopiering. Tillgängliga värden: [försäljning av huvudofferter]. Om argumentvärdet inte anges skapas databassäkerhetskopior med hjälp av autentiseringsuppgifterna som lagras i miljövariabeln `MAGENTO_CLOUD_RELATIONSHIP` eller `stage.deploy.DATABASE_CONFIGURATION` i konfigurationsfilen .magento.env.yaml.
 
 - Standard: `[]`
-
 - Array
 
-### `--remove-definers`, `-d`
+### Alternativ
+
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--remove-definers`, `-d`
 
 Ta bort definitioner från databasdumpen
 
 - Standard: `false`
 - Accepterar inte ett värde
 
-### `--dump-directory`, `-a`
+#### `--dump-directory`, `-a`
 
 Använd alternativ katalog för att spara dumpen
 
 - Kräver ett värde
 
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
-
 
 ## `deploy`
-
-Distribuerar programmet.
 
 ```bash
 ece-tools deploy
 ```
 
-### `--help`, `-h`
+Distribuerar programmet.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `help`
-
-Visa hjälp för ett kommando
 
 ```bash
 ece-tools help [--format FORMAT] [--raw] [--] [<command_name>]
 ```
 
+Visa hjälp för ett kommando
 
-### `command_name`
+```
+The help command displays help for a given command:
+
+  bin/ece-tools help list
+
+You can also output the help in other formats by using the --format option:
+
+  bin/ece-tools help --format=xml list
+
+To display the list of available commands, please use the list command.
+```
+
+### Argument
+
+#### `command_name`
 
 Kommandonamnet
 
 - Standard: `help`
 
+### Alternativ
 
-### `--format`
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--format`
 
 Utdataformatet (txt, xml, json eller md)
 
 - Standard: `txt`
 - Kräver ett värde
 
-### `--raw`
+#### `--raw`
 
 Hjälp för att skriva ut råformat
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -449,83 +276,57 @@ Ställ inga interaktiva frågor
 
 ## `list`
 
-Listkommandon
-
 ```bash
 ece-tools list [--raw] [--format FORMAT] [--short] [--] [<namespace>]
 ```
 
+Listkommandon
 
-### `namespace`
+```
+The list command lists all commands:
+
+  bin/ece-tools list
+
+You can also display the commands for a specific namespace:
+
+  bin/ece-tools list test
+
+You can also output the information in other formats by using the --format option:
+
+  bin/ece-tools list --format=xml
+
+It's also possible to get raw list of commands (useful for embedding command runner):
+
+  bin/ece-tools list --raw
+```
+
+### Argument
+
+#### `namespace`
 
 Namnutrymmets namn
 
+### Alternativ
 
-### `--raw`
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--raw`
 
 Utdata för kommandolista
 
 - Standard: `false`
 - Accepterar inte ett värde
 
-### `--format`
+#### `--format`
 
 Utdataformatet (txt, xml, json eller md)
 
 - Standard: `txt`
 - Kräver ett värde
 
-### `--short`
+#### `--short`
 
 Så här beskriver du inte kommandots argument
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -533,1153 +334,315 @@ Ställ inga interaktiva frågor
 
 ## `patch`
 
-Använder anpassade patchar.
-
 ```bash
 ece-tools patch
 ```
 
-### `--help`, `-h`
+Använder anpassade patchar.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `post-deploy`
-
-Utför efter distributionsåtgärder.
 
 ```bash
 ece-tools post-deploy
 ```
 
-### `--help`, `-h`
+Utför efter distributionsåtgärder.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `run`
-
-Kör scenarier.
 
 ```bash
 ece-tools run <scenario>...
 ```
 
+Kör scenarier.
 
-### `scenario`
+### Argument
+
+#### `scenario`
 
 Scenario(er)
 
 - Standard: `[]`
-
 - Obligatoriskt
+
 - Array
 
-### `--help`, `-h`
+### Alternativ
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `backup:list`
-
-Visar en lista med säkerhetskopierade filer.
 
 ```bash
 ece-tools backup:list
 ```
 
-### `--help`, `-h`
+Visar en lista med säkerhetskopierade filer.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `backup:restore`
-
-Återställ viktiga konfigurationsfiler. Kör säkerhetskopiering:lista för att visa listan med säkerhetskopierade filer.
 
 ```bash
 ece-tools backup:restore [-f|--force] [--file [FILE]]
 ```
 
-### `--force`, `-f`
+Återställ viktiga konfigurationsfiler. Kör säkerhetskopiering:lista för att visa listan med säkerhetskopierade filer.
+
+### Alternativ
+
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--force`, `-f`
 
 Skriv över befintliga filer under återställning av en säkerhetskopia
 
 - Standard: `false`
 - Accepterar inte ett värde
 
-### `--file`
+#### `--file`
 
 En specifik filåterställningssökväg
 
 - Accepterar ett värde
 
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
-
 
 ## `build:generate`
-
-Genererar alla filer som behövs för byggfasen.
 
 ```bash
 ece-tools build:generate
 ```
 
-### `--help`, `-h`
+Genererar alla filer som behövs för byggfasen.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `build:transfer`
-
-Överför genererade filer till init-katalogen.
 
 ```bash
 ece-tools build:transfer
 ```
 
-### `--help`, `-h`
+Överför genererade filer till init-katalogen.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cloud:config:create`
-
-Skapar en `.magento.env.yaml`-fil med den angivna variabelkonfigurationen för build, deploy och post-deploy. Skriver över befintlig `.magento,.env.yaml`-fil.
 
 ```bash
 ece-tools cloud:config:create <configuration>
 ```
 
+Skapar en `.magento.env.yaml`-fil med den angivna variabelkonfigurationen för build, deploy och post-deploy. Skriver över befintlig `.magento,.env.yaml`-fil.
 
-### `configuration`
+### Argument
+
+#### `configuration`
 
 Konfiguration i JSON-format
 
 - Obligatoriskt
 
-### `--help`, `-h`
+### Alternativ
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cloud:config:update`
-
-Uppdaterar den befintliga `.magento.env.yaml`-filen med den angivna konfigurationen. Skapar filen `.magento.env.yaml` om den inte finns.
 
 ```bash
 ece-tools cloud:config:update <configuration>
 ```
 
+Uppdaterar den befintliga `.magento.env.yaml`-filen med den angivna konfigurationen. Skapar filen `.magento.env.yaml` om den inte finns.
 
-### `configuration`
+### Argument
+
+#### `configuration`
 
 Konfiguration i JSON-format
 
 - Obligatoriskt
 
-### `--help`, `-h`
+### Alternativ
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cloud:config:validate`
-
-Verifierar konfigurationsfilen `.magento.env.yaml`
 
 ```bash
 ece-tools cloud:config:validate
 ```
 
-### `--help`, `-h`
+Verifierar konfigurationsfilen `.magento.env.yaml`
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `config:dump`
 
+```bash
+ece-tools config:dumpdump
+```
+
 Dumpa konfigurationen för statisk innehållsdistribution.
 
-```bash
-ece-tools config:dump
-```
+### Alternativ
 
-
-```bash
-ece-tools dump
-```
-
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cron:disable`
-
-Inaktivera alla Magento cron-processer och avsluta alla processer som körs.
 
 ```bash
 ece-tools cron:disable
 ```
 
-### `--help`, `-h`
+Inaktivera alla Magento cron-processer och avsluta alla processer som körs.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cron:enable`
-
-Möjliggör Magento cron-processer.
 
 ```bash
 ece-tools cron:enable
 ```
 
-### `--help`, `-h`
+Möjliggör Magento cron-processer.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cron:kill`
-
-Avslutar alla Magento cron-processer.
 
 ```bash
 ece-tools cron:kill
 ```
 
-### `--help`, `-h`
+Avslutar alla Magento cron-processer.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `cron:unlock`
-
-Lås upp cron-jobb som fastnat i körläge.
 
 ```bash
 ece-tools cron:unlock [--job-code [JOB-CODE]]
 ```
 
-### `--job-code`
+Lås upp cron-jobb som fastnat i körläge.
+
+### Alternativ
+
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--job-code`
 
 Upplås genom att krona jobbkoden.
 
 - Standard: `[]`
 - Accepterar flera värden
 
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
-
 
 ## `dev:generate:schema-error`
-
-Skapar dist/error-codes.md från filen schema.error.yaml.
 
 ```bash
 ece-tools dev:generate:schema-error
 ```
 
-### `--help`, `-h`
+Skapar dist/error-codes.md från filen schema.error.yaml.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `dev:git:update-composer`
-
-Uppdaterar disposition för distribution från Git.
 
 ```bash
 ece-tools dev:git:update-composer
 ```
 
-### `--help`, `-h`
+Uppdaterar disposition för distribution från Git.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `env:config:show`
-
-Visa miljövariabler för kodad molnkonfiguration.
 
 ```bash
 ece-tools env:config:show [<variable>...]
 ```
 
+Visa miljövariabler för kodad molnkonfiguration.
 
-### `variable`
+### Argument
+
+#### `variable`
 
 Miljövariabler som ska visas, möjliga alternativ: tjänster, flöden, variabler
 
 - Standard: `[]`
-
 - Array
 
-### `--help`, `-h`
+### Alternativ
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `error:show`
-
-Visar information om fel med fel-ID eller information om alla fel från den senaste distributionen.
 
 ```bash
 ece-tools error:show [-j|--json] [--] [<error-code>]
 ```
 
+Visar information om fel med fel-ID eller information om alla fel från den senaste distributionen.
 
-### `error-code`
+### Argument
+
+#### `error-code`
 
 Felkod: Om kommandot inte skickas visas information om alla fel från den senaste distributionen
 
+### Alternativ
 
-### `--json`, `-j`
+Information om globala alternativ finns i [Globala alternativ](#global-options).
+
+#### `--json`, `-j`
 
 Används för att få resultat i JSON-format
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--help`, `-h`
-
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
 
 - Standard: `false`
 - Accepterar inte ett värde
@@ -1687,456 +650,103 @@ Ställ inga interaktiva frågor
 
 ## `module:refresh`
 
-Uppdaterar konfigurationen för att aktivera nya moduler.
-
 ```bash
 ece-tools module:refresh
 ```
 
-### `--help`, `-h`
+Uppdaterar konfigurationen för att aktivera nya moduler.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `schema:generate`
-
-Skapar schemafilen *.dist.
 
 ```bash
 ece-tools schema:generate
 ```
 
-### `--help`, `-h`
+Skapar schemafilen *.dist.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:ideal-state`
-
-Verifierar det idealiska konfigurationstillståndet.
 
 ```bash
 ece-tools wizard:ideal-state
 ```
 
-### `--help`, `-h`
+Verifierar det idealiska konfigurationstillståndet.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:master-slave`
-
-Verifierar konfigurationen av master-slave.
 
 ```bash
 ece-tools wizard:master-slave
 ```
 
-### `--help`, `-h`
+Verifierar konfigurationen av master-slave.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:scd-on-build`
-
-Verifierar SCD vid konfiguration av bygge.
 
 ```bash
 ece-tools wizard:scd-on-build
 ```
 
-### `--help`, `-h`
+Verifierar SCD vid konfiguration av bygge.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:scd-on-demand`
-
-Verifierar konfiguration av SCD vid behov.
 
 ```bash
 ece-tools wizard:scd-on-demand
 ```
 
-### `--help`, `-h`
+Verifierar konfiguration av SCD vid behov.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:scd-on-deploy`
-
-Verifierar SCD vid distributionskonfiguration.
 
 ```bash
 ece-tools wizard:scd-on-deploy
 ```
 
-### `--help`, `-h`
+Verifierar SCD vid distributionskonfiguration.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
+Information om globala alternativ finns i [Globala alternativ](#global-options).
 
 
 ## `wizard:split-db-state`
-
-Verifierar möjligheten att dela DB och om DB redan delats eller inte.
 
 ```bash
 ece-tools wizard:split-db-state
 ```
 
-### `--help`, `-h`
+Verifierar möjligheten att dela DB och om DB redan delats eller inte.
 
-Visa hjälp för det angivna kommandot. När inget kommando anges visas hjälpen för listkommandot
+### Alternativ
 
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--quiet`, `-q`
-
-Skriv inget meddelande
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--verbose`, `-v|-vv|-vvv`
-
-Öka meddelandenas utförlighet: 1 för normal utskrift, 2 för mer utförlig utskrift och 3 för felsökning
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--version`, `-V`
-
-Visa den här programversionen
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--ansi`
-
-Tvinga (eller inaktivera) ANSI-utdata
-
-- Accepterar inte ett värde
-
-### `--no-ansi`
-
-Ignorera alternativet &quot;—ansi&quot;
-
-- Standard: `false`
-- Accepterar inte ett värde
-
-### `--no-interaction`, `-n`
-
-Ställ inga interaktiva frågor
-
-- Standard: `false`
-- Accepterar inte ett värde
-
+Information om globala alternativ finns i [Globala alternativ](#global-options).
