@@ -1,7 +1,7 @@
 ---
-source-git-commit: 762ce3cb6268401b0f5fae5b2280a870aa9c83a5
+source-git-commit: a87039d2e96e39d6d8d19673c5e0d52de8b844a4
 workflow-type: tm+mt
-source-wordcount: '857'
+source-wordcount: '879'
 ht-degree: 0%
 
 ---
@@ -43,11 +43,12 @@ Ställ in alternativet `_merge` på något av följande:
 ## Support för Pro services {#pro-update-service}
 
 >[!TIP]
+>
 >För Pro-projekt måste du [skicka en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) om du bara vill installera eller uppdatera [tjänster](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/service/services-yaml.html) i `Staging`- och `Production`-miljöer.
 >
 >Ange vilka tjänständringar som krävs, inkludera dina uppdaterade `.magento.app.yaml`- och `services.yaml`-filer och ange PHP-versionen i biljetten. Om du vill göra ändringar i PHP-version, tillägg eller miljöinställningar för självbetjäning läser du [PHP-inställningar](https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/configure/app/php-settings.html) i _Programkonfiguration_.
 >
->Om du vill ändra en _live_-produktionsmiljö (**endast för Pro**) måste du ange minst 48 timmars varsel för att molninfrastrukturteamet ska få tillräckligt med tid för att dela resurser och genomföra en säker uppgradering. Meddelandeperioden omfattar inte helger. Om du t.ex. vill att dina serviceuppgraderingar ska göras en måndag måste du skicka in förfrågan senast på onsdagen.
+>För ändringar i en aktiv produktionsmiljö (**endast Pro**) krävs minst 48 timmars varsel. Detta ger molninfrastruktursteamet tillräckligt med tid för att samla in resurser och genomföra en säker uppgradering. Anmälningsperioden börjar när infrastrukturteamet godkänner begäran och schemalägger uppgraderingen, exklusive helger. Om du t.ex. vill att uppgraderingarna ska vara klara på måndag måste du få en bekräftelse på den schemalagda uppgraderingen senast på onsdagen. Under perioder med hög efterfrågan kan det ta längre tid att behandla din begäran.
 
 ## Pro-säkerhetskopiering {#pro-backups}
 
