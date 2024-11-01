@@ -4,9 +4,9 @@ description: Se en lista över de senaste förbättringarna av Cloud Patches-pak
 recommendations: noDisplay, catalog
 last-substantial-update: 2024-10-07T00:00:00Z
 exl-id: ae6b511b-a37d-4776-9a5e-ad7d9f9f6611
-source-git-commit: 30eafa856aaa57bb2fd2ce26e3be2a69aee726e2
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
-source-wordcount: '2275'
+source-wordcount: '2256'
 ht-degree: 0%
 
 ---
@@ -154,7 +154,7 @@ Releasedatum: 12 augusti 2021
 
 Viktig patch för Adobe Commerce 2.4.3 och 2.3.7-p1:
 
-- **Problem med API-hastighetsbegränsning** - Den här korrigeringen åtgärdar en standardhastighetsgräns som förhindrar att webb-API:er bearbetar begäranden med mer än 20 objekt i en array. Den här korrigeringen höjer standardvärdet för hastighetsgränsen. Se versionsinformationen för Adobe Commerce [ 2.4.3](https://devdocs.magento.com/guides/v2.4/release-notes/commerce-2-4-3.html#apply-mc-43048__set_rate_limits__243patch-to-address-issue-with-api-rate-limiting) och versionsinformationen för [ 2.3.7 ](https://devdocs.magento.com/guides/v2.3/release-notes/2-3-7-p1.html#apply-mc-43048__set_rate_limits__237-p1patch-to-address-issue-with-api-rate-limiting).<!-- MC-43048 -->
+- **Problem med API-hastighetsbegränsning** - Den här korrigeringen åtgärdar en standardhastighetsgräns som förhindrar att webb-API:er bearbetar begäranden med mer än 20 objekt i en array. Den här korrigeringen höjer standardvärdet för hastighetsgränsen. Se versionsinformationen för Adobe Commerce [ 2.4.3](https://experienceleague.adobe.com/en/docs/commerce-operations/release/notes/adobe-commerce/2-4-3#apply-mc-43048__set_rate_limits__243patch-to-address-issue-with-api-rate-limiting).<!-- MC-43048 -->
 
 ## v1.0.11
 
@@ -222,7 +222,7 @@ Utgivningsdatum:
 
 Releasedatum: 26 juni 2020
 
-- **Prestandaförbättringar för Redis** - Lägger till optimeringsfunktioner för Redis i Adobe Commerce version 2.3.3 och 2.3.4. Dessa korrigeringar ingick i Adobe Commerce version 2.3.5. Se [Prestandaförbättringar](https://devdocs.magento.com/guides/v2.3/release-notes/release-notes-2-3-5-commerce.html#performance-boosts) i versionsinformationen för _Adobe Commerce 2.3.5_.<!--MCLOUD-5771-->
+- **Prestandaförbättringar för Redis** - Lägger till optimeringsfunktioner för Redis i Adobe Commerce version 2.3.3 och 2.3.4. Dessa korrigeringar ingick i Adobe Commerce version 2.3.5.<!--MCLOUD-5771-->
 
 - **New Relic-loggregistrering** - Lägger till det Monolog ProcessorInterface som krävs för att stödja förbättringar av New Relic loggningsfunktioner som introducerats i molnkomponenter i Commerce version 1.0.4. Den här korrigeringen krävs för att installera Adobe Commerce 2.1.x. Om korrigeringen inte tillämpas misslyckas bygget under `di:compile` -processen.<!--MCLOUD-6029-->
 

@@ -3,16 +3,16 @@ title: Konfigurera RabbitMQ-tjänst
 description: Lär dig hur du aktiverar tjänsten RabbitMQ för att hantera meddelandeköer för Adobe Commerce i molninfrastruktur.
 feature: Cloud, Services
 exl-id: 85794b8f-2260-4a6e-b5a6-a1b4c356594e
-source-git-commit: adcfbb7217c70122a4003a66d1bec1a623fbf11a
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
-source-wordcount: '399'
+source-wordcount: '398'
 ht-degree: 0%
 
 ---
 
 # Konfigurera tjänsten [!DNL RabbitMQ]
 
-[MQF (Message Queue Framework)](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/message-queues/message-queue-framework.html) är ett system i Adobe Commerce som tillåter en [modul](https://glossary.magento.com/module) att publicera meddelanden till köer. Det definierar också de konsumenter som tar emot meddelandena asynkront.
+[MQF (Message Queue Framework)](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/message-queues/message-queue-framework.html) är ett system i Adobe Commerce som tillåter en [modul](https://experienceleague.adobe.com/en/docs/commerce-operations/operational-playbook/glossary#module) att publicera meddelanden till köer. Det definierar också de konsumenter som tar emot meddelandena asynkront.
 
 MQF använder [RabbitMQ](https://www.rabbitmq.com/) som meddelandeförmedlare, som tillhandahåller en skalbar plattform för att skicka och ta emot meddelanden. Den innehåller även en mekanism för att lagra olevererade meddelanden. [!DNL RabbitMQ] baseras på specifikationen Advanced Message Queuing Protocol (AMQP) 0.9.1.
 
@@ -144,4 +144,4 @@ När du loggar in på PHP-behållaren anger du ett `amqp-`-kommando som är till
 
 ### Anslut från ditt PHP-program
 
-Om du vill ansluta till RabbitMQ med ditt PHP-program lägger du till ett PHP [bibliotek](https://glossary.magento.com/library) i källträdet.
+Om du vill ansluta till RabbitMQ med ditt PHP-program lägger du till ett PHP-bibliotek i källträdet.

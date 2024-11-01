@@ -3,7 +3,7 @@ title: Ställ in PayPal-betalningsmetoder
 description: Ställ in betalningsmetoder för PayPal för Adobe Commerce i molninfrastruktur.
 feature: Cloud, Checkout, Payments
 exl-id: e52fd719-f936-4e8b-8222-af133389d9e2
-source-git-commit: aa1a334ca1383559194ca75247679c6fb5411802
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
 source-wordcount: '669'
 ht-degree: 0%
@@ -59,7 +59,7 @@ Så här konfigurerar du PayPal Express Checkout:
    * **Sandlådeläge** Välj Ja eller Nej för att ange om inloggningsuppgifterna som du angav gäller sandlådan. Om du har angett produktionsuppgifter väljer du Nej.
    * **API:t använder Proxy**, välj Ja eller Nej om systemet använder en proxyserver för att upprätta en anslutning mellan Adobe Commerce och PayPal-betalningssystemet. Om Ja, ange proxyvärden och port.
 
-1. Detaljerad information och steg för hur du konfigurerar ditt konto finns i [PayPal Express Checkout](https://docs.magento.com/user-guide/payment/paypal-express-checkout.html) som börjar med steg 2 Slutför de obligatoriska inställningarna.
+1. Detaljerad information och steg för hur du konfigurerar ditt konto finns i [PayPal Express Checkout](https://experienceleague.adobe.com/en/docs/commerce-admin/stores-sales/payments/paypal/paypal-express-checkout) som börjar med steg 2 Slutför de obligatoriska inställningarna.
 
 Med kontot konfigurerat och autentiserat kan du aktivera och inaktivera betalningsalternativ för PayPal under Obligatoriska PayPal-inställningar:
 

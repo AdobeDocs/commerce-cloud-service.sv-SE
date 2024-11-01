@@ -2,7 +2,7 @@
 title: Öppna checklista
 description: Granska checklisteobjekt för att starta webbplatsen.
 exl-id: 4525742e-18c5-40d1-975d-00ba3f3a51a0
-source-git-commit: 5b0a691a4355f5eda31d42cd3da9925439dfb510
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
 source-wordcount: '1104'
 ht-degree: 0%
@@ -105,7 +105,7 @@ Följande är rekommenderade ändringar och kontroller:
 
 - [Utgående e-posttestning har slutförts](../project/outgoing-emails.md)
 
-- [Säker konfiguration för administratörsautentiseringsuppgifter och bas-admin-URL](https://docs.magento.com/user-guide/stores/security-admin.html)
+- [Säker konfiguration för administratörsautentiseringsuppgifter och bas-admin-URL](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/security/security-admin)
 
 - [Optimera alla bilder för webben](../cdn/fastly-image-optimization.md)
 
@@ -137,13 +137,13 @@ Du kan också testa med följande alternativ från tredje part:
 
 - [Konfigurera säkerhetsgenomsökning](overview.md#set-up-the-security-scan-tool)
 
-- [Säker konfiguration för administratörsanvändare](https://docs.magento.com/user-guide/stores/security-admin.html)
+- [Säker konfiguration för administratörsanvändare](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/security/security-admin)
 
-- [Säker konfiguration för Admin URL](https://docs.magento.com/user-guide/stores/store-urls-custom-admin.html)
+- [Säker konfiguration för Admin URL]https://experienceleague.adobe.com/en/docs/commerce-admin/stores-sales/site-store/store-urls#use-a-custom-admin-url)
 
 - [Ta bort användare som inte längre använder Adobe Commerce i molninfrastrukturprojektet](../project/user-access.md)
 
-- [Konfigurera tvåfaktorsautentisering](https://devdocs.magento.com/guides/v2.4/security/two-factor-authentication.html)
+- [Konfigurera tvåfaktorsautentisering](https://developer.adobe.com/commerce/testing/functional-testing-framework/two-factor-authentication/)
 
 ## Prestandaövervakning
 

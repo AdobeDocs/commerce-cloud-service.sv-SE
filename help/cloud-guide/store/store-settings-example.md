@@ -2,9 +2,9 @@
 title: Exempel på hantering av systemspecifika inställningar
 description: Se ett exempel på hur du hanterar och synkroniserar lagringskonfigurationsinställningar i alla Adobe Commerce-miljöer för molninfrastrukturer.
 hidefromtoc: true
-source-git-commit: 13e76d3e9829155995acbb72d947be3041579298
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
-source-wordcount: '865'
+source-wordcount: '864'
 ht-degree: 0%
 
 ---
@@ -29,7 +29,7 @@ I exemplet används följande procedur som definierats i [Store-inställningarna
 
 Du kan till exempel ange följande inställningar:
 
-* Inaktivera [språkområde](https://glossary.magento.com/locale) och statiska filjoptimeringsinställningar i integreringsmiljön
+* Inaktivera inställningar för språkområdesoptimering och statisk filoptimering i integreringsmiljön
 * Möjliggör statisk filoptimering i miljö för förproduktion och produktion
 * Konfigurera snabbt i mellanlagring och produktion med specifika autentiseringsuppgifter för varje
 
@@ -56,7 +56,7 @@ I integreringsmiljön kan du logga in på Admin för att ändra systemkonfigurat
    ![Ändra språkinställning](../../assets/locale-options.png)
 
 1. Klicka på **Spara konfiguration**.
-1. Om du uppmanas till det tömmer [cachen](https://docs.magento.com/user-guide/system/cache-management.html).
+1. Om du uppmanas till det tömmer [cachen](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/tools/cache-management).
 1. Logga ut från administratören.
 
 ## Exportera värden och överför config.php till ditt lokala system
@@ -159,7 +159,7 @@ Så här lägger du till konfigurationsvärden i integreringsmiljöns administra
 1. Expandera **JavaScript-inställningar** i den högra rutan.
 1. Klicka på **Ja** i listan **Sammanfoga JavaScript-filer**.
 1. Klicka på **Spara konfiguration**.
-1. Om du uppmanas till det tömmer [cachen](https://docs.magento.com/user-guide/system/cache-management.html).
+1. Om du uppmanas till det tömmer [cachen](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/tools/cache-management).
 1. Logga ut från administratören.
 
 Genom att köra dumpkommandot igen läggs den nya konfigurationen till i filen.

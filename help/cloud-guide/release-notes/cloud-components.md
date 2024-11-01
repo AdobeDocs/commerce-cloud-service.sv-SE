@@ -3,7 +3,7 @@ title: Cloud-komponenter för Commerce
 description: Se en lista med de senaste förbättringarna av Cloud Components-paketet.
 recommendations: noDisplay, catalog
 exl-id: b4e2508a-3558-4fa8-bae0-3eb76c7b2775
-source-git-commit: 30eafa856aaa57bb2fd2ce26e3be2a69aee726e2
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
 source-wordcount: '590'
 ht-degree: 0%
@@ -46,7 +46,7 @@ Releasedatum: 10 mars 2023
 
 Releasedatum: 13 september 2022
 
-- ![korrigeringsikon](../../assets/fix.svg) **Fel vid varning** - Korrigerade ett fel som försökte [varma](../environment/variables-post-deploy.md#warm_up_pages) när sidsynligheten är inställd på [**Inte synlig enskilt**](https://docs.magento.com/user-guide/system/data-attributes-product.html#simple-product-csv-file-structure) i administratören, vilket resulterade i `ERROR: Warming up failed: <link to page>` fel i distributionsloggen.<!-- MCLOUD-9134 -->
+- ![korrigeringsikon](../../assets/fix.svg) **Fel vid varning** - Korrigerade ett fel som försökte [varma](../environment/variables-post-deploy.md#warm_up_pages) när sidsynligheten är inställd på [**Inte synlig enskilt**](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/data-transfer/data-attributes-product#simple-product-csv-file-structure) i administratören, vilket resulterade i `ERROR: Warming up failed: <link to page>` fel i distributionsloggen.<!-- MCLOUD-9134 -->
 
 ## v1.0.11
 

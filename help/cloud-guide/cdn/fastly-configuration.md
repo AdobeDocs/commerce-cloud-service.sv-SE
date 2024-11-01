@@ -3,9 +3,9 @@ title: Konfigurera snabbfunktioner
 description: Lär dig hur du konfigurerar snabbtjänster för ditt Adobe Commerce-projekt.
 feature: Cloud, Configuration, Iaas, Cache, Security
 exl-id: c53ff3bd-3df2-45fb-933e-d3b29f7edf4e
-source-git-commit: 8a0523f1714b6ea41887e99b5c31294cf5e5255e
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
-source-wordcount: '1961'
+source-wordcount: '1960'
 ht-degree: 0%
 
 ---
@@ -14,7 +14,7 @@ ht-degree: 0%
 
 Det krävs snabbt för Adobe Commerce i miljöer med molnbaserad infrastruktur, staging och produktion.
 
-Fungerar snabbt med engelska för att tillhandahålla snabba cachningsfunktioner och ett [CDN (Content Delivery Network)](https://glossary.magento.com/content-delivery-network) (Content Delivery Network) för statiska resurser. Tillhandahåller snabbt även en Brandvägg för webbaserade program (WAF) för att säkra din webbplats och molninfrastrukturen. För att skydda din webbplats och molninfrastruktur från skadlig trafik och attacker dirigerar du all inkommande webbplatstrafik via Fast.
+Fungerar snabbt med lack för att få snabba cachningsfunktioner och ett CDN-nätverk (Content Delivery Network) för statiska resurser. Tillhandahåller snabbt även en brandvägg för webbaserade program (WAF) för att säkra din webbplats och molninfrastruktur. För att skydda din webbplats och molninfrastruktur från skadlig trafik och attacker dirigerar du all inkommande webbplatstrafik via Fast.
 
 >[!NOTE]
 >
@@ -64,7 +64,7 @@ Metoden för att visa inloggningsuppgifter skiljer sig åt för Pro- och Starter
 
 >[!NOTE]
 >
->Om du inte hittar de snabba autentiseringsuppgifterna för mellanlagrings- eller produktionsmiljöerna kontaktar du Adobe Customer Technical Advisor (CTA).
+>Om du inte hittar de snabba autentiseringsuppgifterna för förproduktionsmiljö eller produktionsmiljö kontaktar du Adobe Customer Technical Advisor (CTA).
 
 ## Aktivera snabb cachelagring
 

@@ -3,7 +3,7 @@ title: Arbetsflöde för startprojekt
 description: Lär dig använda arbetsflödena för utveckling och distribution av Starter.
 feature: Cloud, Paas
 exl-id: f334047a-1e0d-45c7-bf96-5c2964741951
-source-git-commit: 08f43a3b0a50cdb2a5e8a45bd2e2448bc6dbca2b
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
 source-wordcount: '2103'
 ht-degree: 0%
@@ -105,9 +105,9 @@ När du är redo att konfigurera din butik skickar du all kod till miljön `inte
 Mer information om konfigurationer finns i dokumentationen för Adobe Commerce och de installerade tilläggen. Här är några länkar och idéer som hjälper dig att komma igång:
 
 - [Bästa tillvägagångssätt för butikskonfiguration](../store/best-practices.md) för specifik bästa praxis i molnet
-- [Grundkonfiguration](https://docs.magento.com/user-guide/configuration/configuration-basic.html) för administratörsåtkomst, namn, språk, valutor, varumärkning, webbplatser, butiksvyer med mera
-- [Tema](https://docs.magento.com/user-guide/design/design-theme.html) om du vill ha webbplatsens utseende och känsla och lagra inklusive CSS och layouter
-- [Systemkonfiguration](https://docs.magento.com/user-guide/system/system.html) för roller, verktyg, meddelanden och din krypteringsnyckel för databasen
+- [Grundkonfiguration](https://experienceleague.adobe.com/en/docs/commerce-admin/start/setup/store-details) för administratörsåtkomst, namn, språk, valutor, varumärkning, webbplatser, butiksvyer med mera
+- [Tema](https://experienceleague.adobe.com/en/docs/commerce-admin/content-design/content-menu#design-features) om du vill ha webbplatsens utseende och känsla och lagra inklusive CSS och layouter
+- [Systemkonfiguration](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/guide-overview) för roller, verktyg, meddelanden och din krypteringsnyckel för databasen
 - Tilläggsinställningar med hjälp av deras dokumentation
 
 Förutom att bara lagra inställningar kan du konfigurera flera webbplatser och butiker, konfigurerade tjänster och mycket mer. Se [Konfigurera din butik](../store/overview.md).
@@ -165,7 +165,7 @@ Så här exporterar du produktionsdata som testdata som kan användas i miljöer
 
 - [Kör CLI-kommandona för supportverktygen](https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cli/run-support-utilities.html) (rekommenderas) när du exporterar en skyddad säkerhetskopia av kunddata och lagrar data med din Adobe Commerce-krypteringsnyckel
 
-- [Datainsamling](https://docs.magento.com/user-guide/system/support-data-collector.html) för att generera och exportera data
+- [Datainsamling](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/tools/support#data-collector) för att generera och exportera data
 
 Information om hur du migrerar dessa data finns i [Migrera och distribuera statiska filer och data](../deploy/staging-production.md#migrate-static-files).
 

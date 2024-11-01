@@ -2,7 +2,7 @@
 title: Starta webbplatsen
 description: Lär dig hur du påbörjar förberedelser för att starta webbplatsen.
 exl-id: a7b3f260-b76e-4220-b521-699548a9928a
-source-git-commit: 1253d8357fd2554050d1775fefbc420a2097db5f
+source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
 workflow-type: tm+mt
 source-wordcount: '902'
 ht-degree: 0%
@@ -43,7 +43,7 @@ Som en del av Adobe Commerce prenumeration på molninfrastruktur tillhandahålle
 
 >[!NOTE]
 >
->Om du vill distribuera ditt eget SSL-certifikat för utökad validering för ditt företag i stället för att använda dess krypteringscertifikat, kontaktar du din CTA eller [skickar en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
+>Om du vill distribuera ditt eget SSL-certifikat för utökad validering för ditt företag i stället för att använda krypteringscertifikatet för Låt oss kontakta din CTA eller [Skicka en Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket).
 
 ## Konfigurera verktyget för säkerhetsgenomsökning
 
@@ -65,7 +65,7 @@ Med verktyget för säkerhetsgenomsökning kan du regelbundet övervaka dina but
 
 - Ta emot säkerhetsuppdateringar och platsspecifika meddelanden
 
-Mer information om hur du konfigurerar och använder verktyget för säkerhetssökning finns i [användarhandboken](https://docs.magento.com/user-guide/magento/security-scan.html). Vanligtvis börjar du använda det här verktyget när du börjar testa användargodkännande (UAT).
+Mer information om hur du konfigurerar och använder verktyget för säkerhetssökning finns i [användarhandboken](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/security/security-scan). Vanligtvis börjar du använda det här verktyget när du börjar testa användargodkännande (UAT).
 
 Varje plats som du skannar måste registreras via fliken Security Scan. Under registreringsprocessen måste du godkänna ansvarsfriskrivningen innan du kan börja skanna. Du styr både schemat och auktoriserar användaren att ta emot meddelanden när varje skanning är klar. Du kan schemalägga genomsökningar efter ett visst, återkommande datum och tid, eller köra en genomsökning på begäran efter behov.
 
