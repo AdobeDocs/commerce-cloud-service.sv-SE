@@ -3,7 +3,7 @@ title: Visa och hantera loggar
 description: Förstå vilka typer av loggfiler som finns i molninfrastrukturen och var de finns.
 last-substantial-update: 2023-05-23T00:00:00Z
 exl-id: d7f63dab-23bf-4b95-b58c-3ef9b46979d4
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 633e5e75ae23a933d15a0faedae22092797d5d0b
 workflow-type: tm+mt
 source-wordcount: '1056'
 ht-degree: 0%
@@ -208,7 +208,7 @@ I Pro Staging- och Production-miljöer är loggarna Deploy, Post-deploy och Cron
 
 ### Arkiverade loggfiler
 
-Programloggarna komprimeras och arkiveras en gång om dagen och sparas i ett år. De komprimerade loggarna namnges med ett unikt ID som motsvarar `Number of Days Ago + 1`. I Pro-produktionsmiljöer har till exempel en PHP-åtkomstlogg för 21 dagar tidigare lagrats och fått följande namn:
+Programloggarna komprimeras och arkiveras en gång om dagen och sparas i **30 dagar**. De komprimerade loggarna namnges med ett unikt ID som motsvarar `Number of Days Ago + 1`. I Pro-produktionsmiljöer har till exempel en PHP-åtkomstlogg för 21 dagar tidigare lagrats och fått följande namn:
 
 ```
 /var/log/platform/<project-ID>/php.access.log.22.gz
@@ -242,4 +242,4 @@ Tjänstloggarna arkiveras och sparas under olika tidsperioder, beroende på logg
 
 I Pro Production- och Staging-miljöer använder du [New Relic logghantering](../monitor/log-management.md) som är integrerad med ditt projekt för att hantera aggregerade loggdata från alla loggar som är kopplade till ditt Adobe Commerce i molninfrastruktursprojekt.
 
-New Relic Logs-programmet har en central kontrollpanel för logghantering för felsökning och övervakning av Adobe Commerce i molninfrastrukturproduktions- och mellanlagringsmiljöer. Kontrollpanelen ger även åtkomst till loggdata för tjänsterna Snabbt CDN, Bildoptimering och Brandvägg för webbprogram (WAF). Se [New Relic-tjänster](../monitor/new-relic-service.md).
+New Relic Logs-programmet har en central kontrollpanel för logghantering för felsökning och övervakning av Adobe Commerce i molninfrastrukturproduktions- och mellanlagringsmiljöer. Kontrollpanelen ger även åtkomst till loggdata för tjänsterna Snabbt CDN, Bildoptimering och WAF (Web application firewall). Se [New Relic-tjänster](../monitor/new-relic-service.md).
