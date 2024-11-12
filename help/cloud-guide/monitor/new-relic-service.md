@@ -4,7 +4,7 @@ description: Läs mer om New Relic-tjänsten som finns i ditt Adobe Commerce i m
 feature: Cloud, Observability
 last-substantial-update: 2023-09-06T00:00:00Z
 exl-id: 613f0694-5338-4037-8ee4-ac5eca376159
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: b53d5a8d06e0ed249bd44b6f38f837a257cbd315
 workflow-type: tm+mt
 source-wordcount: '369'
 ht-degree: 0%
@@ -19,7 +19,7 @@ Följande New Relic-funktioner kan användas i produktions- och mellanlagringsmi
 
 - [New Relic APM](#new-relic-apm) (Pro och Starter)
 - [New Relic Infrastructure](#new-relic-infrastructure) (endast Pro)
-- [New Relic Log Management](#new-relic-logs) (endast Pro)
+- [New Relic Log Management](#new-relic-log-management) (endast Pro)
 
 >[!INFO]
 >
