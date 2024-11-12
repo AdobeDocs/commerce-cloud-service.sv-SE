@@ -2,20 +2,24 @@
 title: Konfigurera utgående e-post
 description: Lär dig hur du aktiverar utgående e-post för Adobe Commerce i molninfrastruktur.
 exl-id: 814fe2a9-15bf-4bcb-a8de-ae288fd7f284
-source-git-commit: ec9192caa5daa1cd25a3eec6095c2c3cf8fbefb4
+source-git-commit: 75318be63adcbe23bb8b6699b1c59b2b4a3c1a4d
 workflow-type: tm+mt
-source-wordcount: '373'
+source-wordcount: '384'
 ht-degree: 0%
 
 ---
 
 # Konfigurera utgående e-post
 
-Du kan aktivera och inaktivera utgående e-post för varje miljö från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-postmeddelanden för integreringsmiljöer (och mellanlagring endast för Starter) för att skicka tvåfaktorsautentisering eller återställa lösenordsmeddelanden för användare av Cloud-projekt.
+Du kan aktivera och inaktivera utgående e-post för integrerings- (och mellanlagring endast för Starter-miljöer) från [!DNL Cloud Console] eller från kommandoraden. Aktivera utgående e-postmeddelanden för att skicka tvåfaktorsautentisering eller för att återställa lösenordsmeddelanden för användare av Cloud-projekt.
 
 Som standard är utgående e-post aktiverat i produktions- och mellanlagringsmiljöer (endast Pro). Inställningen **[!UICONTROL Enable outgoing emails]** kan dock visas som inaktiverad i miljöinställningarna, oavsett status, tills du ställer in egenskapen `enable_smtp` via [kommandoraden](#enable-emails-in-the-cli) eller [molnkonsolen](outgoing-emails.md#enable-emails-in-the-cloud-console).
 
 Om du uppdaterar egenskapsvärdet `enable_smtp` med [kommandorad](#enable-emails-in-the-cli) ändras även inställningsvärdet [!UICONTROL Enable outgoing emails] för den här miljön på molnkonsolen.
+
+>[!NOTE]
+>
+>Om du aktiverar/inaktiverar inställningen **[!UICONTROL Enable outgoing emails]** aktiveras/inaktiveras inte e-post i Pro Staging- eller Production-miljöerna.
 
 {{redeploy-warning}}
 
@@ -27,14 +31,14 @@ Om utgående e-post måste inaktiveras eller återaktiveras i Pro Production- el
 
 >[!TIP]
 >
->Status för utgående e-post kanske inte återspeglas för Pro-miljöer på molnkonsolen. Använd i stället [kommandoraden](#enable-emails-in-the-cli) för att aktivera och testa utgående e-postmeddelanden.
+>Status för utgående e-post kanske inte återspeglas för Pro Staging- eller Production-miljöer i Cloud Console.
 
 **Så här hanterar du e-postsupport från[!DNL Cloud Console]**:
 
 1. Logga in på [[!DNL Cloud Console]](https://console.adobecommerce.com).
 1. Välj ett projekt i listan _Alla projekt_.
 1. Klicka på konfigurationsikonen i det övre högra hörnet på projektkontrollpanelen.
-1. Klicka på **[!UICONTROL Environments]** och välj en specifik miljö i listan.
+1. Klicka på **[!UICONTROL Environments]** och välj en specifik miljö i listan (förutom Förproduktion och produktion för Pro).
 1. Om du vill aktivera eller inaktivera utgående e-post växlar du _Aktivera utgående e-post_ **På** eller **Av**.
 
    ![Aktivera konfiguration för utgående e-post](../../assets/outgoing-emails.png)
