@@ -3,9 +3,9 @@ title: Lägg till webbplatskarta och sökrobotar
 description: Lär dig hur du lägger till webbplatskartor och sökrobotar i Adobe Commerce i molninfrastruktur.
 feature: Cloud, Configuration, Search, Site Navigation
 exl-id: b98f43fa-1878-466d-8ea0-1e7207af8b60
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: fda88fdf03afa4a59f40e52802c16b6136d8716f
 workflow-type: tm+mt
-source-wordcount: '517'
+source-wordcount: '537'
 ht-degree: 0%
 
 ---
@@ -117,10 +117,12 @@ I administratörskonfigurationen för `sitemap` måste du ange filens plats med 
 
 ### Konfigurera indexering med sökmotor
 
-Om du vill aktivera `robots.txt` anpassningar måste du aktivera alternativet **Indexering av sökmotorer är aktiverat för`<environment-name>`** i projektinställningarna.
+Om du vill aktivera `robots.txt` anpassningar i produktionen måste du aktivera alternativet **Indexering av sökmotorer är aktiverat för`<environment-name>`** i projektinställningarna.
 
 ![Använd [!DNL Cloud Console] för att hantera miljöer](../../assets/robots-indexing-by-search-engine.png)
 
 >[!NOTE]
 >
->Om du använder PWA Studio och inte kan komma åt den konfigurerade `robots.txt`-filen lägger du till `robots.txt` i Tillåtelselista [Front Name](https://github.com/magento/magento2-upward-connector#front-name-allowlist) på **Stores** > Configuration > **General** > **Web** > UPWARD PWA Configuration.
+>- Indexering med sökmotorer kan bara aktiveras i Produktion, men inte i någon av de lägre miljöerna.
+>
+>- Om du använder PWA Studio och inte kan komma åt den konfigurerade `robots.txt`-filen lägger du till `robots.txt` i Tillåtelselista [Front Name](https://github.com/magento/magento2-upward-connector#front-name-allowlist) på **Stores** > Configuration > **General** > **Web** > UPWARD PWA Configuration.
