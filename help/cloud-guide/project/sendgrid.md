@@ -2,9 +2,9 @@
 title: SkickaGrid-e-posttjänst
 description: Lär dig mer om e-posttjänsten SendGrid för Adobe Commerce i molninfrastrukturen och hur du kan testa din DNS-konfiguration.
 exl-id: 30d3c780-603d-4cde-ab65-44f73c04f34d
-source-git-commit: b5c8dc062a940e9e202d9bd4cca6901b07109e07
+source-git-commit: d07447fa8390794c3d019d513f23321fe02e41a1
 workflow-type: tm+mt
-source-wordcount: '1273'
+source-wordcount: '1317'
 ht-degree: 0%
 
 ---
@@ -23,7 +23,7 @@ SendGrid SMTP-proxyn är inte avsedd att användas som en allmän e-postserver f
 
 >[!TIP]
 >
->Du hittar SendGrid-information för ditt konto i [Startgränssnittet](https://cloud.magento.com) och väljer fliken **Projektinformation** > **Värdinformation**.
+>Kontrollera att du har konfigurerat rätt e-postadresser för butik i administratören genom att gå till Lager > Konfiguration > Allmänt för att undvika problem med levererbarhet och domänverifiering. Du måste avmarkera **[!UICONTROL Use Default]** och ersätta standardvärdena med en domän som du äger. E-posttjänster för offentlig/delad domän, som gmail.com och outlook.com, ska inte konfigureras som avsändarens e-postadress när e-postmeddelanden skickas via Sendgrid.
 
 ## Aktivera eller inaktivera e-post
 
