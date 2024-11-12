@@ -3,9 +3,9 @@ title: Uppgradera Commerce
 description: Lär dig hur du uppgraderar Adobe Commerce-versionen i molninfrastrukturprojektet.
 feature: Cloud, Upgrade
 exl-id: 87821007-4979-4a20-940b-aa3c82c192d8
-source-git-commit: b49a51aba56f79b5253eeacb1adf473f42bb8959
+source-git-commit: 8851db6ee962bf1a65b31d344e2bd71065e9340d
 workflow-type: tm+mt
-source-wordcount: '1439'
+source-wordcount: '1547'
 ht-degree: 0%
 
 ---
@@ -286,6 +286,19 @@ Granska informationen om [tjänstversionerna](../services/services-yaml.md#servi
    ```bash
    composer update
    ```
+
+1. Granska de korrigeringar som används för närvarande:
+
+   - Om det finns korrigeringsfiler installerade i katalogen `m2-hotfixes` [skickar du en Adobe Commerce Support-anmälan](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide#support-case) och arbetar med Adobe Commerce Support för att kontrollera vilka korrigeringsfiler som fortfarande kan användas i den nya versionen. Ta bort den eller de icke tillämpliga korrigeringarna från katalogen `m2-hotfixes`.
+
+   - Om [kvalitetsuppdateringar] används i filen `.magento.env.yaml` kontrollerar du om de fortfarande kan användas i den nya versionen. Ta bort den eller de korrigeringar som inte är tillämpliga från `QUALITY_PATCHES`-avsnittet i `.magento.env.yaml`-filen.
+
+   **Metod 1**: [Verifiera tillämpliga versioner i versionsinformationen för kvalitetspatchar](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/quality-patches-tool/release-notes)
+
+   **Metod 2**: [Visa tillgängliga korrigeringar och status](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/develop/upgrade/apply-patches#view-available-patches-and-status)
+
+   **Metod 3**: [Sök efter korrigeringsfiler](https://experienceleague.adobe.com/tools/commerce-quality-patches/index.html?lang=en)
+
 
 1. Lägg till, implementera och push-ändra kod.
 
