@@ -2,9 +2,9 @@
 title: Konfigurera [!DNL Xdebug]
 description: Lär dig hur du konfigurerar Xdebug-tillägget för felsökning av din Adobe Commerce när du utvecklar projekt för molninfrastruktur.
 exl-id: bf2d32d8-fab7-439e-8df3-b039e53009d4
-source-git-commit: 7b42174663b79b673ee5af05b794090ddc5bdd75
+source-git-commit: 83984f9e30402cda7af29ca5095a251ff835b4a1
 workflow-type: tm+mt
-source-wordcount: '1765'
+source-wordcount: '1920'
 ht-degree: 0%
 
 ---
@@ -31,7 +31,7 @@ Så här konfigurerar du [!DNL Xdebug]:
 
 - [Arbeta i en gren för att överföra filuppdateringar](#get-started-with-a-branch)
 - [Aktivera [!DNL Xdebug] för miljöer](#enable-xdebug-in-your-environment)
-- [Konfigurera din IDE](#configure-phpstorm)
+- [Konfigurera PHPStorm-servern](#configure-phpstorm-server)
 - [Konfigurera portvidarebefordran](#set-up-port-forwarding)
 
 ### Kom igång med en gren
@@ -41,6 +41,8 @@ Om du vill lägga till [!DNL Xdebug] rekommenderar Adobe att du arbetar i [en ut
 ### Aktivera Xdebug i miljön
 
 Du kan aktivera [!DNL Xdebug] direkt i alla Starter-miljöer och Pro-integreringsmiljöer. Det här konfigurationssteget krävs inte för Pro Production &amp; Staging-miljöer. Se [Felsök för Pro Staging and Production](#debug-for-pro-staging-and-production).
+
+>[!VIDEO](https://video.tv.adobe.com/v/3437407?learn=on)
 
 Om du vill aktivera [!DNL Xdebug] för ditt projekt lägger du till `xdebug` i avsnittet `runtime:extensions` i filen `.magento.app.yaml`.
 
@@ -65,11 +67,11 @@ Om du vill aktivera [!DNL Xdebug] för ditt projekt lägger du till `xdebug` i a
 1. Lägg till, implementera och kör ändringarna för att omdistribuera miljön.
 
    ```bash
-   git add -A
+   git add .magento.app.yaml
    ```
 
    ```bash
-   git commit -m "Add xdebug"
+   git commit -m "add xdebug"
    ```
 
    ```bash
@@ -78,7 +80,9 @@ Om du vill aktivera [!DNL Xdebug] för ditt projekt lägger du till `xdebug` i a
 
 [!DNL Xdebug] är nu tillgängligt när den distribueras till Starter-miljöer och Pro-integreringsmiljöer. Fortsätt konfigurera IDE. Information om PhpStorm finns i [Konfigurera PhpStorm](#configure-phpstorm).
 
-### Konfigurera PhpStorm
+### Konfigurera PhpStorm-server
+
+>[!VIDEO](https://video.tv.adobe.com/v/3437409?learn=on)
 
 IDE:n [PhpStorm](https://www.jetbrains.com/phpstorm/) måste vara konfigurerad för att fungera korrekt med [!DNL Xdebug].
 
@@ -89,7 +93,7 @@ IDE:n [PhpStorm](https://www.jetbrains.com/phpstorm/) måste vara konfigurerad f
    - _macOS_ - Välj **PhpStorm** > **Inställningar**.
    - _Windows/Linux_ - Välj **Arkiv** > **Inställningar**.
 
-1. Expandera och leta upp avsnittet **Språk och ramar** > **PHP** > **Servrar** i panelen _Inställningar_.
+1. Utöka avsnittet **PHP** på panelen _Inställningar_ och klicka på **Servrar**.
 
 1. Klicka på **+** för att lägga till en serverkonfiguration. Projektnamnet är grått högst upp.
 
@@ -110,11 +114,32 @@ IDE:n [PhpStorm](https://www.jetbrains.com/phpstorm/) måste vara konfigurerad f
       - Produktion: `/app/<project_code>/`
       - Mellanlagring: `/app/<project_code>_stg/`
 
-1. Ändra porten [!DNL Xdebug] till 9000 i panelen **Språk och ramverk** > **PHP** > **Felsök** > **Xdebug** > **Felsök port**.
+1. Ändra porten [!DNL Xdebug] till `9000,9003` eller så kan du begränsa den till bara `9000` i panelen **PHP** > **Felsök** > **Xdebug** > **Felsök port**.
 
 1. Klicka på **Använd**.
 
+### Skapa konfigurationen för PHPStorm Run/Debug
+
+Detta gör att programmet kan ha rätt felsökningsinställningar för att hantera begäran från Adobe Commerce-programmet.
+
+>[!VIDEO](https://video.tv.adobe.com/v/3437426?learn=on)
+
+1. Öppna PHPStorm-programmet och klicka på **[!UICONTROL Add Configuration]** i skärmens övre högra hörn.
+
+1. Klicka på **[!UICONTROL Add new run configuration]**.
+
+1. Välj alternativet **[!UICONTROL PHP Remote Debug]**.
+
+   - Ange ett unikt, men identifierbart namn.
+   - Markera kryssrutan [!UICONTROL Filter debug connection by IDE key]**.
+   - Markera servern som du skapade i det [föregående avsnittet](#configure-phpstorm-server). Om du inte har skapat den än kan du skapa en nu, men se den delen av installationsguiden.
+   - Skriv `PHPSTORM` med versaler i textfältet **[!UICONTROL IDE key(session id)]**. Vi kommer att använda detta i andra delar av installationen, så det är viktigt att vi behåller detta. Om du väljer en annan sträng måste du komma ihåg att använda den någon annanstans i installations- och konfigurationsprocessen.
+
+1. Klicka på **[!UICONTROL Apply]** > **[!UICONTROL OK]**.
+
 ### Konfigurera portvidarebefordran
+
+>[!VIDEO](https://video.tv.adobe.com/v/3437410?learn=on)
 
 Mappa `XDEBUG`-anslutningen från servern till det lokala systemet. För att kunna utföra alla typer av felsökning måste du vidarebefordra port 9000 från din Adobe Commerce på molninfrastrukturservern till din lokala dator. Se något av följande avsnitt:
 
@@ -280,6 +305,10 @@ Du behöver följande:
 >- Metod 2: Commerce Console: https://CONSOLE-URL/ENVIRONMENT, klicka på listrutan `SSH v`
 
 **Så här startar du felsökningen med URL:en för miljön**:
+
+Detta är en demonstration av de konfigurationer som används samt en demonstration av GET-parametern för att starta en fjärrfelsökningssession.
+
+>[!VIDEO](https://video.tv.adobe.com/v/3437417?learn=on)
 
 1. Aktivera fjärrfelsökning. Gå till webbplatsen i webbläsaren och lägg till följande till URL:en där `KEY` är värde för `xdebug_key`.
 
