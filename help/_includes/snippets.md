@@ -1,7 +1,7 @@
 ---
-source-git-commit: a87039d2e96e39d6d8d19673c5e0d52de8b844a4
+source-git-commit: 63b966c1562318dc43dd42641e6f607f5438137b
 workflow-type: tm+mt
-source-wordcount: '879'
+source-wordcount: '907'
 ht-degree: 0%
 
 ---
@@ -81,6 +81,12 @@ Ställ in alternativet `_merge` på något av följande:
 >[!NOTE]
 >
 >Med [!DNL ECE-Tools] 2002.1.0 och senare kan du använda den scenariobaserade distributionsfunktionen för att anpassa processerna för att skapa, distribuera och efterdistribuera din Adobe Commerce i molninfrastrukturprojekt. Se [Scenariobaserad distribution](/help/cloud-guide/deploy/scenario-based.md).
+
+## Andra mellanlagring {#second-staging}
+
+>[!NOTE]
+>
+>Vissa projekt kräver ett mer avancerat utvecklingsarbetsflöde. För att tillgodose detta behov erbjuder Adobe en [extra mellanlagringsmiljö](/help/cloud-guide/test/second-staging.md) som ett tilläggsalternativ till din molninfrastruktur.
 
 ## Tjänstinstruktion {#service-instruction}
 

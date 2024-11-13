@@ -3,7 +3,7 @@ title: Arbetsflöde för Pro-projekt
 description: Lär dig använda arbetsflödena för Pro-utveckling och -distribution.
 feature: Cloud, Iaas, Paas
 exl-id: 103e90d5-2ef2-4fef-845c-439344666b00
-source-git-commit: 08f43a3b0a50cdb2a5e8a45bd2e2448bc6dbca2b
+source-git-commit: c6d4128792e688485e021bad75d9814a9f4d3b4f
 workflow-type: tm+mt
 source-wordcount: '782'
 ht-degree: 0%
@@ -91,6 +91,8 @@ Kombinera alla verifierade kodändringar genom att slå samman din aktiva utveck
 Mellanlagring är en förproduktionsmiljö som tillhandahåller alla tjänster och inställningar så nära produktionsmiljön som möjligt. Flytta alltid dina kodändringar från miljön `integration` till miljön `staging` så att du kan utföra grundliga tester med alla tjänster. Första gången du använder testmiljön måste du konfigurera tjänster som [Fast CDN](../cdn/fastly.md) och [New Relic](../monitor/new-relic-service.md). Konfigurera betalningsgatewayar, leveranser, meddelanden och andra viktiga tjänster med sandlåda eller testningsreferenser.
 
 Det är bäst att noggrant testa alla tjänster, verifiera prestandatestningsverktygen och utföra UAT-tester som administratör och kund tills du känner att butiken är redo för produktionsmiljön. Se [Distribuera din butik](../deploy/staging-production.md).
+
+{{second-staging}}
 
 ### Koppla till produktion
 

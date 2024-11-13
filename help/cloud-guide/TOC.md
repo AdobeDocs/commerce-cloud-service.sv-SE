@@ -3,9 +3,9 @@ user-guide-title: Användarhandbok om Commerce i molninfrastrukturen
 user-guide-description: Lär dig hur du hanterar Adobe Commerce-programmet i molninfrastrukturen.
 product: magento
 feature: Cloud
-source-git-commit: ebd434e488b666d34df9562825a612b33495e44d
+source-git-commit: 54b9101d3cba535a0e2c83e482aaebe261e3bcce
 workflow-type: tm+mt
-source-wordcount: '353'
+source-wordcount: '356'
 ht-degree: 4%
 
 ---
@@ -82,6 +82,7 @@ ht-degree: 4%
       + [Xdebug](test/debug.md)
       + [Exempeldata](test/sample-data.md)
       + [Mellanlagring och produktion](test/staging-and-production.md)
+      + [Andra mellanlagringsmiljön](test/second-staging.md)
    + [PrivateLink-tjänst](development/privatelink-service.md)
    + [Skyddsblock](development/protective-block.md)
    + [Återställningsmiljö](development/restore-environment.md)
@@ -118,7 +119,7 @@ ht-degree: 4%
          + [Global](environment/variables-global.md)
          + [Bygge](environment/variables-build.md)
          + [Distribuera](environment/variables-deploy.md)
-         + [Post-driftsätta](environment/variables-post-deploy.md)
+         + [Efter driftsättning](environment/variables-post-deploy.md)
       + Konfigurera meddelanden {#log}
          + [Meddelanden](environment/set-up-notifications.md)
          + [Logghanterare](environment/log-handlers.md)
@@ -144,7 +145,7 @@ ht-degree: 4%
    + [Bildoptimering](cdn/fastly-image-optimization.md)
    + Anpassa med VCL {#custom-vcl-snippets}
       + [Kom igång](cdn/fastly-vcl-custom-snippets.md)
-      + [Dirigera om begäranden till en CMS-serverdel](cdn/fastly-vcl-wordpress.md)
+      + [Omdirigera begäranden till en CMS-serverdel](cdn/fastly-vcl-wordpress.md)
       + [Blockera skräppost](cdn/fastly-vcl-badreferer.md)
       + [IP TILLÅTELSELISTA](cdn/fastly-vcl-allowlist.md)
       + [IP BLOCKERINGSLISTA](cdn/fastly-vcl-blocking.md)

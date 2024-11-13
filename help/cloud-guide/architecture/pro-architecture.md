@@ -4,7 +4,7 @@ description: Läs om de miljöer som stöds av Pro-arkitekturen.
 feature: Cloud, Auto Scaling, Iaas, Paas, Storage
 topic: Architecture
 exl-id: d10d5760-44da-4ffe-b4b7-093406d8b702
-source-git-commit: a1e7674b99d7e289531268e1a298f61344c7bd8f
+source-git-commit: 18f4da5c6e7e5c483f5cf64e977b3fb3fd28bbb0
 workflow-type: tm+mt
 source-wordcount: '1573'
 ht-degree: 0%
@@ -120,6 +120,8 @@ Se [Arbetsflöde för distribution](pro-develop-deploy-workflow.md#deployment-wo
 - När du har startat produktionsplatsen använder du i första hand testmiljön för att testa korrigeringar för produktionskritiska buggfixar.
 
 - Du kan inte skapa en gren från grenen `staging`. Du kan istället överföra kodändringar från grenen `integration` till grenen `staging`.
+
+{{second-staging}}
 
 ### Produktionsmiljö
 
