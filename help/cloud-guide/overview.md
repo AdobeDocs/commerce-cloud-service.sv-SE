@@ -2,9 +2,9 @@
 title: Commerce on Cloud Infrastructure
 description: Lär dig hur du bygger, distribuerar och hanterar Commerce i molninfrastrukturen.
 exl-id: c0accd55-95ac-49d9-b6f4-0da19b82c28f
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: 6ac23cbcf7ab48d09b494ebe8c7136518d213c4e
 workflow-type: tm+mt
-source-wordcount: '224'
+source-wordcount: '236'
 ht-degree: 0%
 
 ---
@@ -19,6 +19,10 @@ Adobe Commerce i molninfrastruktur erbjuder en automatiserad värdplattform med 
 - Amazon Web Services (AWS) som erbjuder en skalbar och säker miljö för onlineförsäljning och webbutik.
 
 ![Molnfördelar](../assets/CloudBenefits.svg)
+
+>[!NOTE]
+>
+>Mer information om säkerhet finns i [checklistan för säkerhetsuppdatering](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/launch/checklist#security-configuration).
 
 Visa [Teknikstacken](architecture/tech-stack.md) i detalj eller läs mer om specifika funktioner och produkter som stöds i [Cloud-arkitekturen för Commerce](architecture/cloud-architecture.md).
 

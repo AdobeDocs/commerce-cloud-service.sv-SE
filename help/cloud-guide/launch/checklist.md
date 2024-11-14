@@ -2,7 +2,7 @@
 title: Öppna checklista
 description: Granska checklisteobjekt för att starta webbplatsen.
 exl-id: 4525742e-18c5-40d1-975d-00ba3f3a51a0
-source-git-commit: 196efa316b9998c1980412ad96577d7ce42d4aec
+source-git-commit: 6ac23cbcf7ab48d09b494ebe8c7136518d213c4e
 workflow-type: tm+mt
 source-wordcount: '1104'
 ht-degree: 0%
@@ -139,7 +139,7 @@ Du kan också testa med följande alternativ från tredje part:
 
 - [Säker konfiguration för administratörsanvändare](https://experienceleague.adobe.com/en/docs/commerce-admin/systems/security/security-admin)
 
-- [Säker konfiguration för Admin URL]https://experienceleague.adobe.com/en/docs/commerce-admin/stores-sales/site-store/store-urls#use-a-custom-admin-url)
+- [Säker konfiguration för Admin URL](https://experienceleague.adobe.com/en/docs/commerce-admin/stores-sales/site-store/store-urls#use-a-custom-admin-url)
 
 - [Ta bort användare som inte längre använder Adobe Commerce i molninfrastrukturprojektet](../project/user-access.md)
 
