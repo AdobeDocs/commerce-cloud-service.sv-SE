@@ -2,9 +2,9 @@
 title: Commerce on Cloud Infrastructure
 description: Lär dig hur du bygger, distribuerar och hanterar Commerce i molninfrastrukturen.
 exl-id: c0accd55-95ac-49d9-b6f4-0da19b82c28f
-source-git-commit: 6ac23cbcf7ab48d09b494ebe8c7136518d213c4e
+source-git-commit: 5f00b20e599b7ba26e483a238d05d99daf1dd1b8
 workflow-type: tm+mt
-source-wordcount: '236'
+source-wordcount: '293'
 ht-degree: 0%
 
 ---
@@ -32,6 +32,26 @@ Visa [Teknikstacken](architecture/tech-stack.md) i detalj eller läs mer om spec
 <div id="recs-overview-body-4"></div>
 <div id="recs-overview-body-5"></div>
 <div id="recs-overview-body-6"></div>
+
+## Molnregioner
+
+Följande avsnitt innehåller information om de olika AWS- och Azure-regionerna som är tillgängliga för Adobe Commerce i molninfrastrukturen.
+
+## AWS
+
+![Diagram som visar AWS-regioner](../assets/aws-regions.svg){zoomable="yes"}
+
+>[!NOTE]
+>
+> Endast lokalt i Kina och Ryssland.
+
+## Azure-regioner
+
+![Diagram som visar Azure-regioner](../assets/azure-regions.svg){zoomable="yes"}
+
+>[!NOTE]
+>
+> Endast lokalt i Kina och Ryssland. Alla handlare som kräver integreringsmiljöer måste använda USA-regioner.
 
 ## Adobe Commerce-dokumentation
 

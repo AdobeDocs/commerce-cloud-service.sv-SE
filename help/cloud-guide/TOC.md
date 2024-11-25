@@ -3,9 +3,9 @@ user-guide-title: Användarhandbok om Commerce i molninfrastrukturen
 user-guide-description: Lär dig hur du hanterar Adobe Commerce-programmet i molninfrastrukturen.
 product: magento
 feature: Cloud
-source-git-commit: 54b9101d3cba535a0e2c83e482aaebe261e3bcce
+source-git-commit: 5f00b20e599b7ba26e483a238d05d99daf1dd1b8
 workflow-type: tm+mt
-source-wordcount: '356'
+source-wordcount: '357'
 ht-degree: 4%
 
 ---
@@ -16,6 +16,7 @@ ht-degree: 4%
 + [Commerce](overview.md)
 + Arkitektur {#architecture}
    + [Molninfrastruktur](architecture/cloud-architecture.md)
+   + [Säkerhet](architecture/security.md)
    + [Teknikstack](architecture/tech-stack.md)
    + [Startarkitektur](architecture/starter-architecture.md)
    + [Startarbetsflöde](architecture/starter-develop-deploy-workflow.md)
