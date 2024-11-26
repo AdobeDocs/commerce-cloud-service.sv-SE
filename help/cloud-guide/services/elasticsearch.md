@@ -3,9 +3,9 @@ title: Konfigurera tjänsten Elasticsearch
 description: Lär dig hur du aktiverar tjänsten Elasticsearch för Adobe Commerce i molninfrastruktur.
 feature: Cloud, Search, Services
 exl-id: ac559cbb-342a-4756-ade5-49eba4827965
-source-git-commit: c39332d352f6dcb6f92c312a6ef1b74319d37aa3
+source-git-commit: 38c29e3a2cee1658bb73922f0f56fdfa84af5a6f
 workflow-type: tm+mt
-source-wordcount: '798'
+source-wordcount: '788'
 ht-degree: 0%
 
 ---
@@ -266,6 +266,5 @@ Om du tar bort plugin-posterna från `elasticsearch:` i `.magento/services.yaml`
 Se följande Adobe Commerce supportartiklar för hjälp med felsökning av Elasticsearch-problem:
 
 - [Elasticsearch 5 har konfigurerats, men söksidan läses inte in med &quot;FieldData is disabled...&quot;-fel](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/elasticsearch/elasticsearch-5-is-configured-but-search-page-does-not-load-with-fielddata-is-disabled...-error.html).
-- [Katalognumrering fungerar inte när Elasticsearch 6.x används](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/known-issues-patches-attached/catalog-pagination-doesn-t-work-when-elasticsearch-6.x-is-used.html)
 - [Elasticsearch i Adobe Commerce felsökare](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/elasticsearch/elasticsearch-in-magento-troubleshooter.html)
 - [Elasticsearch-indexstatus är `yellow` eller `red`](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/troubleshooting/elasticsearch/elasticsearch-index-status-is-yellow-or-red.html)

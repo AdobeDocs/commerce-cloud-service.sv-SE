@@ -3,7 +3,7 @@ title: Snabbt felsökning
 description: Lär dig hur du felsöker och hanterar snabbuppdateringsmodulen och tjänsterna för Adobe Commerce.
 feature: Cloud, Configuration, Cache, Services
 exl-id: e4c47035-cbad-4838-8d44-fa5eaaac42d1
-source-git-commit: e066e9c7e1a6010c9d316f66f1632e28a0c40652
+source-git-commit: 38c29e3a2cee1658bb73922f0f56fdfa84af5a6f
 workflow-type: tm+mt
 source-wordcount: '1834'
 ht-degree: 0%
@@ -32,7 +32,7 @@ Utvecklare och avancerade VCL-användare kan använda anpassad VCL för att häm
 log {"syslog"} req.service_id {" my_logging_endpoint_name :: "}
 ```
 
-Du kan använda samma VCL för produktions- och mellanlagringsmiljöer. Se [Konfigurera vcl_log](https://support.fastly.com/hc/en-us/community/posts/360040447172-How-to-configure-vcl-log).
+Du kan använda samma VCL för produktions- och mellanlagringsmiljöer. Se [`vcl_log`](https://www.fastly.com/documentation/reference/vcl/subroutines/log/) i _Snabbt dokumentation_.
 
 ## Problem med webbplatsprestanda, rensning och cache
 

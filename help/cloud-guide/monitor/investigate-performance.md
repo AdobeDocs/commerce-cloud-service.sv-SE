@@ -4,9 +4,9 @@ description: Lär dig hur du får tillgång till din New Relic-kontrollpanel och
 feature: Cloud, Observability
 topic: Performance
 exl-id: 8d1e2ad6-14d0-4754-9703-960d93e135a9
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: 38c29e3a2cee1658bb73922f0f56fdfa84af5a6f
 workflow-type: tm+mt
-source-wordcount: '844'
+source-wordcount: '833'
 ht-degree: 0%
 
 ---
@@ -85,11 +85,11 @@ När webbplatsinfrastruktur eller programförhållanden utlöser ett tröskelvä
 
 Ändra inte några aviseringar som ingår i policyn för hanterade aviseringar för Adobe Commerce. Adobe uppdaterar och förbättrar aviseringsvillkoren i den här principen över tid, vilket skriver över eventuella anpassningar som du lägger till i principen.
 
-I stället för att ändra en befintlig avisering kan du skapa en aviseringsprincip. Kopiera sedan varningsvillkoren till den nya profilen. Se [Uppdatera principer eller villkor](https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/alert-policies/update-or-disable-policies-conditions/) i _New Relic_ -dokumentationen.
+I stället för att ändra en befintlig avisering kan du skapa en aviseringsprincip. Kopiera sedan varningsvillkoren till den nya profilen.
 
 >[!TIP]
 >
->Se [Introduktion till aviseringar](https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/learn-alerts/alerts-concepts-workflow/) i _New Relic_ -dokumentationen för mer detaljerad information om aviseringar, aviseringsprinciper och arbetsflöden.
+>Se [Introduktion till aviseringar](https://docs.newrelic.com/docs/alerts/overview/) i _New Relic_ -dokumentationen för mer detaljerad information om aviseringar, aviseringsprinciper och arbetsflöden.
 
 ## Konfigurera ett arbetsflöde för meddelanden
 
