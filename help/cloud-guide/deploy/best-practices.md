@@ -3,7 +3,7 @@ title: Bästa praxis för driftsättning
 description: Upptäck de bästa sätten att driftsätta Adobe Commerce i molninfrastruktur.
 feature: Cloud, Deploy, Best Practices
 exl-id: bac3ca83-0eee-4fda-9a5c-a84ab25a837a
-source-git-commit: eace5d84fa0915489bf562ccf79fde04f6b9d083
+source-git-commit: 269681efb9925d78ffb608ecbef657be740b5531
 workflow-type: tm+mt
 source-wordcount: '1904'
 ht-degree: 0%
@@ -118,7 +118,7 @@ Den här fasen kör även `composer install` för att hämta beroenden.
 Den här fasen skapar kodbasen och kör kopplingar i avsnittet `build` i `.magento.app.yaml`. Standardbyggkroken är kommandot `php ./vendor/bin/ece-tools` och utför följande:
 
 - Tillämpar korrigeringar i `vendor/magento/ece-patches` och valfria, projektspecifika korrigeringar i `m2-hotfixes`
-- Återskapar kod och konfigurationen för [beroendeinjektionen](https://experienceleague.adobe.com/docs/commerce-operations/operational-playbook/glossary.html) (d.v.s. katalogen `generated/` som innehåller `generated/code` och `generated/metapackage`) med `bin/magento setup:di:compile`.
+- Återskapar kod och konfigurationen för [beroendeinjektionen](https://experienceleague.adobe.com/en/docs/commerce-operations/implementation-playbook/glossary) (d.v.s. katalogen `generated/` som innehåller `generated/code` och `generated/metapackage`) med `bin/magento setup:di:compile`.
 - Kontrollerar om filen [`app/etc/config.php`](../store/store-settings.md) finns i kodbasen. Adobe Commerce genererar automatiskt den här filen om den inte upptäcks under byggfasen och innehåller en lista med moduler och tillägg. Om den finns fortsätter byggfasen som vanligt, statiska filer komprimeras med GZIP och distribueras, vilket minskar driftstoppen i distributionsfasen. Mer information om hur du anpassar eller inaktiverar filkomprimering finns i [byggalternativ](../environment/variables-build.md).
 
 >[!WARNING]
@@ -145,7 +145,7 @@ Instruktionsmarginalen innehåller alla filer och mappar **förutom följande** 
 
 ### Fas 4: Distribuera instruktionsmarginaler och kluster
 
-Dina program och alla [backend](https://experienceleague.adobe.com/docs/commerce-operations/operational-playbook/glossary.html)-tjänster tillhandahålls enligt följande:
+Dina program och alla [backend](https://experienceleague.adobe.com/en/docs/commerce-operations/implementation-playbook/glossary)-tjänster tillhandahålls enligt följande:
 
 - Monterar varje tjänst i en behållare, till exempel webbserver, OpenSearch, [!DNL RabbitMQ]
 - Monterar filsystemet för läsbehörighet (monterat på ett distribuerat lagringsrutnät med hög tillgänglighet)
@@ -183,7 +183,7 @@ Det finns två driftsättningskrokar. `pre-deploy.php`-kroken slutför nödvänd
 >
 >Distributionsskriptet använder de värden som definieras av konfigurationsfiler i katalogen `.magento`, och skriptet tar sedan bort katalogen och dess innehåll. Din lokala utvecklingsmiljö påverkas inte.
 
-### Post-distribution: konfigurera routning
+### Efterdistribution: konfigurera routning
 
 När distributionen körs stoppas inkommande trafik vid startpunkten i 60 sekunder och routningen konfigureras om så att webbtrafiken kommer till det nyligen skapade klustret.
 

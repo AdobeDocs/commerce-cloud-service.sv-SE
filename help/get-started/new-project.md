@@ -4,9 +4,9 @@ description: Lär dig hur du förbereder en teknisk rådgivare från Adobe för 
 recommendations: noDisplay, catalog
 role: Admin
 exl-id: cfb354b0-c255-4b6e-94aa-c5a6bf7230d6
-source-git-commit: da1dec76b9389244f9d5a65428e09f1bc897fa5f
+source-git-commit: 269681efb9925d78ffb608ecbef657be740b5531
 workflow-type: tm+mt
-source-wordcount: '756'
+source-wordcount: '751'
 ht-degree: 0%
 
 ---
@@ -62,7 +62,7 @@ Se [Hantera diskutrymme](../cloud-guide/storage/manage-disk-space.md) i guiden _
 
 Välj antingen Amazon Web Services (AWS) eller Microsoft Azure som en grund för din infrastruktur som en tjänst (IaaS) för dina Adobe Commerce i projekt för molninfrastrukturproffs. Varje tjänsteleverantör är verksam i flera regioner och tillhandahåller flera tillgänglighetszoner. Välj ett område som passar dig och minska risken för latens och högre kostnader.
 
-Se [en karta över Adobe Commerce molnregioner](https://experienceleague.adobe.com/docs/commerce-operations/implementation-playbook/infrastructure/cloud/regions.html) i _Implementeringsspelningsboken_.
+Se [en karta över Adobe Commerce molnregioner](../cloud-guide/overview.md).
 
 ## Anslutningstjänst
 

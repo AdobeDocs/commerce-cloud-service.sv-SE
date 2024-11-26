@@ -3,7 +3,7 @@ title: Distribuera till mellanlagring och produktion
 description: Lär dig hur du distribuerar din Adobe Commerce på molninfrastrukturkod till miljöer för stapling och produktion för ytterligare testning.
 feature: Cloud, Console, Deploy, SCD, Storage
 exl-id: 4b82289f-ee04-4b14-a0ed-7a8a19fc6a6a
-source-git-commit: ae7eb6a0c3de773377c8e1efb5ce2e92c06506bd
+source-git-commit: 269681efb9925d78ffb608ecbef657be740b5531
 workflow-type: tm+mt
 source-wordcount: '1310'
 ht-degree: 0%
@@ -140,7 +140,7 @@ Cloud CLI innehåller kommandon för att distribuera kod. Du behöver SSH- och G
 
 ## Migrera statiska filer
 
-[Statiska filer](https://experienceleague.adobe.com/docs/commerce-operations/operational-playbook/glossary.html) lagras i `mounts`. Det finns två metoder för att migrera filer från en källmonteringsplats, till exempel din lokala miljö, till en målmonteringsplats. Båda metoderna använder verktyget `rsync`, men Adobe rekommenderar att du använder CLI `magento-cloud` för att flytta filer mellan den lokala miljön och fjärrmiljön. Och Adobe rekommenderar att du använder metoden `rsync` när du flyttar filer från en fjärrkälla till en annan fjärrplats.
+[Statiska filer](https://experienceleague.adobe.com/en/docs/commerce-operations/implementation-playbook/glossary) lagras i `mounts`. Det finns två metoder för att migrera filer från en källmonteringsplats, till exempel din lokala miljö, till en målmonteringsplats. Båda metoderna använder verktyget `rsync`, men Adobe rekommenderar att du använder CLI `magento-cloud` för att flytta filer mellan den lokala miljön och fjärrmiljön. Och Adobe rekommenderar att du använder metoden `rsync` när du flyttar filer från en fjärrkälla till en annan fjärrplats.
 
 ### Migrera filer med CLI
 
