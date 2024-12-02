@@ -1,5 +1,5 @@
 ---
-title: "Hantera grenar med  [!DNL Cloud Console]"
+title: Hantera grenar med  [!DNL Cloud Console]
 description: Lär dig hur du hanterar miljögrenarna för Adobe Commerce i molninfrastrukturen med  [!DNL Cloud Console].
 role: Developer
 feature: Cloud, Install
