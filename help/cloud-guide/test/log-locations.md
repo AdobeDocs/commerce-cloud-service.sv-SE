@@ -3,9 +3,9 @@ title: Visa och hantera loggar
 description: Förstå vilka typer av loggfiler som finns i molninfrastrukturen och var de finns.
 last-substantial-update: 2023-05-23T00:00:00Z
 exl-id: d7f63dab-23bf-4b95-b58c-3ef9b46979d4
-source-git-commit: 633e5e75ae23a933d15a0faedae22092797d5d0b
+source-git-commit: 564a569c37ab8ec53f8a12bc105106a621251b10
 workflow-type: tm+mt
-source-wordcount: '1056'
+source-wordcount: '1083'
 ht-degree: 0%
 
 ---
@@ -76,7 +76,18 @@ ssh 1.ent-project-environment-id@ssh.region.magento.cloud "cat var/log/cron.log"
 
 >[!TIP]
 >
->I Pro Staging- och Production-miljöer aktiveras automatisk loggrotation, komprimering och borttagning för loggfiler med ett fast filnamn. Varje loggfilstyp har ett roterande mönster och en livstid. Startmiljöer har ingen loggrotation. Fullständig information om miljöns loggrotation och livslängd för komprimerade loggar finns i: `/etc/logrotate.conf` och `/etc/logrotate.d/<various>`. Loggrotation kan inte konfigureras i Pro Integration-miljöer. För Pro Integration måste du implementera en anpassad lösning/skript och [konfigurera ditt cron](../application/crons-property.md) så att skriptet körs efter behov.
+>I Pro Staging- och Pro Production-miljöer aktiveras automatisk loggrotation, komprimering och borttagning för loggfiler med ett fast filnamn. Varje loggfilstyp har ett roterande mönster och en livstid.
+>Fullständig information om miljöns loggrotation och livslängd för komprimerade loggar finns i: `/etc/logrotate.conf` och `/etc/logrotate.d/<various>`.
+>För Pro Staging- och Pro Production-miljöer måste du [skicka en Adobe Commerce Support-biljett](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket) för att be om ändringar i loggrotationskonfigurationen.
+
+>[!TIP]
+>
+>Loggrotation kan inte konfigureras i Pro Integration-miljöer.
+>För Pro Integration måste du implementera en anpassad lösning/skript och [konfigurera ditt cron](../application/crons-property.md) så att skriptet körs efter behov.
+
+>[!NOTE]
+>
+>Startprojektmiljöer har ingen loggrotation.
 
 ## Skapa och distribuera loggar
 
