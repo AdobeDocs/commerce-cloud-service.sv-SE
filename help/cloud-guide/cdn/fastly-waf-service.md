@@ -3,9 +3,9 @@ title: Brandvägg för webbaserade program (WAF)
 description: Läs om hur tjänsten Fastly WAF identifierar, loggar och blockerar trafik för skadliga förfrågningar innan den kan skada Adobe Commerce nätverk eller webbplatser.
 feature: Cloud, Configuration, Security
 exl-id: 40bfe983-7f32-4155-ae77-7cd18866f6e2
-source-git-commit: 48ac1759fc052175e01998703e7f4ee5eaac5224
+source-git-commit: fff4abf396b2c4a5b445c23c10608f54af059815
 workflow-type: tm+mt
-source-wordcount: '888'
+source-wordcount: '930'
 ht-degree: 0%
 
 ---
@@ -51,6 +51,11 @@ När WAF-tjänsten är aktiverad undersöker den all webb- och administratörstr
 Du kan anpassa den här felsvarssidan från Admin. Se [Anpassa WAF svarssida](fastly-custom-response.md#customize-the-waf-error-page).
 
 Om din Adobe Commerce-administratörssida eller butik returnerar en `403 Forbidden`-felsida som svar på en giltig URL-begäran, skickar du en [Adobe Commerce-supportanmälan](https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html#submit-ticket). Kopiera referens-ID:t från felsvarssidan och klistra in det i biljettbeskrivningen.
+
+Om du vill identifiera WAF svar på en viss begäran med New Relic kan du läsa följande:
+
+- `Agent_response` - Anger WAF-svarskoden (`200` betyder bra och `406` betyder blockerad)
+- `sigsci` taggar - Taggar begäran till en viss signalvetenskapstagg baserat på typen av begäran
 
 ## Underhåll och uppdateringar av WAF
 
