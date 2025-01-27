@@ -3,9 +3,9 @@ title: Öppna Commerce Admin-panelen
 description: Lär dig hur du kommer åt din Commerce Admin-panel.
 recommendations: noDisplay, catalog
 exl-id: 9a8a0a49-b108-48bd-b413-ec9431370c06
-source-git-commit: 3ca09243dc0a714c1d86cccf9f0620a8a39fd1e1
+source-git-commit: 8be5b3f33798b1f03fc85a7ac9111dabd7bfd9e5
 workflow-type: tm+mt
-source-wordcount: '323'
+source-wordcount: '310'
 ht-degree: 0%
 
 ---
@@ -30,4 +30,4 @@ När du har skickat begäran om lösenordsändring kan du kontrollera om det fin
 
 ## Övervaka webbplatshälsa
 
-[Site-Wide Analysis Tool](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/intro) är ett proaktivt självbetjäningsverktyg och en central lagringsplats med detaljerade systeminsikter och rekommendationer för att säkerställa säkerheten och användbarheten för din Adobe Commerce-installation. Den ger prestandaövervakning, rapporter och råd i realtid dygnet runt alla dagar för att identifiera potentiella problem och bättre synlighet för webbplatsens hälsa, säkerhet och programkonfigurationer. Det minskar upplösningstiden och förbättrar webbplatsens stabilitet och prestanda. Du kan komma åt verktyget för webbplatsövergripande analys direkt från [administrationspanelen](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/access#option-2-logging-in-to-your-site-wide-analysis-tool-dashboard-from-your-stores-admin-panel) eller från den [dedikerade domänen](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/access#option-1-logging-in-to-your-site-wide-analysis-tool-dashboard-directly-from-the-site-wide-analysis-tool-domain-for-adobe-commerce-on-cloud-infrastructure-only) (Adobe Commerce endast för molninfrastrukturprojekt).
+[Site-Wide Analysis Tool](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/intro) är ett proaktivt självbetjäningsverktyg och en central lagringsplats med detaljerade systeminsikter och rekommendationer för att säkerställa säkerheten och användbarheten för din Adobe Commerce-installation. Den ger prestandaövervakning, rapporter och råd i realtid dygnet runt alla dagar för att identifiera potentiella problem och bättre synlighet för webbplatsens hälsa, säkerhet och programkonfigurationer. Det minskar upplösningstiden och förbättrar webbplatsens stabilitet och prestanda. Du kan komma åt verktyget för webbplatsövergripande analys direkt från [administratörspanelen](https://experienceleague.adobe.com/en/docs/commerce-operations/tools/site-wide-analysis-tool/access#option-2-logging-in-to-your-site-wide-analysis-tool-dashboard-from-your-stores-admin-panel).
