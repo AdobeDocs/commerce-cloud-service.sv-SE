@@ -4,9 +4,9 @@ description: Läs om de miljöer som stöds av Pro-arkitekturen.
 feature: Cloud, Auto Scaling, Iaas, Paas, Storage
 topic: Architecture
 exl-id: d10d5760-44da-4ffe-b4b7-093406d8b702
-source-git-commit: 18f4da5c6e7e5c483f5cf64e977b3fb3fd28bbb0
+source-git-commit: eb33d9867355a4ccfada99c7f5b0e4520dbe44f5
 workflow-type: tm+mt
-source-wordcount: '1573'
+source-wordcount: '1554'
 ht-degree: 0%
 
 ---
@@ -185,7 +185,7 @@ Du kan skapa en **manuell säkerhetskopia** av databasen för mellanlagrings- oc
 
 ### Mål för återställningspunkt
 
-RPO är sex timmars maximal tid för senaste säkerhetskopiering (till exempel 06:00, 12:00 och sedan 18:00). Hur ofta säkerhetskopieringar ska göras beror på schemat för säkerhetskopiering av din plan och hur många ändringar som ska skrivas till lagringstjänsten.
+Kontakta Adobe Customer Success Manager om du vill ha information om när återställningspunkten ska användas för den senaste säkerhetskopieringen. Hur ofta säkerhetskopieringar ska göras beror på schemat för säkerhetskopiering av din plan och hur många ändringar som ska skrivas till lagringstjänsten.
 
 ### Bevarandeprincip
 
@@ -203,11 +203,7 @@ Den här principen kan variera beroende på din molninfrastrukturplan.
 
 ### Mål för återställningstid
 
-RTO beror på lagringens storlek. Stora EBS-volymer tar längre tid att återställa. Återställningstiden kan variera beroende på databasens storlek:
-
-- En stor databas (200+ GB) kan ta 5 timmar
-- En medelstor databas (150 GB) kan ta 2 1/2 timmar
-- En liten databas (60 GB) kan ta en timme
+RTO beror på lagringens storlek. Stora EBS-volymer tar längre tid att återställa. Återställningstiden kan variera beroende på databasens storlek. Kontakta din kundansvarige på Adobe om du vill ha mer information.
 
 ## Pro, klusterskalning
 
